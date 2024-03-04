@@ -1,0 +1,20 @@
+baseURL: 'https://wenbingzhang.github.io/blog-pages/'
+defaultContentLanguage: 'zh'
+title: '我的笔记'
+theme: hugo-book
+
+markup:
+  goldmark:
+    renderer:
+      hardWraps: true
+
+params:
+  # (Optional, default light) Sets color theme: light, dark or auto.
+  # Theme 'auto' switches between dark and light modes based on browser/os preferences
+  BookTheme: "auto"
+
+  # Configure the date format used on the pages
+  # - In git information
+  # - In blog posts
+  # - "2006-01-02 15:04:05 -0700"
+  BookDateFormat: "2006-01-02"
