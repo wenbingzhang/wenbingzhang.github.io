@@ -1,0 +1,4 @@
+---
+title: 📔 Rust
+bookCollapseSection: true
+---
