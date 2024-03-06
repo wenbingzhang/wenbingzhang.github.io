@@ -1,10 +1,11 @@
 +++
-title = "hugo网站搭建过程"
+slug = "9MZhFnL58azjmeiBfBLVjY"
+title = "hugo网站建设"
 description = ""
 tags = [
-    "hugo",
+    "website",
 ]
-date = "2014-04-02"
+date = "2024-03-06"
 categories = [
     "hugo"
 ]

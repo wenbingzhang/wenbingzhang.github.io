@@ -1,12 +1,23 @@
-baseURL: '/'
+baseURL: 'https://notes.zhangwenbing.com/'
 defaultContentLanguage: 'zh'
-title: '我的笔记'
+title: '张文兵的博客'
 theme: hugo-book
 
 markup:
   goldmark:
     renderer:
       hardWraps: true
+
+
+permalinks:
+  page:
+    # posts: /articles/:year/:month/:slugorfilename/
+    # docs: /notes/:sections[1]/:year/:month/:slugorfilename/
+    posts: /articles/:slugorfilename/
+    docs: /notes/:sections[1]/:slugorfilename/
+  section:
+    posts: /articles/
+    docs: /notes/
 
 params:
   # (Optional, default light) Sets color theme: light, dark or auto.
