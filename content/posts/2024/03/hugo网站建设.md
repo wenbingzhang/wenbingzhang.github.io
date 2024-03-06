@@ -1,21 +1,21 @@
-+++
-slug = "9MZhFnL58azjmeiBfBLVjY"
-title = "hugo网站建设"
-description = ""
-tags = [
-    "website",
-]
-date = "2024-03-06"
-categories = [
-    "hugo"
-]
-menu = "main"
-+++
+---
+slug: "9MZhFnL58azjmeiBfBLVjY"
+title: "hugo网站建设"
+description:
+tags:
+  - "website"
+date: "2024-03-06"
+categories:
+  - "hugo"
+menu: "main"
+---
 
-## 安装Hugo
+## 安装 Hugo
+
 下载地址：{{<link href="https://github.com/gohugoio/hugo/releases" text="https://github.com/gohugoio/hugo/releases" target="_blank">}}
 
 ## 创建网站
+
 ```bash
 hugo new site book
 cd book
@@ -24,21 +24,24 @@ git submodule add https://github.com/alex-shpak/hugo-book themes/hugo-book
 ```
 
 ## 本地调试
+
 ```bash
 hugo server --disableFastRender --minify --ignoreCache
 ```
 
 ## github actions
+
 ```bash
 mkdir -p .github/workflows
 touch .github/workflows/build.yml
 ```
+
 ```yaml
 name: Build
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
+      - main # Set a branch to deploy
   pull_request:
 
 jobs:
@@ -49,8 +52,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -71,5 +74,6 @@ jobs:
 ```
 
 ## github pages
-  可以在项目的Settings中开启Pages服务，然后选择Branch为`gh-pages`即可。
-  如果想要定制域名，可以参考官方文档 {{<link href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages" text="About custom domains and GitHub Pages" target="_blank">}}
+
+可以在项目的 Settings 中开启 Pages 服务，然后选择 Branch 为`gh-pages`即可。
+如果想要定制域名，可以参考官方文档 {{<link href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages" text="About custom domains and GitHub Pages" target="_blank">}}
