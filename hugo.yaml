@@ -1,5 +1,7 @@
 baseURL: 'https://notes.zhangwenbing.com/'
+languageCode: 'zh'
 defaultContentLanguage: 'zh'
+hasCJKLanguage: true
 title: '张文兵的笔记'
 theme: hugo-book
 
