@@ -1,6 +1,6 @@
 baseURL: 'https://notes.zhangwenbing.com/'
 defaultContentLanguage: 'zh'
-title: '张文兵的博客'
+title: '张文兵的笔记'
 theme: hugo-book
 
 markup:
