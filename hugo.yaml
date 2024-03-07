@@ -1,15 +1,15 @@
+title: '张文兵的笔记'
 baseURL: 'https://notes.zhangwenbing.com/'
 languageCode: 'zh'
 defaultContentLanguage: 'zh'
 hasCJKLanguage: true
-title: '张文兵的笔记'
+enableRobotsTXT: true
 theme: hugo-book
 
 markup:
   goldmark:
     renderer:
       hardWraps: true
-
 
 permalinks:
   page:
