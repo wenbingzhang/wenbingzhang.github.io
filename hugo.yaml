@@ -15,8 +15,8 @@ permalinks:
   page:
     # posts: /articles/:year/:month/:slugorfilename/
     # docs: /notes/:sections[1]/:year/:month/:slugorfilename/
-    posts: /articles/:slugorfilename/
-    docs: /notes/:sections[1]/:slugorfilename/
+    posts: /articles/:year/:month/:day/:slugorfilename/
+    docs: /notes/:year/:month/:day/:slugorfilename/
   section:
     posts: /articles/
     docs: /notes/
