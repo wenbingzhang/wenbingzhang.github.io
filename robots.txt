@@ -1,0 +1,33 @@
+User-agent: *
+
+Disallow: /notes/001_ffmpeg/e3ksq3zkmps14gcxuirwzx/
+
+Disallow: /notes/
+
+Disallow: /notes/
+
+Disallow: /notes/
+
+Disallow: /notes/002_rust/e3ksq3zkmps14gcxuirwzx/
+
+Disallow: /notes/002_rust/o4arkqgfnqygr5ckif2gkk/
+
+Disallow: /notes/
+
+Disallow: /links/
+
+Disallow: /notes/
+
+Disallow: /
+
+Disallow: /articles/
+
+Disallow: /categories/
+
+Disallow: /categories/hugo/
+
+Disallow: /articles/9mzhfnl58azjmeibfblvjy/
+
+Disallow: /tags/
+
+Disallow: /tags/website/
