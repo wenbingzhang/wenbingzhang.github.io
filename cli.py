@@ -4,6 +4,7 @@
 
 from datetime import datetime
 import time
+from turtle import title
 from typing import Optional
 from typing import List
 import uuid as _uuid
@@ -137,7 +138,7 @@ class ShortUUID(object):
         return int(math.ceil(factor * num_bytes))
 
 
-def get_weight(filename):
+def get_weight_by_filename(filename):
     s = pathlib.Path(filename).name
     if s == '_index.md':
         s = pathlib.Path(filename).parent.name
@@ -146,13 +147,22 @@ def get_weight(filename):
     return weight
 
 
-def mkdir_p(filename):
+def get_title_by_filename(filename):
     s = pathlib.Path(filename).name
     if s == '_index.md':
-        # 获取filename的父目录并创建目录
-        parent_dir = pathlib.Path(filename).parent
-        if not parent_dir.exists():
-            parent_dir.mkdir(parents=True)
+        s = pathlib.Path(filename).parent.name
+    s_arr = s.split("_", maxsplit=1)
+    mdTitle = s_arr[1] if len(s_arr) > 1 else s
+    # 去掉文件扩展名
+    mdTitle = os.path.splitext(mdTitle)[0]
+    return mdTitle
+
+
+def mkdir_p(filename):
+    # 获取filename的父目录并创建目录
+    parent_dir = pathlib.Path(filename).parent
+    if not parent_dir.exists():
+        parent_dir.mkdir(parents=True)
 
 
 def find_md_files(directory):
@@ -215,7 +225,7 @@ def update_weight(filename):
     # weight = int(s_arr[0]) if len(s_arr) > 1 else None
 
     # 获取权重
-    weight = get_weight(filename)
+    weight = get_weight_by_filename(filename)
     # 更新权重
     if metadata.get("weight", None) == str(weight):
         return
@@ -240,25 +250,39 @@ def update_weight(filename):
     print("更新成功：", filename)
 
 
-def create_doc(filename):
+def create_doc(filename, fd=False):
     # 创建目录
     mkdir_p(filename)
+    # 获取标题
+    mdTitle = get_title_by_filename(filename)
+
+    slug = generate_uuid()
+
+    s = pathlib.Path(filename).name
+    if s == '_index.md':
+        slug = mdTitle
+        if fd:
+            mdTitle = '📔 '+mdTitle.title()
+        else:
+            mdTitle = '🔖 '+mdTitle.title()
+    else:
+        mdTitle = '📝 '+mdTitle.title()
 
     # 获取权重
-    weight = get_weight(filename)
+    weight = get_weight_by_filename(filename)
     if weight is None:
         weight = 999
 
     matedata = '''
 ---
 slug: %s
-title: "📝 默认标题"
+title: %s
 date: %s
 bookComments: false
 bookHidden: false
 weight: %d
 ---
-    ''' % (generate_uuid(), generate_date(), weight)
+    ''' % (slug, mdTitle, generate_date(), weight)
 
     with open(filename, "w", encoding="utf-8") as output_file:
         output_file.write(matedata.strip() + "\n")
@@ -267,11 +291,13 @@ weight: %d
 def create_post(filename):
     # 创建目录
     mkdir_p(filename)
+    # 获取标题
+    mdTitle = get_title_by_filename(filename)
 
     matedata = '''
 ---
 slug: %s
-title: 默认标题
+title: %s
 description:
 tags:
   - 默认标签
@@ -280,7 +306,7 @@ categories:
   - 默认分类
 menu: main
 ---
-    ''' % (generate_uuid(), generate_date())
+    ''' % (generate_uuid(), mdTitle, generate_date())
 
     with open(filename, "w", encoding="utf-8") as output_file:
         output_file.write(matedata.strip() + "\n")
@@ -290,19 +316,19 @@ def parse_args():
     parser = argparse.ArgumentParser(description="hugo-book 帮助工具")
     command_subparsers = parser.add_subparsers(dest='command', help='可用的子命令')
     # 自动更新权重
-    supdate_weight_parser = command_subparsers.add_parser(
-        'auto_weight', help='自动更新权重')
-    supdate_weight_parser.add_argument('website_root', type=str, help='站点根目录')
+    command_subparsers.add_parser('auto_weight', help='自动更新权重')
 
     # 创建新文档
-    supdate_weight_parser = command_subparsers.add_parser(
+    doc_parser = command_subparsers.add_parser(
         'create_doc', help='创建新文档')
-    supdate_weight_parser.add_argument('doc_filename', type=str, help='文档名称')
+    doc_parser.add_argument('doc_filename', type=str, help='文档名称')
+    doc_parser.add_argument(
+        '--fd', action='store_true', help='是否创建的是第一级目录')
 
     # 创建新文章
-    supdate_weight_parser = command_subparsers.add_parser(
+    post_parser = command_subparsers.add_parser(
         'create_post', help='创建新文章')
-    supdate_weight_parser.add_argument('post_filename', type=str, help='文章名称')
+    post_parser.add_argument('post_filename', type=str, help='文章名称')
 
     # uuid
     command_subparsers.add_parser('uuid', help='生成uuid')
@@ -315,15 +341,28 @@ def parse_args():
 
 def main():
     args = parse_args()
+    # 获取当前目录, 类似linux的pwd命令
+    current_dir = os.getcwd()
+    # 拼接"content/docs"目录
+    docs_dir = os.path.join(current_dir, "content/docs")
+    # 拼接"content/posts"目录
+    posts_dir = os.path.join(current_dir, "content/posts")
+    # 判断目录是否存在
+    if not os.path.exists(docs_dir):
+        print("不是在网站的根目录")
+        return
+    if not os.path.exists(posts_dir):
+        print("不是在网站的根目录")
+        return
+
     if args.command == 'auto_weight':
-        docs_dir = os.path.join(args.website_root, "content/docs")
         files = find_md_files(docs_dir)
         for file in files:
             update_weight(file)
     elif args.command == 'create_doc':
-        create_doc(args.doc_filename)
+        create_doc(os.path.join(docs_dir, args.doc_filename), args.fd)
     elif args.command == 'create_post':
-        create_post(args.post_filename)
+        create_post(os.path.join(posts_dir, args.post_filename))
     elif args.command == 'uuid':
         shortuuid = ShortUUID()
         print(shortuuid.uuid())
