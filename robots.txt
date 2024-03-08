@@ -31,3 +31,5 @@ Disallow: /articles/2024/03/06/9mzhfnl58azjmeibfblvjy/
 Disallow: /tags/
 
 Disallow: /tags/website/
+
+Disallow: /tags/%E5%BB%BA%E7%AB%99/
