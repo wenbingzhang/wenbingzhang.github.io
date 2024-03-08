@@ -298,11 +298,11 @@ def create_post(filename):
 slug: %s
 title: %s
 description:
-tags:
-  - 默认标签
-date: %s
 categories:
-  - 默认分类
+  - default
+tags:
+  - default
+date: %s
 menu: main
 ---
     ''' % (generate_uuid(), mdTitle, generate_date())
