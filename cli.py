@@ -15,6 +15,11 @@ import fnmatch
 import argparse
 
 YAML_DELIM_LF = "---"
+ICONS = {
+    1: '💼',
+    2: '📔',
+    3: '🔖',
+}
 
 
 class ShortUUID(object):
@@ -196,6 +201,7 @@ def generate_uuid():
 #             return name
 #     return None
 
+
 def update_weight(filename):
     # 读取Markdown文件内容
     with open(filename, "r", encoding="utf-8") as file:
@@ -259,7 +265,7 @@ def update_weight(filename):
     print("更新成功：", filename)
 
 
-def create_doc(filename, type=''):
+def create_doc(filename, icon=''):
     # 创建目录
     mkdir_p(filename)
     # 获取标题
@@ -272,14 +278,8 @@ def create_doc(filename, type=''):
     if s == '_index.md':
         slug = mdTitle
         bookCollapseSection = True
-        if type == 'dir':
-            mdTitle = '💼 '+mdTitle.title()
-        elif type == 'note':
-            mdTitle = '📔 '+mdTitle.title()
-        else:
-            mdTitle = '🔖 '+mdTitle.title()
-    else:
-        mdTitle = '📝 '+mdTitle.title()
+
+    mdTitle = icon+' '+mdTitle.title()
 
     # 获取权重
     weight = get_weight_by_filename(filename)
@@ -332,19 +332,15 @@ def parse_args():
     # 自动更新权重
     command_subparsers.add_parser('auto_weight', help='自动更新权重')
 
-    # 创建新文档
+    # 创建文档或笔记
     doc_parser = command_subparsers.add_parser(
-        'create_doc', help='创建新文档')
-    doc_parser.add_argument('doc_filename', type=str, help='文档名称')
-    doc_parser.add_argument(
-        '--note', action='store_true', help='创建笔记目录')
-    doc_parser.add_argument(
-        '--dir', action='store_true', help='创建一级目录')
+        'create', help='创建文档或笔记')
 
-    # 创建新文章
-    post_parser = command_subparsers.add_parser(
-        'create_post', help='创建新文章')
-    post_parser.add_argument('post_filename', type=str, help='文章名称')
+    doc_parser.add_argument('filename', type=str, help='文档名称')
+    # doc_parser.add_argument(
+    #     '--note', action='store_true', help='创建笔记目录')
+    # doc_parser.add_argument(
+    #     '--dir', action='store_true', help='创建一级目录')
 
     # uuid
     command_subparsers.add_parser('uuid', help='生成uuid')
@@ -375,10 +371,24 @@ def main():
         files = find_md_files(docs_dir)
         for file in files:
             update_weight(file)
-    elif args.command == 'create_doc':
-        create_doc(os.path.join(docs_dir, args.doc_filename), 'note' if args.note else 'dir' if args.dir else '')
-    elif args.command == 'create_post':
-        create_post(os.path.join(posts_dir, args.post_filename))
+    elif args.command == 'create':
+        icon = '📝'
+        names = args.filename.split(os.sep)
+        if len(names) < 3:
+            print("错误的路径", names)
+            return
+        if names[-1] == '_index.md':
+            names = names[2:-1]
+            key = len(names)
+            icon = ICONS.get(key, ICONS[3])
+
+        # 根据前缀路径判断是创建文档还是笔记
+        if args.filename.startswith('content/docs/'):
+            create_doc(args.filename, icon)
+        elif args.filename.startswith('content/posts/'):
+            create_post(args.filename)
+        else:
+            print("文档名称必须以'content/docs'或'content/posts'开头")
     elif args.command == 'uuid':
         shortuuid = ShortUUID()
         print(shortuuid.uuid())
