@@ -1,5 +1,9 @@
 User-agent: *
 
+Disallow: /notes/
+
+Disallow: /notes/
+
 Disallow: /notes/2024/03/06/kkcc5t2y88hybafpourudv/
 
 Disallow: /notes/
@@ -10,7 +14,13 @@ Disallow: /notes/
 
 Disallow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
 
+Disallow: /notes/
+
 Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
+
+Disallow: /notes/
+
+Disallow: /notes/
 
 Disallow: /notes/
 
