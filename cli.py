@@ -185,6 +185,16 @@ def generate_uuid():
     shortuuid = ShortUUID()
     return shortuuid.uuid()
 
+# def get_variable_name(var):
+#     # 遍历全局命名空间
+#     for name, value in globals().items():
+#         if value is var:
+#             return name
+#     # 遍历局部命名空间
+#     for name, value in locals().items():
+#         if value is var:
+#             return name
+#     return None
 
 def update_weight(filename):
     # 读取Markdown文件内容
@@ -249,18 +259,22 @@ def update_weight(filename):
     print("更新成功：", filename)
 
 
-def create_doc(filename, fd=False):
+def create_doc(filename, type=''):
     # 创建目录
     mkdir_p(filename)
     # 获取标题
     mdTitle = get_title_by_filename(filename)
+    bookCollapseSection = False
 
     slug = generate_uuid()
 
     s = pathlib.Path(filename).name
     if s == '_index.md':
         slug = mdTitle
-        if fd:
+        bookCollapseSection = True
+        if type == 'dir':
+            mdTitle = '💼 '+mdTitle.title()
+        elif type == 'note':
             mdTitle = '📔 '+mdTitle.title()
         else:
             mdTitle = '🔖 '+mdTitle.title()
@@ -279,9 +293,10 @@ title: %s
 date: %s
 bookComments: false
 bookHidden: false
+bookCollapseSection: %s
 weight: %d
 ---
-    ''' % (slug, mdTitle, generate_date(), weight)
+    ''' % (slug, mdTitle, generate_date(), str(bookCollapseSection).lower(), weight)
 
     with open(filename, "w", encoding="utf-8") as output_file:
         output_file.write(matedata.strip() + "\n")
@@ -322,7 +337,9 @@ def parse_args():
         'create_doc', help='创建新文档')
     doc_parser.add_argument('doc_filename', type=str, help='文档名称')
     doc_parser.add_argument(
-        '--fd', action='store_true', help='是否创建的是第一级目录')
+        '--note', action='store_true', help='创建笔记目录')
+    doc_parser.add_argument(
+        '--dir', action='store_true', help='创建一级目录')
 
     # 创建新文章
     post_parser = command_subparsers.add_parser(
@@ -359,7 +376,7 @@ def main():
         for file in files:
             update_weight(file)
     elif args.command == 'create_doc':
-        create_doc(os.path.join(docs_dir, args.doc_filename), args.fd)
+        create_doc(os.path.join(docs_dir, args.doc_filename), 'note' if args.note else 'dir' if args.dir else '')
     elif args.command == 'create_post':
         create_post(os.path.join(posts_dir, args.post_filename))
     elif args.command == 'uuid':
