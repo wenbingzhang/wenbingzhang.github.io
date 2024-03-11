@@ -16,9 +16,9 @@ import argparse
 
 YAML_DELIM_LF = "---"
 ICONS = {
-    1: '💼',
-    2: '📔',
-    3: '🔖',
+    1: "💼",
+    2: "📔",
+    3: "🔖",
 }
 
 
@@ -133,8 +133,7 @@ class ShortUUID(object):
             self._alphabet = new_alphabet
             self._alpha_len = len(self._alphabet)
         else:
-            raise ValueError(
-                "Alphabet with more than " "one unique symbols required.")
+            raise ValueError("Alphabet with more than " "one unique symbols required.")
 
     def encoded_length(self, num_bytes: int = 16) -> int:
         """Return the string length of the shortened UUID."""
@@ -144,7 +143,7 @@ class ShortUUID(object):
 
 def get_weight_by_filename(filename):
     s = pathlib.Path(filename).name
-    if s == '_index.md':
+    if s == "_index.md":
         s = pathlib.Path(filename).parent.name
     s_arr = s.split("_", maxsplit=1)
     weight = int(s_arr[0]) if len(s_arr) > 1 else None
@@ -153,7 +152,7 @@ def get_weight_by_filename(filename):
 
 def get_title_by_filename(filename):
     s = pathlib.Path(filename).name
-    if s == '_index.md':
+    if s == "_index.md":
         s = pathlib.Path(filename).parent.name
     s_arr = s.split("_", maxsplit=1)
     mdTitle = s_arr[1] if len(s_arr) > 1 else s
@@ -182,13 +181,21 @@ def generate_date():
     # 获取当前时间
     current_time = datetime.now()
     tzinfo = datetime.fromtimestamp(time.time()).astimezone().tzinfo
-    return datetime(current_time.year, current_time.month, current_time.day,
-                    current_time.hour, current_time.minute, current_time.second, tzinfo=tzinfo)
+    return datetime(
+        current_time.year,
+        current_time.month,
+        current_time.day,
+        current_time.hour,
+        current_time.minute,
+        current_time.second,
+        tzinfo=tzinfo,
+    )
 
 
 def generate_uuid():
     shortuuid = ShortUUID()
     return shortuuid.uuid()
+
 
 # def get_variable_name(var):
 #     # 遍历全局命名空间
@@ -265,7 +272,7 @@ def update_weight(filename):
     print("更新成功：", filename)
 
 
-def create_doc(filename, icon=''):
+def create_doc(filename, icon=""):
     # 创建目录
     mkdir_p(filename)
     # 获取标题
@@ -275,18 +282,18 @@ def create_doc(filename, icon=''):
     slug = generate_uuid()
 
     s = pathlib.Path(filename).name
-    if s == '_index.md':
+    if s == "_index.md":
         slug = mdTitle
         bookCollapseSection = True
 
-    mdTitle = icon+' '+mdTitle.title()
+    mdTitle = icon + " " + mdTitle.title()
 
     # 获取权重
     weight = get_weight_by_filename(filename)
     if weight is None:
         weight = 999
 
-    matedata = '''
+    matedata = """
 ---
 slug: %s
 title: %s
@@ -296,7 +303,13 @@ bookHidden: false
 bookCollapseSection: %s
 weight: %d
 ---
-    ''' % (slug, mdTitle, generate_date(), str(bookCollapseSection).lower(), weight)
+    """ % (
+        slug,
+        mdTitle,
+        generate_date(),
+        str(bookCollapseSection).lower(),
+        weight,
+    )
 
     with open(filename, "w", encoding="utf-8") as output_file:
         output_file.write(matedata.strip() + "\n")
@@ -308,7 +321,7 @@ def create_post(filename):
     # 获取标题
     mdTitle = get_title_by_filename(filename)
 
-    matedata = '''
+    matedata = """
 ---
 slug: %s
 title: %s
@@ -320,7 +333,11 @@ tags:
 date: %s
 menu: main
 ---
-    ''' % (generate_uuid(), mdTitle, generate_date())
+    """ % (
+        generate_uuid(),
+        mdTitle,
+        generate_date(),
+    )
 
     with open(filename, "w", encoding="utf-8") as output_file:
         output_file.write(matedata.strip() + "\n")
@@ -328,25 +345,24 @@ menu: main
 
 def parse_args():
     parser = argparse.ArgumentParser(description="hugo-book 帮助工具")
-    command_subparsers = parser.add_subparsers(dest='command', help='可用的子命令')
+    command_subparsers = parser.add_subparsers(dest="command", help="可用的子命令")
     # 自动更新权重
-    command_subparsers.add_parser('auto_weight', help='自动更新权重')
+    command_subparsers.add_parser("auto_weight", help="自动更新权重")
 
     # 创建文档或笔记
-    doc_parser = command_subparsers.add_parser(
-        'create', help='创建文档或笔记')
+    doc_parser = command_subparsers.add_parser("create", help="创建文档或笔记")
 
-    doc_parser.add_argument('filename', type=str, help='文档名称')
+    doc_parser.add_argument("filename", type=str, help="文档名称")
     # doc_parser.add_argument(
     #     '--note', action='store_true', help='创建笔记目录')
     # doc_parser.add_argument(
     #     '--dir', action='store_true', help='创建一级目录')
 
     # uuid
-    command_subparsers.add_parser('uuid', help='生成uuid')
+    command_subparsers.add_parser("uuid", help="生成uuid")
 
     # datetime
-    command_subparsers.add_parser('datetime', help='生成当前日期时间')
+    command_subparsers.add_parser("datetime", help="生成当前日期时间")
 
     return parser.parse_args()
 
@@ -367,32 +383,32 @@ def main():
         print("不是在网站的根目录")
         return
 
-    if args.command == 'auto_weight':
+    if args.command == "auto_weight":
         files = find_md_files(docs_dir)
         for file in files:
             update_weight(file)
-    elif args.command == 'create':
-        icon = '📝'
+    elif args.command == "create":
+        icon = "📝"
         names = args.filename.split(os.sep)
         if len(names) < 3:
             print("错误的路径", names)
             return
-        if names[-1] == '_index.md':
+        if names[-1] == "_index.md":
             names = names[2:-1]
             key = len(names)
             icon = ICONS.get(key, ICONS[3])
 
         # 根据前缀路径判断是创建文档还是笔记
-        if args.filename.startswith('content/docs/'):
+        if args.filename.startswith("content/docs/"):
             create_doc(args.filename, icon)
-        elif args.filename.startswith('content/posts/'):
+        elif args.filename.startswith("content/posts/"):
             create_post(args.filename)
         else:
             print("文档名称必须以'content/docs'或'content/posts'开头")
-    elif args.command == 'uuid':
+    elif args.command == "uuid":
         shortuuid = ShortUUID()
         print(shortuuid.uuid())
-    elif args.command == 'datetime':
+    elif args.command == "datetime":
         print(generate_date())
 
 
