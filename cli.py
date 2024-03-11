@@ -353,10 +353,6 @@ def parse_args():
     doc_parser = command_subparsers.add_parser("create", help="创建文档或笔记")
 
     doc_parser.add_argument("filename", type=str, help="文档名称")
-    # doc_parser.add_argument(
-    #     '--note', action='store_true', help='创建笔记目录')
-    # doc_parser.add_argument(
-    #     '--dir', action='store_true', help='创建一级目录')
 
     # uuid
     command_subparsers.add_parser("uuid", help="生成uuid")
