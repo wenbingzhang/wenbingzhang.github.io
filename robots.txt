@@ -14,6 +14,8 @@ Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
 Disallow: /notes/
 
+Disallow: /notes/
+
 Disallow: /links/
 
 Disallow: /notes/
