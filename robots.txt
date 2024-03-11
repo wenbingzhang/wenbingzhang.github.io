@@ -1,5 +1,7 @@
 User-agent: *
 
+Disallow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
+
 Disallow: /notes/
 
 Disallow: /notes/
