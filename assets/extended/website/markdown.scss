@@ -17,6 +17,8 @@
   font-size: 20px;
   font-weight: bold;
   line-height: 1.5;
+  padding: 0px 10px;
+  border-left: 5px double #e40000;
 }
 
 .markdown.book-article h3,
@@ -25,6 +27,8 @@
   font-size: 16px;
   line-height: 1.5;
   font-weight: bold;
+  padding: 0px 10px;
+  border-left: 5px double #007BFF;
 }
 
 .markdown.book-article h4,
@@ -33,6 +37,8 @@
   font-size: 14px;
   line-height: 1.66666666666667;
   font-weight: bold;
+  padding: 0px 10px;
+  border-left: 5px double #9C27B0;
 }
 
 .markdown.book-article h5,
@@ -40,6 +46,8 @@
   color: var(--gray-500);
   font-size: 14px;
   line-height: 1.66666666666667;
+  padding: 0px 10px;
+  border-left: 5px double #00C853;
 }
 
 .markdown.book-article h6,
@@ -48,4 +56,6 @@
   font-size: 12px;
   line-height: 1.66666666666667;
   font-weight: 600;
+  padding: 0px 10px;
+  border-left: 5px double #795548;
 }
