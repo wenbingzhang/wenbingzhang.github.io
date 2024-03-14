@@ -1,11 +1,13 @@
-<a target="_blank" href={{ .Get "url" }} title={{ .Get "name" }} class="friend-url">
-  <div class="friend">
-    <div class="friend-left">
-      <img class="friend-img" src={{ .Get "logo" }} />
+<div class="friend-shortcode">
+  <a target="_blank" href={{ .Get "url" }} title={{ .Get "name" }} class="friend-url">
+    <div class="friend-box">
+      <div class="friend-left">
+        <img class="friend-img" src={{ .Get "logo" }} />
+      </div>
+      <div class="friend-right">
+        <div class="friend-name">{{- .Get "name" -}}</div>
+        <div class="friend-info">{{- .Get "word" -}}</div>
+      </div>
     </div>
-    <div class="friend-right">
-      <div class="friend-name">{{- .Get "name" -}}</div>
-      <div class="friend-info">{{- .Get "word" -}}</div>
-    </div>
-  </div>
-</a>
+  </a>
+</div>
