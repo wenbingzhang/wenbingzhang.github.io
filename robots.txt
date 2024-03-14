@@ -18,6 +18,8 @@ Disallow: /notes/
 
 Disallow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
 
+Disallow: /notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/
+
 Disallow: /notes/
 
 Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
