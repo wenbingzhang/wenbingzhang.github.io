@@ -1,7 +1,7 @@
 ---
-slug: qt
-title: 📔 Qt
-date: 2024-04-03 09:45:18+08:00
+slug: c++
+title: 📔 C++
+date: 2024-05-28 15:20:02+08:00
 bookComments: false
 bookHidden: false
 bookCollapseSection: true
