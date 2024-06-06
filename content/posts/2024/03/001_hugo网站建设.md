@@ -1,6 +1,6 @@
 ---
 slug: 9MZhFnL58azjmeiBfBLVjY
-title: hugo网站建设
+title: Hugo网站建设
 description:
 categories:
   - hugo

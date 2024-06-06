@@ -1,6 +1,6 @@
 ---
 slug: e4C2nyBNgzu5edDbnmdJgQ
-title: mamba替代conda
+title: Mamba替代Conda
 description:
 categories:
   - mamba

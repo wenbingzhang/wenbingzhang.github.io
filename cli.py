@@ -286,7 +286,7 @@ def create_doc(filename, icon=""):
         slug = mdTitle
         bookCollapseSection = True
 
-    mdTitle = icon + " " + mdTitle.title()
+    mdTitle = icon + " " + mdTitle
 
     # 获取权重
     weight = get_weight_by_filename(filename)

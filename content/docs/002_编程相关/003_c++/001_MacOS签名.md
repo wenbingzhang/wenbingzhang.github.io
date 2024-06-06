@@ -1,6 +1,6 @@
 ---
 slug: Sf4FF6x8cuYhVzoUgJ9dwg
-title: 📝 Macos签名
+title: 📝 MacOS签名
 date: 2024-06-06 13:20:42+08:00
 bookComments: false
 bookHidden: false
