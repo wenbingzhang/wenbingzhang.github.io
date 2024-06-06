@@ -1,11 +1,11 @@
 ---
 slug: 3tXBbb7irUppjSg4P7RwNB
-title: 📝 Macos堆栈大小
+title: 📝 MacOS堆栈大小
 date: 2024-05-28 15:21:31+08:00
 bookComments: false
 bookHidden: false
 bookCollapseSection: false
-weight: 1
+weight: 2
 ---
 
 ## 问题代码
