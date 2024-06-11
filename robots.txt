@@ -32,9 +32,43 @@ Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
 Disallow: /notes/
 
+Disallow: /notes/2020/12/22/ros_kibgg/
+
+Disallow: /notes/2020/12/07/aaelfz1mg/
+
 Disallow: /notes/
 
 Disallow: /notes/
+
+Disallow: /notes/2020/10/13/mv3bzfgqm/
+
+Disallow: /notes/2020/04/01/misev5_hw/
+
+Disallow: /notes/2020/07/15/uthueryud/
+
+Disallow: /notes/2019/01/03/hjvndli-4/
+
+Disallow: /notes/2020/05/13/rdgqnfi6j/
+
+Disallow: /notes/2018/11/07/bkiiygltx/
+
+Disallow: /notes/2019/11/07/ovfeiboes/
+
+Disallow: /notes/2018/06/21/bkwmi6d-7/
+
+Disallow: /notes/2018/11/27/h1mn7tca7/
+
+Disallow: /notes/2018/06/07/bkhoybugx/
+
+Disallow: /notes/2018/05/14/h1jgllvcl0g/
+
+Disallow: /notes/2018/08/30/bki3dandx/
+
+Disallow: /notes/2018/05/14/hkgt88e9u0f/
+
+Disallow: /notes/2018/07/27/skud1wo4x/
+
+Disallow: /notes/2018/05/14/bjdz88n580g/
 
 Disallow: /notes/
 
