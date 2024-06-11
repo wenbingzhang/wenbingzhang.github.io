@@ -1,6 +1,6 @@
 ---
 slug: "KkcC5T2Y88HYbAfPourudv"
-title: "📝 检测透明通道"
+title: "📝 FFmpeg检测透明通道"
 date: 2024-03-06T16:31:04+08:00
 bookComments: false
 bookHidden: false
