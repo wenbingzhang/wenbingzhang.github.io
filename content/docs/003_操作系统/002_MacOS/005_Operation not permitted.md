@@ -14,7 +14,7 @@ weight: 5
 
 Mac使用sudo或切换成root权限，还是出现
 
-```
+```bash
 Operation not permitted
 
 ```
@@ -24,28 +24,24 @@ Operation not permitted
 这是由于Mac的rootless机制，可以进入恢复模式关闭rootless机制：
 
 1、重启mac，按command+R（windows键盘：win+R）进入恢复模式
-
 2、选择终端，在左上角，输入指令：
 
-```
+```bash
 csrutil disable
-
 ```
 
 3、重启后让机器正常启动，可以在终端查看rootless状态：
 
-```
+```bash
 csrutil status
-
 ```
 
 正常情况下rootless已经关闭。
 
 4、要想重新开启rootless机制，参照步骤1，输入指令：
 
-```
+```bash
 csrutil enable
-
 ```
 
 ## 说明

@@ -22,9 +22,8 @@ history…
 
 Linux传统清除方式并没能解决
 
-```
+```bash
 history -c
-
 ```
 
 我用的iterm2 + zsh
@@ -51,17 +50,15 @@ HISTCHARS HISTFILE HISTSIZE
 
 了解历史记录的大小:
 
-```
+```bash
 echo $HISTSIZE
-
 ```
 
 历史记录的保存位置:
 
-```
+```bash
 echo $HISTFILE # 查看history文件存放地址
 echo > ~/.zsh_history # 清空 好了，退出terminal，重新登录检查一下即可
-
 ```
 
 退出后，再history检查一下

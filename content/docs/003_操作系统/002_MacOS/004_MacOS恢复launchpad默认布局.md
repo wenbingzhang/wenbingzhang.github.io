@@ -20,9 +20,8 @@ Launchpad可以作为从熟悉的类似iOS的图标网格界面在Mac上打开�
 
 打开终端应用程序并输入以下默认值写入命令字符串：
 
-```
+```bash
 defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
-
 ```
 
 点击返回并等待Dock重新启动并重启Launchpad

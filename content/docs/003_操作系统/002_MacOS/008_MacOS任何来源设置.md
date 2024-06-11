@@ -14,9 +14,8 @@ weight: 8
 
 输入以下命令并回车
 
-```
+```bash
 sudo spctl --master-disable
-
 ```
 
 然后查看问题是否解决， 偏好设置->安全性与隐私->通用->任何来源

@@ -16,26 +16,22 @@ weight: 2
 
 ```bash
 defaults write com.apple.dock ResetLaunchPad -bool TRUE;
-
 ```
 
 ## 重启 Dock
 
 ```bash
 killall Dock
-
 ```
 
 ## 设置 Lauchpad 图标的列数
 
 ```bash
 defaults write com.apple.dock springboard-columns -int 7
-
 ```
 
 ## 设置 Lauchpad 图标的行数
 
 ```bash
 defaults write com.apple.dock springboard-rows -int 7
-
 ```

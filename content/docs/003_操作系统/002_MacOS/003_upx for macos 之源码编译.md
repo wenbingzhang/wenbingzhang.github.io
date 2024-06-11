@@ -12,7 +12,7 @@ weight: 3
 
 ## 准备源码
 
-```
+```bash
 git clone https://github.com/upx/upx.git
 git clone https://github.com/upx/upx-lzma-sdk.git lzma-sdk
 wget http://www.oberhumer.com/opensource/ucl/download/ucl-1.03.tar.gz
@@ -21,7 +21,7 @@ wget http://www.oberhumer.com/opensource/ucl/download/ucl-1.03.tar.gz
 
 ## 编译源码
 
-```
+```bash
 tar -xzvf ucl-1.03.tar.gz
 cd ucl-1.03
 ./configure --prefix=/home/o/ucl CC=clang
@@ -29,7 +29,6 @@ make
 
 cd ../upx
 make all UPX_UCLDIR=../ucl-1.03 UPX_LZMADIR=../lzma-sdk
-
 ```
 
 编译完成之后再src目录下能找到upx.out文件就成功了
