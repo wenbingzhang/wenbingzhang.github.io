@@ -1,49 +1,6 @@
-@import "./extended/website/markdown.scss";
+@import "./website.scss";
 
 // 短代码
-@import "./extended/shortcode/video.scss";
-@import "./extended/shortcode/friend.scss";
+@import "./layouts/shortcode/video.scss";
+@import "./layouts/shortcode/friend.scss";
 
-
-.book-menu a {
-  width: 11rem;
-  overflow: hidden;
-  /*文本不会换行*/
-  white-space: nowrap;
-  /*当文本溢出包含元素时，以省略号表示超出的文本*/
-  text-overflow: ellipsis;
-}
-
-/* 基本样式 */
-.book-menu a {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 隐藏的提示文本 */
-.book-menu a::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: 125%; /* 调整提示文本的位置 */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px;
-  width: max-content;
-  max-width: 200px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s;
-  z-index: 1;
-}
-
-/* 显示提示文本 */
-.book-menu a:hover::after {
-}
