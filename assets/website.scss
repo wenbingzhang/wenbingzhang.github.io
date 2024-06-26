@@ -71,39 +71,6 @@
   text-overflow: ellipsis;
 }
 
-/* 基本样式 */
-.book-menu a {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 隐藏的提示文本 */
-.book-menu a::after {
-  content: attr(data-tip);
-  position: absolute;
-  bottom: 125%;
-  /* 调整提示文本的位置 */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px;
-  width: max-content;
-  max-width: 200px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 4px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s;
-  z-index: 1;
-}
-
-/* 显示提示文本 */
-.book-menu a:hover::after {}
 
 .book-article {
   // 默认情况（适用于较小屏幕，如手机）
@@ -116,29 +83,14 @@
   }
 }
 
-// .book-menu-content,
-// .book-toc-content {
-//   margin-bottom: 78px;
-// }
 
 /*网站底部*/
 .index-footer {
   text-align: center;
-  // border-top: 1px solid #009688;
   margin-top: 15px;
-  // background: #2F4056;
   padding: 5px 0;
-  // color: #d3d2d2;
   z-index: 1000;
 }
-
-// .index-footer a {
-//   color: #d2d2d2;
-// }
-
-// .index-footer a:hover {
-//   color: #fbfbfb;
-// }
 
 .index-footer>p {
   margin: 2px 0;
@@ -146,5 +98,5 @@
 
 .index-footer>p a,
 .index-footer>p span {
-  padding-left: 7px;
+  padding-left: 2px;
 }
