@@ -3,9 +3,12 @@ slug: e4C2nyBNgzu5edDbnmdJgQ
 title: Mamba替代Conda
 description:
 categories:
-  - mamba
+  - Linux
+  - MacOS
 tags:
-  - conda
+  - Linux
+  - MacOS
+  - Python
 date: 2024-03-27 13:07:03+08:00
 menu: main
 ---

@@ -3,9 +3,11 @@ slug: 9MZhFnL58azjmeiBfBLVjY
 title: Hugo网站建设
 description:
 categories:
-  - hugo
+  - Hugo
 tags:
-  - website
+  - Hugo
+  - Linux
+  - Blog
 date: 2024-03-06T16:31:04+08:00
 menu: main
 ---
