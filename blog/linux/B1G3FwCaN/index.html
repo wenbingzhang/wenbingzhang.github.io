@@ -1,0 +1,96 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="supervisor 安装和使用方法"><meta property="og:description" content="Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-05-31T09:20:01+08:00"><meta property="article:modified_time" content="2019-05-31T09:20:01+08:00"><title>supervisor 安装和使用方法 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>supervisor 安装和使用方法</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#准备工作>准备工作</a></li><li><a href=#安装supervisor>安装supervisor</a></li><li><a href=#配置supervisor>配置supervisor</a></li><li><a href=#启动supervisor>启动supervisor</a></li><li><a href=#常用命令>常用命令</a><ul><li><a href=#查看状态>查看状态</a></li><li><a href=#启动服务>启动服务</a></li><li><a href=#停止服务>停止服务</a></li><li><a href=#重启服务>重启服务</a></li><li><a href=#增加服务>增加服务</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/linux/B1G3FwCaN/>supervisor 安装和使用方法</a></h1><div class=book-post-meta><span class=book-post-meta-date>2019-05-31</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。</p></blockquote><h2 id=准备工作>准备工作
+<a class=anchor href=#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c>#</a></h2><pre tabindex=0><code>yum install epel-* -y
+yum install python34 -y
+wget --no-check-certificate
+python3 get-pip.py
+</code></pre><h2 id=安装supervisor>安装supervisor
+<a class=anchor href=#%e5%ae%89%e8%a3%85supervisor>#</a></h2><pre tabindex=0><code>pip3 install supervisor
+</code></pre><h2 id=配置supervisor>配置supervisor
+<a class=anchor href=#%e9%85%8d%e7%bd%aesupervisor>#</a></h2><pre tabindex=0><code>echo_supervisord_conf &gt;/etc/supervisord.conf
+
+vi /etc/supervisord.conf
+
+......
+
+;[include] ;这个东西挺有用的，当我们要管理的进程很多的时候，写在一个文件里面就有点大了。我们可以把配置信息写到多个文件中，然后include过来
+;files = relative/directory/*.ini
+</code></pre><p>去掉上面两行的”;“然后将files改成自己的目录</p><pre tabindex=0><code>vi /etc/supervisord.conf
+
+[unix_http_server]
+file=/tmp/supervisor.sock   ;UNIX socket 文件，supervisorctl 会使用
+;chmod=0700                 ;socket文件的mode，默认是0700;chown=nobody:nogroup       ;socket文件的owner，格式：uid:gid
+
+;[inet_http_server]         ;HTTP服务器，提供web管理界面
+;port=127.0.0.1:9001        ;Web管理后台运行的IP和端口，如果开放到公网，需要注意安全性
+;username=user              ;登录管理后台的用户名
+;password=123               ;登录管理后台的密码
+
+[supervisord]
+logfile=/tmp/supervisord.log ;日志文件，默认是 $CWD/supervisord.loglogfile_maxbytes=50MB        ;日志文件大小，超出会rotate，默认 50MB，如果设成0，表示不限制大小
+logfile_backups=10           ;日志文件保留备份数量默认10，设为0表示不备份
+loglevel=info                ;日志级别，默认info，其它: debug,warn,trace
+pidfile=/tmp/supervisord.pid ;pid 文件
+nodaemon=false               ;是否在前台启动，默认是false，即以 daemon 的方式启动
+minfds=1024                  ;可以打开的文件描述符的最小值，默认 1024minprocs=200                 ;可以打开的进程数的最小值，默认 200
+ [supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ;通过UNIX socket连接supervisord，路径与unix_http_server部分的file一致;serverurl=http://127.0.0.1:9001 ; 通过HTTP的方式连接supervisord
+ ; [program:xx]是被管理的进程配置参数，xx是进程的名称
+[program:xx]
+command=/opt/apache-tomcat-8.0.35/bin/catalina.sh run  ; 程序启动命令
+autostart=true       ; 在supervisord启动的时候也自动启动
+startsecs=10         ; 启动10秒后没有异常退出，就表示进程正常启动了，默认为1秒
+autorestart=true     ; 程序退出后自动重启,可选值：[unexpected,true,false]，默认为unexpected，表示进程意外杀死后才重启
+startretries=3       ; 启动失败自动重试次数，默认是3user=tomcat          ; 用哪个用户启动进程，默认是root
+priority=999         ; 进程启动优先级，默认999，值小的优先启动
+redirect_stderr=true ; 把stderr重定向到stdout，默认falsestdout_logfile_maxbytes=20MB  ; stdout 日志文件大小，默认50MB
+stdout_logfile_backups = 20   ; stdout 日志文件备份数，默认是10; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）
+stdout_logfile=/opt/apache-tomcat-8.0.35/logs/catalina.out
+stopasgroup=false     ;默认为false,进程被杀死时，是否向这个进程组发送stop信号，包括子进程
+killasgroup=false     ;默认为false，向进程组发送kill信号，包括子进程
+
+;包含其它配置文件
+[include]
+files = /etc/supervisord.d/*.ini    ;可以指定一个或多个以.ini结束的配置文件
+
+mkdir /etc/supervisord.d/
+</code></pre><h2 id=启动supervisor>启动supervisor
+<a class=anchor href=#%e5%90%af%e5%8a%a8supervisor>#</a></h2><pre tabindex=0><code>supervisord -c /etc/supervisord.conf
+</code></pre><h2 id=常用命令>常用命令
+<a class=anchor href=#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4>#</a></h2><h3 id=查看状态>查看状态
+<a class=anchor href=#%e6%9f%a5%e7%9c%8b%e7%8a%b6%e6%80%81>#</a></h3><pre tabindex=0><code>supervisorctl status
+</code></pre><h3 id=启动服务>启动服务
+<a class=anchor href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1>#</a></h3><pre tabindex=0><code>supervisorctl start 服务名
+</code></pre><h3 id=停止服务>停止服务
+<a class=anchor href=#%e5%81%9c%e6%ad%a2%e6%9c%8d%e5%8a%a1>#</a></h3><pre tabindex=0><code>supervisorctl stop 服务名
+</code></pre><h3 id=重启服务>重启服务
+<a class=anchor href=#%e9%87%8d%e5%90%af%e6%9c%8d%e5%8a%a1>#</a></h3><pre tabindex=0><code>supervisorctl restart 服务名
+</code></pre><h3 id=增加服务>增加服务
+<a class=anchor href=#%e5%a2%9e%e5%8a%a0%e6%9c%8d%e5%8a%a1>#</a></h3><pre tabindex=0><code>vim /etc/supervisord.d/test.ini
+
+[program:test] #程序的名字，在supervisor中可以用这个名字来管理该程序。
+user=root #指定运行用户
+command=bash /root/1.sh #启动程序的命令
+autorstart=true #设置改程序是否虽supervisor的启动而启动
+directory=/home/lege #相当于在该目录下执行程序
+autorestart=true #程序停止之后是否需要重新将其启动
+startsecs=5 #重新启动时，等待的时间
+startretries=100 #重启程序的次数
+redirect_stderr=true #是否将程序错误信息重定向的到文件
+stdout_logfile=/var/log/log.txt #将程序输出重定向到该文件
+stderr_logfile=/var/log/err.txt #将程序错误信息重定向到该文件
+
+supervisorctl update
+</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#准备工作>准备工作</a></li><li><a href=#安装supervisor>安装supervisor</a></li><li><a href=#配置supervisor>配置supervisor</a></li><li><a href=#启动supervisor>启动supervisor</a></li><li><a href=#常用命令>常用命令</a><ul><li><a href=#查看状态>查看状态</a></li><li><a href=#启动服务>启动服务</a></li><li><a href=#停止服务>停止服务</a></li><li><a href=#重启服务>重启服务</a></li><li><a href=#增加服务>增加服务</a></li></ul></li></ul></nav></div></aside></main></body></html>

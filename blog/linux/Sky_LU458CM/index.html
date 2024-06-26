@@ -1,0 +1,144 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="解决mediainfo获取ts媒体信息不准确问题 场景 # 在/opt/目录下总共有200多个文件文件名分别如下： /opt/2017LPL夏季赛第"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法"><meta property="og:description" content="解决mediainfo获取ts媒体信息不准确问题 场景 # 在/opt/目录下总共有200多个文件文件名分别如下： /opt/2017LPL夏季赛第"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#场景>场景</a></li><li><a href=#错误结果>错误结果</a></li><li><a href=#正确结果>正确结果</a></li><li><a href=#解决办法>解决办法</a></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/linux/Sky_LU458CM/>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法</a></h1><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>解决mediainfo获取ts媒体信息不准确问题</p></blockquote><h2 id=场景>场景
+<a class=anchor href=#%e5%9c%ba%e6%99%af>#</a></h2><p>在/opt/目录下总共有200多个文件文件名分别如下：</p><p>/opt/2017LPL夏季赛第01集.ts</p><p>/opt/2017LPL夏季赛第02集.ts</p><p>/opt/2017LPL夏季赛第03集.ts</p><p>…</p><p>/opt/2017LPL夏季赛第227集.ts</p><p>/opt/2017LPL夏季赛第228集.ts</p><h2 id=错误结果>错误结果
+<a class=anchor href=#%e9%94%99%e8%af%af%e7%bb%93%e6%9e%9c>#</a></h2><pre tabindex=0><code>mediainfo /opt/2017LPL夏季赛第01集.ts
+General
+ID                                       : 1 (0x1)
+Complete name                            : Z:\vrs\new_upload\2018-01-16\2017LPL夏季赛第01集.ts
+CompleteName_Last                        : Z:\vrs\new_upload\2018-01-16\2017LPL夏季赛第228集.ts
+Format                                   : MPEG-TS
+File size                                : 560 GiB
+Duration                                 : 53mn 32s
+Overall bit rate mode                    : Constant
+Overall bit rate                         : 1 496 Mbps
+Video
+ID                                       : 100 (0x64)
+Menu ID                                  : 1 (0x1)
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.0
+Format settings, CABAC                   : No
+Format settings, ReFrames                : 2 frames
+Codec ID                                 : 27
+Duration                                 : 53mn 32s
+Bit rate mode                            : Constant
+Bit rate                                 : 1 422 Mbps
+Nominal bit rate                         : 7 800 Kbps / 7 800 Kbps
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate                               : 25.000 fps
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Bits/(Pixel*Frame)                       : 27.431
+Stream size                              : 532 GiB (95%)
+Writing library                          : x264 core 148 r2705 3f5ed56
+Encoding settings                        : cabac=0 / ref=2 / deblock=1:0:0 / analyse=0x3:0x13 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=34 / lookahead_threads=5 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=0 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=1 / keyint=32 / keyint_min=16 / scenecut=40 / intra_refresh=0 / rc_lookahead=32 / rc=cbr / mbtree=1 / bitrate=7800 / ratetol=1.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / vbv_maxrate=7800 / vbv_bufsize=1560 / nal_hrd=cbr / filler=1 / ip_ratio=1.40 / aq=1:1.00
+Audio
+ID                                       : 101 (0x65)
+Menu ID                                  : 1 (0x1)
+Format                                   : MPEG Audio
+Format version                           : Version 1
+Format profile                           : Layer 2
+Codec ID                                 : 3
+Duration                                 : 53mn 32s
+Bit rate mode                            : Constant
+Bit rate                                 : 96.0 Kbps
+Channel(s)                               : 2 channels
+Sampling rate                            : 48.0 KHz
+Compression mode                         : Lossy
+Delay relative to video                  : -10ms
+Stream size                              : 36.8 MiB (0%)
+Menu
+ID                                       : 4096 (0x1000)
+Menu ID                                  : 1 (0x1)
+Duration                                 : 53mn 32s
+List                                     : 100 (0x64) (AVC) / 101 (0x65) (MPEG Audio)
+Service name                             : RM_SERVICE_01
+Service provider                         : RealMagic
+Service type                             : digital television
+</code></pre><h2 id=正确结果>正确结果
+<a class=anchor href=#%e6%ad%a3%e7%a1%ae%e7%bb%93%e6%9e%9c>#</a></h2><pre tabindex=0><code>mediainfo /opt/2017LPL夏季赛第01集.ts
+General
+ID                                       : 1 (0x1)
+Complete name                            : /data/stb/product/vrs/new_upload/./2018-01-16/2017LPL夏季赛第01集.ts
+Format                                   : MPEG-TS
+File size                                : 2.58 GiB
+Duration                                 : 43mn 42s
+Overall bit rate mode                    : Constant
+Overall bit rate                         : 8 464 Kbps
+Video
+ID                                       : 100 (0x64)
+Menu ID                                  : 1 (0x1)
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L4.0
+Format settings, CABAC                   : No
+Format settings, ReFrames                : 2 frames
+Codec ID                                 : 27
+Duration                                 : 43mn 42s
+Bit rate mode                            : Constant
+Bit rate                                 : 7 800 Kbps / 7 800 Kbps
+Width                                    : 1 920 pixels
+Height                                   : 1 080 pixels
+Display aspect ratio                     : 16:9
+Frame rate                               : 25.000 fps
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Bits/(Pixel*Frame)                       : 0.150
+Stream size                              : 2.43 GiB (94%)
+Writing library                          : x264 core 148 r2705 3f5ed56
+Encoding settings                        : cabac=0 / ref=2 / deblock=1:0:0 / analyse=0x3:0x13 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=34 / lookahead_threads=5 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=0 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=1 / keyint=32 / keyint_min=16 / scenecut=40 / intra_refresh=0 / rc_lookahead=32 / rc=cbr / mbtree=1 / bitrate=7800 / ratetol=1.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / vbv_maxrate=7800 / vbv_bufsize=1560 / nal_hrd=cbr / filler=1 / ip_ratio=1.40 / aq=1:1.00
+Audio
+ID                                       : 101 (0x65)
+Menu ID                                  : 1 (0x1)
+Format                                   : MPEG Audio
+Format version                           : Version 1
+Format profile                           : Layer 2
+Codec ID                                 : 3
+Duration                                 : 43mn 42s
+Bit rate mode                            : Constant
+Bit rate                                 : 96.0 Kbps
+Channel(s)                               : 2 channels
+Sampling rate                            : 48.0 KHz
+Compression mode                         : Lossy
+Delay relative to video                  : -10ms
+Stream size                              : 30.0 MiB (1%)
+Menu
+ID                                       : 4096 (0x1000)
+Menu ID                                  : 1 (0x1)
+Duration                                 : 43mn 42s
+List                                     : 100 (0x64) (AVC) / 101 (0x65) (MPEG Audio)
+Service name                             : RM_SERVICE_01
+Service provider                         : RealMagic
+Service type                             : digital television
+</code></pre><h2 id=解决办法>解决办法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95>#</a></h2><p>根据作者的github上提交的代码描述</p><p><a href=https://github.com/MediaArea/MediaInfoLib/commit/78f739893c85d4b1397276ef15badd160907b7aa>https://github.com/MediaArea/MediaInfoLib/commit/78f739893c85d4b1397276ef15badd160907b7aa</a></p><pre tabindex=0><code>vim &#34;Source/MediaInfo/Multiple/File_MpegTs.cpp&#34;
+
+void File_MpegTs::Streams_Accept()
+{
+    ...
+    if (!IsSub)
+    {
+    ...
+    //TestContinuousFileNames();
+    ...
+    }
+}
+</code></pre><p>我们只要将”TestContinuousFileNames();“这行注释掉即可解决默认获取ts文件序列问题</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#场景>场景</a></li><li><a href=#错误结果>错误结果</a></li><li><a href=#正确结果>正确结果</a></li><li><a href=#解决办法>解决办法</a></li></ul></nav></div></aside></main></body></html>

@@ -1,0 +1,84 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="none 基于端口的虚拟主机 # Listen 10.10.10.2:8888 <VirtualHost 10.10.10.2:8888> DocumentRoot /var/www/bbs ServerName bbs.zwbing.cn ErrorLog logs/bbs.zwbing.cn-error_log CustomLog logs/bbs.zwbing.cn-access_log common </VirtualHost> 基于ip的虚拟主机 # ip address add 10.10.10.20/24 dev eth0 <VirtualHost 10.10.10.2:80> DocumentRoot /var/www/bbs ServerName bbs.zwbing.cn ErrorLog logs/bbs.zwbing.cn-error_log CustomLog logs/bbs.zwbing.cn-access_log common </VirtualHost> <VirtualHost 10.10.10.20:80> DocumentRoot /var/www/www ServerName qq.zwbing.cn ErrorLog logs/www.zwbing.cn-error_log CustomLog logs/www.zwbing.cn-access_log common </VirtualHost> 基于域名的"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="apache 常用配置"><meta property="og:description" content="none 基于端口的虚拟主机 # Listen 10.10.10.2:8888 <VirtualHost 10.10.10.2:8888> DocumentRoot /var/www/bbs ServerName bbs.zwbing.cn ErrorLog logs/bbs.zwbing.cn-error_log CustomLog logs/bbs.zwbing.cn-access_log common </VirtualHost> 基于ip的虚拟主机 # ip address add 10.10.10.20/24 dev eth0 <VirtualHost 10.10.10.2:80> DocumentRoot /var/www/bbs ServerName bbs.zwbing.cn ErrorLog logs/bbs.zwbing.cn-error_log CustomLog logs/bbs.zwbing.cn-access_log common </VirtualHost> <VirtualHost 10.10.10.20:80> DocumentRoot /var/www/www ServerName qq.zwbing.cn ErrorLog logs/www.zwbing.cn-error_log CustomLog logs/www.zwbing.cn-access_log common </VirtualHost> 基于域名的"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/rJwI8UVqL0M/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>apache 常用配置 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/rJwI8UVqL0M/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>apache 常用配置</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#基于端口的虚拟主机>基于端口的虚拟主机</a></li><li><a href=#基于ip的虚拟主机>基于ip的虚拟主机</a></li><li><a href=#基于域名的虚拟主机和用户访问控制>基于域名的虚拟主机和用户访问控制</a></li><li><a href=#httpd命令>httpd命令</a><ul><li><a href=#options指令详解>Options指令详解</a></li></ul></li><li><a href=#示例1>#示例1</a></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/linux/rJwI8UVqL0M/>apache 常用配置</a></h1><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>none</p></blockquote><h2 id=基于端口的虚拟主机>基于端口的虚拟主机
+<a class=anchor href=#%e5%9f%ba%e4%ba%8e%e7%ab%af%e5%8f%a3%e7%9a%84%e8%99%9a%e6%8b%9f%e4%b8%bb%e6%9c%ba>#</a></h2><pre tabindex=0><code>Listen 10.10.10.2:8888
+&lt;VirtualHost 10.10.10.2:8888&gt;
+DocumentRoot /var/www/bbs
+ServerName bbs.zwbing.cn
+ErrorLog logs/bbs.zwbing.cn-error_log
+CustomLog logs/bbs.zwbing.cn-access_log common
+&lt;/VirtualHost&gt;
+</code></pre><h2 id=基于ip的虚拟主机>基于ip的虚拟主机
+<a class=anchor href=#%e5%9f%ba%e4%ba%8eip%e7%9a%84%e8%99%9a%e6%8b%9f%e4%b8%bb%e6%9c%ba>#</a></h2><pre tabindex=0><code>ip address add 10.10.10.20/24 dev eth0
+&lt;VirtualHost 10.10.10.2:80&gt;
+DocumentRoot /var/www/bbs
+ServerName bbs.zwbing.cn
+ErrorLog logs/bbs.zwbing.cn-error_log
+CustomLog logs/bbs.zwbing.cn-access_log common
+&lt;/VirtualHost&gt;
+&lt;VirtualHost 10.10.10.20:80&gt;
+DocumentRoot /var/www/www
+ServerName qq.zwbing.cn
+ErrorLog logs/www.zwbing.cn-error_log
+CustomLog logs/www.zwbing.cn-access_log common
+&lt;/VirtualHost&gt;
+</code></pre><h2 id=基于域名的虚拟主机和用户访问控制>基于域名的虚拟主机和用户访问控制
+<a class=anchor href=#%e5%9f%ba%e4%ba%8e%e5%9f%9f%e5%90%8d%e7%9a%84%e8%99%9a%e6%8b%9f%e4%b8%bb%e6%9c%ba%e5%92%8c%e7%94%a8%e6%88%b7%e8%ae%bf%e9%97%ae%e6%8e%a7%e5%88%b6>#</a></h2><pre tabindex=0><code>NameVirtualHost 10.10.10.2:80
+&lt;VirtualHost 10.10.10.2:80&gt;
+DocumentRoot /var/www/www
+ServerName www.zwbing.cn
+ErrorLog logs/www.zwbing.cn-error_log
+CustomLog logs/www.zwbing.cn-access_log common
+&lt;/VirtualHost&gt;
+&lt;VirtualHost 10.10.10.2:80&gt;
+DocumentRoot /var/www/bbs
+ServerName bbs.zwbing.cn
+ErrorLog logs/bbs.zwbing.cn-error_log
+CustomLog logs/bbs.zwbing.cn-access_log common
+&lt;Directory &#34;/var/www/bbs&#34;&gt;
+Order allow,deny
+Allow from all
+AuthName &#34;Please enter the account password!!&#34;
+AuthType Basic
+AuthUserFile /etc/httpd/.passwd
+require user zhwb
+&lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+Order allow,deny
+Allow from all(10.10.10 10.10.10.0/24 10.10.10.3)
+Deny from all
+Allow 表示允许访问的网段或ip Deny 表示拒绝访问的网段或ip
+Allow 和 Deny 同时存在时看 Order 这句 ，如果Allow在后表示允许，反之Deny在后表示拒绝（同时存在）
+alias /bbs /var/www/bbs #设置虚拟目录
+AddDefaultCharset UTF-8 #设置字符集
+DirectoryIndex index.html index.html.var #添加索引
+</code></pre><h2 id=httpd命令>httpd命令
+<a class=anchor href=#httpd%e5%91%bd%e4%bb%a4>#</a></h2><p>-v：查看版本</p><p>-M：查看模块</p><p>-t：检查httpd.conf语法</p><p>-S：查看虚拟主机信息</p><h3 id=options指令详解>Options指令详解
+<a class=anchor href=#options%e6%8c%87%e4%bb%a4%e8%af%a6%e8%a7%a3>#</a></h3><p>Options指令详解</p><p>Options指令的完整语法为：Options [+|-]option [[+|-]option]</p><p>…。简而言之，Options指令后可以附加指定多种服务器特性，特性选项之间以空格分隔。下面我们来看看Options指令后可以附加的特性选项的具体作用及含义(Apache配置中的内容均不区分大小写)：</p><p>All</p><p>表示除MultiViews之外的所有特性。这也是Options指令的默认设置。</p><p>None</p><p>表示不启用任何的服务器特性。</p><p>FollowSymLinks</p><p>服务器允许在此目录中使用符号连接。如果该配置选项位于配置段中，将会被忽略。</p><p>Indexes</p><p>如果输入的网址对应服务器上的一个文件目录，而此目录中又没有DirectoryIndex指令(例如：DirectoryIndex index.html</p><p>index.php)，那么服务器会返回由mod_autoindex模块生成的一个格式化后的目录列表，并列出该目录下的所有文件(如下图)。</p><p>Options Indexes指令作用效果</p><p>Options Indexes指令作用效果</p><p>MultiViews</p><p>允许使用mod_negotiation模块提供内容协商的”多重视图”。简而言之，如果客户端请求的路径可能对应多种类型的文件，那么服务器将根据客户端请求的具体情况自动选择一个最匹配客户端要求的文件。例如，在服务器站点的file文件夹下中存在名为hello.jpg和hello.html的两个文件，此时用户输入Http://localhost/file/hello，如果在file文件夹下并没有hello子目录，那么服务器将会尝试在file文件夹下查找形如hello.*的文件，然后根据用户请求的具体情况返回最匹配要求的hello.jpg或者hello.html。</p><p>SymLinksIfOwnerMatch</p><p>服务器仅在符号连接与目标文件或目录的所有者具有相同的用户ID时才使用它。简而言之，只有当符号连接和符号连接指向的目标文件或目录的所有者是同一用户时，才会使用符号连接。如果该配置选项位于配置段中，将会被忽略。</p><p>ExecCGI</p><p>允许使用mod_cgi模块执行CGI脚本。</p><p>Includes</p><p>允许使用mod_include模块提供的服务器端包含功能。</p><p>IncludesNOEXEC</p><p>允许服务器端包含，但禁用”#exec cmd”和”#exec cgi”。但仍可以从ScriptAlias目录使用”#include</p><p>virtual”虚拟CGI脚本。</p><p>此外，比较细心的读者应该注意到，Options指令语法允许在配置选项前加上符号”+”或者”-”，那么这到底是什么意思呢。</p><p>实际上，Apache允许在一个目录配置中设置多个Options指令。不过，一般来说，如果一个目录被多次设置了Options，则指定特性数量最多的一个Options指令会被完全接受(其它的被忽略)，而各个Options指令之间并不会合并。但是如果我们在可选配置项前加上了符号”+”或”-”，那么表示该可选项将会被合并。所有前面加有”+”号的可选项将强制覆盖当前的可选项设置，而所有前面有”-”号的可选项将强制从当前可选项设置中去除。你可以参考下面的例子：</p><h2 id=示例1>#示例1
+<a class=anchor href=#%e7%a4%ba%e4%be%8b1>#</a></h2><pre tabindex=0><code>&lt;Directory /web/file&gt;
+Options Indexes FollowSymLinks
+&lt;/Directory&gt;
+&lt;Directory /web/file/image&gt;
+Options Includes
+&lt;/Directory&gt;
+#目录/web/file/image只会被设置Includes特性
+#示例2
+&lt;Directory /web/file&gt;
+Options Indexes FollowSymLinks
+&lt;/Directory&gt;
+&lt;Directory /web/file/image&gt;
+Options +Includes -Indexes
+&lt;/Directory&gt;
+#目录/web/file/image将会被设置Includes、FollowSymLinks两种特性
+</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#基于端口的虚拟主机>基于端口的虚拟主机</a></li><li><a href=#基于ip的虚拟主机>基于ip的虚拟主机</a></li><li><a href=#基于域名的虚拟主机和用户访问控制>基于域名的虚拟主机和用户访问控制</a></li><li><a href=#httpd命令>httpd命令</a><ul><li><a href=#options指令详解>Options指令详解</a></li></ul></li><li><a href=#示例1>#示例1</a></li></ul></nav></div></aside></main></body></html>

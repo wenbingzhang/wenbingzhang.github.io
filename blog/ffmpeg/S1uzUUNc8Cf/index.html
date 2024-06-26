@@ -1,0 +1,149 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="等有时间了再将其翻译一下，源网址->传送门 stereo → mono stream Mix a single stereo stream down to … 等有时间了再将其翻译一下，源网址->传送门 stereo → mono stream # ![stereo to mono diagram](https://trac.ffmpeg.org/raw- attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="ffmpeg音频合成命令全集"><meta property="og:description" content="等有时间了再将其翻译一下，源网址->传送门 stereo → mono stream Mix a single stereo stream down to … 等有时间了再将其翻译一下，源网址->传送门 stereo → mono stream # ![stereo to mono diagram](https://trac.ffmpeg.org/raw- attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>ffmpeg音频合成命令全集 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>ffmpeg音频合成命令全集</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#stereo--mono-stream>stereo → mono stream</a></li><li><a href=#stereo--2--mono-files>stereo → 2 × mono files</a></li><li><a href=#stereo--2--mono-streams>stereo → 2 × mono streams</a></li><li><a href=#mono--stereo>mono → stereo</a></li><li><a href=#2--mono--stereo>2 × mono → stereo</a></li><li><a href=#6--mono--51>6 × mono → 5.1</a></li><li><a href=#51--6--mono>5.1 → 6 × mono</a></li><li><a href=#51--stereo>5.1 → stereo</a></li><li><a href=#2--stereo--stereo>2 × stereo → stereo</a></li><li><a href=#mix-both-stereo-channels-to-stereo>Mix both stereo channels to stereo</a></li><li><a href=#switch-stereo-channels>Switch stereo channels</a></li><li><a href=#virtual-binaural-acoustics>Virtual Binaural Acoustics</a></li><li><a href=#mute-a-channel>Mute a channel</a></li><li><a href=#statistics>Statistics</a></li><li><a href=#layouts>Layouts</a></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/ffmpeg/S1uzUUNc8Cf/>ffmpeg音频合成命令全集</a></h1><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><blockquote><p>等有时间了再将其翻译一下，源网址->传送门</p></blockquote><p>stereo → mono stream</p><p>Mix a single stereo</p><p>stream down to …</p><p>等有时间了再将其翻译一下，源网址->传送门</p><h2 id=stereo--mono-stream>stereo → mono stream
+<a class=anchor href=#stereo--mono-stream>#</a></h2><p>![stereo to mono diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix a single stereo</p><p>stream down to a mono stream. Both channels of the stereo stream will be</p><p>downmixed into the stream:</p><pre tabindex=0><code>ffmpeg -i stereo.flac -ac 1 mono.flac
+</code></pre><p>Note: Any out of phase stereo will cancel out.</p><h2 id=stereo--2--mono-files>stereo → 2 × mono files
+<a class=anchor href=#stereo--2--mono-files>#</a></h2><p>![stereo to 2 mono outputs diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/stereo_2mono_outputs.png)Output each</p><p>channel in stereo input to individual mono files:</p><pre tabindex=0><code>ffmpeg -i stereo.wav -map_channel 0.0.0 left.wav -map_channel 0.0.1 right.wav
+</code></pre><p>or with the pan audio filer:</p><pre tabindex=0><code>ffmpeg -i stereo.wav -filter_complex &#34;[0:0]pan=1c|c0=c0[left];[0:0]pan=1c|c0=c1[right]&#34; -map &#34;[left]&#34; left.wav -map &#34;[right]&#34; right.wav
+</code></pre><h2 id=stereo--2--mono-streams>stereo → 2 × mono streams
+<a class=anchor href=#stereo--2--mono-streams>#</a></h2><p>![stereo to 2 mono streams diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/stereo_2mono_streams.png)Output each</p><p>channel in stereo input to individual mono streams in one output file with the</p><p>channelsplit audio filter:</p><pre tabindex=0><code>ffmpeg -i in.mp3 -filter_complex channelsplit=channel_layout=stereo out.mka
+</code></pre><p><strong>Note:</strong> Your player will likely play the first stream by default unless</p><p>your player allows you to select the desired stream.</p><h2 id=mono--stereo>mono → stereo
+<a class=anchor href=#mono--stereo>#</a></h2><p>![mono to stereo diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/mono_stereo.png)Create a stereo</p><p>output from one mono input:</p><pre tabindex=0><code>ffmpeg -i input.mp3 -ac 2 output.m4a
+</code></pre><p>or with the amerge audio filter:</p><pre tabindex=0><code>ffmpeg -i input.mp3 -filter_complex &#34;[0:a][0:a]amerge=inputs=2[aout]&#34; -map &#34;[aout]&#34; output.m4a
+</code></pre><p><strong>Note:</strong> These examples will not magically create a “true” stereo output</p><p>from the mono input, but simply place the same audio into both the left and</p><p>right channels of the output (both channels will be identical).</p><h2 id=2--mono--stereo>2 × mono → stereo
+<a class=anchor href=#2--mono--stereo>#</a></h2><p>![2 mono files to stereo diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/2mono_stereo.png)Create a stereo</p><p>output from two mono inputs with the amerge audio filter:</p><pre tabindex=0><code>ffmpeg -i left.mp3 -i right.mp3 -filter_complex &#34;[0:a][1:a]amerge=inputs=2[aout]&#34; -map &#34;[aout]&#34; output.mka
+</code></pre><h2 id=6--mono--51>6 × mono → 5.1
+<a class=anchor href=#6--mono--51>#</a></h2><p>![6 mono inputs to 5.1 output](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/6mono_5point1.png)Combine 6 mono</p><p>inputs into one 5.1 (6 channel) output with the amerge audio filter:</p><pre tabindex=0><code>ffmpeg -i front_left.wav -i front_right.wav -i front_center.wav -i lfe.wav -i back_left.wav -i back_right.wav \
+-filter_complex &#34;[0:a][1:a][2:a][3:a][4:a][5:a]amerge=inputs=6[aout]&#34; -map &#34;[aout]&#34; output.wav
+</code></pre><p>All inputs must have the same sample rate and format. If inputs do not have</p><p>the same duration the output will stop with the shortest.</p><h2 id=51--6--mono>5.1 → 6 × mono
+<a class=anchor href=#51--6--mono>#</a></h2><p>![5.1 to individual channels](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/5point1_6mono.png)Split a 5.1 channel</p><p>input into individual per-channel files:</p><pre tabindex=0><code>ffmpeg -i in.wav \
+-filter_complex &#34;channelsplit=channel_layout=5.1[FL][FR][FC][LFE][BL][BR]&#34; \
+-map &#34;[FL]&#34; front_left.wav \
+-map &#34;[FR]&#34; front_right.wav \
+-map &#34;[FC]&#34; front_center.wav \
+-map &#34;[LFE]&#34; lfe.wav \
+-map &#34;[BL]&#34; back_left.wav \
+-map &#34;[BR]&#34; back_right.wav
+</code></pre><h2 id=51--stereo>5.1 → stereo
+<a class=anchor href=#51--stereo>#</a></h2><p>![5.1 to stereo diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/5point1_stereo.png)To downmix you can</p><p>simply use <code>-ac 2</code>:</p><pre tabindex=0><code>ffmpeg -i 6channels.wav -ac 2 stereo.wav
+</code></pre><p><strong>Notes:</strong></p><ul><li>By default when using <code>-ac 2</code> the LFE channel is omitted. See “Digital Audio Compression Standard (Document A/52:2012)”, sections 6.1.12 and 7.8 for more downmixing info.</li><li><code>ffmpeg</code> integrates a default down-mix (and up-mix) system that should be preferred (the <code>-ac</code> option) over the pan filter unless you have very specific needs.</li></ul><p>If you want to map specific channels and drop the rest you can use the pan</p><p>audio filter. This will map the <code>FL</code> (Front Left) of the input to the <code>FL</code> of</p><p>the output, and the <code>FR</code> (Front Right) of the input to the <code>FR</code> of the output:</p><pre tabindex=0><code>ffmpeg -i 6channels.wav -af &#34;pan=stereo|c0=FL|c1=FR&#34; stereo.wav
+</code></pre><p>You can also map specific channels by number. This example will map the first</p><p>and third channels of the input to the first and second channels of the</p><p>output.</p><pre tabindex=0><code>ffmpeg -i 6channels.wav -af &#34;pan=stereo|c0=c0|c1=c2&#34; output.wav
+</code></pre><p>If the <code>=</code> in a channel specification is replaced by <code>&lt;</code>, then the gains for</p><p>that specification will be renormalized so that the total is 1, thus avoiding</p><p>clipping noise. See the pan audio filter documentation for additional</p><p>information and examples.</p><h2 id=2--stereo--stereo>2 × stereo → stereo
+<a class=anchor href=#2--stereo--stereo>#</a></h2><p>![2 stereo inputs to 1 stereo output diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/2stereo_stereo.png)Combine two stereo</p><p>inputs into one stereo output with the amerge and pan audio filters:</p><pre tabindex=0><code>ffmpeg -i input1.wav -i input2.wav -filter_complex &#34;[0:a][1:a]amerge=inputs=2,pan=stereo|c0&lt;c0+c2|c1&lt;c1+c3[aout]&#34; -map &#34;[aout]&#34; output.mp3
+</code></pre><p>Or use <code>-ac 2</code> instead of the pan audio filter:</p><pre tabindex=0><code>ffmpeg -i input1.wav -i input2.wav -filter_complex &#34;[0:a][1:a]amerge=inputs=2[aout]&#34; -map &#34;[aout]&#34; -ac 2 output.mp3
+</code></pre><p><strong>Note:</strong> The output produced with the pan audio filter may not be identical</p><p>to the output produced with <code>-ac 2</code>, so you’ll have to listen to your outputs</p><p>or view audio statistics to determine which output suits you.</p><p>![2 stereo inputs to 1 stereo output diagram, alt](<a href=https://trac.ffmpeg.org>https://trac.ffmpeg.org</a><br>/raw-attachment/wiki/AudioChannelManipulation/2stereo_stereob.png)A similar</p><p>situation as above, but instead use the left and right channels from the first</p><p>input to make the left channel out the output, and use the left and right</p><p>channels of the second input to make the right channel of the output. Just</p><p>change the channel specifications in the pan filter:</p><pre tabindex=0><code>ffmpeg -i input1.wav -i input2.wav -filter_complex &#34;[0:a][1:a]amerge=inputs=2,pan=stereo|c0&lt;c0+c1|c1&lt;c2+c3[aout]&#34; -map &#34;[aout]&#34; output.mp3
+</code></pre><p>The pan audio filter has to be used in this situation instead of <code>-ac 2</code></p><p>unlike the previous example.</p><h2 id=mix-both-stereo-channels-to-stereo>Mix both stereo channels to stereo
+<a class=anchor href=#mix-both-stereo-channels-to-stereo>#</a></h2><p>![stereo to stereo mix diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/stereo_stereo_mix.png)The left and</p><p>right channels of the output will each contain both the left and right</p><p>channels of the input:</p><pre tabindex=0><code>ffmpeg -i input.mp3 -af &#34;pan=stereo|c0&lt;c0+c1|c1&lt;c0+c1&#34; output.ogg
+</code></pre><h2 id=switch-stereo-channels>Switch stereo channels
+<a class=anchor href=#switch-stereo-channels>#</a></h2><p>![switch stereo channels diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/switch_stereo_channels.png)Switch</p><p>left channel to right and right channel to left:</p><pre tabindex=0><code>ffmpeg -i stereo.ogg -map_channel 0.0.1 -map_channel 0.0.0 output.wav
+</code></pre><p>or with the pan audio filer:</p><pre tabindex=0><code>ffmpeg -i stereo.ogg -af pan=stereo|c0=c1|c1=c0 output.wav
+</code></pre><h2 id=virtual-binaural-acoustics>Virtual Binaural Acoustics
+<a class=anchor href=#virtual-binaural-acoustics>#</a></h2><p>FFmpeg can produce virtual binaural acoustics files using sofalizer filter,</p><p>most known channel layouts are supported for input, output is always stereo.</p><pre tabindex=0><code>ffmpeg -i input.wav -af sofalizer=/path/to/sofa/file output.flac
+</code></pre><p>SOFA files can be found on <a href=http://sofacoustics.org/data/database/ari/>http://sofacoustics.org/data/database/ari/</a></p><hr><h2 id=mute-a-channel>Mute a channel
+<a class=anchor href=#mute-a-channel>#</a></h2><p>![mute a stereo channel diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/mute_stereo_channel.png)This example</p><p>will mute the first channel (the left channel) but keep the second channel as</p><p>is:</p><pre tabindex=0><code>ffmpeg -i stereo.wav -map_channel -1 -map_channel 0.0.1 output.wav
+</code></pre><hr><h2 id=statistics>Statistics
+<a class=anchor href=#statistics>#</a></h2><p>The astats audio filter can display information including length, DC offset,</p><p>min/max levels, peak/RMS level dB:</p><pre tabindex=0><code>$ ffmpeg -i input.wav -af astats -f null -
+…
+[Parsed_astats_0 @ 0x168a260] Channel: 1
+[Parsed_astats_0 @ 0x168a260] DC offset: -0.001829
+[Parsed_astats_0 @ 0x168a260] Min level: -0.605072
+[Parsed_astats_0 @ 0x168a260] Max level: 0.607056
+[Parsed_astats_0 @ 0x168a260] Peak level dB: -4.335430
+[Parsed_astats_0 @ 0x168a260] RMS level dB: -20.298984
+[Parsed_astats_0 @ 0x168a260] RMS peak dB: -12.303891
+[Parsed_astats_0 @ 0x168a260] RMS trough dB: -35.352893
+[Parsed_astats_0 @ 0x168a260] Crest factor: 6.283154
+[Parsed_astats_0 @ 0x168a260] Flat factor: 0.000000
+[Parsed_astats_0 @ 0x168a260] Peak count: 2
+[Parsed_astats_0 @ 0x168a260] Channel: 2
+[Parsed_astats_0 @ 0x168a260] DC offset: -0.001826
+[Parsed_astats_0 @ 0x168a260] Min level: -0.585999
+[Parsed_astats_0 @ 0x168a260] Max level: 0.608490
+[Parsed_astats_0 @ 0x168a260] Peak level dB: -4.314931
+[Parsed_astats_0 @ 0x168a260] RMS level dB: -20.519969
+[Parsed_astats_0 @ 0x168a260] RMS peak dB: -12.056472
+[Parsed_astats_0 @ 0x168a260] RMS trough dB: -36.784681
+[Parsed_astats_0 @ 0x168a260] Crest factor: 6.460288
+[Parsed_astats_0 @ 0x168a260] Flat factor: 0.000000
+[Parsed_astats_0 @ 0x168a260] Peak count: 2
+[Parsed_astats_0 @ 0x168a260] Overall
+[Parsed_astats_0 @ 0x168a260] DC offset: -0.001829
+[Parsed_astats_0 @ 0x168a260] Min level: -0.605072
+[Parsed_astats_0 @ 0x168a260] Max level: 0.608490
+[Parsed_astats_0 @ 0x168a260] Peak level dB: -4.314931
+[Parsed_astats_0 @ 0x168a260] RMS level dB: -20.408071
+[Parsed_astats_0 @ 0x168a260] RMS peak dB: -12.056472
+[Parsed_astats_0 @ 0x168a260] RMS trough dB: -36.784681
+[Parsed_astats_0 @ 0x168a260] Flat factor: 0.000000
+[Parsed_astats_0 @ 0x168a260] Peak count: 2.000000
+[Parsed_astats_0 @ 0x168a260] Number of samples: 1440706
+</code></pre><hr><h2 id=layouts>Layouts
+<a class=anchor href=#layouts>#</a></h2><p>Output from <code>ffmpeg -layouts</code>:</p><pre tabindex=0><code>Individual channels:
+NAME        DESCRIPTION
+FL          front left
+FR          front right
+FC          front center
+LFE         low frequency
+BL          back left
+BR          back right
+FLC         front left-of-center
+FRC         front right-of-center
+BC          back center
+SL          side left
+SR          side right
+TC          top center
+TFL         top front left
+TFC         top front center
+TFR         top front right
+TBL         top back left
+TBC         top back center
+TBR         top back right
+DL          downmix left
+DR          downmix right
+WL          wide left
+WR          wide right
+SDL         surround direct left
+SDR         surround direct right
+LFE2        low frequency 2
+
+Standard channel layouts:
+NAME           DECOMPOSITION
+mono           FC
+stereo         FL+FR
+2.1            FL+FR+LFE
+3.0            FL+FR+FC
+3.0(back)      FL+FR+BC
+4.0            FL+FR+FC+BC
+quad           FL+FR+BL+BR
+quad(side)     FL+FR+SL+SR
+3.1            FL+FR+FC+LFE
+5.0            FL+FR+FC+BL+BR
+5.0(side)      FL+FR+FC+SL+SR
+4.1            FL+FR+FC+LFE+BC
+5.1            FL+FR+FC+LFE+BL+BR
+5.1(side)      FL+FR+FC+LFE+SL+SR
+6.0            FL+FR+FC+BC+SL+SR
+6.0(front)     FL+FR+FLC+FRC+SL+SR
+hexagonal      FL+FR+FC+BL+BR+BC
+6.1            FL+FR+FC+LFE+BC+SL+SR
+6.1(back)      FL+FR+FC+LFE+BL+BR+BC
+6.1(front)     FL+FR+LFE+FLC+FRC+SL+SR
+7.0            FL+FR+FC+BL+BR+SL+SR
+7.0(front)     FL+FR+FC+FLC+FRC+SL+SR
+7.1            FL+FR+FC+LFE+BL+BR+SL+SR
+7.1(wide)      FL+FR+FC+LFE+BL+BR+FLC+FRC
+7.1(wide-side) FL+FR+FC+LFE+FLC+FRC+SL+SR
+octagonal      FL+FR+FC+BL+BR+BC+SL+SR
+hexadecagonal  FL+FR+FC+BL+BR+BC+SL+SR+TFL+TFC+TFR+TBL+TBC+TBR+WL+WR
+</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#stereo--mono-stream>stereo → mono stream</a></li><li><a href=#stereo--2--mono-files>stereo → 2 × mono files</a></li><li><a href=#stereo--2--mono-streams>stereo → 2 × mono streams</a></li><li><a href=#mono--stereo>mono → stereo</a></li><li><a href=#2--mono--stereo>2 × mono → stereo</a></li><li><a href=#6--mono--51>6 × mono → 5.1</a></li><li><a href=#51--6--mono>5.1 → 6 × mono</a></li><li><a href=#51--stereo>5.1 → stereo</a></li><li><a href=#2--stereo--stereo>2 × stereo → stereo</a></li><li><a href=#mix-both-stereo-channels-to-stereo>Mix both stereo channels to stereo</a></li><li><a href=#switch-stereo-channels>Switch stereo channels</a></li><li><a href=#virtual-binaural-acoustics>Virtual Binaural Acoustics</a></li><li><a href=#mute-a-channel>Mute a channel</a></li><li><a href=#statistics>Statistics</a></li><li><a href=#layouts>Layouts</a></li></ul></nav></div></aside></main></body></html>

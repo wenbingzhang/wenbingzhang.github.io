@@ -1,0 +1,109 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="none 一、准备环境 # 1、安装mysql # #cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.5 -DMYSQL_DATADIR=/usr/local/mysql5.5/data -DSYSCONFDIR=/usr/local/mysql5.5/etc -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=1 -DWITH_EXTRA_CHARSETS=all #make #make install 2、安装nginx # #./configure --prefix=/usr/local/nginx --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx/nginx.pid --user=daemon --group=daemon --with-pcre #make && make install 3、安装php # #./configure --prefix=/usr/local/php5 --enable-bcmath --with-mysql=/usr/local/mysql5.5 --enable-fpm --with-fpm-user=daemon --with-fpm-group=daemon --with-config-file-path=/usr/local/php5"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="linux apache mysql php 优化"><meta property="og:description" content="none 一、准备环境 # 1、安装mysql # #cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.5 -DMYSQL_DATADIR=/usr/local/mysql5.5/data -DSYSCONFDIR=/usr/local/mysql5.5/etc -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=1 -DWITH_EXTRA_CHARSETS=all #make #make install 2、安装nginx # #./configure --prefix=/usr/local/nginx --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx/nginx.pid --user=daemon --group=daemon --with-pcre #make && make install 3、安装php # #./configure --prefix=/usr/local/php5 --enable-bcmath --with-mysql=/usr/local/mysql5.5 --enable-fpm --with-fpm-user=daemon --with-fpm-group=daemon --with-config-file-path=/usr/local/php5"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/SkaWUIN5U0z/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>linux apache mysql php 优化 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/SkaWUIN5U0z/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>linux apache mysql php 优化</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#一准备环境>一、准备环境</a><ul><li><a href=#1安装mysql>1、安装mysql</a></li><li><a href=#2安装nginx>2、安装nginx</a></li><li><a href=#3安装php>3、安装php</a></li><li><a href=#4使nginx支持php>4、使nginx支持php</a></li></ul></li><li><a href=#二php优化>二、php优化</a><ul><li><a href=#1php加速处理>1、php加速处理</a></li></ul></li><li><a href=#三mysql优化>三、mysql优化</a><ul><li><a href=#1查询优化>1、查询优化</a></li><li><a href=#2排序优化>2、排序优化</a></li><li><a href=#3索引优化>3、索引优化</a></li><li><a href=#4mysql性能优化>4、mysql性能优化</a></li><li><a href=#5其它的重点优化参数>5、其它的重点优化参数</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/linux/SkaWUIN5U0z/>linux apache mysql php 优化</a></h1><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>none</p></blockquote><h2 id=一准备环境>一、准备环境
+<a class=anchor href=#%e4%b8%80%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83>#</a></h2><h3 id=1安装mysql>1、安装mysql
+<a class=anchor href=#1%e5%ae%89%e8%a3%85mysql>#</a></h3><pre tabindex=0><code>#cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.5 -DMYSQL_DATADIR=/usr/local/mysql5.5/data -DSYSCONFDIR=/usr/local/mysql5.5/etc -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=1 -DWITH_EXTRA_CHARSETS=all
+#make
+#make install
+</code></pre><h3 id=2安装nginx>2、安装nginx
+<a class=anchor href=#2%e5%ae%89%e8%a3%85nginx>#</a></h3><pre tabindex=0><code>#./configure --prefix=/usr/local/nginx --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx/nginx.pid --user=daemon --group=daemon --with-pcre
+#make &amp;&amp; make install
+</code></pre><h3 id=3安装php>3、安装php
+<a class=anchor href=#3%e5%ae%89%e8%a3%85php>#</a></h3><pre tabindex=0><code>#./configure --prefix=/usr/local/php5 --enable-bcmath --with-mysql=/usr/local/mysql5.5 --enable-fpm --with-fpm-user=daemon --with-fpm-group=daemon --with-config-file-path=/usr/local/php5
+#make &amp;&amp; make install
+</code></pre><h3 id=4使nginx支持php>4、使nginx支持php
+<a class=anchor href=#4%e4%bd%bfnginx%e6%94%af%e6%8c%81php>#</a></h3><h4 id=1nginx配置>(1)nginx配置
+<a class=anchor href=#1nginx%e9%85%8d%e7%bd%ae>#</a></h4><pre tabindex=0><code>location ~ \.php$ {
+root html;
+fastcgi_pass 127.0.0.1:9000;
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME /usr/local/nginx/html$fastcgi_script_name;
+include fastcgi_params;
+}
+</code></pre><h4 id=2php配置>(2)php配置
+<a class=anchor href=#2php%e9%85%8d%e7%bd%ae>#</a></h4><pre tabindex=0><code>#vim /usr/local/php5/etc/php-fpm.conf
+#cd /usr/local/php5/sbin
+#./php-fpm -c /usr/local/php5/etc/php-fpm.conf
+</code></pre><h2 id=二php优化>二、php优化
+<a class=anchor href=#%e4%ba%8cphp%e4%bc%98%e5%8c%96>#</a></h2><p>注意：如何添加php功能模块 例：安装mbstring多字节支持功能模块</p><pre tabindex=0><code>#cd /usr/src/lamp/php-5.3.10/ext \\进入要安装功能模块源码目录下
+#/usr/local/php5/bin/phpize \\运行phpize命令，生成configure文件
+#./configure --enable-mbstring --with-php-config=/usr/local/php5/bin/php-config
+#make
+#make install
+</code></pre><p>#vim php.ini</p><pre tabindex=0><code>extension_dir = &#34;/usr/local/php5/lib/php/extensions/no-debug-non-zts-20090626&#34;
+extension = mbstring.so
+</code></pre><h3 id=1php加速处理>1、php加速处理
+<a class=anchor href=#1php%e5%8a%a0%e9%80%9f%e5%a4%84%e7%90%86>#</a></h3><h4 id=1对php相关选项进行调整-vim-phpini>(1)对php相关选项进行调整 #vim php.ini
+<a class=anchor href=#1%e5%af%b9php%e7%9b%b8%e5%85%b3%e9%80%89%e9%a1%b9%e8%bf%9b%e8%a1%8c%e8%b0%83%e6%95%b4-vim-phpini>#</a></h4><pre tabindex=0><code>realpath_cache_size = 32k
+realpath_cache_ttl = 600000
+max_excution_time = 60
+max_input_time = 120
+memory_limit = 128M
+display_errors = Off
+</code></pre><h4 id=2安装xcache>(2)安装xcache
+<a class=anchor href=#2%e5%ae%89%e8%a3%85xcache>#</a></h4><pre tabindex=0><code>#tar xzvf xcache-2.0.0-rc1.tar.gz
+#cd xcache-2.0.0-rc1
+#/usr/local/php5/bin/phpize
+#./configure --enable-xcache --enable-xcache-constant --with-php-config=/usr/local/php5/bin/php-config
+#make
+#make install
+</code></pre><p>#vim php.ini</p><pre tabindex=0><code>extension_dir = &#34;/usr/local/php5/lib/php/extensions/no-debug-non-zts-20090626&#34;
+extension = xcache.so
+[xcache]
+xcache.shm_scheme = &#34;mmap&#34;
+xcache.size = 16M
+xcache.count = 1
+xcache.slots = 8K
+xcache.ttl = 0
+xcache.gc_interval = 0
+xcache.var_size = 4M
+xcache.var_count = 1
+xcache.var_slots = 8K
+xcache.var_ttl = 0
+xcache.var_maxttl = 0
+xcache.var_gc_interval = 300
+xcache.readonly_protection = Off
+xcache.mmap_path = &#34;/dev/zero&#34;
+xcache.coredump_directory = &#34;&#34;
+xcache.cacher = On
+xcache.stat = On
+xcache.optimizer = Off
+xcache.test = Off
+xcache.experimental = Off
+[xcache.coverager]
+xcache.coverager = Off
+xcache.coveragedump_directory = &#34;&#34;
+</code></pre><h2 id=三mysql优化>三、mysql优化
+<a class=anchor href=#%e4%b8%89mysql%e4%bc%98%e5%8c%96>#</a></h2><h3 id=1查询优化>1、查询优化
+<a class=anchor href=#1%e6%9f%a5%e8%af%a2%e4%bc%98%e5%8c%96>#</a></h3><pre tabindex=0><code>query-cache-size = 16M
+query-cache-type = on | off
+query-cache-limit = 2M
+
+mysql&gt;show status like &#39;qcache%&#39;;
+</code></pre><p>Qcache_queries_in_cache 目前mysql缓存的数目</p><p>Qcache_inserts 插入的缓存条目数 Qcache_hits 缓存命中率</p><p>Qcache_lowmem_prunes 有多少次出现缓存过低</p><p>Qcache_free_blocks 缓存碎片数量</p><h3 id=2排序优化>2、排序优化
+<a class=anchor href=#2%e6%8e%92%e5%ba%8f%e4%bc%98%e5%8c%96>#</a></h3><pre tabindex=0><code>sort_buffer_size = 8M 设定排序缓冲区大小
+max_sort_length = 8192 设定排序队列长度大小
+
+mysql&gt;show status like &#39;%sort%&#39;;
+</code></pre><p>Sort_merge_passes 表示排序算法已经完成的排序数量</p><p>Sort_range 表示在指定范围内的排序</p><p>Sort_rows 表示已经排序了多少行</p><p>Sort_scan 通过扫描完成的排序数量</p><h3 id=3索引优化>3、索引优化
+<a class=anchor href=#3%e7%b4%a2%e5%bc%95%e4%bc%98%e5%8c%96>#</a></h3><p>key_buffer_size 设置索引缓冲区大小 自定义索引缓冲区和载入索引</p><pre tabindex=0><code>mysql&gt;set global stu.key_buffer_size=8388608; 设置自定义缓冲区
+mysql&gt;load index into cache test.stu; 将索引载入到系统缓冲区
+mysql&gt;cache index test.stu in stu; 将索引加载到自定义缓冲区
+</code></pre><h3 id=4mysql性能优化>4、mysql性能优化
+<a class=anchor href=#4mysql%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96>#</a></h3><p>concurrent_insert 是否允许数据并发插入，只对myisam引擎 thread_concurrency 定义并发线程数量</p><p>innodb_flush_log_log_trx_commit 设置日志写入文件的方式 innodb_buffer_pool_size</p><p>定义缓冲区大小，一般设为内存的80-85%</p><p>innodb_buffer_pool_instance 定义高速缓冲区可并发操作的实例数量 innodb_open_files 定义可打开的文件数</p><h3 id=5其它的重点优化参数>5、其它的重点优化参数
+<a class=anchor href=#5%e5%85%b6%e5%ae%83%e7%9a%84%e9%87%8d%e7%82%b9%e4%bc%98%e5%8c%96%e5%8f%82%e6%95%b0>#</a></h3><pre tabindex=0><code>max_connections = 1024 设置数据库允许的最大连接数
+max_connect_errors = 32 表示允许的错误连接数
+innodb_log_file_size = 512M 设置日志文件大小
+innodb_max_dirty_pages_pct=80 设定写入磁盘的脏数据占用的缓冲区比例
+</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#一准备环境>一、准备环境</a><ul><li><a href=#1安装mysql>1、安装mysql</a></li><li><a href=#2安装nginx>2、安装nginx</a></li><li><a href=#3安装php>3、安装php</a></li><li><a href=#4使nginx支持php>4、使nginx支持php</a></li></ul></li><li><a href=#二php优化>二、php优化</a><ul><li><a href=#1php加速处理>1、php加速处理</a></li></ul></li><li><a href=#三mysql优化>三、mysql优化</a><ul><li><a href=#1查询优化>1、查询优化</a></li><li><a href=#2排序优化>2、排序优化</a></li><li><a href=#3索引优化>3、索引优化</a></li><li><a href=#4mysql性能优化>4、mysql性能优化</a></li><li><a href=#5其它的重点优化参数>5、其它的重点优化参数</a></li></ul></li></ul></nav></div></aside></main></body></html>

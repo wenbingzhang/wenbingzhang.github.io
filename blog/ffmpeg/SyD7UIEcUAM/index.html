@@ -1,0 +1,203 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="简析Android集成FFMPEG推流"><meta property="og:description" content="如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>简析Android集成FFMPEG推流 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/><link rel=stylesheet href=/book.min.334a58a6540411f5f4ec898548410c2696e5aa710668c33475ed4eb713603c17.css integrity="sha256-M0pYplQEEfX07ImFSEEMJpblqnEGaMM0de1OtxNgPBc=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.0ccc9c790cdb755bda8f6c879129bceb254121d9012125854ddb98c5c3975b14.js integrity="sha256-DMyceQzbdVvaj2yHkSm86yVBIdkBISWFTduYxcOXWxQ=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
+<label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
+<label for=section-2c4b9a1cbc74613570f3c4585f635628 class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li><li><input type=checkbox id=section-e9c99308492d6ec7c6ad1055f21a8388 class=toggle>
+<label for=section-e9c99308492d6ec7c6ad1055f21a8388 class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>简析Android集成FFMPEG推流</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#推流基本流程>推流基本流程</a></li><li><a href=#ffmpeg>FFmpeg</a></li><li><a href=#ffmpeg-在android中的使用>FFmpeg 在Android中的使用</a><ul><li><a href=#ffmpeg主要分为8大模块>FFmpeg主要分为8大模块：</a></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/blog/ffmpeg/SyD7UIEcUAM/>简析Android集成FFMPEG推流</a></h1><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><blockquote><p>如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联网，各大直播平台包括…</p></blockquote><p>如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联网，各大直播平台包括斗鱼、熊猫tv、虎牙战旗还有纯移动端的映客、易直播等，群雄割据。言归正转，今天我们讲解的是Android</p><p>端简要集成FFMPEG进行推流。</p><h2 id=推流基本流程>推流基本流程
+<a class=anchor href=#%e6%8e%a8%e6%b5%81%e5%9f%ba%e6%9c%ac%e6%b5%81%e7%a8%8b>#</a></h2><p>一般情况下推流的基本流程如上。</p><h2 id=ffmpeg>FFmpeg
+<a class=anchor href=#ffmpeg>#</a></h2><p>说到推流就不得不提大名鼎鼎的FFMPEG了，FFmpeg是一个开源免费跨平台的视频和音频流方案，属于自由软件，采用LGPL或GPL许可证（依据你选择的组件）。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多codec都是从头开发的。诸如微信的小视频，映客、斗鱼等均是在FFmpeg基础上开发而来，可见FFmpeg之强大。一下是解压微信的apk的截图。</p><h2 id=ffmpeg-在android中的使用>FFmpeg 在Android中的使用
+<a class=anchor href=#ffmpeg-%e5%9c%a8android%e4%b8%ad%e7%9a%84%e4%bd%bf%e7%94%a8>#</a></h2><p>FFmpeg要想在Android就必须要编译成Android上能使用so动态链接库（下称so库）。具体编译方法可以参考github官方提供源码。编译过程大约在30分钟左右。以下是笔者编译好的so库。</p><h3 id=ffmpeg主要分为8大模块>FFmpeg主要分为8大模块：
+<a class=anchor href=#ffmpeg%e4%b8%bb%e8%a6%81%e5%88%86%e4%b8%ba8%e5%a4%a7%e6%a8%a1%e5%9d%97>#</a></h3><ul><li>libavcodec：用于各种类型声音/图像编解码；</li><li>libavdevice：用于视频采集访问摄像头等</li><li>libavfilter：用做滤镜处理</li><li>libavformat：用于各种音视频封装格式的生成和解析，包括获取解码所需信息以生成解码上下文结构和读取音视频帧等功能；</li><li>libswresample：用于重采样；</li><li>libavutil：包含一些公共的工具函数；</li><li>libswscale：用于视频场景比例缩放、色彩映射转换；</li><li>libpostproc：用于后期效果处理；</li></ul><h4 id=jni开发调用ffmpeg>JNI开发调用FFmpeg
+<a class=anchor href=#jni%e5%bc%80%e5%8f%91%e8%b0%83%e7%94%a8ffmpeg>#</a></h4><p>我们先看看我们使用到的FFmpegUtils工具类，主要用于加载native方法：</p><pre tabindex=0><code>public class FFmpegUtils {
+
+//加载so库
+static{
+      System.loadLibrary(&#34;avutil-54&#34;);
+      System.loadLibrary(&#34;swresample-1&#34;);
+      System.loadLibrary(&#34;avcodec-56&#34;);
+      System.loadLibrary(&#34;avformat-56&#34;);
+      System.loadLibrary(&#34;swscale-3&#34;);
+      System.loadLibrary(&#34;postproc-53&#34;);
+      System.loadLibrary(&#34;avfilter-5&#34;);
+      System.loadLibrary(&#34;avdevice-56&#34;);
+      System.loadLibrary(&#34;sffstreamer&#34;);
+}
+     /*
+      * 把本地的音视频数据通过rtmp协议发送到流媒体服务器上
+      *@param input
+      *@param output
+      */
+     public native int stream(String input, String output);
+
+}
+</code></pre><p>接下来我们就是我们的重头戏JNI调用FFmpeg</p><pre tabindex=0><code>#include &#34;libavcodec/avcodec.h&#34;
+#include &#34;libavformat/avformat.h&#34;
+#include &#34;libavutil/log.h&#34;
+
+#define LOGE(format, ...) __android_log_print(ANDROID_LOG_ERROR, &#34;(&gt;_&lt;)&#34;, format, ##__VA_ARGS__)
+#define LOGI(format, ...) __android_log_print(ANDROID_LOG_INFO, &#34;(^_^)&#34;, format, ##__VA_ARGS__)
+JNIEXPORT jint JNICALL Java_org_loofer_ffmpegstreamer_MainActivity_stream  (JNIEnv *env, jobject obj, jstring input_jstr, jstring output_jstr)
+{
+
+    //java string -&gt; c char*
+    //视频文件所在路径
+    const char* input_cstr = (*env)-&gt;GetStringUTFChars(env,input_jstr, NULL));
+    //推送的流媒体地址
+    const char* output_cstr = (*env)-&gt;GetStringUTFChars(env,output_jstr, NULL));
+    //封装格式(读入，写出)（解封装，得到frame）
+    AVFormatContext *inFmtCtx = NULL, *outFmtCtx = NULL;
+    AVOutputFormat *ofmt = NULL;
+
+    AVPacket pkt;
+
+    //注册组件
+    av_register_all();
+    //初始化网络
+    avformat_network_init();
+
+    //Input
+    if ((ret = avformat_open_input(&amp;inFmtCtx, input_str, 0, 0)) &lt; 0) {
+        LOGE( &#34;Could not open input file.&#34;);
+        goto end;
+    }
+    //获取文件信息
+    if ((ret = avformat_find_stream_info(inFmtCtx, 0)) &lt; 0) {
+        LOGE( &#34;Failed to retrieve input stream information&#34;);
+        goto end;
+    }
+    //获取视频的索引位置
+    int videoindex=-1;
+    for(i=0; i&lt;inFmtCtx-&gt;nb_streams; i++)
+        if(inFmtCtx-&gt;streams[i]-&gt;codec-&gt;codec_type==AVMEDIA_TYPE_VIDEO){
+            videoindex=i;
+            break;
+        }
+    //输出封装格式，推送flv封装格式的视频流
+    avformat_alloc_output_context2(&amp;outFmtCtx, NULL, &#34;flv&#34;,output_cstr); //RTMP
+    //avformat_alloc_output_context2(&amp;outFmtCtx, NULL, &#34;mpegts&#34;, output_cstr);//UDP
+
+    if (!outFmtCtx) {
+        LOGE( &#34;Could not create output context/n&#34;);
+        ret = AVERROR_UNKNOWN;
+        goto end;
+    }
+
+    for (i = 0; i &lt; inFmtCtx-&gt;nb_streams; i++) {
+        //解码器，解码上下文保持一致
+        AVStream *in_stream = inFmtCtx-&gt;streams[i];
+        AVStream *out_stream = avformat_new_stream(outFmtCtx, in_stream-&gt;codec-&gt;codec);
+        if (!out_stream) {
+            LOGE( &#34;Failed allocating output stream/n&#34;);
+            ret = AVERROR_UNKNOWN;
+            goto end;
+        }
+        //复制解码器上下文的 设置
+        ret = avcodec_copy_context(out_stream-&gt;codec, in_stream-&gt;codec);
+        if (ret &lt; 0) {
+            LOGE( &#34;Failed to copy context from input to output stream codec context/n&#34;);
+            goto end;
+        }
+        //全局的header
+        out_stream-&gt;codec-&gt;codec_tag = 0;
+        if (outFmtCtx-&gt;oformat-&gt;flags &amp; AVFMT_GLOBALHEADER)
+            out_stream-&gt;codec-&gt;flags |= CODEC_FLAG_GLOBAL_HEADER;
+    }
+    //打开输出的AVIOContext IO流上下文
+    ofmt = outFmtCtx-&gt;oformat;
+    //Open output URL
+    if (!(ofmt-&gt;flags &amp; AVFMT_NOFILE)) {
+        ret = avio_open(&amp;outFmtCtx-&gt;pb, output_cstr, AVIO_FLAG_WRITE);
+        if (ret &lt; 0) {
+            LOGE( &#34;Could not open output URL &#39;%s&#39;&#34;, output_cstr);
+            goto end;
+        }
+    }
+    //先写一个头
+    ret = avformat_write_header(outFmtCtx, NULL);
+    if (ret &lt; 0) {
+        LOGE( &#34;Error occurred when opening output URL/n&#34;);
+        goto end;
+    }
+
+    int frame_index=0;
+    int64_t start_time=av_gettime();
+    while (1) {
+        AVStream *in_stream, *out_stream;
+        //Get an AVPacket
+        ret = av_read_frame(inFmtCtx, &amp;pkt);
+        if (ret &lt; 0)
+            break;
+        //FIX：No PTS (Example: Raw H.264)
+        //raw stream 裸流
+        //PTS:Presentation Time Stamp 解码后视频帧要在什么时候取出来
+        //DTS:送入解码器后什么时候标识进行解码
+        if(pkt.pts==AV_NOPTS_VALUE){
+            //Write PTS
+            AVRational time_base1=inFmtCtx-&gt;streams[videoindex]-&gt;time_base;
+            //Duration between 2 frames (us)
+            int64_t calc_duration=(double)AV_TIME_BASE/av_q2d(inFmtCtx-&gt;streams[videoindex]-&gt;r_frame_rate);
+            //Parameters
+            pkt.pts=(double)(frame_index*calc_duration)/(double)(av_q2d(time_base1)*AV_TIME_BASE);
+            pkt.dts=pkt.pts;
+            pkt.duration=(double)calc_duration/(double)(av_q2d(time_base1)*AV_TIME_BASE);
+        }
+        //读入速度比较快，可以在这里调整读取速度减轻服务器压力
+        if(pkt.stream_index==videoindex){
+            AVRational time_base=inFmtCtx-&gt;streams[videoindex]-&gt;time_base;
+            AVRational time_base_q={1,AV_TIME_BASE};
+            int64_t pts_time = av_rescale_q(pkt.dts, time_base, time_base_q);
+            int64_t now_time = av_gettime() - start_time;
+            if (pts_time &gt; now_time)
+                av_usleep(pts_time - now_time);
+
+        }
+
+        in_stream  = inFmtCtx-&gt;streams[pkt.stream_index];
+        out_stream = outFmtCtx-&gt;streams[pkt.stream_index];
+        /* copy packet */
+        //Convert PTS/DTS
+        pkt.pts = av_rescale_q_rnd(pkt.pts, in_stream-&gt;time_base, out_stream-&gt;time_base, AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX);
+        pkt.dts = av_rescale_q_rnd(pkt.dts, in_stream-&gt;time_base, out_stream-&gt;time_base, AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX);
+        pkt.duration = av_rescale_q(pkt.duration, in_stream-&gt;time_base, out_stream-&gt;time_base);
+        pkt.pos = -1;
+        //Print to Screen
+        if(pkt.stream_index==videoindex){
+            LOGE(&#34;Send %8d video frames to output URL/n&#34;,frame_index);
+            frame_index++;
+        }
+        //写数据
+        //ret = av_write_frame(outFmtCtx, &amp;pkt);
+        ret = av_interleaved_write_frame(outFmtCtx, &amp;pkt);
+
+        if (ret &lt; 0) {
+            LOGE( &#34;Error muxing packet/n&#34;);
+            break;
+        }
+        av_free_packet(&amp;pkt);
+
+    }
+    //写结尾
+    av_write_trailer(outFmtCtx);
+end:
+    //释放自愿
+    avformat_close_input(&amp;inFmtCtx);
+    /* 关闭输出流 */
+    if (outFmtCtx &amp;&amp; !(ofmt-&gt;flags &amp; AVFMT_NOFILE))
+        avio_close(outFmtCtx-&gt;pb);
+    avformat_free_context(outFmtCtx);
+    if (ret &lt; 0 &amp;&amp; ret != AVERROR_EOF) {
+        LOGE( &#34;Error occurred./n&#34;);
+        return -1;
+    }
+    return 0;
+}
+</code></pre><hr><h4 id=函数简单介绍>函数简单介绍
+<a class=anchor href=#%e5%87%bd%e6%95%b0%e7%ae%80%e5%8d%95%e4%bb%8b%e7%bb%8d>#</a></h4><ul><li>av_register_all():注册所有组件。</li><li>avformat_open_input():打开输入视频文件。</li><li>avformat_find_stream_info():获取视频文件信息。</li><li>avcodec_find_decoder():查找解码器。</li><li>avcodec_open2():打开解码器。</li><li>av_read_frame():从输入文件读取一帧压缩数据。</li><li>avcodec_decode_video2():解码一帧压缩数据。</li><li>avcodec_close():关闭解码器。</li><li>avformat_close_input():关闭输入视频文件</li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#推流基本流程>推流基本流程</a></li><li><a href=#ffmpeg>FFmpeg</a></li><li><a href=#ffmpeg-在android中的使用>FFmpeg 在Android中的使用</a><ul><li><a href=#ffmpeg主要分为8大模块>FFmpeg主要分为8大模块：</a></li></ul></li></ul></nav></div></aside></main></body></html>
