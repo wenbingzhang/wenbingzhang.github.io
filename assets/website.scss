@@ -17,7 +17,7 @@
     font-weight: bold;
     line-height: 1.5;
     padding: 0px 10px;
-    border-left: 5px double #e40000;
+    // border-left: 5px double #e40000;
   }
 
   h3 {
@@ -26,7 +26,7 @@
     line-height: 1.5;
     font-weight: bold;
     padding: 0px 10px;
-    border-left: 5px double #007BFF;
+    // border-left: 5px double #007BFF;
   }
 
   h4 {
@@ -35,7 +35,7 @@
     line-height: 1.66666666666667;
     font-weight: bold;
     padding: 0px 10px;
-    border-left: 5px double #9C27B0;
+    // border-left: 5px double #9C27B0;
   }
 
   h5 {
@@ -43,7 +43,7 @@
     font-size: 14px;
     line-height: 1.66666666666667;
     padding: 0px 10px;
-    border-left: 5px double #00C853;
+    // border-left: 5px double #00C853;
   }
 
   h6 {
@@ -52,7 +52,7 @@
     line-height: 1.66666666666667;
     font-weight: 600;
     padding: 0px 10px;
-    border-left: 5px double #795548;
+    // border-left: 5px double #795548;
   }
 
   .book-post-title {
@@ -75,12 +75,6 @@
 .book-article {
   // 默认情况（适用于较小屏幕，如手机）
   min-height: calc(100vh - 170px);
-
-  // 针对较大屏幕（如PC）
-  @media (min-width: 768px) {
-    // 假设 PC 端的 header 和 footer 高度不同
-    min-height: calc(100vh - 150px);
-  }
 }
 
 
@@ -98,5 +92,6 @@
 
 .page-footer>p a,
 .page-footer>p span {
-  padding-left: 2px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
