@@ -19,6 +19,6 @@ cp -r /opt/solr-7.3.1/server/solr/configsets/_default/conf /opt/solr-7.3.1/serve
 
 ```
 
-复制的时候一定要复制server/solr/configsets/\_default/conf目录，而不是server/solr/configsets/\_default
+复制的时候一定要复制server/solr/configsets/_default/conf目录，而不是server/solr/configsets/_default
 
-，昨天我就是直接复制的\_default目录导致一直报错。
+，昨天我就是直接复制的_default目录导致一直报错。

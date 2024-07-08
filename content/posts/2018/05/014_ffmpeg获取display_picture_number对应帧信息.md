@@ -12,7 +12,7 @@ menu: main
 
 > 使用方式
 
-ffmpeg -i input -vf “select=eq(n\\,15237)“,showinfo -an -f null /dev/null…
+ffmpeg -i input -vf “select=eq(n\,15237)“,showinfo -an -f null /dev/null…
 
 ## 使用方式
 
@@ -23,7 +23,7 @@ ffmpeg -i input  -vf "select=eq(n\,15237)",showinfo -an -f null  /dev/null
 
 ## 输出结果
 
-15237为display\_picture\_number
+15237为display_picture_number
 
 ```
 [Parsed_showinfo_1 @ 0x41ca760] n:   0 pts:54860400 pts_time:609.56  pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2 20.7]

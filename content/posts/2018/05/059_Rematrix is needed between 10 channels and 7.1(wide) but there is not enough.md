@@ -14,7 +14,7 @@ menu: main
 
 将10个声道拆分成10个音轨
 
-ffmpeg -i INPUTFILE -filter\_complex “\[0:a\]pan=mono\|c0=c0\[…
+ffmpeg -i INPUTFILE -filter_complex “[0:a]pan=mono|c0=c0[…
 
 ## 解决办法
 

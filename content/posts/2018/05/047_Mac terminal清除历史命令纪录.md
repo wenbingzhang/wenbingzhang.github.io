@@ -37,7 +37,7 @@ history -c
 
 history
 
-history \| less 使用 !! 执行上一条命令
+history | less 使用 !! 执行上一条命令
 
 !! 使用 !foo 执行以 foo 开头的命令
 

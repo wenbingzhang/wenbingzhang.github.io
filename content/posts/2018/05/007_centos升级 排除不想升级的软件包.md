@@ -30,7 +30,7 @@ exclude=kernel*
 
 ```
 
-修改/etc/yum.conf，在“\[main\]”的最后加上“exclude=kernel\*”即可。
+修改/etc/yum.conf，在“[main]”的最后加上“exclude=kernel*”即可。
 
 ## 总结
 

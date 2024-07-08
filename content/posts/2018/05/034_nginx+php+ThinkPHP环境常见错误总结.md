@@ -12,7 +12,7 @@ menu: main
 
 > 错误一
 
-2017/09/07 16:39:18 \[error\] 21753#0: \*26 FastCGI sent in stderr: “Primary s…
+2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: “Primary s…
 
 ## 错误一
 

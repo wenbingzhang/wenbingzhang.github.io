@@ -26,17 +26,17 @@ nfs-utils portmap (rhel6换成了rpcbind ,所以启动服务时需要注意)
 
 /etc/exports #NFS主配置文件 /etc/init.d/nfs #NFS启动脚本 /etc/init.d/protmap
 
-#portmap启动脚本 /var/lib/\*tab #NFS日志文件
+#portmap启动脚本 /var/lib/*tab #NFS日志文件
 
 ## 书写规则
 
-目录名(绝对路径) 客户端主机名、IP或“\*”(选项) 选项可选择如下：
+目录名(绝对路径) 客户端主机名、IP或“*”(选项) 选项可选择如下：
 
 sync：设置NFS服务器同步写磁盘,这样不会轻易丢失数据,建议所有的NFS共享目录使用该选项. ro：设置输出的共享目录为只读，与rw不能同时使用。
 
-rw：设置输出的共享目录为可读写，与ro不能同时使用。 root\_squash：root用户访问共享目录的身份会自动变成nobody身份。
+rw：设置输出的共享目录为可读写，与ro不能同时使用。 root_squash：root用户访问共享目录的身份会自动变成nobody身份。
 
-no\_root\_squash：root用户会以自己的真实身份访问共享目录，不安全，不建议使用。 更多选项可在网上查
+no_root_squash：root用户会以自己的真实身份访问共享目录，不安全，不建议使用。 更多选项可在网上查
 
 ## showmount
 

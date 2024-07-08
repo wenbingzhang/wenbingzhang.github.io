@@ -155,13 +155,13 @@ mysql>show status like 'qcache%';
 
 ```
 
-Qcache\_queries\_in\_cache 目前mysql缓存的数目
+Qcache_queries_in_cache 目前mysql缓存的数目
 
-Qcache\_inserts 插入的缓存条目数 Qcache\_hits 缓存命中率
+Qcache_inserts 插入的缓存条目数 Qcache_hits 缓存命中率
 
-Qcache\_lowmem\_prunes 有多少次出现缓存过低
+Qcache_lowmem_prunes 有多少次出现缓存过低
 
-Qcache\_free\_blocks 缓存碎片数量
+Qcache_free_blocks 缓存碎片数量
 
 ### 2、排序优化
 
@@ -173,17 +173,17 @@ mysql>show status like '%sort%';
 
 ```
 
-Sort\_merge\_passes 表示排序算法已经完成的排序数量
+Sort_merge_passes 表示排序算法已经完成的排序数量
 
-Sort\_range 表示在指定范围内的排序
+Sort_range 表示在指定范围内的排序
 
-Sort\_rows 表示已经排序了多少行
+Sort_rows 表示已经排序了多少行
 
-Sort\_scan 通过扫描完成的排序数量
+Sort_scan 通过扫描完成的排序数量
 
 ### 3、索引优化
 
-key\_buffer\_size 设置索引缓冲区大小 自定义索引缓冲区和载入索引
+key_buffer_size 设置索引缓冲区大小 自定义索引缓冲区和载入索引
 
 ```
 mysql>set global stu.key_buffer_size=8388608; 设置自定义缓冲区
@@ -194,13 +194,13 @@ mysql>cache index test.stu in stu; 将索引加载到自定义缓冲区
 
 ### 4、mysql性能优化
 
-concurrent\_insert 是否允许数据并发插入，只对myisam引擎 thread\_concurrency 定义并发线程数量
+concurrent_insert 是否允许数据并发插入，只对myisam引擎 thread_concurrency 定义并发线程数量
 
-innodb\_flush\_log\_log\_trx\_commit 设置日志写入文件的方式 innodb\_buffer\_pool\_size
+innodb_flush_log_log_trx_commit 设置日志写入文件的方式 innodb_buffer_pool_size
 
 定义缓冲区大小，一般设为内存的80-85%
 
-innodb\_buffer\_pool\_instance 定义高速缓冲区可并发操作的实例数量 innodb\_open\_files 定义可打开的文件数
+innodb_buffer_pool_instance 定义高速缓冲区可并发操作的实例数量 innodb_open_files 定义可打开的文件数
 
 ### 5、其它的重点优化参数
 

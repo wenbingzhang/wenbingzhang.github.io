@@ -12,15 +12,15 @@ menu: main
 
 > 1.分离视频音频流
 
-ffmpeg -i input\_file -vcodec copy -an output\_file\_video　　//分离视频流
+ffmpeg -i input_file -vcodec copy -an output_file_video　　//分离视频流
 
 ffm…
 
 1.分离视频音频流
 
-ffmpeg -i input\_file -vcodec copy -an output\_file\_video　　//分离视频流
+ffmpeg -i input_file -vcodec copy -an output_file_video　　//分离视频流
 
-ffmpeg -i input\_file -acodec copy -vn output\_file\_audio　　//分离音频流
+ffmpeg -i input_file -acodec copy -vn output_file_audio　　//分离音频流
 
 2.视频解复用
 
@@ -30,19 +30,19 @@ ffmpeg –i test.avi –vcodec copy –an –f m4v test.264
 
 3.视频转码
 
-ffmpeg –i test.mp4 –vcodec h264 –s 352\*278 –an –f m4v test.264//转码为码流原始文件
+ffmpeg –i test.mp4 –vcodec h264 –s 352*278 –an –f m4v test.264//转码为码流原始文件
 
-ffmpeg –i test.mp4 –vcodec h264 –bf 0 –g 25 –s 352\*278 –an –f m4v
+ffmpeg –i test.mp4 –vcodec h264 –bf 0 –g 25 –s 352*278 –an –f m4v
 
 test.264//转码为码流原始文件
 
-ffmpeg –i test.avi -vcodec mpeg4 –vtag xvid –qsame test\_xvid.avi//转码为封装文件
+ffmpeg –i test.avi -vcodec mpeg4 –vtag xvid –qsame test_xvid.avi//转码为封装文件
 
 //-bf B帧数目控制，-g 关键帧间隔控制，-s 分辨率控制
 
 4.视频封装
 
-ffmpeg –i video\_file –i audio\_file –vcodec copy –acodec copy output\_file
+ffmpeg –i video_file –i audio_file –vcodec copy –acodec copy output_file
 
 5.视频剪切
 
@@ -60,8 +60,8 @@ ffmpeg –i rtsp://192.168.3.205:5555/test –vcodec copy out.avi
 
 7.YUV序列播放
 
-ffplay -f rawvideo -video\_size 1920x1080 input.yuv
+ffplay -f rawvideo -video_size 1920x1080 input.yuv
 
 8.YUV序列转AVI
 
-ffmpeg –s w\*h –pix\_fmt yuv420p –i input.yuv –vcodec mpeg4 output.avi
+ffmpeg –s w*h –pix_fmt yuv420p –i input.yuv –vcodec mpeg4 output.avi

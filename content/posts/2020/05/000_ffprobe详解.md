@@ -229,7 +229,7 @@ TAG:handler_name=SoundHandle
 >
 > DAR(Display Aspect Ratio): 显示宽高比，图像最终展示的宽高比，播放器在渲染视频帧时，需要保持DAR的比例。
 >
-> 它们之间的关系：PAR \* SAR = DAR
+> 它们之间的关系：PAR * SAR = DAR
 >
 > ![dar.jpg](/static/uploads/rdgQnFI6j/img/dar_5zozy2Djo.jpg)
 >
@@ -241,15 +241,15 @@ TAG:handler_name=SoundHandle
 >
 > FFmpeg提供了多个SAR：
 >
-> AVStream->sample\_aspect\_ratio
+> AVStream->sample_aspect_ratio
 >
-> AVStream->codecpar->sample\_aspect\_ratio
+> AVStream->codecpar->sample_aspect_ratio
 >
-> AVFrame->sample\_aspect\_ratio
+> AVFrame->sample_aspect_ratio
 >
-> 最终的SAR是通过av\_guess\_sample\_aspect\_ratio获取的。
+> 最终的SAR是通过av_guess_sample_aspect_ratio获取的。
 >
-> 对于DAR，AVStream->display\_aspect\_ratio的值始终为0:0，参考ffprobe代码，可知DAR是通过av\_reduce计算得到的，如下所示：
+> 对于DAR，AVStream->display_aspect_ratio的值始终为0:0，参考ffprobe代码，可知DAR是通过av_reduce计算得到的，如下所示：
 >
 > ```
 > AVRational sar, dar;

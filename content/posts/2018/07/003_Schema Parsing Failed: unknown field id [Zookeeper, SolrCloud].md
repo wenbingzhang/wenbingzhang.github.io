@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/HkgnaWVNm
-title: "Schema Parsing Failed: unknown field 'id' [Zookeeper, SolrCloud]"
+title: "Schema Parsing Failed: unknown field id [Zookeeper, SolrCloud]"
 date: 2018-07-24T02:31:15+08:00
 description:
 categories:

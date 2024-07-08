@@ -10,7 +10,7 @@ tags:
 menu: main
 ---
 
-> ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix\_fmt yuv422p -vf scal…
+> ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scal…
 
 ```
 ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scale=1440:1080:1 -acodec pcm_s16le -ar 48000 -ac 1 -y xx.mxf

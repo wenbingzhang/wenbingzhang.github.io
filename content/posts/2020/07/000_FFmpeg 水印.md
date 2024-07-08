@@ -29,26 +29,26 @@ ffmpeg -i input.mp4 -vf "movie=wenzi.png[watermark];[in][watermark] overlay=main
 >
 > overlay:水印参数
 >
-> main\_w-overlay\_w-10 : 水印在x轴的位置，也可以写成x=main\_w-overlay\_w-10
+> main_w-overlay_w-10 : 水印在x轴的位置，也可以写成x=main_w-overlay_w-10
 >
-> main\_h-overlay\_h-10：水印在y轴的位置
+> main_h-overlay_h-10：水印在y轴的位置
 
 ```
 ffmpeg -i input.mp4 -i logo.png -filter_complex 'overlay=x=10:y=main_h-overlay_h-10' output.mp4
 
 ```
 
-> -filter\_complex: 相比-vf,
+> -filter_complex: 相比-vf,
 >
-> filter\_complex适合开发复杂的滤镜功能，如同时对视频进行裁剪并旋转。参数之间使用逗号（，）隔开即可
+> filter_complex适合开发复杂的滤镜功能，如同时对视频进行裁剪并旋转。参数之间使用逗号（，）隔开即可
 >
-> main\_w:视频宽度
+> main_w:视频宽度
 >
-> overlay\_w: 要添加的图片水印宽度
+> overlay_w: 要添加的图片水印宽度
 >
-> main\_h : 视频高度
+> main_h : 视频高度
 >
-> overlay\_h:要添加的图片水印宽度
+> overlay_h:要添加的图片水印宽度
 
 ## 文字水印
 
@@ -74,14 +74,14 @@ ffmpeg -i bunny.mp4 -vf "movie=test.mov[logo];[0:v][logo]overlay=x=100:y=100"  -
 
 ```
 
-mov一直循环显示。 添加 **loop=0,setpts=N/FRAME\_RATE/TB** 即可。
+mov一直循环显示。 添加 **loop=0,setpts=N/FRAME_RATE/TB** 即可。
 
 ```
 ffmpeg -i bunny.mp4 -vf "movie=test.mov:loop=0,setpts=N/FRAME_RATE/TB[logo];[0:v][logo]overlay=x=100:y=100"  -y out.mp4
 
 ```
 
-只显示一遍 添加eof\_action即可。
+只显示一遍 添加eof_action即可。
 
 ```
 ffmpeg -i bunny.mp4 -vf "movie=test.mov[logo];[0:v][logo]overlay=x=100:y=100:eof_action=pass" -vframes 1000 -y out.mp4

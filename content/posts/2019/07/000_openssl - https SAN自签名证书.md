@@ -31,7 +31,7 @@ $ openssl genrsa -out server.key 4096
 
 ```
 
-## **2\. Subject Alt Name(SAN)**
+## **2. Subject Alt Name(SAN)**
 
 高版本的Chrome浏览器会要求设置 `subjectAltName`,如果没有设置SAN会报证书错误
 
@@ -61,7 +61,7 @@ IP.1=xxx.xxx.xxx.xxx
 
 ```
 
-### **3\. 生成证书签名请求(CSR)**
+### **3. 生成证书签名请求(CSR)**
 
 向根证书请求签名一个新的证书，由于用户信任了你的根证书，所以根证书签名的其它证书也会被信任
 

@@ -45,7 +45,7 @@ GNU’s Screen 官方站点：http://www.gnu.org/software/screen/
 
 ## 三、语法
 
-screen \[-AmRvx -ls -wipe\]\[-d <作业名称>\]\[-h <行数>\]\[-r <作业名称>\]\[-s \]\[-S <作业名称>\]
+screen [-AmRvx -ls -wipe][-d <作业名称>][-h <行数>][-r <作业名称>][-s ][-S <作业名称>]
 
 ### 参数说明
 
@@ -97,7 +97,7 @@ C-a p -> Previous，切换到前一个 window
 
 C-a 0..9 -> 切换到第 0..9 个 window
 
-Ctrl+a \[Space\] -> 由视窗0循序切换到视窗9
+Ctrl+a [Space] -> 由视窗0循序切换到视窗9
 
 C-a C-a -> 在两个最近使用的 window 间切换
 
@@ -119,7 +119,7 @@ C-a t -> Time，显示当前时间，和系统的 load
 
 C-a k -> kill window，强行关闭当前的 window
 
-C-a \[ -> 进入 copy mode，在 copy mode 下可以回滚、搜索、复制就像用使用 vi 一样
+C-a [ -> 进入 copy mode，在 copy mode 下可以回滚、搜索、复制就像用使用 vi 一样
 
 ```
 C-b Backward，PageUp
@@ -144,7 +144,7 @@ Esc 结束 copy mode
 
 ```
 
-C-a \] -> Paste，把刚刚在 copy mode 选定的内容贴上
+C-a ] -> Paste，把刚刚在 copy mode 选定的内容贴上
 
 ## 五、使用 screen
 
@@ -187,7 +187,7 @@ w列出当前所有窗口。如果使用文本终端，这个列表会列在屏�
 
 ```
 
-这个例子中我开启了三个窗口，其中\*号表示当前位于窗口2，-号表示上一次切换窗口时位于窗口1。
+这个例子中我开启了三个窗口，其中*号表示当前位于窗口2，-号表示上一次切换窗口时位于窗口1。
 
 Screen默认会为窗口命名为编号和窗口中运行程序名的组合，上面的例子中窗口都是默认名字。练习了上面查看窗口的方法，你可能就希望各个窗口可以有不同的名字以方便区分了。可以使用快捷键C-a
 

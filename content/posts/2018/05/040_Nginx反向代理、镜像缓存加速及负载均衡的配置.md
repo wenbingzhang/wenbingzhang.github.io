@@ -87,7 +87,7 @@ mkdir /home/cache/temp -p
 
 修改 /usr/local/nginx/conf/nginx.conf 新增以下代码，主要是缓存相关设置，请放置于 http{ ##这里 } 中，一般加在
 
-log\_format 上面或下面均可：
+log_format 上面或下面均可：
 
 ```
 client_body_buffer_size 512k;
@@ -259,19 +259,19 @@ switching）、HAProxy等。支持负载均衡的模块是Http Upstream。下面
 
 ### HTTP Upstream模块
 
-#### （1）ip\_hash指令
+#### （1）ip_hash指令
 
-当对后端的多台动态应用服务器做负载均衡时，ip\_hash指令将某个客户端IP的请求通过哈希算法定位到同一台后端服务器上。这样，当来自某ip用户在Sever
+当对后端的多台动态应用服务器做负载均衡时，ip_hash指令将某个客户端IP的请求通过哈希算法定位到同一台后端服务器上。这样，当来自某ip用户在Sever
 
 A上登录后，再访问该站点的其他URL时，能保证访问仍在Server A上。
 
-如果不加ip\_hash，加入用户在Server A上登录，再访问该站点其他URL，就有可能跳转到后端的Sever
+如果不加ip_hash，加入用户在Server A上登录，再访问该站点其他URL，就有可能跳转到后端的Sever
 
 B、C…..，而session记录在A上，B、C上没有，就会提示用户未登录。
 
 注意：但这种访问不能保证后端服务器的负载均衡，可能后端有些server接受到的请求多，有些server接受的少，设置的权重值不起作用。
 
-建议如果后端的动态应用程序服务器能做到session共享，而不用nginx上配置ip\_hash的方式。
+建议如果后端的动态应用程序服务器能做到session共享，而不用nginx上配置ip_hash的方式。
 
 ```
 upstream mysrv {
@@ -291,9 +291,9 @@ server 192.168.0.212:80 weight=8;
 
 weight=number ： 设置服务器权重，权重值越高，被分配到客户端请求数越多。默认为1；
 
-max\_fails=numbser ：
+max_fails=numbser ：
 
-在fail\_timeout指定的时间内对后端服务器请求失败的次数，如果检测到后端服务器无法连接及发生错误（404除外），则标记为失败。如果没有设置，默认为1。设置为0则关闭这项检查。
+在fail_timeout指定的时间内对后端服务器请求失败的次数，如果检测到后端服务器无法连接及发生错误（404除外），则标记为失败。如果没有设置，默认为1。设置为0则关闭这项检查。
 
 ```
 fail_timeout=time ： 在经历参数max_fails设置的失败次数后，暂停的时间。

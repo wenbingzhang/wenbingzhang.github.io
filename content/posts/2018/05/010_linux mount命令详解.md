@@ -16,7 +16,7 @@ menu: main
 
 语法
 
-mount \[-afFhnrvVw\] \[-L\] \[-o\] \[-t\] \[设备名\] \[加载点\]
+mount [-afFhnrvVw] [-L] [-o] [-t] [设备名] [加载点]
 
 用法
 
@@ -28,7 +28,7 @@ mount \[-afFhnrvVw\] \[-L\] \[-o\] \[-t\] \[设备名\] \[加载点\]
 
 ## 语法
 
-mount \[-afFhnrvVw\] \[-L\] \[-o\] \[-t\] \[设备名\] \[加载点\]
+mount [-afFhnrvVw] [-L] [-o] [-t] [设备名] [加载点]
 
 ## 用法
 

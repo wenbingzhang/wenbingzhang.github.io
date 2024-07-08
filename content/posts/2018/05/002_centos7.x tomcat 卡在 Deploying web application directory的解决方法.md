@@ -24,6 +24,6 @@ menu: main
 
 ## 解决
 
-修改$JAVA\_HOME/jre/lib/security/java.security
+修改$JAVA_HOME/jre/lib/security/java.security
 
 文件，替换securerandom.source=file:/dev/random为securerandom.source=file:/dev/./urandom。不管securerandom.source的值是什么，都将其修改成securerandom.source=file:/dev/./urandom，否则不生效。

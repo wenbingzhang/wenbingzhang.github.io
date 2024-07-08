@@ -30,7 +30,7 @@ vncserver :1 #启动vncserver并生产配置文件
 
 # Uncomment the following two lines for normal desktop:
 
-# unset SESSION\_MANAGER
+# unset SESSION_MANAGER
 
 # exec /etc/X11/xinit/xinitrc
 
@@ -38,7 +38,7 @@ vncserver :1 #启动vncserver并生产配置文件
 
 VNCSERVERS=“2:myusername”
 
-VNCSERVERARGS\[2\]=“-geometry 800x600 -nolisten tcp -nohttpd -localhost”
+VNCSERVERARGS[2]=“-geometry 800x600 -nolisten tcp -nohttpd -localhost”
 
 修改配置文件后重新VNC服务 vncserver -kill :1 vncserver :1
 

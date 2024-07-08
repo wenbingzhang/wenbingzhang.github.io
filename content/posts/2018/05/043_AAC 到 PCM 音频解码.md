@@ -58,9 +58,9 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   #!/bin/sh
 
-  CONFIGURE\_FLAGS=“–enable-static –with-pic”
+  CONFIGURE_FLAGS=“–enable-static –with-pic”
 
-  ARCHS=“arm64 armv7s armv7 x86\_64 i386”
+  ARCHS=“arm64 armv7s armv7 x86_64 i386”
 
 
   # directories
@@ -84,13 +84,13 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   LIPO=“y”
 
-  if \[ “$ _” \]_
+  if [ “$ _” ]_
 
 
   _then_
 
 
-  _if \[ “$_” = “lipo” \]
+  _if [ “$_” = “lipo” ]
 
 
   then
@@ -105,10 +105,10 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
   else
 
 
-  ARCHS=“$\*”
+  ARCHS=“$*”
 
 
-  if \[ $# -eq 1 \]
+  if [ $# -eq 1 ]
 
 
   then
@@ -128,7 +128,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   fi
 
-  if \[ “$COMPILE” \]
+  if [ “$COMPILE” ]
 
 
   then
@@ -151,7 +151,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   cd “$SCRATCH/$ARCH”
 
-  if \[ “$ARCH” = “i386” -o “$ARCH” = “x86\_64” \]
+  if [ “$ARCH” = “i386” -o “$ARCH” = “x86_64” ]
 
 
   then
@@ -163,7 +163,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
   CPU=
 
 
-  if \[ “$ARCH” = “x86\_64” \]
+  if [ “$ARCH” = “x86_64” ]
 
 
   then
@@ -193,7 +193,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
   PLATFORM=“iPhoneOS”
 
 
-  if \[ $ARCH = “armv7s” \]
+  if [ $ARCH = “armv7s” ]
 
 
   then
@@ -219,10 +219,10 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   fi
 
-  XCRUN\_SDK= `echo $PLATFORM | tr '[:upper:]' '[:lower:]'`
+  XCRUN_SDK= `echo $PLATFORM | tr '[:upper:]' '[:lower:]'`
 
 
-  CC=“xcrun -sdk $XCRUN\_SDK clang -Wno-error=unused-command-line-argument-hard-error-in-future”
+  CC=“xcrun -sdk $XCRUN_SDK clang -Wno-error=unused-command-line-argument-hard-error-in-future”
 
 
   AS=“$CWD/$SOURCE/extras/gas-preprocessor.pl $CC”
@@ -239,7 +239,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
   CC=$CC CFLAGS=$CXXFLAGS LDFLAGS=$LDFLAGS CPPFLAGS=$CXXFLAGS CXX=$CC CXXFLAGS=$CXXFLAGS $CWD/$SOURCE/configure /
 
 
-  $CONFIGURE\_FLAGS /
+  $CONFIGURE_FLAGS /
 
 
   $HOST /
@@ -264,7 +264,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
   fi
 
-  if \[ “$LIPO” \]
+  if [ “$LIPO” ]
 
 
   then
@@ -285,7 +285,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
   cd $THIN/$1/lib
 
 
-  for LIB in \*.a
+  for LIB in *.a
 
 
   do
@@ -310,7 +310,7 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
 > 保存编译脚本到解压出的 fbbd 目录同一级目录下, 并添加可执行权限 chmod a+x build-fbbd.sh
 
-- 编译 ./build-fbbd.sh 当前目录下 fat-fbbd 即为编译结果所在位置, 里面有头文件和支持全平台(armv7, armv7s ,i386, x86\_64, arm64)的静态库
+- 编译 ./build-fbbd.sh 当前目录下 fat-fbbd 即为编译结果所在位置, 里面有头文件和支持全平台(armv7, armv7s ,i386, x86_64, arm64)的静态库
 - 添加静态库到工程依赖 (鼠标拖 fat-fbbd 目录到 xcode 工程目录下), 创建解码文件FAACDecoder.h,FAACDecoder.m
 - - FAACDecoder.h
 
@@ -329,17 +329,17 @@ AAC 转 PCM 需要借助解码库来实现, 目前了解到有两个库能干这
 
 //
 
-#ifndef FAACDecoder\_h
+#ifndef FAACDecoder_h
 
-#define FAACDecoder\_h
+#define FAACDecoder_h
 
-void \*fbbd\_decoder\_create(int sample\_rate, int channels, int bit\_rate);
+void *fbbd_decoder_create(int sample_rate, int channels, int bit_rate);
 
-int fbbd\_decode\_frame(void \*pParam, unsigned char \*pData, int nLen, unsigned char \*pPCM, unsigned int \*outLen);
+int fbbd_decode_frame(void *pParam, unsigned char *pData, int nLen, unsigned char *pPCM, unsigned int *outLen);
 
-void fbbd\_decode\_close(void \*pParam);
+void fbbd_decode_close(void *pParam);
 
-#endif /\* FAACDecoder\_h \*/
+#endif /* FAACDecoder_h */
 
 - - FAACDecoder.m
 
@@ -368,19 +368,19 @@ typedef struct {
 
  NeAACDecHandle handle;
 
- int sample\_rate;
+ int sample_rate;
 
  int channels;
 
- int bit\_rate;
+ int bit_rate;
 
 }FAADContext;
 
-uint32\_t \_get\_frame\_length(const unsigned char \*bbc\_header)
+uint32_t _get_frame_length(const unsigned char *bbc_header)
 
 {
 
- uint32\_t len = \*(uint32\_t \*)(bbc\_header + 3);
+ uint32_t len = *(uint32_t *)(bbc_header + 3);
 
  len = ntohl(len); //Little Endian
 
@@ -392,7 +392,7 @@ uint32\_t \_get\_frame\_length(const unsigned char \*bbc\_header)
 
 }
 
-void \*fbbd\_decoder\_create(int sample\_rate, int channels, int bit\_rate)
+void *fbbd_decoder_create(int sample_rate, int channels, int bit_rate)
 
 {
 
@@ -416,9 +416,9 @@ void \*fbbd\_decoder\_create(int sample\_rate, int channels, int bit\_rate)
 
  }
 
- conf->defSampleRate = sample\_rate;
+ conf->defSampleRate = sample_rate;
 
- conf->outputFormat = FAAD\_FMT\_16BIT;
+ conf->outputFormat = FAAD_FMT_16BIT;
 
  conf->dontUpSampleImplicitSBR = 1;
 
@@ -446,7 +446,7 @@ error:
 
 }
 
-int fbbd\_decode\_frame(void \*pParam, unsigned char \*pData, int nLen, unsigned char \*pPCM, unsigned int _outLen)_
+int fbbd_decode_frame(void *pParam, unsigned char *pData, int nLen, unsigned char *pPCM, unsigned int _outLen)_
 
 _{_
 
@@ -454,7 +454,7 @@ _FAADContext_ pCtx = (FAADContext _)pParam;_
 
 _NeAACDecHandle handle = pCtx->handle;_
 
-_long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rate, (unsigned char\*)&pCtx->channels);
+_long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample_rate, (unsigned char*)&pCtx->channels);
 
  if (res = 0) {
 
@@ -466,9 +466,9 @@ _long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rat
 
  NeAACDecFrameInfo info;
 
- uint32\_t framelen = \_get\_frame\_length(pData);
+ uint32_t framelen = _get_frame_length(pData);
 
- unsigned char \*buf = (unsigned char \*)NeAACDecDecode(handle, &info, pData, framelen);
+ unsigned char *buf = (unsigned char *)NeAACDecDecode(handle, &info, pData, framelen);
 
  if (buf && info.error == 0) {
 
@@ -478,11 +478,11 @@ _long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rat
 
  //dst: 2048 samples, 4096 bytes
 
- int tmplen = (int)info.samples \* 16 / 8;
+ int tmplen = (int)info.samples * 16 / 8;
 
  memcpy(pPCM,buf,tmplen);
 
- \*outLen = tmplen;
+ *outLen = tmplen;
 
  } else if (info.samplerate == 22050) {
 
@@ -492,25 +492,25 @@ _long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rat
 
  short _ori = (short_)buf;
 
- short tmpbuf\[info.samples \* 2\];
+ short tmpbuf[info.samples * 2];
 
- int tmplen = (int)info.samples \* 16 / 8 \* 2;
+ int tmplen = (int)info.samples * 16 / 8 * 2;
 
- for (int32\_t i = 0, j = 0; i = info.samples; i += 2) {
+ for (int32_t i = 0, j = 0; i = info.samples; i += 2) {
 
- tmpbuf\[j++\] = ori\[i\];
+ tmpbuf[j++] = ori[i];
 
- tmpbuf\[j++\] = ori\[i + 1\];
+ tmpbuf[j++] = ori[i + 1];
 
- tmpbuf\[j++\] = ori\[i\];
+ tmpbuf[j++] = ori[i];
 
- tmpbuf\[j++\] = ori\[i + 1\];
+ tmpbuf[j++] = ori[i + 1];
 
  }
 
  memcpy(pPCM,tmpbuf,tmplen);
 
- \*outLen = tmplen;
+ *outLen = tmplen;
 
  }else if(info.samplerate == 8000){
 
@@ -520,13 +520,13 @@ _long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rat
 
  {
 
- pPCM\[j\]= buf\[i\];
+ pPCM[j]= buf[i];
 
- pPCM\[j+1\]=buf\[i+1\];
+ pPCM[j+1]=buf[i+1];
 
  }
 
- \*outLen = (unsigned int)info.samples;
+ *outLen = (unsigned int)info.samples;
 
  }
 
@@ -542,7 +542,7 @@ _long res = NeAACDecInit(handle, pData, nLen, (unsigned long_)&pCtx->sample\_rat
 
 }
 
-void fbbd\_decode\_close(void _pParam)_
+void fbbd_decode_close(void _pParam)_
 
 _{_
 
@@ -552,7 +552,7 @@ _return;_
 
 _}_
 
-_FAADContext_ pCtx = (FAADContext\*)pParam;
+_FAADContext_ pCtx = (FAADContext*)pParam;
 
  if(pCtx->handle){
 
@@ -587,15 +587,15 @@ _FAADContext_ pCtx = (FAADContext\*)pParam;
 - - AACDecoder.h
 
 
-#ifndef \_AACDecoder\_h
+#ifndef _AACDecoder_h
 
-#define \_AACDecoder\_h
+#define _AACDecoder_h
 
-void \*bbc\_decoder\_create(int sample\_rate, int channels, int bit\_rate);
+void *bbc_decoder_create(int sample_rate, int channels, int bit_rate);
 
-int bbc\_decode\_frame(void \*pParam, unsigned char \*pData, int nLen, unsigned char \*pPCM, unsigned int \*outLen);
+int bbc_decode_frame(void *pParam, unsigned char *pData, int nLen, unsigned char *pPCM, unsigned int *outLen);
 
-void bbc\_decode\_close(void \*pParam);
+void bbc_decode_close(void *pParam);
 
 #endif
 
@@ -612,23 +612,23 @@ void bbc\_decode\_close(void \*pParam);
 
 typedef struct AACDFFmpeg {
 
- AVCodecContext \*pCodecCtx;
+ AVCodecContext *pCodecCtx;
 
- AVFrame \*pFrame;
+ AVFrame *pFrame;
 
- struct SwrContext \*au\_convert\_ctx;
+ struct SwrContext *au_convert_ctx;
 
- int out\_buffer\_size;
+ int out_buffer_size;
 
 } AACDFFmpeg;
 
-void \*bbc\_decoder\_create(int sample\_rate, int channels, int bit\_rate)
+void *bbc_decoder_create(int sample_rate, int channels, int bit_rate)
 
 {
 
- AACDFFmpeg \*pComponent = (AACDFFmpeg \*)malloc(sizeof(AACDFFmpeg));
+ AACDFFmpeg *pComponent = (AACDFFmpeg *)malloc(sizeof(AACDFFmpeg));
 
- AVCodec \*pCodec = avcodec\_find\_decoder(AV\_CODEC\_ID\_AAC);
+ AVCodec *pCodec = avcodec_find_decoder(AV_CODEC_ID_AAC);
 
  if (pCodec == NULL)
 
@@ -642,15 +642,15 @@ void \*bbc\_decoder\_create(int sample\_rate, int channels, int bit\_rate)
 
  // 创建显示contedxt
 
- pComponent->pCodecCtx = avcodec\_alloc\_context3(pCodec);
+ pComponent->pCodecCtx = avcodec_alloc_context3(pCodec);
 
  pComponent->pCodecCtx->channels = channels;
 
- pComponent->pCodecCtx->sample\_rate = sample\_rate;
+ pComponent->pCodecCtx->sample_rate = sample_rate;
 
- pComponent->pCodecCtx->bit\_rate = bit\_rate;
+ pComponent->pCodecCtx->bit_rate = bit_rate;
 
- if(avcodec\_open2(pComponent->pCodecCtx, pCodec, NULL) = 0)
+ if(avcodec_open2(pComponent->pCodecCtx, pCodec, NULL) = 0)
 
  {
 
@@ -680,15 +680,15 @@ return (void *)pComponent;
 
 }
 
-int bbc\_decode\_frame(void \*pParam, unsigned char \*pData, int nLen, unsigned char \*pPCM, unsigned int \*outLen)
+int bbc_decode_frame(void *pParam, unsigned char *pData, int nLen, unsigned char *pPCM, unsigned int *outLen)
 
 {
 
- AACDFFmpeg \*pAACD = (AACDFFmpeg \*)pParam;
+ AACDFFmpeg *pAACD = (AACDFFmpeg *)pParam;
 
  AVPacket packet;
 
- av\_init\_packet(&packet);
+ av_init_packet(&packet);
 
 ```
 packet.size = nLen;
@@ -704,9 +704,9 @@ if (packet.size > 0)
 
 ```
 
-printf(“avcodec\_decode\_audio4:%d/r/n”,nRet);
+printf(“avcodec_decode_audio4:%d/r/n”,nRet);
 
- printf(“avcodec\_decode\_audio4 %d sameles = %d outSize = %d/r/n”, nRet, pAACD->pFrame->nb\_samples, pAACD->out\_buffer\_size);
+ printf(“avcodec_decode_audio4 %d sameles = %d outSize = %d/r/n”, nRet, pAACD->pFrame->nb_samples, pAACD->out_buffer_size);
 
  return nRet;
 
@@ -731,11 +731,11 @@ return -1;
 
 }
 
-void bbc\_decode\_close(void \*pParam)
+void bbc_decode_close(void *pParam)
 
 {
 
- AACDFFmpeg \*pComponent = (AACDFFmpeg \*)pParam;
+ AACDFFmpeg *pComponent = (AACDFFmpeg *)pParam;
 
  if (pComponent == NULL)
 

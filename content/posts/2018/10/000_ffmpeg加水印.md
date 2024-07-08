@@ -33,11 +33,11 @@ mainH主视频高度，overlayW水印宽度，overlayH水印高度
 
 左上角overlay参数为 overlay=0:0
 
-右上角为 overlay= main\_w-overlay\_w:0
+右上角为 overlay= main_w-overlay_w:0
 
-右下角为 overlay= main\_w-overlay\_w:main\_h-overlay\_h
+右下角为 overlay= main_w-overlay_w:main_h-overlay_h
 
-左下角为 overlay=0: main\_h-overlay\_h
+左下角为 overlay=0: main_h-overlay_h
 
 ```
  上面的0可以改为5，或10像素，以便多留出一些空白。

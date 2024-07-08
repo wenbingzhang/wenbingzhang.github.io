@@ -82,4 +82,4 @@ cluster nodes after this one was shut down may be lost.
 
 ```
 
-只要执行rabbitmqctl force\_boot，将所有的节点全部强制设置成最后一个关闭的即可。
+只要执行rabbitmqctl force_boot，将所有的节点全部强制设置成最后一个关闭的即可。

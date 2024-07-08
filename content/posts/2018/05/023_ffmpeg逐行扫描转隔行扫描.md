@@ -28,7 +28,7 @@ ffmpeg -i input -aspect 16:9 -c:v mpeg2video -b:v 4000k -minrate 4000k -maxrate 
 
 ```
 
-alternate\_scan使用隔行转码，top不一般没有什么要求的话頂场优先就可以了。
+alternate_scan使用隔行转码，top不一般没有什么要求的话頂场优先就可以了。
 
 ## 隔行转逐行
 

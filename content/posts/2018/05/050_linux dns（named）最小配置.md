@@ -172,7 +172,7 @@ www     IN      A       cobb.com.
 
 ## 五 参考文献
 
-1，《Pro\_DNS\_and\_BIND》
+1，《Pro_DNS_and_BIND》
 
 2，http://www.zytrax.com/books/dns/ch7/view.html
 

@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/HkCTnskvV
-title: " error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory"
+title: "error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory"
 date: 2019-03-08T09:24:10+08:00
 description:
 categories:

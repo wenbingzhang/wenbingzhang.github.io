@@ -22,7 +22,7 @@ Error: Cannot retrieve metalink for repository: epel. Please verify its path and
 
 ## 解决方法
 
-解决这个问题很简单，修改文件“/etc/yum.repos.d/epel\*.repo”， 将baseurl的注释取消， mirrorlist注释掉。
+解决这个问题很简单，修改文件“/etc/yum.repos.d/epel*.repo”， 将baseurl的注释取消， mirrorlist注释掉。
 
 ```
 yun clean all

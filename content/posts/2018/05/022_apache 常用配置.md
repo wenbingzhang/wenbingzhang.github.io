@@ -93,7 +93,7 @@ DirectoryIndex index.html index.html.var #添加索引
 
 Options指令详解
 
-Options指令的完整语法为：Options \[+\|-\]option \[\[+\|-\]option\]
+Options指令的完整语法为：Options [+|-]option [[+|-]option]
 
 …。简而言之，Options指令后可以附加指定多种服务器特性，特性选项之间以空格分隔。下面我们来看看Options指令后可以附加的特性选项的具体作用及含义(Apache配置中的内容均不区分大小写)：
 
@@ -113,7 +113,7 @@ Indexes
 
 如果输入的网址对应服务器上的一个文件目录，而此目录中又没有DirectoryIndex指令(例如：DirectoryIndex index.html
 
-index.php)，那么服务器会返回由mod\_autoindex模块生成的一个格式化后的目录列表，并列出该目录下的所有文件(如下图)。
+index.php)，那么服务器会返回由mod_autoindex模块生成的一个格式化后的目录列表，并列出该目录下的所有文件(如下图)。
 
 Options Indexes指令作用效果
 
@@ -121,7 +121,7 @@ Options Indexes指令作用效果
 
 MultiViews
 
-允许使用mod\_negotiation模块提供内容协商的”多重视图”。简而言之，如果客户端请求的路径可能对应多种类型的文件，那么服务器将根据客户端请求的具体情况自动选择一个最匹配客户端要求的文件。例如，在服务器站点的file文件夹下中存在名为hello.jpg和hello.html的两个文件，此时用户输入Http://localhost/file/hello，如果在file文件夹下并没有hello子目录，那么服务器将会尝试在file文件夹下查找形如hello.\*的文件，然后根据用户请求的具体情况返回最匹配要求的hello.jpg或者hello.html。
+允许使用mod_negotiation模块提供内容协商的”多重视图”。简而言之，如果客户端请求的路径可能对应多种类型的文件，那么服务器将根据客户端请求的具体情况自动选择一个最匹配客户端要求的文件。例如，在服务器站点的file文件夹下中存在名为hello.jpg和hello.html的两个文件，此时用户输入Http://localhost/file/hello，如果在file文件夹下并没有hello子目录，那么服务器将会尝试在file文件夹下查找形如hello.*的文件，然后根据用户请求的具体情况返回最匹配要求的hello.jpg或者hello.html。
 
 SymLinksIfOwnerMatch
 
@@ -129,11 +129,11 @@ SymLinksIfOwnerMatch
 
 ExecCGI
 
-允许使用mod\_cgi模块执行CGI脚本。
+允许使用mod_cgi模块执行CGI脚本。
 
 Includes
 
-允许使用mod\_include模块提供的服务器端包含功能。
+允许使用mod_include模块提供的服务器端包含功能。
 
 IncludesNOEXEC
 

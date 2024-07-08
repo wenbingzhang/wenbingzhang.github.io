@@ -74,9 +74,9 @@ StrictHostKeyChecking=no
 
 ## 公钥认证
 
-ssh-keygen -t rsa #指定rsa算法 在~/.ssh/下生产两个文件 id\_rsa用户的私钥 id\_rsa.pub用户的公钥ssh-
+ssh-keygen -t rsa #指定rsa算法 在~/.ssh/下生产两个文件 id_rsa用户的私钥 id_rsa.pub用户的公钥ssh-
 
-copy-id -i ~/.ssh/id\_rsa.pub username@sshserver
+copy-id -i ~/.ssh/id_rsa.pub username@sshserver
 
 ## scp使用
 
@@ -86,9 +86,9 @@ scp 用户名@服务器地址:文件 本地路径 scp 本地文件 用户名@服
 
 sftp 用户名@服务器地址
 
-## tcp\_wrappers访问控制
+## tcp_wrappers访问控制
 
-检查某个服务是否受tcp\_wrappers管理支持
+检查某个服务是否受tcp_wrappers管理支持
 
 ```
 ldd $(which sshd)|grep libwrap
@@ -102,4 +102,4 @@ sshd:all EXCEPT 192.168.0.0/255.255.255.0
 
 ```
 
-可以使用all、?、\* 阻挡所有但排除192.168.0.0网段
+可以使用all、?、* 阻挡所有但排除192.168.0.0网段

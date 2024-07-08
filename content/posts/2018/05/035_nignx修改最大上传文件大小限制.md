@@ -21,4 +21,4 @@ location / {
 
 ```
 
-“client\_max\_body\_size”设置一下上传的最大上限,然后重启nginx即可。
+“client_max_body_size”设置一下上传的最大上限,然后重启nginx即可。

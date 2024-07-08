@@ -68,7 +68,7 @@ class ToObjectDeserializer extends Method {
 
 ```
 
-这里我们使用getASupertype\*()的匹配限制到具有任何类ContentTypeHandler的超类型。
+这里我们使用getASupertype*()的匹配限制到具有任何类ContentTypeHandler的超类型。
 
 下一步，我们要标记的的第一个参数toObject的方法不受信任的数据源，根据它的代码路径跟踪该数据。要做到这一点，我们扩展了FlowSource在QL的数据流库类：
 

@@ -47,7 +47,7 @@ Connecting to 10.1.205.242:3128...
 
 ## 解决办法
 
-查看“/etc/profile”、“~/.bashrc”或者“~/.bash\_profile”将如下类似的行注释掉即可。
+查看“/etc/profile”、“~/.bashrc”或者“~/.bash_profile”将如下类似的行注释掉即可。
 
 ```
 #ftp_proxy="http://10.1.205.242:3128";export ftp_proxy
@@ -58,4 +58,4 @@ Connecting to 10.1.205.242:3128...
 
 ## 问题总结
 
-根据初步发现的结果可以了解到，sudo并没有解析“~/.bashrc”和“~/.bash\_profile”这两个文件。
+根据初步发现的结果可以了解到，sudo并没有解析“~/.bashrc”和“~/.bash_profile”这两个文件。

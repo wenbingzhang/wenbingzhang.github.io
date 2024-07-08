@@ -23,11 +23,11 @@ net.ipv4.tcp_syn_retries = 5
 
 ```
 
-tcp\_max\_syn\_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。
+tcp_max_syn_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。
 
-tcp\_syncookies是一个开关，是否打开SYN Cookie 功能，该功能可以防止部分SYN攻击。
+tcp_syncookies是一个开关，是否打开SYN Cookie 功能，该功能可以防止部分SYN攻击。
 
-tcp\_synack\_retries和tcp\_syn\_retries定义SYN 的重试连接次数，将默认的参数减小来控制SYN连接次数的尽量少。
+tcp_synack_retries和tcp_syn_retries定义SYN 的重试连接次数，将默认的参数减小来控制SYN连接次数的尽量少。
 
 ## 二、修改syn配置
 

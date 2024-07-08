@@ -128,4 +128,4 @@ _怎么 add 的就怎么 del 掉. 但是 del 的时候可以不写网关_
 
 参考文档:
 
-- [https://www.cnblogs.com/panblack/p/Centos7\_Static\_Routes.html](https://www.cnblogs.com/panblack/p/Centos7_Static_Routes.html)
+- [https://www.cnblogs.com/panblack/p/Centos7_Static_Routes.html](https://www.cnblogs.com/panblack/p/Centos7_Static_Routes.html)

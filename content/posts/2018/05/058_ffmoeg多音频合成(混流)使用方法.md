@@ -10,7 +10,7 @@ tags:
 menu: main
 ---
 
-> ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter\_complex amix=inputs=3:duration=firs…
+> ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=firs…
 
 ```
 ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT
@@ -54,7 +54,7 @@ first
 
 ```
 
-dropout\_transition
+dropout_transition
 
 ```
 当输入流结束时，体积重整化的过渡时间（以秒为单位）。默认值是2秒。

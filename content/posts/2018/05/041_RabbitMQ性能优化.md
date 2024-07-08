@@ -47,15 +47,15 @@ file.
 
 因此强烈推荐使用64bit Erlang vm和64bit os。
 
-当RabbitMQ不能识别你的系统的时候，你必须对vm\_memory\_high\_watermark进行修改。
+当RabbitMQ不能识别你的系统的时候，你必须对vm_memory_high_watermark进行修改。
 
 当rabbitmq不能识别系统的时候，会设置内存为1024MB。所以rabbitmq实际使用的内存仅仅410MB。
 
-当系统为8GB的时候，我们可以这是vm\_memory\_high\_watermark=3，那么我们实际可以使用的内存为3GB。
+当系统为8GB的时候，我们可以这是vm_memory_high_watermark=3，那么我们实际可以使用的内存为3GB。
 
 配置Memory Threshold文件
 
-默认配置RabbitMQ的vm\_memory\_high\_watermark=0.4
+默认配置RabbitMQ的vm_memory_high_watermark=0.4
 
 ```
 [{rabbit, [{vm_memory_high_watermark, 0.4}]}].
@@ -66,7 +66,7 @@ file.
 
 当机器内存为16GB，那么40%，为6.4GB。主要当32系统时候，实际可以使用的内存为2GB，那么实际可以使用的内存为820MB。
 
-当我配置vm\_memory\_high\_watermark=0 我们可以阻止所有消息发送。
+当我配置vm_memory_high_watermark=0 我们可以阻止所有消息发送。
 
 注意：这个百分比，最好不要修改。应为Erlang VM回收的时候会占据系统内存的80%。已经达到系统临界区。不要设置超过50%的百分比。
 
@@ -74,7 +74,7 @@ file.
 
 当内存中的数据达到一定数量后，他需要被page out出来。 默认配置
 
-vm\_memory\_high\_watermark\_paging\_ratio=0.5。也就是vm\_memory\_high\_watermark0.5。假设总内存8GB，0.4的使用内存是3.2。那么当内存叨叨3.20.5=1.6GB时候，系统将会大量置换页面。
+vm_memory_high_watermark_paging_ratio=0.5。也就是vm_memory_high_watermark0.5。假设总内存8GB，0.4的使用内存是3.2。那么当内存叨叨3.20.5=1.6GB时候，系统将会大量置换页面。
 
 因此我们可以将页面置换的百分比调高。设置为0.75
 
@@ -84,7 +84,7 @@ vm\_memory\_high\_watermark\_paging\_ratio=0.5。也就是vm\_memory\_high\_wate
 
 ```
 
-注意：我们可以将vm\_memory\_high\_watermark\_paging\_ratio设置超过1.0，那么不会发生内存换页的情况，也就是说，当内存超过总内存的40%之后，将会阻止所有producer产生消息。
+注意：我们可以将vm_memory_high_watermark_paging_ratio设置超过1.0，那么不会发生内存换页的情况，也就是说，当内存超过总内存的40%之后，将会阻止所有producer产生消息。
 
 ### 配置命令
 
@@ -141,7 +141,7 @@ RabbitMQ会定期价检查总磁盘可用空间的大小。通常时间为10秒�
 
 ## Erlang的Hipe优化
 
-可以设置hipe\_compiles设置。可以看到有20-50%的性能优化。而你只需要付出1分钟左右的延迟启动。
+可以设置hipe_compiles设置。可以看到有20-50%的性能优化。而你只需要付出1分钟左右的延迟启动。
 
 HiPE需要你检查是否编译进入你的Erlang安装环境。Ubuntu，需要安装erlang-base-hipe.默认有些平台不支持。如果Erlang VM
 

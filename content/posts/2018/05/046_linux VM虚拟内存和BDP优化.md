@@ -16,18 +16,18 @@ menu: main
 
 #getconf PAGESIZE
 
-vm.dirty\_background\_bytes 系统内所包含的脏数据总数
+vm.dirty_background_bytes 系统内所包含的脏数据总数
 
-vm.dirty\_background\_ratio 脏数据所占用内存的百分比
+vm.dirty_background_ratio 脏数据所占用内存的百分比
 
-vm.dirty\_expire\_centisecs 脏数据在内存中的存放时间
+vm.dirty_expire_centisecs 脏数据在内存中的存放时间
 
-vm.dirty\_bytes 如果进程的脏数据超过该值时则要求写到磁盘
+vm.dirty_bytes 如果进程的脏数据超过该值时则要求写到磁盘
 
 ## BDP优化
 
-BDP=Bandwidth\*RRT net.core.rmem\_max 最大缓冲区(窗口)大小
+BDP=Bandwidth*RRT net.core.rmem_max 最大缓冲区(窗口)大小
 
-net.core.wmem\_default 默认缓冲区大小
+net.core.wmem_default 默认缓冲区大小
 
-net.core.wmem\_max 最大发送缓冲区大小
+net.core.wmem_max 最大发送缓冲区大小

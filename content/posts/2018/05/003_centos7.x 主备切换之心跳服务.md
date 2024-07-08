@@ -119,7 +119,7 @@ pcs resource create virtual_ip ocf:heartbeat:IPaddr2 ip=10.1.209.159 cidr_netmas
 
 查看集群资源状态：#pcs resource show
 
-验证集群配置情况：#crm\_verify -L -V
+验证集群配置情况：#crm_verify -L -V
 
 测试资源配置：#pcs resource debug-start resource
 

@@ -28,7 +28,7 @@ vi /etc/iproute2/rt_tables
 
 ```
 
-## 2\. 添加路由配置脚本
+## 2. 添加路由配置脚本
 
 ```bash
 ip route flush table globalRoute
@@ -49,7 +49,7 @@ ip route add default via 172.16.y.y dev eth2 table innerRoute
 
 上面 x.x.x.x 是配置在网口 eth1 上的 ip，y.y.y.y 是该 ip 的网关，172.16.x.x 是 eth2 的 ip，我这里是内网 ip，172.16.y.y 是 172 网关的网关。
 
-## 3\. 开机启动
+## 3. 开机启动
 
 ```bash
 1、（/opt/script/autostart.sh是你的脚本路径）

@@ -17,4 +17,4 @@ ffmpeg -i "test.mp3" -b:a 320k -map_metadata -1 -y "out.mp3"
 
 ```
 
--map\_metadata -1 表示清除所有元数据
+-map_metadata -1 表示清除所有元数据

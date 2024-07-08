@@ -95,7 +95,7 @@ pasv_max_port=4000 #随机最大端口
 
 ### 3、防火墙
 
-#vim /etc/sysconfig/iptables 在\*filter下加入下
+#vim /etc/sysconfig/iptables 在*filter下加入下
 
 ```
 -A OUTPUT -p tcp --sport 3000:4000 -j ACCEPT
@@ -178,7 +178,7 @@ local_root=/data/httpd/yuangang
 
 ```
 
-## vsftpd cmds\_allowed
+## vsftpd cmds_allowed
 
 ```
 cmds_allowed=ABOR,CWD,LIST,MDTM,MKD,NLST,
@@ -264,9 +264,9 @@ RETR,DELE,SIZE,TYPE,USER,ACCT,APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST
 
 ## 日志格式解析
 
-Sun Feb 23 22:08:26 2014 \| 6 \| 212.73.193.130 \| 1023575 \|
+Sun Feb 23 22:08:26 2014 | 6 | 212.73.193.130 | 1023575 |
 
-/Lille\_IconSP/win\_230214\_52\_11.jpg \| b\| \_\| i\| r\| sipafranch\| ftp\| 0\| \*\| c
+/Lille_IconSP/win_230214_52_11.jpg | b| _| i| r| sipafranch| ftp| 0| *| c
 
 记录 含义
 
@@ -278,11 +278,11 @@ Sun Feb 23 22:08:26 2014 FTP传输时间
 
 1023575 传输文件大小。单位/Byte
 
-/Lille\_IconSP/win\_230214\_52\_11.jpg 传输文件名，包含路径
+/Lille_IconSP/win_230214_52_11.jpg 传输文件名，包含路径
 
 b 传输方式： a以ASCII方式传输; b以二进制(binary)方式传输;
 
-\_ 特殊处理标志位：”\_“不做任何处理；”C”文件是压缩格式；”U”文件非压缩格式；”T”文件是tar格式；
+_ 特殊处理标志位：”_“不做任何处理；”C”文件是压缩格式；”U”文件非压缩格式；”T”文件是tar格式；
 
 i 传输方向：”i”上传；”o”下载；
 
@@ -294,7 +294,7 @@ ftp 服务名称，一般都是ftp
 
 0 认证方式：”0”无；”1”RFC931认证；
 
-- 认证用户id，”\*“表示无法获取id
+- 认证用户id，”*“表示无法获取id
 
 
 c 完成状态：”i”传输未完成；”c”传输已完成；

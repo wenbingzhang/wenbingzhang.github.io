@@ -12,7 +12,7 @@ menu: main
 
 > 在客户端修改配置
 
-vim /etc/zabbix/zabbix\_agentd.conf
+vim /etc/zabbix/zabbix_agentd.conf
 
 UnsafeUserParameters=1
 
