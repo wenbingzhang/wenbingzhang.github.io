@@ -72,13 +72,13 @@
 }
 
 
-.book-article {
-  // 默认情况（适用于较小屏幕，如手机）
-  min-height: calc(100vh - 170px);
+.container {
+  min-height: calc(100vh - 68px);
 }
 
 
 /*网站底部*/
+
 .page-footer {
   text-align: center;
   margin-top: 15px;
