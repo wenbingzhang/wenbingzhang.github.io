@@ -10,19 +10,10 @@ tags:
 menu: main
 ---
 
-> 配置
-
-vim /etc/dhcpd.conf
-
-default-lease-time 1296000;
-
-max-lease-time 4000000;
-
-#IP…
 
 配置
 
-```
+```bash
 vim /etc/dhcpd.conf
 
 default-lease-time 1296000;
@@ -91,7 +82,7 @@ subnet-mask 为客户端设定子网掩码 domain-name 为客户端指明DNS名�
 
 ### 内核参数
 
-```
+```bash
 vim /etc/sysctl.conf
 net.ipv4.ip_forward = 1
 sysctl -p
@@ -100,7 +91,7 @@ sysctl -p
 
 ### 修改配置
 
-```
+```bash
 vim /etc/sysconfig/dhcrelay
 INTERFACES="eth0 eth1"
 DHCPSERVERS="192.168.1.2"
@@ -109,7 +100,7 @@ DHCPSERVERS="192.168.1.2"
 
 ## 启动
 
-```
+```bash
 chkconfig dhcrelay on
 chkconfig dhcp on
 /etx/init.d/dhcp start

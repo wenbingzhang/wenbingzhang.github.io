@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/rJFUIE5I0G
-title: "centos 多网卡绑定（bonding）"
+title: "Centos多网卡绑定(bonding)"
 date: 2018-05-14T04:45:01+08:00
 description:
 categories:

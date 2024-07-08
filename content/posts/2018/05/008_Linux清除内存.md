@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/B1FO88V580M
-title: "在 Linux 上如何清除内存的 Cache、Buffer 和交换空间"
+title: "Linux清除内存"
 date: 2018-05-14T04:45:01+08:00
 description:
 categories:
@@ -10,11 +10,6 @@ tags:
 menu: main
 ---
 
-> linux清理内存
->
-> 像任何其他的操作系统一样，GNU/Linux 已经实现的内存管理不仅有效，而且更好。但是，如果有任何进程正在蚕食你的内存，而你想要清除它的话，Linux
->
-> 提供了一个刷新或清除RAM缓存方法。
 
 ## 如何在 Linux 中清除缓存（Cache）？
 
@@ -26,22 +21,22 @@ menu: main
 
 ### 仅清除页面缓存（PageCache）
 
-```
-# sync; echo 1 > /proc/sys/vm/drop_caches
+```bash
+sync; echo 1 > /proc/sys/vm/drop_caches
 
 ```
 
 ### 清除目录项和inode
 
-```
-# sync; echo 2 > /proc/sys/vm/drop_caches
+```bash
+sync; echo 2 > /proc/sys/vm/drop_caches
 
 ```
 
 ### 清除页面缓存，目录项和inode
 
-```
-# sync; echo 3 > /proc/sys/vm/drop_caches
+```bash
+sync; echo 3 > /proc/sys/vm/drop_caches
 
 ```
 

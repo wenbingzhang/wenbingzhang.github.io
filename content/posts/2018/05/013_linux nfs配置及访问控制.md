@@ -10,13 +10,6 @@ tags:
 menu: main
 ---
 
-> NFS软件包
-
-nfs-utils portmap (rhel6换成了rpcbind ,所以启动服务时需要注意)
-
-NFS文件
-
-/etc/exports #N…
 
 ## NFS软件包
 
@@ -42,14 +35,14 @@ no_root_squash：root用户会以自己的真实身份访问共享目录，不�
 
 showmount命令用于查询显示NFS服务器的相关信息 显示NFS服务器的输出目录列表 显示当前本机中NFS服务器输出列表
 
-```
+```bash
 showmount -e
 
 ```
 
 显示指点NFS服务器中的共享目录列表
 
-```
+```bash
 showmount -e IP
 
 ```
@@ -60,7 +53,7 @@ nfsd：2049 rhel5 portmap：111 rhel6 rpcbind：111
 
 rquotad,mountd,sratd和lockd可以强制使用一个大于1024的静态端口
 
-```
+```bash
 修改/etc/sysconfig/nfs文件
 QUOTAD_PORT=40001 #rpc.quotad进程端口
 LOCKD_TCPPORT=40002 #rpc.lockd进程端口
@@ -90,7 +83,7 @@ exportfs -auv (停止当前主机中NFS服务器的所有输出目录)
 
 ## 服务配置
 
-```
+```bash
 vim /etc/exports
 /home/share 10.1.1.2(sync,rw) *(sync,ro)
 
@@ -98,7 +91,7 @@ vim /etc/exports
 
 ## linux使用
 
-```
+```bash
 mount -t nfs ip地址:/home/share/ /mnt
 
 ```
@@ -107,7 +100,7 @@ mount -t nfs ip地址:/home/share/ /mnt
 
 Windows 7或Windows 2008支持NFS客户端,NFS服务端只有Windows Server版本支持
 
-```
+```bash
 showmount -e 10.1.1.1
 mount \\10.1.1.1\share Z:
 

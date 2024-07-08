@@ -10,18 +10,16 @@ tags:
 menu: main
 ---
 
-> none
-
 ## 方法一
 
-```
+```bash
 yum --exclude="kernel*" update
 
 ```
 
 ## 方法二
 
-```
+```bash
 cat /etc/yum.conf
 
 [main]

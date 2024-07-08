@@ -10,13 +10,10 @@ tags:
 menu: main
 ---
 
-> 使用方式
-
-ffmpeg -i input -vf “select=eq(n\,15237)“,showinfo -an -f null /dev/null…
 
 ## 使用方式
 
-```
+```bash
 ffmpeg -i input  -vf "select=eq(n\,15237)",showinfo -an -f null  /dev/null
 
 ```
@@ -25,14 +22,14 @@ ffmpeg -i input  -vf "select=eq(n\,15237)",showinfo -an -f null  /dev/null
 
 15237为display_picture_number
 
-```
+```bash
 [Parsed_showinfo_1 @ 0x41ca760] n:   0 pts:54860400 pts_time:609.56  pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2 20.7]
 
 ```
 
 ## 参数解释
 
-```
+```bash
 ### showinfo ### 不改变输入而在行中显示每帧信息。
 显示的信息以`key/value`的序列形式给出
 下面是将显示在输出中的值：

@@ -10,19 +10,10 @@ tags:
 menu: main
 ---
 
-> 准备工作
-
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份
-
-修改配置
-
-14.04
-
-…
 
 ## 准备工作
 
-```
+```bash
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份
 
 ```
@@ -31,7 +22,7 @@ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份
 
 ### 14.04
 
-```
+```bash
 sudo vim /etc/apt/sources.list #修改
 deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
@@ -48,7 +39,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted unive
 
 ### 16.04
 
-```
+```bash
 sudo vim /etc/apt/sources.list #修改
 deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
@@ -72,7 +63,7 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 
 ## 更新缓存
 
-```
+```bash
 sudo apt-get update #更新列表
 
 ```
