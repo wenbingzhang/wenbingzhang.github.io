@@ -1,5 +1,5 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='使用方式 ffmpeg -i input -vf “select=eq(n,15237)“,showinfo -an -f null /dev/null… 使用方式 # ffmpeg -i input -vf "select=eq(n\,15237)",showinfo -an -f null /dev/null 输出结果 # 1'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="ffmpeg获取display_picture_number对应帧信息"><meta property="og:description" content='使用方式 ffmpeg -i input -vf “select=eq(n,15237)“,showinfo -an -f null /dev/null… 使用方式 # ffmpeg -i input -vf "select=eq(n\,15237)",showinfo -an -f null /dev/null 输出结果 # 1'><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>ffmpeg获取display_picture_number对应帧信息 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.8db8070450aae17acb020ae6115106edddae4c0897699b1981e2ff10a7bbb91e.js integrity="sha256-jbgHBFCq4XrLAgrmEVEG7d2uTAiXaZsZgeL/EKe7uR4=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='使用方式 # ffmpeg -i input -vf "select=eq(n\,15237)",showinfo -an -f null /dev/null 输出结果 # 15237为display_picture_number [Parsed_showinfo_1 @ 0x41ca760] n: 0 pts:54860400 pts_time:609.56 pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="ffmpeg获取display_picture_number对应帧信息"><meta property="og:description" content='使用方式 # ffmpeg -i input -vf "select=eq(n\,15237)",showinfo -an -f null /dev/null 输出结果 # 15237为display_picture_number [Parsed_showinfo_1 @ 0x41ca760] n: 0 pts:54860400 pts_time:609.56 pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2'><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>ffmpeg获取display_picture_number对应帧信息 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.cd15b3b2d2d1fc164d1bd5d0c0f5ace4781f8c9a0b6bb817590eea0e52bc26a0.js integrity="sha256-zRWzstLR/BZNG9XQwPWs5HgfjJoLa7gXWQ7qDlK8JqA=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
@@ -11,51 +11,51 @@
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><blockquote><p>使用方式</p></blockquote><p>ffmpeg -i input -vf “select=eq(n,15237)“,showinfo -an -f null /dev/null…</p><h2 id=使用方式>使用方式
-<a class=anchor href=#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f>#</a></h2><pre tabindex=0><code>ffmpeg -i input  -vf &#34;select=eq(n\,15237)&#34;,showinfo -an -f null  /dev/null
-</code></pre><h2 id=输出结果>输出结果
-<a class=anchor href=#%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c>#</a></h2><p>15237为display_picture_number</p><pre tabindex=0><code>[Parsed_showinfo_1 @ 0x41ca760] n:   0 pts:54860400 pts_time:609.56  pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2 20.7]
-</code></pre><h2 id=参数解释>参数解释
-<a class=anchor href=#%e5%8f%82%e6%95%b0%e8%a7%a3%e9%87%8a>#</a></h2><pre tabindex=0><code>### showinfo ### 不改变输入而在行中显示每帧信息。
-显示的信息以`key/value`的序列形式给出
-下面是将显示在输出中的值：
-
-- n
-帧序数，从0开始计数
-
-- pts
-输入帧的时间戳，以时基为单位，时间依赖于输入
-
-- pts_time
-按秒计的时间戳
-
-- pos
-输入帧在输入流中的偏移定位，-1表示信息不可用和/或无意义（例如合成视频中）
-
-- fmt
-像素格式名
-
-- sar
-输入帧的宽高比，表示为`num/den`格式
-
-- s
-输入帧尺寸，语法同于[视频尺寸（分辨率）](ffmpeg-doc-cn-07.md#视频尺寸（分辨率）)
-
-- i
-交错模式 (&#34;P&#34;对应 &#34;逐行&#34;, &#34;T&#34; 对应上场优先, &#34;B&#34;为下场优先t)
-
-- iskey
-为1表示是关键帧，0则不是
-
-- type
-输入帧图片类型 (&#34;I&#34;对应I帧, &#34;P&#34; 对应P帧, &#34;B&#34; 对应B帧,或者 &#34;?&#34;对应未知类型).参考定义与`libavutil/avutil.h`中的`av_get_picture_type_char`函数和`
-
-- checksum
-输入帧所有信息内容的 Adler-32校验值 (以16进制输出)
-
-- plane_checksum
-输入帧所有信息内容的 Adler-32校验值 (以16进制输出), 以格式&#34;[c0 c1 c2 c3]&#34;显示
-</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#使用方式>使用方式</a></li><li><a href=#输出结果>输出结果</a></li><li><a href=#参数解释>参数解释</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><h2 id=使用方式>使用方式
+<a class=anchor href=#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmpeg -i input  -vf <span style=color:#e6db74>&#34;select=eq(n\,15237)&#34;</span>,showinfo -an -f null  /dev/null
+</span></span></code></pre></div><h2 id=输出结果>输出结果
+<a class=anchor href=#%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c>#</a></h2><p>15237为display_picture_number</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>[</span>Parsed_showinfo_1 @ 0x41ca760<span style=color:#f92672>]</span> n:   <span style=color:#ae81ff>0</span> pts:54860400 pts_time:609.56  pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:<span style=color:#f92672>[</span>7E1FA1A9 3D005549 67BC0A32<span style=color:#f92672>]</span> mean:<span style=color:#f92672>[</span><span style=color:#ae81ff>92</span> <span style=color:#ae81ff>127</span> 134<span style=color:#f92672>]</span> stdev:<span style=color:#f92672>[</span>62.5 9.2 20.7<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h2 id=参数解释>参数解释
+<a class=anchor href=#%e5%8f%82%e6%95%b0%e8%a7%a3%e9%87%8a>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>### showinfo ### 不改变输入而在行中显示每帧信息。</span>
+</span></span><span style=display:flex><span>显示的信息以<span style=color:#e6db74>`</span>key/value<span style=color:#e6db74>`</span>的序列形式给出
+</span></span><span style=display:flex><span>下面是将显示在输出中的值：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- n
+</span></span><span style=display:flex><span>帧序数，从0开始计数
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- pts
+</span></span><span style=display:flex><span>输入帧的时间戳，以时基为单位，时间依赖于输入
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- pts_time
+</span></span><span style=display:flex><span>按秒计的时间戳
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- pos
+</span></span><span style=display:flex><span>输入帧在输入流中的偏移定位，-1表示信息不可用和/或无意义（例如合成视频中）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- fmt
+</span></span><span style=display:flex><span>像素格式名
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- sar
+</span></span><span style=display:flex><span>输入帧的宽高比，表示为<span style=color:#e6db74>`</span>num/den<span style=color:#e6db74>`</span>格式
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- s
+</span></span><span style=display:flex><span>输入帧尺寸，语法同于<span style=color:#f92672>[</span>视频尺寸（分辨率）<span style=color:#f92672>](</span>ffmpeg-doc-cn-07.md#视频尺寸（分辨率）<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- i
+</span></span><span style=display:flex><span>交错模式 <span style=color:#f92672>(</span><span style=color:#e6db74>&#34;P&#34;</span>对应 <span style=color:#e6db74>&#34;逐行&#34;</span>, <span style=color:#e6db74>&#34;T&#34;</span> 对应上场优先, <span style=color:#e6db74>&#34;B&#34;</span>为下场优先t<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- iskey
+</span></span><span style=display:flex><span>为1表示是关键帧，0则不是
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- type
+</span></span><span style=display:flex><span>输入帧图片类型 <span style=color:#f92672>(</span><span style=color:#e6db74>&#34;I&#34;</span>对应I帧, <span style=color:#e6db74>&#34;P&#34;</span> 对应P帧, <span style=color:#e6db74>&#34;B&#34;</span> 对应B帧,或者 <span style=color:#e6db74>&#34;?&#34;</span>对应未知类型<span style=color:#f92672>)</span>.参考定义与<span style=color:#e6db74>`</span>libavutil/avutil.h<span style=color:#e6db74>`</span>中的<span style=color:#e6db74>`</span>av_get_picture_type_char<span style=color:#e6db74>`</span>函数和<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- checksum
+</span></span><span style=display:flex><span>输入帧所有信息内容的 Adler-32校验值 <span style=color:#f92672>(</span>以16进制输出<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- plane_checksum
+</span></span><span style=display:flex><span>输入帧所有信息内容的 Adler-32校验值 <span style=color:#f92672>(</span>以16进制输出<span style=color:#f92672>)</span>, 以格式<span style=color:#e6db74>&#34;[c0 c1 c2 c3]&#34;</span>显示
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#使用方式>使用方式</a></li><li><a href=#输出结果>输出结果</a></li><li><a href=#参数解释>参数解释</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
 <script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p><p><a href=http://beian.miit.gov.cn/>湘ICP备2020021630号</a>
 <span>|</span>
 <span>&COPY;2024</span></p></footer></body></html>
