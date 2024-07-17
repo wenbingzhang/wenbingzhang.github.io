@@ -10,11 +10,10 @@ tags:
 menu: main
 ---
 
-> none
 
 今天遇到一个rabbitmq集群同时断电，当机器全部启动的时候发现rabbitmq无法正常启动，然后发现如下日志。
 
-```
+```bash
 =INFO REPORT==== 25-Apr-2018::11:11:07 ===
 Starting RabbitMQ 3.5.3 on Erlang R16B03-1
 Copyright (C) 2007-2014 GoPivotal, Inc.
@@ -73,7 +72,7 @@ current node details:
 
 关键的地方在于中间的这段说明：
 
-```
+```bash
 This cluster node was shut down while other nodes were still running.
 To avoid losing data, you should start the other nodes first, then
 start this one. To force this node to start, first invoke

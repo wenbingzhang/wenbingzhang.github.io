@@ -14,7 +14,7 @@ menu: main
 
 ## vsftpd常用配置
 
-```
+```bash
 #关闭匿名用户访问权限
 anonymous_enable=NO
 #开启本地用户权限
@@ -54,7 +54,7 @@ reverse_lookup_enable=NO
 
 创建账户
 
-```
+```bash
 useradd -M -s /sbin/nologin -d /mnt/usernamefile/ username
 for i in name1 name2 name3;do useradd -M -s /sbin/nologin -d /mnt/$i/ $i;done
 for i in name1 name2 name3;do echo "$i"123 | passwd --stdin $i ;done
@@ -63,7 +63,7 @@ for i in name1 name2 name3;do echo "$i"123 | passwd --stdin $i ;done
 
 ### 创建目录
 
-```
+```bash
 mkdir usernamefile
 chown username:username usernamefile
 for i in name1 name2 name3;do mkdir /mnt/$i;done
@@ -76,9 +76,9 @@ chmod -R 770 *
 
 ### 1、开启被动模式
 
-#vim vsftpd.conf
+```bash
+vim vsftpd.conf
 
-```
 pasv_enable=YES #开启被动模式
 pasv_min_port=3000 #随机最小端口
 pasv_max_port=4000 #随机最大端口
@@ -87,100 +87,98 @@ pasv_max_port=4000 #随机最大端口
 
 ### 2、加载内核
 
-```
-#modprobe ip_conntrack_ftp
-#modprobe ip_nat_ftp
+```bash
+modprobe ip_conntrack_ftp
+modprobe ip_nat_ftp
 
 ```
 
 ### 3、防火墙
 
-#vim /etc/sysconfig/iptables 在*filter下加入下
+```bash
+vim /etc/sysconfig/iptables 在*filter下加入下
+  -A OUTPUT -p tcp --sport 3000:4000 -j ACCEPT
+  -A INPUT -p tcp --dport 3000:4000 -j ACCEPT
+
+iptables-restore < /etc/sysconfig/iptables 加载iptables配置
 
 ```
--A OUTPUT -p tcp --sport 3000:4000 -j ACCEPT
--A INPUT -p tcp --dport 3000:4000 -j ACCEPT
-#iptables-restore < /etc/sysconfig/iptables 加载iptables配置
-
-```
-
-* * *
 
 ## vsftpd虚拟用户
 
 ### 1、vsftpd安装
 
-```
-#yum -y install vsftpd #vsftpd软件
-#yum -y install db4-utils #生成虚拟用户认证数据文件命令
+```bash
+yum -y install vsftpd #vsftpd软件
+yum -y install db4-utils #生成虚拟用户认证数据文件命令
 
 ```
 
 ### 2、配置vsftp
 
-```
-#vim /etc/vsftpd/vsftpd.conf
-listen=YES #独立运行vsftpd
-anonymous_enable=NO #限制匿名用户登录
-dirmessage_enable=YES
-xferlog_enable=YES
-xferlog_file=/var/log/vsftpd.log
-xferlog_std_format=YES
-chroot_list_enable=YES #限制虚拟用户切换目录
-chroot_list_file=/etc/vsftpd/chroot_list #限制切换目录的用户列表
-chroot_local_user=YES
-guest_enable=YES #开启虚拟用户认证
-guest_username=ftp #映射的真实用户
-user_config_dir=/etc/vsftpd/vsftpd_user_conf #虚拟用户配置目录
-pam_service_name=vsftpd.vu #vsftpd认证的pam认证模块
-local_enable=YES
+```bash
+vim /etc/vsftpd/vsftpd.conf
+  listen=YES #独立运行vsftpd
+  anonymous_enable=NO #限制匿名用户登录
+  dirmessage_enable=YES
+  xferlog_enable=YES
+  xferlog_file=/var/log/vsftpd.log
+  xferlog_std_format=YES
+  chroot_list_enable=YES #限制虚拟用户切换目录
+  chroot_list_file=/etc/vsftpd/chroot_list #限制切换目录的用户列表
+  chroot_local_user=YES
+  guest_enable=YES #开启虚拟用户认证
+  guest_username=ftp #映射的真实用户
+  user_config_dir=/etc/vsftpd/vsftpd_user_conf #虚拟用户配置目录
+  pam_service_name=vsftpd.vu #vsftpd认证的pam认证模块
+  local_enable=YES
 
 ```
 
 ### 3、虚拟用户db
 
-```
-#cd /etc/vsftpd
-#vim user.txt
-yuangang #用户名
-123456 #密码
-:wq #保存退出
-#db_load -T -t hash -f user.txt /etc/vsftpd/vsftpd_login.db
-#chmod 600 /etc/vsftpd/vsftpd_login.db
-配置pam认证
-#vim /etc/pam.d/vsftpd.vu
-auth required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login
-account required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login
-:wq #保存退出
-#vim /etc/vsftpd/chroot_list #限制虚拟用户切换目录
-ftp
-yuangang
-:wq #保存退出
+```bash
+cd /etc/vsftpd
+vim user.txt
+  yuangang #用户名
+  123456 #密码
+
+db_load -T -t hash -f user.txt /etc/vsftpd/vsftpd_login.db
+chmod 600 /etc/vsftpd/vsftpd_login.db
+
+# 配置pam认证
+vim /etc/pam.d/vsftpd.vu
+  auth required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login
+  account required /lib/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login
+
+vim /etc/vsftpd/chroot_list #限制虚拟用户切换目录
+  ftp
+  yuangang
 
 ```
 
 ### 4、配置虚拟用户
 
-```
-#cd /etc/vsftpd/vsftpd_user_conf
-#vim yuangang
-write_enable=YES
-anon_world_readable_only=NO
-anon_upload_enable=YES
-anon_mkdir_write_enable=YES
-anon_other_write_enable=YES
-local_root=/data/httpd/yuangang
-:wq 保存退出
-建立虚拟用户ftp目录
-#mkdir /data/httpd/yuangang
-#chown -R ftp.root /data/httpd
-#chmod o+rw /data/httpd/yuangang
+```bash
+cd /etc/vsftpd/vsftpd_user_conf
+vim yuangang
+  write_enable=YES
+  anon_world_readable_only=NO
+  anon_upload_enable=YES
+  anon_mkdir_write_enable=YES
+  anon_other_write_enable=YES
+  local_root=/data/httpd/yuangang
+
+# 建立虚拟用户ftp目录
+mkdir /data/httpd/yuangang
+chown -R ftp.root /data/httpd
+chmod o+rw /data/httpd/yuangang
 
 ```
 
 ## vsftpd cmds_allowed
 
-```
+```bash
 cmds_allowed=ABOR,CWD,LIST,MDTM,MKD,NLST,
 PASS,PASV,PORT,PWD,QUIT,RETR,RMD,RNFR,
 RNTO,SITE,SIZE,STOR,TYPE,USER,ACCT,
@@ -192,7 +190,7 @@ APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST
 
 ### 全部参数
 
-```
+```bash
 # ABOR - abort a file transfer 取消文件传输
 # CWD - change working directory 更改目录
 # DELE - delete a remote file 删除文件
@@ -231,18 +229,18 @@ APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST
 
 ### 常用参数
 
-```
-CWD - change working directory 更改目录
-LIST - list remote files 列目录
-MKD - make a remote directory 新建文件夹
-NLST - name list of remote directory
-PWD - print working directory 显示当前工作目录
-RETR - retrieve a remote file 下载文件
-STOR - store a file on the remote host 上传文件
-DELE - delete a remote file 删除文件
-RMD - remove a remote directory 删除目录
-RNFR - rename from 重命名
-RNTO - rename to 重命名
+```bash
+# CWD - change working directory 更改目录
+# LIST - list remote files 列目录
+# MKD - make a remote directory 新建文件夹
+# NLST - name list of remote directory
+# PWD - print working directory 显示当前工作目录
+# RETR - retrieve a remote file 下载文件
+# STOR - store a file on the remote host 上传文件
+# DELE - delete a remote file 删除文件
+# RMD - remove a remote directory 删除目录
+# RNFR - rename from 重命名
+# RNTO - rename to 重命名
 
 ```
 
@@ -250,7 +248,7 @@ RNTO - rename to 重命名
 
 ### 几个例子
 
-```
+```bash
 1、只能上传。不能下载、删除、重命名。
 cmds_allowed＝FEAT,REST,CWD,LIST,MDTM,MKD,NLST,PASS,PASV,PORT,PWD,QUIT,RMD,SIZE,STOR,TYPE,USER,ACCT,
 APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST

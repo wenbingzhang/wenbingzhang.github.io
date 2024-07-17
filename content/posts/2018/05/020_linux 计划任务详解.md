@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/rJvbIUV580z
-title: "linux 计划任务详解"
+title: "linux crontab计划任务详解"
 date: 2018-05-14T04:45:01+08:00
 description:
 categories:
@@ -12,48 +12,9 @@ menu: main
 
 > crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令
 
-## 定时任务
+## 配置文件
 
-### 启动服务
-
-```
-service atd restart
-chkconfig atd on
-
-```
-
-### 常用方式
-
-```
-常用时间格式：
-at [HH:MM]
-at [HH:MM] [yyyy-mm-dd]
-at now +数字[minutes|hours|days|weeks]
-
-at now+1minutes    一分钟后执行新建ab目录和rr文件
-at> mkdir ab
-at> touch rr
-at> <EOT>
-job 1 at 2012-12-16 17:05
-
-```
-
-在键盘上按ctrl+d退出at命令模式 这里不详细说了，因为平时用的比较少，所以我也懒得去研究它的详细参数和使用方法了。
-
-## 周期循环任务
-
-### 启动服务
-
-```
-service crond restart
-停止 crond：                                               [确定]
-启动 crond：                                               [确定]
-
-```
-
-### 配置文件
-
-```
+```bash
 cat /etc/crontab
 SHELL=/bin/bash    计划任务的默认脚本bash shell
 PATH=/sbin:/bin:/usr/sbin:/usr/bin    默认搜索路径
@@ -67,11 +28,11 @@ HOME=/
 
 ```
 
-### 注意事项
+## 注意事项
 
 多个计划任务不宜同时进行防止有非法计划任务周和日，月不可同时并存，容易导致计划任务时间混乱
 
-### 简要说明
+## 简要说明
 
 crond
 
@@ -79,7 +40,7 @@ crond
 
 crontab是UNIX系统下的定时任务触发器，其使用者的权限记载在下列两个文件中：
 
-### 文件含义
+## 文件含义
 
 /etc/cron.deny 该文件中所列的用户不允许使用Crontab命令
 
@@ -89,7 +50,7 @@ crontab是UNIX系统下的定时任务触发器，其使用者的权限记载在
 
 /var/spool/cron/crontabs /var/spool/cron/crontabs /etc/crontab 系统计划任务列表文件
 
-```
+```bash
 Crontab命令的格式为：crontab –l|-r|-e|-i [username]，其参数含义如表一：
 参数名称 含义 示例
 -l 显示用户的Crontab文件的内容 crontabl –l
@@ -126,7 +87,7 @@ Crontab命令的格式为：crontab –l|-r|-e|-i [username]，其参数含义�
 
 ### 常用例子
 
-```
+```bash
 #每晚的21:30重启apache
 30 21 * * * /usr/local/etc/rc.d/lighttpd restart
 #每月1、10、22日的4 : 45重启apache

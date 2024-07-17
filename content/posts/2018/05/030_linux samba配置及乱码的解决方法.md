@@ -10,8 +10,6 @@ tags:
 menu: main
 ---
 
-> none
-
 ## 简要说明
 
 samba：这个软体主要提供了SMB伺服器所需的各项服务程式(smbd及nmbd)、的文件档、以及其他与SAMBA相关的logrotate设定档及开机预设选项档案等；
@@ -20,9 +18,7 @@ samba-client：这个软体则提供了当Linux做为SAMBA
 
 Client端时，所需要的工具指令，例如挂载SAMBA档案格式的mount.cifs、取得类似网芳相关树状图的smbtree等等；
 
-samba-
-
-common：这个软体提供的则是伺服器与用户端都会使用到的资料，包括SAMBA的主要设定档(smb.conf)、语法检验指令(testparm)等等；
+samba-common：这个软体提供的则是伺服器与用户端都会使用到的资料，包括SAMBA的主要设定档(smb.conf)、语法检验指令(testparm)等等；
 
 /var/lib/samba/private/{passdb.tdb,secrets.tdb}：管理Samba的使用者帐号/密码时，会用到的资料库档案；
 
@@ -30,7 +26,7 @@ common：这个软体提供的则是伺服器与用户端都会使用到的资�
 
 vim /etc/samba/smb.conf
 
-```
+```bash
 [share]
 path = /share //共享的目录
 writable = yes //是否可写
@@ -40,7 +36,7 @@ write list = test // test用户可以访问该共享
 
 ## 访问控制
 
-```
+```bash
 max connections = 最大连接数
 deadtime = 断掉连接时间（分钟）【0为不限制】
 hosts deny = IP 、域名、except
@@ -50,7 +46,7 @@ hosts allow = IP 、域名、except
 
 ## 用户控制
 
-```
+```bash
 public = no #不允许匿名用户访问
 browseable = no #隐藏目录 （知道目录同样可以访问）
 valid users = 用户或列表或@用户组
@@ -80,7 +76,7 @@ samba服务器的安全级别分为5种，分别是user、share、server、domai
 
 ## 启动服务
 
-```
+```bash
 service smb reload
 
 ```
@@ -107,14 +103,14 @@ service smb reload
 
 ## 乱码问题
 
-```
+```bash
 cat /etc/sysconfig/i18n
 [global]
-#如果locale是zh_CN.UTF-8，做如下设置：
+# 如果locale是zh_CN.UTF-8，做如下设置：
 display charset = UTF-8
 unix charset = UTF-8
 dos charset = UTF-8
-#如果locale是zh_CN.GBK或zh_CN.gb2312，做如下设置：
+# 如果locale是zh_CN.GBK或zh_CN.gb2312，做如下设置：
 display charset = cp936
 unix charset = cp936
 dos charset = cp936
@@ -123,7 +119,7 @@ dos charset = cp936
 
 ## linux访问
 
-```
+```bash
 smbclient //IP/目录名 -U 登录用户名
 mount -t cifs -o username=用户名,passwd=密码,iocharset=gb2312,uid,pid,rw //ip 挂载点
 smbtar -s server -u user -p passwd -x sharename -t output.tar
@@ -134,7 +130,7 @@ smbtar -s server -u user -p passwd -x sharename -t output.tar
 
 windows访问方式就不说了。下面说下清除windows共享访问方法：
 
-```
+```bash
 打开cmd.
 c:\>net use * /del
 
