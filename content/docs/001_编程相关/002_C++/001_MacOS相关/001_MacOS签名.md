@@ -24,7 +24,7 @@ sudo security import ~/Downloads/DeveloperIDG2CA.cer \
 
 ## 查看和清理特殊属性
 
-```
+```bash
 xattr -lr xxx.app
 xattr -cr xxx.app
 
