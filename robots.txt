@@ -12,6 +12,8 @@ Disallow: /notes/
 
 Disallow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
 
+Disallow: /notes/2024/08/06/ny773erqjgbzmzgfikfvds/
+
 Disallow: /notes/
 
 Disallow: /notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/
