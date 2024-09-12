@@ -1,83 +1,98 @@
 <style>
   .search-container {
-      background-color: #ffffff;
-      padding: 15px;
-      border-radius: 8px;
-      /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
-      /* width: 400px; */
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+    /* width: 400px; */
   }
+
   .search-container .tabs {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #dee2e6;
   }
+
   .search-container .tabs .tab {
-      flex: 1;
-      text-align: center;
-      padding: 8px 0;
-      cursor: pointer;
-      border-radius: 8px 8px 0 0;
-      background-color: #f8f9fa;
-      color: #6c757d;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      font-size: 14px;
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
   }
+
   .search-container .tabs .tab.active {
-      background: linear-gradient(135deg, #42a5f5, #1e88e5);
-      color: white;
-      border-bottom: 2px solid #ffffff;
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);
+    color: white;
+    border-bottom: 2px solid #ffffff;
   }
+
   .search-bar {
-      display: flex;
-      align-items: center;
-      border: 2px solid #42a5f5;
-      border-radius: 8px;
-      overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 2px solid #42a5f5;
+    border-radius: 8px;
+    overflow: hidden;
   }
-  .search-bar select, input[type="text"], button {
-      height: 35px;
-      font-size: 14px;
-      border: none;
-      outline: none;
+
+  .search-bar select,
+  input[type="text"],
+  button {
+    height: 35px;
+    font-size: 14px;
+    border: none;
+    outline: none;
   }
+
   .search-bar select {
-      padding: 0 8px;
-      background-color: #f8f9fa;
-      border-right: 1px solid #dee2e6;
+    padding: 0 8px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
   }
+
   .search-bar input[type="text"] {
-      flex: 1;
-      padding: 0 10px;
-      /* border-right: 1px solid #dee2e6; */
+    flex: 1;
+    padding: 0 10px;
+    /* border-right: 1px solid #dee2e6; */
   }
+
   .search-bar button {
-      padding: 0 15px;
-      background-color: #42a5f5;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    padding: 0 15px;
+    background-color: #42a5f5;
+    color: rgb(245, 245, 245);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
+
   button:hover {
-      background-color: #1e88e5;
+    color: rgb(255, 255, 255);
+  }
+
+  .search-bar button:focus {
+    outline: none;
   }
 </style>
 
 
 <div class="search-container">
   <div class="tabs">
-      <div class="tab active" data-engine="https://www.google.com/search?q=">Google</div>
-      <div class="tab" data-engine="https://www.bing.com/search?q=">Bing</div>
-      <div class="tab" data-engine="https://search.yahoo.com/search?p=">Yahoo</div>
-      <div class="tab" data-engine="https://www.baidu.com/s?wd=">Baidu</div>
+    <div class="tab active" data-engine="https://www.google.com/search?q=">Google</div>
+    <div class="tab" data-engine="https://www.bing.com/search?q=">Bing</div>
+    <div class="tab" data-engine="https://search.yahoo.com/search?p=">Yahoo</div>
+    <div class="tab" data-engine="https://www.baidu.com/s?wd=">Baidu</div>
   </div>
   <div class="search-bar">
-      <select id="site-filter">
-          <option value="all">全网</option>
-          <option value="site">本站</option>
-      </select>
-      <input type="text" id="search-query" placeholder="输入您的搜索查询" onkeypress="handleEnter(event)">
-      <button onclick="search()">搜索</button>
+    <select id="site-filter">
+      <option value="all">全网</option>
+      <option value="site">本站</option>
+    </select>
+    <input type="text" id="search-query" placeholder="输入您的搜索查询" onkeypress="handleEnter(event)">
+    <button onclick="search()">搜索</button>
   </div>
 </div>
 
@@ -87,31 +102,31 @@
 
   // 切换搜索引擎
   document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-          document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-          this.classList.add('active');
-          currentEngine = this.getAttribute('data-engine');
-      });
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      this.classList.add('active');
+      currentEngine = this.getAttribute('data-engine');
+    });
   });
 
   // 执行搜索
   function search() {
-      let query = document.getElementById('search-query').value;
-      const siteFilter = document.getElementById('site-filter').value;
+    let query = document.getElementById('search-query').value;
+    const siteFilter = document.getElementById('site-filter').value;
 
-      if (query) {
-          if (siteFilter === 'site') {
-              query += ` site:${siteURL}`;
-          }
-          const url = currentEngine + encodeURIComponent(query);
-          window.open(url, '_blank');
+    if (query) {
+      if (siteFilter === 'site') {
+        query += ` site:${siteURL}`;
       }
+      const url = currentEngine + encodeURIComponent(query);
+      window.open(url, '_blank');
+    }
   }
 
   // 回车事件处理
   function handleEnter(event) {
-      if (event.key === "Enter") {
-          search();
-      }
+    if (event.key === "Enter") {
+      search();
+    }
   }
 </script>
