@@ -1,5 +1,5 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://notes.zhangwenbing.com/tags/linux/"><title>Linux | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/tags/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/tags/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/tags/linux/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Linux"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>Linux | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/tags/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/tags/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
@@ -23,53 +23,139 @@
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>yum无法使用带https的源 环境 # yum install epel-release 运行以上命令之后，安装其他软件就报错。 错误提示 # [Errno 14] problem making ssl connection Trying other mirror. Trying other mirror Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Please verify its path
-<a href=/blog/linux/rk-lmMGL4/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H10_K-VQ4/>CentOS7 php5.6 编译安装amqp扩展</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-22</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>yum无法使用带https的源</p></blockquote><h2 id=环境>环境
+<a class=anchor href=#%e7%8e%af%e5%a2%83>#</a></h2><pre tabindex=0><code>yum install epel-release
+</code></pre><p>运行以上命令之后，安装其他软件就报错。</p><h2 id=错误提示>错误提示
+<a class=anchor href=#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba>#</a></h2><pre tabindex=0><code>[Errno 14] problem making ssl connection Trying other mirror.
+Trying other mirror
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Please verify its path and try again
+</code></pre><p>经过google查询，发现似乎是ssl证书的原因。</p><a href=/blog/linux/rk-lmMGL4/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H10_K-VQ4/>CentOS7 php5.6 编译安装amqp扩展</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-22</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>php 安装最新rabbitmq扩展 1、安装编译环境 # yum install cmake gcc gcc-c++ make openssl-devel 2、安装rabbitmq-c # wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.zip unzip v0.9.0.zip cd rabbitmq-c-0.9.0/ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/rabbitmq-c-0.9.0/ make && make install 3、安装amqp # wget http://pecl.php.net/get/amqp-1.9.4.tgz tar
-<a href=/blog/linux/H10_K-VQ4/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/S1wDPAKf4/>hadoop下载文件遇到的坑</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>php 安装最新rabbitmq扩展</p></blockquote><h2 id=1安装编译环境>1、安装编译环境
+<a class=anchor href=#1%e5%ae%89%e8%a3%85%e7%bc%96%e8%af%91%e7%8e%af%e5%a2%83>#</a></h2><pre tabindex=0><code>yum install cmake gcc gcc-c++ make openssl-devel
+</code></pre><h2 id=2安装rabbitmq-c>2、安装rabbitmq-c
+<a class=anchor href=#2%e5%ae%89%e8%a3%85rabbitmq-c>#</a></h2><pre tabindex=0><code>wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.zip
+unzip v0.9.0.zip
+cd rabbitmq-c-0.9.0/
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/rabbitmq-c-0.9.0/
+make &amp;&amp; make install
+</code></pre><h2 id=3安装amqp>3、安装amqp
+<a class=anchor href=#3%e5%ae%89%e8%a3%85amqp>#</a></h2><pre tabindex=0><code>wget http://pecl.php.net/get/amqp-1.9.4.tgz
+tar zxf amqp-1.9.4.tgz
+cd amqp-1.9.4
+/usr/bin/phpize
+./configure --with-php-config=/usr/bin/php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c-0.9.0
+
+#由于rabbitmq-c编译出来的lib目录是lib64，所以我们要做一些小的修改
+vim Makefile
+#将 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib -L/usr/local/rabbitmq-c-0.9.0/lib -lrabbitmq
+#修改为 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib64 -L/usr/local/rabbitmq-c-0.9.0/lib64 -lrabbitmq
+
+make &amp;&amp; make install
+</code></pre><h2 id=4phpini-添加模块>4、php.ini 添加模块
+<a class=anchor href=#4phpini-%e6%b7%bb%e5%8a%a0%e6%a8%a1%e5%9d%97>#</a></h2><pre tabindex=0><code>vi /usr/local/php/etc/php.ini
+#增加
+extension = /usr/lib64/php/modules/amqp.so
+</code></pre><h2 id=5重启服务>5、重启服务
+<a class=anchor href=#5%e9%87%8d%e5%90%af%e6%9c%8d%e5%8a%a1>#</a></h2><pre tabindex=0><code>systemctl restart php-fpm
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/S1wDPAKf4/>hadoop下载文件遇到的坑</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>hadoop fs -get 下载带特殊字符文件失败的一些解决方法。 错误范例 # hadoop fs -get "/xxx/xxx分类/动漫Y/2005/蓝猫淘气3000问 航天系列（太
-<a href=/blog/linux/S1wDPAKf4/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1rSV2FzE/>linux-iftop实时流量监控</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>hadoop fs -get 下载带特殊字符文件失败的一些解决方法。</p></blockquote><h2 id=错误范例>错误范例
+<a class=anchor href=#%e9%94%99%e8%af%af%e8%8c%83%e4%be%8b>#</a></h2><pre tabindex=0><code>hadoop fs  -get  &#34;/xxx/xxx分类/动漫Y/2005/蓝猫淘气3000问 航天系列（太空历险记）/第363集 协议.ts&#34; &#34;/media/bak/媒资源素材分类/动漫Y/2005/蓝猫淘气3000问 航天系列（太空历险记）/第363集 协议.ts&#34;
+</code></pre><p>运行以上命令就报“unexpexted URISyntaxException”</p><a href=/blog/linux/S1wDPAKf4/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1rSV2FzE/>linux-iftop实时流量监控</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>iftop是类似于top的实时流量监控工具。可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等。 安装 # Debian/U
-<a href=/blog/linux/B1rSV2FzE/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1xaQL3-N/>Centos7+Python2.7下yum安装软件报错解决办法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-04</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>iftop是类似于top的实时流量监控工具。可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等。</p></blockquote><h2 id=安装>安装
+<a class=anchor href=#%e5%ae%89%e8%a3%85>#</a></h2><p>Debian/Ubuntu/Deepin：</p><pre tabindex=0><code>sudo apt update
+sudo apt -y install iftop
+</code></pre><p>CentOS/RHEL：</p><a href=/blog/linux/B1rSV2FzE/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1xaQL3-N/>Centos7+Python2.7下yum安装软件报错解决办法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-04</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>yum安装软件报错，但可以下载文件。 错误信息 # Downloading packages: Running transaction check Running transaction test Transaction test succeeded Running transaction Traceback (most recent call last): File "/usr/bin/yum", line 29, in &lt;module> yummain.user_main(sys.argv[1:], exit_code=True) File "/usr/share/yum-cli/yummain.py", line 365, in user_main errcode = main(args) File "/usr/share/yum-cli/yummain.py", line 271, in main return_code = base.doTransaction() File "/usr/share/yum-cli/cli.py", line
-<a href=/blog/linux/H1xaQL3-N/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11j0sF-N/>记一次时间同步引起的故障</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-02</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>yum安装软件报错，但可以下载文件。</p></blockquote><h2 id=错误信息>错误信息
+<a class=anchor href=#%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af>#</a></h2><pre tabindex=0><code>Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Traceback (most recent call last):
+  File &#34;/usr/bin/yum&#34;, line 29, in &lt;module&gt;
+    yummain.user_main(sys.argv[1:], exit_code=True)
+  File &#34;/usr/share/yum-cli/yummain.py&#34;, line 365, in user_main
+    errcode = main(args)
+  File &#34;/usr/share/yum-cli/yummain.py&#34;, line 271, in main
+    return_code = base.doTransaction()
+  File &#34;/usr/share/yum-cli/cli.py&#34;, line 773, in doTransaction
+    resultobject = self.runTransaction(cb=cb)
+  File &#34;/usr/lib/python2.7/site-packages/yum/__init__.py&#34;, line 1736, in runTransaction
+    if self.fssnap.available and ((self.conf.fssnap_automatic_pre or
+  File &#34;/usr/lib/python2.7/site-packages/yum/__init__.py&#34;, line 1126, in &lt;lambda&gt;
+    fssnap = property(fget=lambda self: self._getFSsnap(),
+  File &#34;/usr/lib/python2.7/site-packages/yum/__init__.py&#34;, line 1062, in _getFSsnap
+    devices=devices)
+  File &#34;/usr/lib/python2.7/site-packages/yum/fssnapshots.py&#34;, line 158, in __init__
+    self._vgnames = _list_vg_names() if self.available else []
+  File &#34;/usr/lib/python2.7/site-packages/yum/fssnapshots.py&#34;, line 56, in _list_vg_names
+    names = lvm.listVgNames()
+lvm.LibLVMError: (0, &#39;&#39;)
+</code></pre><h2 id=解决方法>解决方法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95>#</a></h2><pre tabindex=0><code>mkdir /tmp/down/
+yum install --downloadonly --downloaddir=/tmp/down/ yum
+cd /tmp/down/
+rpm -Uvh *
+
+yum clean metadata
+yum clean all
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11j0sF-N/>记一次时间同步引起的故障</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-01-02</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>ntpdate同步时间，时间跳跃，引起服务中断。 计划任务 # 0 4 * * * /usr/sbin/ntpdate 10.200.3.71 日志 # Dec 30 04:00:01 localhost systemd: Created slice user-0.slice. Dec 30 04:00:01 localhost systemd: Starting user-0.slice. Dec 30 04:00:01 localhost systemd: Started Session 16 of user root. Dec 30 04:00:01 localhost systemd:
-<a href=/blog/linux/B11j0sF-N/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ10UoTom/>solr7.3.1单机版添加core</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-24</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>ntpdate同步时间，时间跳跃，引起服务中断。</p></blockquote><h2 id=计划任务>计划任务
+<a class=anchor href=#%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1>#</a></h2><pre tabindex=0><code>0 4 * * * /usr/sbin/ntpdate  10.200.3.71
+</code></pre><h2 id=日志>日志
+<a class=anchor href=#%e6%97%a5%e5%bf%97>#</a></h2><pre tabindex=0><code>Dec 30 04:00:01 localhost systemd: Created slice user-0.slice.
+Dec 30 04:00:01 localhost systemd: Starting user-0.slice.
+Dec 30 04:00:01 localhost systemd: Started Session 16 of user root.
+Dec 30 04:00:01 localhost systemd: Starting Session 16 of user root.
+Dec 29 20:09:59 localhost systemd: Time has been changed
+Dec 29 20:09:59 localhost systemd: Removed slice user-0.slice.
+Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
+</code></pre><h2 id=故障>故障
+<a class=anchor href=#%e6%95%85%e9%9a%9c>#</a></h2><p>因为跳跃的时间太大，导致系统的各种服务中断（网络中断和systemctl管理的服务也有问题）。</p><a href=/blog/linux/B11j0sF-N/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ10UoTom/>solr7.3.1单机版添加core</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-24</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交
-<a href=/blog/linux/SJ10UoTom/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BkKKGWnsQ/>solr-7.3.1 单机安装教程</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-23</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。</p><a href=/blog/linux/SJ10UoTom/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BkKKGWnsQ/>solr-7.3.1 单机安装教程</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-23</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交
-<a href=/blog/linux/BkKKGWnsQ/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HJJ4wWwim/>解决rabbitmq依赖问题</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-19</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。</p><a href=/blog/linux/BkKKGWnsQ/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HJJ4wWwim/>解决rabbitmq依赖问题</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-19</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>MQ全称为Message Queue, 消息队列（MQ）是一种应用程序对应用程序的通信方法。 错误提示 # warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 6026dfca: NOKEYerror: Failed dependencies: erlang >= R16B-03 is needed by rabbitmq-server-3.6.6-1.el6.noarch socat is needed by rabbitmq-server-3.6.6-1.el6.noarch 解决
-<a href=/blog/linux/HJJ4wWwim/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJWuUJwsQ/>grafana重置管理员密码</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-19</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>MQ全称为Message Queue, 消息队列（MQ）是一种应用程序对应用程序的通信方法。</p></blockquote><h2 id=错误提示>错误提示
+<a class=anchor href=#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba>#</a></h2><pre tabindex=0><code>warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 6026dfca: NOKEYerror: Failed dependencies:
+    erlang &gt;= R16B-03 is needed by rabbitmq-server-3.6.6-1.el6.noarch
+    socat is needed by rabbitmq-server-3.6.6-1.el6.noarch
+</code></pre><h2 id=解决方法>解决方法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95>#</a></h2><pre tabindex=0><code>cd /etc/yum.repos.d/
+cat erlang.repo
+[erlang-solutions]
+name=Centos $releasever - $basearch - Erlang Solutions
+baseurl=http://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
+gpgcheck=0
+gpgkey=http://packages.erlang-solutions.com/debian/erlang_solutions.asc
+enabled=1
+</code></pre><p>然后再安装rabbitmq</p><a href=/blog/linux/HJJ4wWwim/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJWuUJwsQ/>grafana重置管理员密码</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-10-19</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器，支持Graphite、
-<a href=/blog/linux/SJWuUJwsQ/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/tags/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/tags/linux/page/2/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/tags/linux/ aria-label="Page 1" class=page-link role=button>1</a></li><li class=page-item><a href=/tags/linux/page/2/ aria-label="Page 2" class=page-link role=button>2</a></li><li class="page-item active"><a aria-current=page aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/tags/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/tags/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/tags/linux/page/4/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/tags/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器，支持Graphite、zabbix、InfluxDB、Prometheus和OpenTSDB作为数据源。Grafana主要特性：灵活丰富的图形化选项；可以混合多种风格；支持白天和夜间模式；多个数据源。</p><a href=/blog/linux/SJWuUJwsQ/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/tags/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/tags/linux/page/2/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/tags/linux/ aria-label="Page 1" class=page-link role=button>1</a></li><li class=page-item><a href=/tags/linux/page/2/ aria-label="Page 2" class=page-link role=button>2</a></li><li class="page-item active"><a aria-current=page aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/tags/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/tags/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/tags/linux/page/4/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/tags/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>83</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
 <span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>

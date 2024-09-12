@@ -1,5 +1,5 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><title>Linux | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Linux"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>Linux | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
@@ -23,52 +23,241 @@
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>修改supervisord配置突破1024最大连接数 问题描述 # 最近在使用supervisord服务时发现，无论如何修改系统的最大连接数，由s
-<a href=/blog/linux/HTLMANZea/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/QNIBzjz3k/>supervisor 常见坑及解决办法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2020-07-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>修改supervisord配置突破1024最大连接数</p></blockquote><h2 id=问题描述>问题描述
+<a class=anchor href=#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0>#</a></h2><p>最近在使用supervisord服务时发现，无论如何修改系统的最大连接数，由supervisord管理的程序都无法突破1024的限制。</p><a href=/blog/linux/HTLMANZea/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/QNIBzjz3k/>supervisor 常见坑及解决办法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2020-07-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Too many open files、获取不到$HOME等 Too many open files # vim /etc/supervisord.conf [supervisord] minfds=81920 minprocs=81920 # systemctl restart supervisord 获取不到$HOME # [program:apache2] command=/home/chrism/bin/httpd -c "ErrorLog /dev/stdout" -DFOREGROUND user=chrism environment=HOME="/home/chrism",USER="chrism" supervisorctl update</p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/N2EsU3hZT/>linux nvidia 获取显卡信息</a></h2><div class=book-post-meta><span class=book-post-meta-date>2020-06-04</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>Too many open files、获取不到$HOME等</p></blockquote><h2 id=too-many-open-files>Too many open files
+<a class=anchor href=#too-many-open-files>#</a></h2><pre tabindex=0><code>vim /etc/supervisord.conf
+[supervisord]
+minfds=81920
+minprocs=81920
+
+# systemctl restart supervisord
+</code></pre><h2 id=获取不到home>获取不到$HOME
+<a class=anchor href=#%e8%8e%b7%e5%8f%96%e4%b8%8d%e5%88%b0home>#</a></h2><pre tabindex=0><code>[program:apache2]
+command=/home/chrism/bin/httpd -c &#34;ErrorLog /dev/stdout&#34; -DFOREGROUND
+user=chrism
+environment=HOME=&#34;/home/chrism&#34;,USER=&#34;chrism&#34;
+
+supervisorctl update
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/N2EsU3hZT/>linux nvidia 获取显卡信息</a></h2><div class=book-post-meta><span class=book-post-meta-date>2020-06-04</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>使用deviceQuery获取显卡信息 环境 # Linux、nvidia、cuda 命令 # /usr/local/cuda/extras/demo_suite/deviceQuery CUDA Device Query (Runtime API) version (CUDART static linking) Detected 2 CUDA Capable device(s) Device 0: "GeForce RTX 2080 Ti" CUDA Driver Version / Runtime Version 10.1
-<a href=/blog/linux/N2EsU3hZT/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/roH7hpe6L/>mediainfo 静态编译脚本</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-08-13</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>使用deviceQuery获取显卡信息</p></blockquote><h2 id=环境>环境
+<a class=anchor href=#%e7%8e%af%e5%a2%83>#</a></h2><p>Linux、nvidia、cuda</p><h2 id=命令>命令
+<a class=anchor href=#%e5%91%bd%e4%bb%a4>#</a></h2><pre tabindex=0><code>/usr/local/cuda/extras/demo_suite/deviceQuery
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+Detected 2 CUDA Capable device(s)
+
+Device 0: &#34;GeForce RTX 2080 Ti&#34;
+  CUDA Driver Version / Runtime Version          10.1 / 10.1
+  CUDA Capability Major/Minor version number:    7.5
+  Total amount of global memory:                 11019 MBytes (11554717696 bytes)
+  (68) Multiprocessors, ( 64) CUDA Cores/MP:     4352 CUDA Cores
+  GPU Max Clock rate:                            1545 MHz (1.54 GHz)
+  Memory Clock rate:                             7000 Mhz
+  Memory Bus Width:                              352-bit
+  L2 Cache Size:                                 5767168 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  1024
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 3 copy engine(s)
+  Run time limit on kernels:                     No
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Disabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      Yes
+  Device PCI Domain ID / Bus ID / location ID:   0 / 1 / 0
+  Compute Mode:
+     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;
+
+Device 1: &#34;GeForce RTX 2080 Ti&#34;
+  CUDA Driver Version / Runtime Version          10.1 / 10.1
+  CUDA Capability Major/Minor version number:    7.5
+  Total amount of global memory:                 11019 MBytes (11554717696 bytes)
+  (68) Multiprocessors, ( 64) CUDA Cores/MP:     4352 CUDA Cores
+  GPU Max Clock rate:                            1545 MHz (1.54 GHz)
+  Memory Clock rate:                             7000 Mhz
+  Memory Bus Width:                              352-bit
+  L2 Cache Size:                                 5767168 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  1024
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 3 copy engine(s)
+  Run time limit on kernels:                     No
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Disabled
+  Device supports Unified Addressing (UVA):      Yes
+  Device supports Compute Preemption:            Yes
+  Supports Cooperative Kernel Launch:            Yes
+  Supports MultiDevice Co-op Kernel Launch:      Yes
+  Device PCI Domain ID / Bus ID / location ID:   0 / 2 / 0
+  Compute Mode:
+     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;
+&gt; Peer access from GeForce RTX 2080 Ti (GPU0) -&gt; GeForce RTX 2080 Ti (GPU1) : Yes
+&gt; Peer access from GeForce RTX 2080 Ti (GPU1) -&gt; GeForce RTX 2080 Ti (GPU0) : Yes
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.1, CUDA Runtime Version = 10.1, NumDevs = 2
+</code></pre><h2 id=源码>源码
+<a class=anchor href=#%e6%ba%90%e7%a0%81>#</a></h2><p><a href=https://github.com/NVIDIA/cuda-samples/tree/master/Samples/deviceQuery>https://github.com/NVIDIA/cuda-samples/tree/master/Samples/deviceQuery</a></p><a href=/blog/linux/N2EsU3hZT/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/roH7hpe6L/>mediainfo 静态编译脚本</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-08-13</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>因为需要mediainfo支持http协议，在老的版本中是不支持的，所以只能自己动手编译了。 说明 # 系统：ubuntu 14.04 (其他版本可能会有少许
-<a href=/blog/linux/roH7hpe6L/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/RRaHkWbSu/>ssh免秘钥登陆常见问题</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-08-02</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>因为需要mediainfo支持http协议，在老的版本中是不支持的，所以只能自己动手编译了。</p></blockquote><h2 id=说明>说明
+<a class=anchor href=#%e8%af%b4%e6%98%8e>#</a></h2><p>系统：ubuntu 14.04 (其他版本可能会有少许改动)</p><a href=/blog/linux/roH7hpe6L/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/RRaHkWbSu/>ssh免秘钥登陆常见问题</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-08-02</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>收集一些ssh登陆常见的问题，方便快速解决问题。 重要事情 # cat /var/log/secure cat /var/log/message 无论你遇到任何奇葩的sshd问题，你先执行上面的命令查看下日志。 错误一 # 问
-<a href=/blog/linux/RRaHkWbSu/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/JQIo7dGc1/>openssl - https SAN自签名证书</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-07-02</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>收集一些ssh登陆常见的问题，方便快速解决问题。</p></blockquote><h2 id=重要事情>重要事情
+<a class=anchor href=#%e9%87%8d%e8%a6%81%e4%ba%8b%e6%83%85>#</a></h2><pre tabindex=0><code>cat /var/log/secure
+cat /var/log/message
+</code></pre><p>无论你遇到任何奇葩的sshd问题，你先执行上面的命令查看下日志。</p><h2 id=错误一>错误一
+<a class=anchor href=#%e9%94%99%e8%af%af%e4%b8%80>#</a></h2><h3 id=问题描述>问题描述
+<a class=anchor href=#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0>#</a></h3><pre tabindex=0><code>Authentication refused:bad ownership or modes for dircetory /root
+</code></pre><h3 id=解决方法>解决方法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95>#</a></h3><pre tabindex=0><code>chmod 700 /root
+</code></pre><h3 id=其他相关>其他相关
+<a class=anchor href=#%e5%85%b6%e4%bb%96%e7%9b%b8%e5%85%b3>#</a></h3><p>id_ras 权限为600</p><a href=/blog/linux/RRaHkWbSu/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/JQIo7dGc1/>openssl - https SAN自签名证书</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-07-02</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>使用openssl生产自签名证书，用于https测试。 CA根证书制作 # #1.生成根证书密钥 $ openssl genrsa -out ca.key 4096 #建议长度为4096,1024长度已经
-<a href=/blog/linux/JQIo7dGc1/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/yhK4y-gaU/>Centos7-yum安装MySQL5.6</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-06-27</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>使用openssl生产自签名证书，用于https测试。</p></blockquote><h2 id=ca根证书制作>CA根证书制作
+<a class=anchor href=#ca%e6%a0%b9%e8%af%81%e4%b9%a6%e5%88%b6%e4%bd%9c>#</a></h2><pre tabindex=0><code>#1.生成根证书密钥
+$ openssl genrsa -out ca.key 4096 #建议长度为4096,1024长度已经被列为不安全。
+#2.生成自签名根证书
+$ openssl req -new -x509 -days 3650 -key ca.key -out ca.crt #这里在输入CommonName的时候输入名称而不是域名或者ip,就是证书上显示的颁发者，虽然是自签名证书，但是尽量让证书看起来标准一些
+</code></pre><h2 id=使用根证书来签名其它证书>使用根证书来签名其它证书
+<a class=anchor href=#%e4%bd%bf%e7%94%a8%e6%a0%b9%e8%af%81%e4%b9%a6%e6%9d%a5%e7%ad%be%e5%90%8d%e5%85%b6%e5%ae%83%e8%af%81%e4%b9%a6>#</a></h2><h3 id=1生成证书密钥><strong>1.生成证书密钥</strong>
+<a class=anchor href=#1%e7%94%9f%e6%88%90%e8%af%81%e4%b9%a6%e5%af%86%e9%92%a5>#</a></h3><pre tabindex=0><code>$ openssl genrsa -out server.key 4096
+</code></pre><h2 id=2-subject-alt-namesan><strong>2. Subject Alt Name(SAN)</strong>
+<a class=anchor href=#2-subject-alt-namesan>#</a></h2><p>高版本的Chrome浏览器会要求设置 <code>subjectAltName</code>,如果没有设置SAN会报证书错误</p><a href=/blog/linux/JQIo7dGc1/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/yhK4y-gaU/>Centos7-yum安装MySQL5.6</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-06-27</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>centos自带的repo是不会自动更新每个软件的新版本，所以无法通过yum方式安装MySQL的高版本，所以一般通过社区rpm包安装。 安装y
-<a href=/blog/linux/yhK4y-gaU/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1G3FwCaN/>supervisor 安装和使用方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-05-31</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>centos自带的repo是不会自动更新每个软件的新版本，所以无法通过yum方式安装MySQL的高版本，所以一般通过社区rpm包安装。</p></blockquote><h2 id=安装yum源>安装yum源
+<a class=anchor href=#%e5%ae%89%e8%a3%85yum%e6%ba%90>#</a></h2><pre tabindex=0><code>rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+</code></pre><h2 id=查看mysql安装源>查看mysql安装源
+<a class=anchor href=#%e6%9f%a5%e7%9c%8bmysql%e5%ae%89%e8%a3%85%e6%ba%90>#</a></h2><pre tabindex=0><code>yum repolist enabled | grep &#34;mysql.*-community.*&#34;
+</code></pre><h2 id=安装mysql56>安装mysql56
+<a class=anchor href=#%e5%ae%89%e8%a3%85mysql56>#</a></h2><pre tabindex=0><code>yum -y install mysql-community-server
+</code></pre><h2 id=开机启动>开机启动
+<a class=anchor href=#%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8>#</a></h2><pre tabindex=0><code>systemctl enable mysqld
+</code></pre><h2 id=启动服务>启动服务
+<a class=anchor href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1>#</a></h2><pre tabindex=0><code>systemctl start mysqld
+</code></pre><h2 id=重置密码>重置密码
+<a class=anchor href=#%e9%87%8d%e7%bd%ae%e5%af%86%e7%a0%81>#</a></h2><pre tabindex=0><code>mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MySQL
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MySQL to secure it, we&#39;ll need the current
+password for the root user.  If you&#39;ve just installed MySQL, and
+you haven&#39;t set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+ERROR 1045 (28000): Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: YES)
+Enter current password for root (enter for none):
+ERROR 1045 (28000): Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: YES)
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MySQL
+root user without the proper authorisation.
+
+Set root password? [Y/n] y
+New password:
+Re-enter new password:
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+By default, a MySQL installation has an anonymous user, allowing anyone
+to log into MySQL without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] Y
+ ... Success!
+
+Normally, root should only be allowed to connect from &#39;localhost&#39;.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] n
+ ... skipping.
+
+By default, MySQL comes with a database named &#39;test&#39; that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] n
+ ... skipping.
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] Y
+ ... Success!
+
+All done!  If you&#39;ve completed all of the above steps, your MySQL
+installation should now be secure.
+
+Thanks for using MySQL!
+
+Cleaning up...
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1G3FwCaN/>supervisor 安装和使用方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-05-31</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能
-<a href=/blog/linux/B1G3FwCaN/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HkCTnskvV/>error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-03-08</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。</p><a href=/blog/linux/B1G3FwCaN/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HkCTnskvV/>error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-03-08</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>不小心误删libc.so.6 安装完成后, 建立软链指向glibc-2.14, 执行如下命令: $ rm -rf /lib64/libc.so.6 // 先删除先前的libc.so.6软链 $ ln -s /opt/glibc-2.14/lib/libc-2.14.so
-<a href=/blog/linux/HkCTnskvV/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rk-lmMGL4/>yum错误:problem making ssl connection Trying other mirror</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-02-26</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>不小心误删libc.so.6</p></blockquote><p>安装完成后, 建立软链指向glibc-2.14, 执行如下命令:</p><pre tabindex=0><code>$ rm -rf /lib64/libc.so.6
+</code></pre><p>// 先删除先前的libc.so.6软链</p><pre tabindex=0><code>$ ln -s /opt/glibc-2.14/lib/libc-2.14.so /lib64/libc.so.6
+</code></pre><p>注意：删除libc.so.6之后可能导致系统命令不可用的情况, 可使用如下方法解决:</p><a href=/blog/linux/HkCTnskvV/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rk-lmMGL4/>yum错误:problem making ssl connection Trying other mirror</a></h2><div class=book-post-meta><span class=book-post-meta-date>2019-02-26</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>yum无法使用带https的源 环境 # yum install epel-release 运行以上命令之后，安装其他软件就报错。 错误提示 # [Errno 14] problem making ssl connection Trying other mirror. Trying other mirror Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Please verify its path
-<a href=/blog/linux/rk-lmMGL4/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/ aria-label="Page 1" class=page-link role=button>1</a></li><li class="page-item active"><a aria-current=page aria-label="Page 2" class=page-link role=button>2</a></li><li class=page-item><a href=/categories/linux/page/3/ aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/categories/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/categories/linux/page/3/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>yum无法使用带https的源</p></blockquote><h2 id=环境>环境
+<a class=anchor href=#%e7%8e%af%e5%a2%83>#</a></h2><pre tabindex=0><code>yum install epel-release
+</code></pre><p>运行以上命令之后，安装其他软件就报错。</p><h2 id=错误提示>错误提示
+<a class=anchor href=#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba>#</a></h2><pre tabindex=0><code>[Errno 14] problem making ssl connection Trying other mirror.
+Trying other mirror
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Please verify its path and try again
+</code></pre><p>经过google查询，发现似乎是ssl证书的原因。</p><a href=/blog/linux/rk-lmMGL4/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/ aria-label="Page 1" class=page-link role=button>1</a></li><li class="page-item active"><a aria-current=page aria-label="Page 2" class=page-link role=button>2</a></li><li class=page-item><a href=/categories/linux/page/3/ aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/categories/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/categories/linux/page/3/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>83</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
 <span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>

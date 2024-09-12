@@ -1,1 +1,147 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MacOS on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/macos/</link><description>Recent content in MacOS on 张文兵的笔记</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 27 Mar 2024 13:07:03 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。 安装 # brew install micromamba 配置 # # 根据命令提示，修改~/.zshrc文件</description></item><item><title>macos Lauchpad(启动台) 重置</title><link>https://notes.zhangwenbing.com/blog/macos/aaELFz1Mg/</link><pubDate>Mon, 07 Dec 2020 20:39:24 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/aaELFz1Mg/</guid><description>重置macos的Lauchpad(启动台)，及设置Lauchpad(启动台)的行数和列数。 打开终端程序，按需求执行以下命令即可。 重置 Lauchpad # defaults write</description></item><item><title>upx for macos 之源码编译</title><link>https://notes.zhangwenbing.com/blog/macos/MiSev5_HW/</link><pubDate>Wed, 01 Apr 2020 09:53:30 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/MiSev5_HW/</guid><description>UPX (the Ultimate Packer for eXecutables)是一款先进的可执行程序文件压缩器，压缩过的可执行文件体积缩小50%-70% ，这样减少了磁盘占用空间、网络上</description></item><item><title>macos 恢复launchpad默认布局</title><link>https://notes.zhangwenbing.com/blog/macos/HJvNDli-4/</link><pubDate>Thu, 03 Jan 2019 02:49:14 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/HJvNDli-4/</guid><description>在Mac OS 中重置Launchpad布局 Launchpad可以作为从熟悉的类似iOS的图标网格界面在Mac上打开应用程序的快捷方式。如果您已经</description></item><item><title>NET Core 2.x 安装失败，出现异常“Xamarin.Web.Installer.InstallException”</title><link>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</link><pubDate>Fri, 30 Nov 2018 06:25:07 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</guid><description>visual studio for mac 下载的安装包损坏的解决方法 错误代码 # Visual Studio installation failed with exception &amp;#39;Xamarin.Web.Installer.InstallException&amp;#39; (Attempt #3) Message: Failed to attach DMG image &amp;#39;/Users/qatesting/Library/Caches/XamarinInstaller/Universal/downloads/visualstudioformac-7.6.10.27.dmg&amp;#39;. Error code 1. Exception type: Xamarin.Web.Installer.InstallException at Xamarin.Web.Installer.MacInstallationArchiveHandler.MountDmg (System.String path) [0x00059] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:71 at Xamarin.Web.Installer.MacInstallationArchiveHandler.InstallDmg (System.String path, System.Boolean needsPrivileges) [0x0002f] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:100 at Xamarin.Web.Installer.Installer.InstallationArchiveHandler.Install (System.String path, System.Boolean needsPrivileges) [0x00056] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/InstallationArchiveHandler.cs:33 at</description></item><item><title>Mac出现Operation not permitted</title><link>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</link><pubDate>Wed, 07 Nov 2018 04:56:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</guid><description>Rootless 机制 报错 # Mac使用sudo或切换成root权限，还是出现 Operation not permitted 解决 # 这是由于Mac的rootless机制，可以进入恢复模式关闭rootl</description></item><item><title>mac homebrew常用命令</title><link>https://notes.zhangwenbing.com/blog/macos/BkWmi6d-7/</link><pubDate>Thu, 21 Jun 2018 06:58:24 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkWmi6d-7/</guid><description>brew常用的一些命令 安装：ruby -e “$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go</description></item><item><title>GoToShell</title><link>https://notes.zhangwenbing.com/blog/macos/ry29U6xW7/</link><pubDate>Fri, 15 Jun 2018 05:03:06 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/ry29U6xW7/</guid><description>一个在Finder中快速打开hyper、iTerm2、Terminal、vscode和新建文件的小工具 简介 # 可以快速打开常见的终端模拟器，并</description></item><item><title>mac终端（iterm2）代理</title><link>https://notes.zhangwenbing.com/blog/macos/SkOqdFUxX/</link><pubDate>Thu, 07 Jun 2018 10:39:20 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/SkOqdFUxX/</guid><description>一个简单的脚本，实现终端socks5代理。 开始是打算使用“proxychains4”的，但是需要关闭SIP功能(System Integrity Protect</description></item><item><title>mac os pkg解包</title><link>https://notes.zhangwenbing.com/blog/macos/BkHOYBUgX/</link><pubDate>Thu, 07 Jun 2018 06:06:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkHOYBUgX/</guid><description>jdk1.8.pkg解包 每次安装Java的时候，都是一个pkg安装包，没有像linux下直接一个tar包那样绿色和方便。于是google搜索</description></item><item><title>Mac terminal清除历史命令纪录</title><link>https://notes.zhangwenbing.com/blog/macos/HkGt88E9U0f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/HkGt88E9U0f/</guid><description>Linux传统清除方式并没能解决 history -c 我用的iterm2 + zsh 常用history命令： 查看历史命令纪录: history… Linux传统清除方式并</description></item><item><title>MacOS 10.12 解决找不到任何来源设置</title><link>https://notes.zhangwenbing.com/blog/macos/H1JGLLVcL0G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/H1JGLLVcL0G/</guid><description>安装第三方软件必备技能 打开终端 ( 终端在 应用程序 - 实用工具内 ) 输入以下命令并回车 sudo spctl --master-disable 然后查看问题是否解决， 偏好设置-&amp;gt;安全性与隐私-&amp;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MacOS on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/macos/</link><description>Recent content in MacOS on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 27 Mar 2024 13:07:03 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>&lt;p>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。&lt;/p>
+&lt;h2 id="安装">
+ 安装
+ &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>brew install micromamba
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置">
+ 配置
+ &lt;a class="anchor" href="#%e9%85%8d%e7%bd%ae">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 根据命令提示，修改~/.zshrc文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba shell init -s zsh -p ~/.micromamba
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 添加配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cat ~/.mambarc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>channels:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - conda-forge
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>always_yes: false
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="使用">
+ 使用
+ &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>micromamba create -n python310 python&lt;span style="color:#f92672">=&lt;/span>3.10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 激活环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba activate python310
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 然后可以用 micromamba 或者 pip 装东西&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba install package_1 package_2&lt;span style="color:#f92672">=&lt;/span>version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">## 具体请参考 https://mamba.readthedocs.io/en/latest/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba --help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>macos Lauchpad(启动台) 重置</title><link>https://notes.zhangwenbing.com/blog/macos/aaELFz1Mg/</link><pubDate>Mon, 07 Dec 2020 20:39:24 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/aaELFz1Mg/</guid><description>&lt;blockquote>
+&lt;p>重置macos的Lauchpad(启动台)，及设置Lauchpad(启动台)的行数和列数。&lt;/p>
+&lt;/blockquote>
+&lt;p>打开终端程序，按需求执行以下命令即可。&lt;/p>
+&lt;h2 id="重置-lauchpad">
+ 重置 Lauchpad
+ &lt;a class="anchor" href="#%e9%87%8d%e7%bd%ae-lauchpad">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>defaults write com.apple.dock ResetLaunchPad -bool TRUE;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="重启-dock">
+ 重启 Dock
+ &lt;a class="anchor" href="#%e9%87%8d%e5%90%af-dock">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>killall Dock
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="设置-lauchpad-图标的列数">
+ 设置 Lauchpad 图标的列数
+ &lt;a class="anchor" href="#%e8%ae%be%e7%bd%ae-lauchpad-%e5%9b%be%e6%a0%87%e7%9a%84%e5%88%97%e6%95%b0">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>defaults write com.apple.dock springboard-columns -int &lt;span style="color:#ae81ff">7&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="设置-lauchpad-图标的行数">
+ 设置 Lauchpad 图标的行数
+ &lt;a class="anchor" href="#%e8%ae%be%e7%bd%ae-lauchpad-%e5%9b%be%e6%a0%87%e7%9a%84%e8%a1%8c%e6%95%b0">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>defaults write com.apple.dock springboard-rows -int &lt;span style="color:#ae81ff">7&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>upx for macos 之源码编译</title><link>https://notes.zhangwenbing.com/blog/macos/MiSev5_HW/</link><pubDate>Wed, 01 Apr 2020 09:53:30 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/MiSev5_HW/</guid><description>&lt;blockquote>
+&lt;p>UPX (the Ultimate Packer for eXecutables)是一款先进的可执行程序文件压缩器，压缩过的可执行文件体积缩小50%-70% ，这样减少了磁盘占用空间、网络上传下载的时间和其它分布以及存储费用。&lt;/p></description></item><item><title>macos 恢复launchpad默认布局</title><link>https://notes.zhangwenbing.com/blog/macos/HJvNDli-4/</link><pubDate>Thu, 03 Jan 2019 02:49:14 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/HJvNDli-4/</guid><description>&lt;blockquote>
+&lt;p>在Mac OS 中重置Launchpad布局&lt;/p>
+&lt;/blockquote>
+&lt;p>Launchpad可以作为从熟悉的类似iOS的图标网格界面在Mac上打开应用程序的快捷方式。如果您已经自定义了这些应用程序图标并在Launchpad中进行了排列，那么您可能会决定从头开始并将其顺序重置为首次购买Mac时的显示方式。如果要重新排列Launchpad图标的显示方式，这也很有用，但使用Launchpad解决某些显示错误也很有帮助，尤其是在图标未显示或显示不正确的情况下。&lt;/p></description></item><item><title>NET Core 2.x 安装失败，出现异常“Xamarin.Web.Installer.InstallException”</title><link>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</link><pubDate>Fri, 30 Nov 2018 06:25:07 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</guid><description>&lt;blockquote>
+&lt;p>visual studio for mac 下载的安装包损坏的解决方法&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="错误代码">
+ 错误代码
+ &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e4%bb%a3%e7%a0%81">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>Visual Studio installation failed with exception &amp;#39;Xamarin.Web.Installer.InstallException&amp;#39; (Attempt #3)
+Message: Failed to attach DMG image &amp;#39;/Users/qatesting/Library/Caches/XamarinInstaller/Universal/downloads/visualstudioformac-7.6.10.27.dmg&amp;#39;. Error code 1.
+Exception type: Xamarin.Web.Installer.InstallException
+at Xamarin.Web.Installer.MacInstallationArchiveHandler.MountDmg (System.String path) [0x00059] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:71
+at Xamarin.Web.Installer.MacInstallationArchiveHandler.InstallDmg (System.String path, System.Boolean needsPrivileges) [0x0002f] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:100
+at Xamarin.Web.Installer.Installer.InstallationArchiveHandler.Install (System.String path, System.Boolean needsPrivileges) [0x00056] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/InstallationArchiveHandler.cs:33
+at (wrapper dynamic-method) System.Object.CallSite.Target(System.Runtime.CompilerServices.Closure,System.Runtime.CompilerServices.CallSite,Xamarin.Web.Installer.Installer.InstallationArchiveHandler,string,object)
+at Xamarin.Web.Installer.Installer.BaseSoftwareItem.InstallDownloadedItem (System.String url, Xamarin.Web.Installer.Installer.InstallationArchiveHandler handler, Xamarin.Web.Installer.DownloadServiceWorkItem download) [0x0025e] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/BaseSoftwareItem.cs:278
+at Xamarin.Web.Installer.Installer.BaseSoftwareItem.Install (System.UInt32 tryNumber) [0x000ed] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/BaseSoftwareItem.cs:303
+at Xamarin.Web.Installer.Installer.XamarinIDEBase.Install (System.UInt32 tryNumber) [0x00000] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/XamarinIDEBase.Mac.cs:74
+at MacInstaller.WizardPageInstallationController.InstallationWorker () [0x001f1] in /Users/vsts/agent/2.139.1/work/1/installer/MacInstaller.Universal/WizardPageInstallationController.cs:551
+&lt;/code>&lt;/pre>&lt;h2 id="解决方法">
+ 解决方法
+ &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>rm -rf ~/Library/Caches/XamarinInstaller/Universal
+&lt;/code>&lt;/pre>&lt;p>执行上面的命令后，然后重新打开安装程序，会重新下载并安装&lt;/p></description></item><item><title>Mac出现Operation not permitted</title><link>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</link><pubDate>Wed, 07 Nov 2018 04:56:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</guid><description>&lt;blockquote>
+&lt;p>Rootless 机制&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="报错">
+ 报错
+ &lt;a class="anchor" href="#%e6%8a%a5%e9%94%99">#&lt;/a>
+&lt;/h2>
+&lt;p>Mac使用sudo或切换成root权限，还是出现&lt;/p>
+&lt;pre tabindex="0">&lt;code>Operation not permitted
+&lt;/code>&lt;/pre>&lt;h2 id="解决">
+ 解决
+ &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3">#&lt;/a>
+&lt;/h2>
+&lt;p>这是由于Mac的rootless机制，可以进入恢复模式关闭rootless机制：&lt;/p></description></item><item><title>mac homebrew常用命令</title><link>https://notes.zhangwenbing.com/blog/macos/BkWmi6d-7/</link><pubDate>Thu, 21 Jun 2018 06:58:24 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkWmi6d-7/</guid><description>&lt;blockquote>
+&lt;p>brew常用的一些命令&lt;/p>
+&lt;/blockquote>
+&lt;ol>
+&lt;li>
+&lt;p>安装：ruby -e “$(curl -fsSL &lt;a href="https://raw.github.com/Homebrew/homebrew/go/install">https://raw.github.com/Homebrew/homebrew/go/install&lt;/a>)”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>搜索：brew search XXX 在安装之前可以先查询一下，是否有这个软件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>查询：brew info XXX 主要看具体的信息，比如目前的版本，依赖，安装后注意事项等&lt;/p></description></item><item><title>GoToShell</title><link>https://notes.zhangwenbing.com/blog/macos/ry29U6xW7/</link><pubDate>Fri, 15 Jun 2018 05:03:06 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/ry29U6xW7/</guid><description>&lt;blockquote>
+&lt;p>一个在Finder中快速打开hyper、iTerm2、Terminal、vscode和新建文件的小工具&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="简介">
+ 简介
+ &lt;a class="anchor" href="#%e7%ae%80%e4%bb%8b">#&lt;/a>
+&lt;/h2>
+&lt;p>可以快速打开常见的终端模拟器，并切换到当前finder所在的目录。&lt;/p></description></item><item><title>mac终端（iterm2）代理</title><link>https://notes.zhangwenbing.com/blog/macos/SkOqdFUxX/</link><pubDate>Thu, 07 Jun 2018 10:39:20 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/SkOqdFUxX/</guid><description>&lt;blockquote>
+&lt;p>一个简单的脚本，实现终端socks5代理。&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>开始是打算使用“proxychains4”的，但是需要关闭SIP功能(System Integrity Protection)，作为一个注重系统安全的用户，怎么能关闭这个SIP呢，于是只能另辟蹊径了。最后找到使用shell 的代理环境变量来解决这个问题。
+
+$ cat /usr/local/bin/pc
+#!/bin/bash
+export http_proxy=socks5://127.0.0.1:1086
+export https_proxy=$http_proxy
+$@
+
+$ chmod +x /usr/local/bin/pc
+
+$ #需要使用代理的时候
+$ pc curl www.google.com
+
+是不是很简单，感觉比“proxychains4”简单方便多了，而且还不要关闭SIP。理论上Linux下也是可行的，但是没有测试。
+&lt;/code>&lt;/pre></description></item><item><title>mac os pkg解包</title><link>https://notes.zhangwenbing.com/blog/macos/BkHOYBUgX/</link><pubDate>Thu, 07 Jun 2018 06:06:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkHOYBUgX/</guid><description>&lt;blockquote>
+&lt;p>jdk1.8.pkg解包&lt;/p>
+&lt;/blockquote>
+&lt;p>每次安装Java的时候，都是一个pkg安装包，没有像linux下直接一个tar包那样绿色和方便。于是google搜索一下，终于找到解决的方法了。&lt;/p></description></item><item><title>Mac terminal清除历史命令纪录</title><link>https://notes.zhangwenbing.com/blog/macos/HkGt88E9U0f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/HkGt88E9U0f/</guid><description>&lt;blockquote>
+&lt;p>Linux传统清除方式并没能解决&lt;/p>
+&lt;/blockquote>
+&lt;p>history -c&lt;/p>
+&lt;p>我用的iterm2 + zsh&lt;/p>
+&lt;p>常用history命令：&lt;/p>
+&lt;p>查看历史命令纪录:&lt;/p>
+&lt;p>history…&lt;/p>
+&lt;p>Linux传统清除方式并没能解决&lt;/p>
+&lt;pre tabindex="0">&lt;code>history -c
+&lt;/code>&lt;/pre>&lt;p>我用的iterm2 + zsh&lt;/p></description></item><item><title>MacOS 10.12 解决找不到任何来源设置</title><link>https://notes.zhangwenbing.com/blog/macos/H1JGLLVcL0G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/H1JGLLVcL0G/</guid><description>&lt;blockquote>
+&lt;p>安装第三方软件必备技能&lt;/p>
+&lt;/blockquote>
+&lt;p>打开终端 ( 终端在 应用程序 - 实用工具内 )&lt;/p>
+&lt;p>输入以下命令并回车&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo spctl --master-disable
+&lt;/code>&lt;/pre>&lt;p>然后查看问题是否解决， 偏好设置-&amp;gt;安全性与隐私-&amp;gt;通用-&amp;gt;任何来源&lt;/p></description></item></channel></rss>

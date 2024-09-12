@@ -1,5 +1,65 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="none 内核模块 # 通过modinfo bonding命令查看Linux是否支持bonding lsmod |grep bonding #载入bonding模块 modprobe bonding 配置bonding # #"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Centos多网卡绑定(bonding)"><meta property="og:description" content="none 内核模块 # 通过modinfo bonding命令查看Linux是否支持bonding lsmod |grep bonding #载入bonding模块 modprobe bonding 配置bonding # #"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><title>Centos多网卡绑定(bonding) | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='
+none
+
+
+  内核模块
+  #
+
+通过modinfo bonding命令查看Linux是否支持bonding
+lsmod |grep bonding
+#载入bonding模块
+modprobe bonding
+
+  配置bonding
+  #
+
+# cat /etc/modprobe.d/bond0.conf
+alias bond0 bonding
+cd /etc/sysconfig/network-scripts/
+# grep -v "^#" ifcfg-bond0
+DEVICE=bond0
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=192.168.5.88
+NETMASK=255.255.255.0
+GATEWAY=192.168.5.1
+USERCTL=no
+====================================================
+BONDING_OPTS="mode=0 miimon=100"
+说明：这里使用了BONDING_OPTS选项，则不需要再使用 /etc/modprobe.d/bond0.conf 配置文件对绑定设备进行配置。参数mode=0，指负载均衡模式，详见下文。miimon是用来进行链路监测的，其原理是检测网上的链路状态，一般将miimon值设为100，表示系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路。
+====================================================
+# grep -v "^#" ifcfg-eth1
+DEVICE=eth1
+ONBOOT=yes
+BOOTPROTO=static
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+# grep -v "^#" ifcfg-eth0
+DEVICE=eth0
+BOOTPROTO=static
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+注意：建议不要指定MAC地址
+# echo 100 > /sys/class/net/bond0/bonding/miimon
+# echo 6 > /sys/class/net/bond0/bonding/mode
+Mode of operation : 0 for balance-rr, 1 for active-backup, 2 for balance-xor；
+3 for broadcast, 4 for 802.3ad, 5 for balance-tlb, 6 for balance-alb (charp)
+重启网络
+# /etc/init.d/network restart
+检查下
+ifconfig
+cat /proc/net/bonding/bond0
+
+  bonding模式
+  #
+
+bonding的模式：0-6，即：7种模式'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Centos多网卡绑定(bonding)"><meta property="og:description" content=' none
+内核模块 # 通过modinfo bonding命令查看Linux是否支持bonding
+lsmod |grep bonding #载入bonding模块 modprobe bonding 配置bonding # # cat /etc/modprobe.d/bond0.conf alias bond0 bonding cd /etc/sysconfig/network-scripts/ # grep -v "^#" ifcfg-bond0 DEVICE=bond0 BOOTPROTO=static ONBOOT=yes IPADDR=192.168.5.88 NETMASK=255.255.255.0 GATEWAY=192.168.5.1 USERCTL=no ==================================================== BONDING_OPTS="mode=0 miimon=100" 说明：这里使用了BONDING_OPTS选项，则不需要再使用 /etc/modprobe.d/bond0.conf 配置文件对绑定设备进行配置。参数mode=0，指负载均衡模式，详见下文。miimon是用来进行链路监测的，其原理是检测网上的链路状态，一般将miimon值设为100，表示系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路。 ==================================================== # grep -v "^#" ifcfg-eth1 DEVICE=eth1 ONBOOT=yes BOOTPROTO=static MASTER=bond0 SLAVE=yes USERCTL=no # grep -v "^#" ifcfg-eth0 DEVICE=eth0 BOOTPROTO=static ONBOOT=yes MASTER=bond0 SLAVE=yes USERCTL=no 注意：建议不要指定MAC地址 # echo 100 > /sys/class/net/bond0/bonding/miimon # echo 6 > /sys/class/net/bond0/bonding/mode Mode of operation : 0 for balance-rr, 1 for active-backup, 2 for balance-xor； 3 for broadcast, 4 for 802.3ad, 5 for balance-tlb, 6 for balance-alb (charp) 重启网络 # /etc/init.d/network restart 检查下 ifconfig cat /proc/net/bonding/bond0 bonding模式 # bonding的模式：0-6，即：7种模式'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><meta property="article:tag" content="Linux"><title>Centos多网卡绑定(bonding) | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>

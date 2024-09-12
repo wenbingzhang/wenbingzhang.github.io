@@ -1,5 +1,49 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='yum安装软件报错，但可以下载文件。 错误信息 # Downloading packages: Running transaction check Running transaction test Transaction test succeeded Running transaction Traceback (most recent call last): File "/usr/bin/yum", line 29, in <module> yummain.user_main(sys.argv[1:], exit_code=True) File "/usr/share/yum-cli/yummain.py", line 365, in user_main errcode = main(args) File "/usr/share/yum-cli/yummain.py", line 271, in main return_code = base.doTransaction() File "/usr/share/yum-cli/cli.py", line'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Centos7+Python2.7下yum安装软件报错解决办法"><meta property="og:description" content='yum安装软件报错，但可以下载文件。 错误信息 # Downloading packages: Running transaction check Running transaction test Transaction test succeeded Running transaction Traceback (most recent call last): File "/usr/bin/yum", line 29, in <module> yummain.user_main(sys.argv[1:], exit_code=True) File "/usr/share/yum-cli/yummain.py", line 365, in user_main errcode = main(args) File "/usr/share/yum-cli/yummain.py", line 271, in main return_code = base.doTransaction() File "/usr/share/yum-cli/cli.py", line'><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-01-04T03:42:18+08:00"><meta property="article:modified_time" content="2019-01-04T03:42:18+08:00"><title>Centos7+Python2.7下yum安装软件报错解决办法 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='
+yum安装软件报错，但可以下载文件。
+
+
+  错误信息
+  #
+
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Traceback (most recent call last):
+  File "/usr/bin/yum", line 29, in <module>
+    yummain.user_main(sys.argv[1:], exit_code=True)
+  File "/usr/share/yum-cli/yummain.py", line 365, in user_main
+    errcode = main(args)
+  File "/usr/share/yum-cli/yummain.py", line 271, in main
+    return_code = base.doTransaction()
+  File "/usr/share/yum-cli/cli.py", line 773, in doTransaction
+    resultobject = self.runTransaction(cb=cb)
+  File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1736, in runTransaction
+    if self.fssnap.available and ((self.conf.fssnap_automatic_pre or
+  File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1126, in <lambda>
+    fssnap = property(fget=lambda self: self._getFSsnap(),
+  File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1062, in _getFSsnap
+    devices=devices)
+  File "/usr/lib/python2.7/site-packages/yum/fssnapshots.py", line 158, in __init__
+    self._vgnames = _list_vg_names() if self.available else []
+  File "/usr/lib/python2.7/site-packages/yum/fssnapshots.py", line 56, in _list_vg_names
+    names = lvm.listVgNames()
+lvm.LibLVMError: (0, &#39;&#39;)
+
+  解决方法
+  #
+
+mkdir /tmp/down/
+yum install --downloadonly --downloaddir=/tmp/down/ yum
+cd /tmp/down/
+rpm -Uvh *
+
+yum clean metadata
+yum clean all
+'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Centos7+Python2.7下yum安装软件报错解决办法"><meta property="og:description" content=' yum安装软件报错，但可以下载文件。
+错误信息 # Downloading packages: Running transaction check Running transaction test Transaction test succeeded Running transaction Traceback (most recent call last): File "/usr/bin/yum", line 29, in <module> yummain.user_main(sys.argv[1:], exit_code=True) File "/usr/share/yum-cli/yummain.py", line 365, in user_main errcode = main(args) File "/usr/share/yum-cli/yummain.py", line 271, in main return_code = base.doTransaction() File "/usr/share/yum-cli/cli.py", line 773, in doTransaction resultobject = self.runTransaction(cb=cb) File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1736, in runTransaction if self.fssnap.available and ((self.conf.fssnap_automatic_pre or File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1126, in <lambda> fssnap = property(fget=lambda self: self._getFSsnap(), File "/usr/lib/python2.7/site-packages/yum/__init__.py", line 1062, in _getFSsnap devices=devices) File "/usr/lib/python2.7/site-packages/yum/fssnapshots.py", line 158, in __init__ self._vgnames = _list_vg_names() if self.available else [] File "/usr/lib/python2.7/site-packages/yum/fssnapshots.py", line 56, in _list_vg_names names = lvm.listVgNames() lvm.LibLVMError: (0, &#39;&#39;) 解决方法 # mkdir /tmp/down/ yum install --downloadonly --downloaddir=/tmp/down/ yum cd /tmp/down/ rpm -Uvh * yum clean metadata yum clean all '><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-01-04T03:42:18+08:00"><meta property="article:modified_time" content="2019-01-04T03:42:18+08:00"><meta property="article:tag" content="Linux"><title>Centos7+Python2.7下yum安装软件报错解决办法 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>

@@ -1,5 +1,5 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><title>Linux | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Linux"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>Linux | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
@@ -23,52 +23,317 @@
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none erlang # 首先安装erlang语言环境 yum install erlang -y rabbitMQ # rabbitMQ下载地址：直达安装方法: rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm 或者 yum localinstall rabbitmq-server-3.6.0-1.noarch.rpm -y 启动服务 # /etc/init.d/rabbitmq-server start rabbitmq-plugins enable rabbitmq_management 配置主备 # 同
-<a href=/blog/linux/HkXeLI4cIAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HybPILE5U0z/>RabbitMQ三种Exchange模式(fanout,direct,topic)的性能比较</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=erlang>erlang
+<a class=anchor href=#erlang>#</a></h2><p>首先安装erlang语言环境</p><pre tabindex=0><code>yum install erlang -y
+</code></pre><h2 id=rabbitmq>rabbitMQ
+<a class=anchor href=#rabbitmq>#</a></h2><p>rabbitMQ下载地址：直达安装方法:</p><pre tabindex=0><code>rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
+或者
+yum localinstall  rabbitmq-server-3.6.0-1.noarch.rpm -y
+</code></pre><h2 id=启动服务>启动服务
+<a class=anchor href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1>#</a></h2><pre tabindex=0><code>/etc/init.d/rabbitmq-server start
+rabbitmq-plugins enable rabbitmq_management
+</code></pre><h2 id=配置主备>配置主备
+<a class=anchor href=#%e9%85%8d%e7%bd%ae%e4%b8%bb%e5%a4%87>#</a></h2><h3 id=同步cookie>同步cookie
+<a class=anchor href=#%e5%90%8c%e6%ad%a5cookie>#</a></h3><pre tabindex=0><code>chmod 777 /var/lib/rabbitmq/.erlang.cookie
+scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
+chmod 400 /var/lib/rabbitmq/.erlang.cookie
+</code></pre><h3 id=添加节点>添加节点
+<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
+rabbitmqctl reset
+rabbitmqctl join_cluster [--ram] rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
+rabbitmqctl start_app
+</code></pre><h3 id=删除节点>删除节点
+<a class=anchor href=#%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
+rabbitmqctl forget_cluster_node rabbit@rabbit1
+</code></pre><h3 id=修改类型>修改类型
+<a class=anchor href=#%e4%bf%ae%e6%94%b9%e7%b1%bb%e5%9e%8b>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
+rabbitmqctl change_cluster_node_type ram
+rabbitmqctl start_app
+</code></pre><h3 id=添加用户>添加用户
+<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7>#</a></h3><pre tabindex=0><code>rabbitmqctl add_user admin admin
+添加权限:
+rabbitmqctl set_permissions -p &#34;/&#34; admin &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
+删除测试用户:
+rabbitmqctl delete_user guest
+赋予其administrator角色：
+rabbitmqctl set_user_tags admin administrator
+</code></pre><h3 id=修改配置>修改配置
+<a class=anchor href=#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>//防止服务端异常中断恢复后镜像队列不能恢复的问题
+
+vim /etc/rabbitmq/rabbitmq.conf
+[
+  {rabbit,[{tcp_listeners,[5672]},
+  {cluster_partition_handling, autoheal}]}
+].
+#不要忘记最后面的那个点号哦！
+</code></pre><h3 id=环境变量>环境变量
+<a class=anchor href=#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f>#</a></h3><pre tabindex=0><code>touch /etc/rabbitmq/rabbitmq-env.conf#输入
+    RABBITMQ_NODENAME=FZTEC-240088 节点名称    RABBITMQ_NODE_IP_ADDRESS=127.0.0.1 监听IP
+    RABBITMQ_NODE_PORT=5672 监听端口    RABBITMQ_LOG_BASE=/data/rabbitmq/log 日志目录
+    RABBITMQ_PLUGINS_DIR=/data/rabbitmq/plugins 插件目录
+    RABBITMQ_MNESIA_BASE=/data/rabbitmq/mnesia 后端存储目录
+</code></pre><h3 id=rabbitmq的用户角色分类>RabbitMQ的用户角色分类
+<a class=anchor href=#rabbitmq%e7%9a%84%e7%94%a8%e6%88%b7%e8%a7%92%e8%89%b2%e5%88%86%e7%b1%bb>#</a></h3><p>none、management、policymaker、monitoring、administrator</p><a href=/blog/linux/HkXeLI4cIAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HybPILE5U0z/>RabbitMQ三种Exchange模式(fanout,direct,topic)的性能比较</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none RabbitMQ中，所有生产者提交的消息都由Exchange来接受，然后Exchange按照特定的策略转发到Queue进行存储 Rabbit
-<a href=/blog/linux/HybPILE5U0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1z5LL49I0z/>RabbitMQ性能优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><p>RabbitMQ中，所有生产者提交的消息都由Exchange来接受，然后Exchange按照特定的策略转发到Queue进行存储</p><p>RabbitMQ提供了四种Exchange：fanout,direct,topic,header</p><a href=/blog/linux/HybPILE5U0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1z5LL49I0z/>RabbitMQ性能优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none rabbitmq.config # rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定义。 rabbitmq.config文件位置
-<a href=/blog/linux/H1z5LL49I0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkCKI84cLAG/>rabbitmq之机器机器全部断电恢复记录</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=rabbitmqconfig>rabbitmq.config
+<a class=anchor href=#rabbitmqconfig>#</a></h2><p>rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定义。</p><p>rabbitmq.config文件位置：</p><a href=/blog/linux/H1z5LL49I0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkCKI84cLAG/>rabbitmq之机器机器全部断电恢复记录</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>今天遇到一个rabbitmq集群同时断电，当机器全部启动的时候发现rabbitmq无法正常启动，然后发现如下日志。 =INFO REPORT==== 25-Apr-2018::11:11:07 === Starting RabbitMQ 3.5.3 on Erlang R16B03-1 Copyright (C) 2007-2014
-<a href=/blog/linux/rkCKI84cLAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/ry3FIUV58AM/>rabbitmq之修改数据和log目录位置位置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><p>今天遇到一个rabbitmq集群同时断电，当机器全部启动的时候发现rabbitmq无法正常启动，然后发现如下日志。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:07 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Starting RabbitMQ 3.5.3 on Erlang R16B03-1
+</span></span><span style=display:flex><span>Copyright <span style=color:#f92672>(</span>C<span style=color:#f92672>)</span> 2007-2014 GoPivotal, Inc.
+</span></span><span style=display:flex><span>Licensed under the MPL.  See http://www.rabbitmq.com/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:07 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>node           : rabbit@WIN-ACC2J7AGNM9
+</span></span><span style=display:flex><span>home dir       : C:<span style=color:#ae81ff>\U</span>sers<span style=color:#ae81ff>\A</span>dministrator
+</span></span><span style=display:flex><span>config file<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span> : e:/RabbitMQ Data/rabbitmq.config <span style=color:#f92672>(</span>not found<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>cookie hash    : kR4NuIdBr2n8/4Qt9uIgqQ<span style=color:#f92672>==</span>
+</span></span><span style=display:flex><span>log            : E:/RabbitMQ Data/log/rabbit@WIN-ACC2J7AGNM9.log
+</span></span><span style=display:flex><span>sasl log       : E:/RabbitMQ Data/log/rabbit@WIN-ACC2J7AGNM9-sasl.log
+</span></span><span style=display:flex><span>database dir   : e:/RabbitMQ Data/db/rabbit@WIN-ACC2J7AGNM9-mnesia
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>WARNING REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:07 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Kernel poll <span style=color:#f92672>(</span>epoll, kqueue, etc<span style=color:#f92672>)</span> is disabled. Throughput and CPU utilization may worsen.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:08 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Memory limit set to 13095MB of 32738MB total.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:08 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Disk free limit set to 50MB
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:08 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Limiting to approx <span style=color:#ae81ff>8092</span> file handles <span style=color:#f92672>(</span><span style=color:#ae81ff>7280</span> sockets<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>=</span>INFO REPORT<span style=color:#f92672>====</span> 25-Apr-2018::11:11:38 <span style=color:#f92672>===</span>
+</span></span><span style=display:flex><span>Timeout contacting cluster nodes: <span style=color:#f92672>[</span><span style=color:#e6db74>&#39;rabbit@WIN-2W6NDAIZBIA&#39;</span><span style=color:#f92672>]</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>BACKGROUND
+</span></span><span style=display:flex><span><span style=color:#f92672>==========</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>This cluster node was shut down <span style=color:#66d9ef>while</span> other nodes were still running.
+</span></span><span style=display:flex><span>To avoid losing data, you should start the other nodes first, <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>start this one. To force this node to start, first invoke
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;rabbitmqctl force_boot&#34;</span>. If you <span style=color:#66d9ef>do</span> so, any changes made on other
+</span></span><span style=display:flex><span>cluster nodes after this one was shut down may be lost.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>DIAGNOSTICS
+</span></span><span style=display:flex><span><span style=color:#f92672>===========</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>attempted to contact: <span style=color:#f92672>[</span><span style=color:#e6db74>&#39;rabbit@WIN-2W6NDAIZBIA&#39;</span><span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>rabbit@WIN-2W6NDAIZBIA:
+</span></span><span style=display:flex><span>  * connected to epmd <span style=color:#f92672>(</span>port 4369<span style=color:#f92672>)</span> on WIN-2W6NDAIZBIA
+</span></span><span style=display:flex><span>  * epmd reports: node <span style=color:#e6db74>&#39;rabbit&#39;</span> not running at all
+</span></span><span style=display:flex><span>                  no other nodes on WIN-2W6NDAIZBIA
+</span></span><span style=display:flex><span>  * suggestion: start the node
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>current node details:
+</span></span><span style=display:flex><span>- node name: <span style=color:#e6db74>&#39;rabbit@WIN-ACC2J7AGNM9&#39;</span>
+</span></span><span style=display:flex><span>- home dir: C:<span style=color:#ae81ff>\U</span>sers<span style=color:#ae81ff>\A</span>dministrator
+</span></span><span style=display:flex><span>- cookie hash: kR4NuIdBr2n8/4Qt9uIgqQ<span style=color:#f92672>==</span>
+</span></span></code></pre></div><p>关键的地方在于中间的这段说明：</p><a href=/blog/linux/rkCKI84cLAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/ry3FIUV58AM/>rabbitmq之修改数据和log目录位置位置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>vim /etc/rabbitmq/rabbitmq-env.conf I am a complete /etc/rabbitmq/rabbitmq-e… # vim /etc/rabbitmq/rabbitmq-env.conf # I am a complete /etc/rabbitmq/rabbitmq-env.conf file. # Comment lines start with a hash character. # This is a /bin/sh script file - use ordinary envt var syntax MNESIA_BASE=/data/rabbitmq/mnesia LOG_BASE=/data/logs/rabbitmq</p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11rILN5UAz/>Ubuntu 阿里云镜像源</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>vim /etc/rabbitmq/rabbitmq-env.conf</p></blockquote><h1 id=i-am-a-complete-etcrabbitmqrabbitmq-e>I am a complete /etc/rabbitmq/rabbitmq-e…
+<a class=anchor href=#i-am-a-complete-etcrabbitmqrabbitmq-e>#</a></h1><pre tabindex=0><code> vim /etc/rabbitmq/rabbitmq-env.conf
+
+# I am a complete /etc/rabbitmq/rabbitmq-env.conf file.
+# Comment lines start with a hash character.
+# This is a /bin/sh script file - use ordinary envt var syntax
+MNESIA_BASE=/data/rabbitmq/mnesia
+LOG_BASE=/data/logs/rabbitmq
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11rILN5UAz/>Ubuntu 阿里云镜像源</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>准备工作 # sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份 修改配置 # 14.04 # sudo vim /etc/apt/sources.list #修改 deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security
-<a href=/blog/linux/B11rILN5UAz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HyGHL8E5LRM/>ubuntu编译安装vim及配制方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><h2 id=准备工作>准备工作
+<a class=anchor href=#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak <span style=color:#75715e>#备份</span>
+</span></span></code></pre></div><h2 id=修改配置>修改配置
+<a class=anchor href=#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1404>14.04
+<a class=anchor href=#1404>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim /etc/apt/sources.list <span style=color:#75715e>#修改</span>
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+</span></span></code></pre></div><h3 id=1604>16.04
+<a class=anchor href=#1604>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo vim /etc/apt/sources.list <span style=color:#75715e>#修改</span>
+</span></span><span style=display:flex><span>deb-src http://archive.ubuntu.com/ubuntu xenial main restricted <span style=color:#75715e>#Added by software-properties</span>
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe <span style=color:#75715e>#Added by software-properties</span>
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe <span style=color:#75715e>#Added by software-properties</span>
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse <span style=color:#75715e>#Added by software-properties</span>
+</span></span><span style=display:flex><span>deb http://archive.canonical.com/ubuntu xenial partner
+</span></span><span style=display:flex><span>deb-src http://archive.canonical.com/ubuntu xenial partner
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
+</span></span><span style=display:flex><span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe <span style=color:#75715e>#Added by software-properties</span>
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+</span></span><span style=display:flex><span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
+</span></span></code></pre></div><h2 id=更新缓存>更新缓存
+<a class=anchor href=#%e6%9b%b4%e6%96%b0%e7%bc%93%e5%ad%98>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo apt-get update <span style=color:#75715e>#更新列表</span>
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HyGHL8E5LRM/>ubuntu编译安装vim及配制方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>一个非常好用的vim配置文件 vim简介 # Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器，在Vi的基础上改进和增加了很多特性。
-<a href=/blog/linux/HyGHL8E5LRM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BJ8I8E9U0M/>vim 快速入门手册</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>一个非常好用的vim配置文件</p></blockquote><h2 id=vim简介>vim简介
+<a class=anchor href=#vim%e7%ae%80%e4%bb%8b>#</a></h2><p>Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器，在Vi的基础上改进和增加了很多特性。VIM是自由软件。</p><a href=/blog/linux/HyGHL8E5LRM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BJ8I8E9U0M/>vim 快速入门手册</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>vim常见操作 图示 # ![vi-vim-cheat-sheet-sch.png](/static/uploads/BJ8I8E9U0M/img/vi-vim-cheat- sheet-sch_SyLsV8yY4.png) 一、移动光标 # 1、左移h、右移l、下移j、上移k 2、向下翻页ctrl + f，向上翻页ctrl + b 3、向下翻半页ctrl
-<a href=/blog/linux/BJ8I8E9U0M/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BJrx8LE98CG/>vsftpd 配置方法及访问控制</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>vim常见操作</p></blockquote><h2 id=图示>图示
+<a class=anchor href=#%e5%9b%be%e7%a4%ba>#</a></h2><p>![vi-vim-cheat-sheet-sch.png](/static/uploads/BJ8I8E9U0M/img/vi-vim-cheat-<br>sheet-sch_SyLsV8yY4.png)</p><h2 id=一移动光标>一、移动光标
+<a class=anchor href=#%e4%b8%80%e7%a7%bb%e5%8a%a8%e5%85%89%e6%a0%87>#</a></h2><p>1、左移h、右移l、下移j、上移k</p><p>2、向下翻页ctrl + f，向上翻页ctrl + b</p><p>3、向下翻半页ctrl + d，向上翻半页ctrl + u</p><a href=/blog/linux/BJ8I8E9U0M/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/BJrx8LE98CG/>vsftpd 配置方法及访问控制</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>vsftpd 详细配置说明 vsftpd常用配置 # #关闭匿名用户访问权限 anonymous_enable=NO #开启本地用户权限 local_enable=YES #开启写权限 write_enable=YES #设置侦听端口 listen_port=21 #写文件时的umask local_umask=002 #被动
-<a href=/blog/linux/BJrx8LE98CG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ_88EqU0M/>web运维相关查询命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>vsftpd 详细配置说明</p></blockquote><h2 id=vsftpd常用配置>vsftpd常用配置
+<a class=anchor href=#vsftpd%e5%b8%b8%e7%94%a8%e9%85%8d%e7%bd%ae>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#关闭匿名用户访问权限</span>
+</span></span><span style=display:flex><span>anonymous_enable<span style=color:#f92672>=</span>NO
+</span></span><span style=display:flex><span><span style=color:#75715e>#开启本地用户权限</span>
+</span></span><span style=display:flex><span>local_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span><span style=color:#75715e>#开启写权限</span>
+</span></span><span style=display:flex><span>write_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span><span style=color:#75715e>#设置侦听端口</span>
+</span></span><span style=display:flex><span>listen_port<span style=color:#f92672>=</span><span style=color:#ae81ff>21</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#写文件时的umask</span>
+</span></span><span style=display:flex><span>local_umask<span style=color:#f92672>=</span><span style=color:#ae81ff>002</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#被动模式及开放端口段</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#pasv_enable=yes</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#pasv_min_port=30000</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#pasv_max_port=50000</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#超时时间</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#idle_session_timeout=6000000</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#data_connection_timeout=6000000</span>
+</span></span><span style=display:flex><span>dirmessage_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>xferlog_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>connect_from_port_20<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>xferlog_std_format<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>chroot_local_user<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>chroot_list_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>chroot_list_file<span style=color:#f92672>=</span>/etc/vsftpd/chroot_list
+</span></span><span style=display:flex><span>listen<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>pam_service_name<span style=color:#f92672>=</span>vsftpd
+</span></span><span style=display:flex><span>userlist_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>tcp_wrappers<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>use_localtime<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>reverse_lookup_enable<span style=color:#f92672>=</span>NO
+</span></span><span style=display:flex><span><span style=color:#75715e>#convert_charset_enable=0</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#local_charset=UTF8</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#remote_charset=GB2312</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#double_377=1</span>
+</span></span></code></pre></div><p>创建账户</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>useradd -M -s /sbin/nologin -d /mnt/usernamefile/ username
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i in name1 name2 name3;<span style=color:#66d9ef>do</span> useradd -M -s /sbin/nologin -d /mnt/$i/ $i;<span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i in name1 name2 name3;<span style=color:#66d9ef>do</span> echo <span style=color:#e6db74>&#34;</span>$i<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>123</span> | passwd --stdin $i ;<span style=color:#66d9ef>done</span>
+</span></span></code></pre></div><h3 id=创建目录>创建目录
+<a class=anchor href=#%e5%88%9b%e5%bb%ba%e7%9b%ae%e5%bd%95>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir usernamefile
+</span></span><span style=display:flex><span>chown username:username usernamefile
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i in name1 name2 name3;<span style=color:#66d9ef>do</span> mkdir /mnt/$i;<span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i in name1 name2 name3;<span style=color:#66d9ef>do</span> chown $i:$i /mnt/$i/;<span style=color:#66d9ef>done</span>
+</span></span><span style=display:flex><span>chmod -R <span style=color:#ae81ff>770</span> *
+</span></span></code></pre></div><h2 id=vsftpd被动模式>vsftpd被动模式
+<a class=anchor href=#vsftpd%e8%a2%ab%e5%8a%a8%e6%a8%a1%e5%bc%8f>#</a></h2><h3 id=1开启被动模式>1、开启被动模式
+<a class=anchor href=#1%e5%bc%80%e5%90%af%e8%a2%ab%e5%8a%a8%e6%a8%a1%e5%bc%8f>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim vsftpd.conf
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>pasv_enable<span style=color:#f92672>=</span>YES <span style=color:#75715e>#开启被动模式</span>
+</span></span><span style=display:flex><span>pasv_min_port<span style=color:#f92672>=</span><span style=color:#ae81ff>3000</span> <span style=color:#75715e>#随机最小端口</span>
+</span></span><span style=display:flex><span>pasv_max_port<span style=color:#f92672>=</span><span style=color:#ae81ff>4000</span> <span style=color:#75715e>#随机最大端口</span>
+</span></span></code></pre></div><h3 id=2加载内核>2、加载内核
+<a class=anchor href=#2%e5%8a%a0%e8%bd%bd%e5%86%85%e6%a0%b8>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>modprobe ip_conntrack_ftp
+</span></span><span style=display:flex><span>modprobe ip_nat_ftp
+</span></span></code></pre></div><h3 id=3防火墙>3、防火墙
+<a class=anchor href=#3%e9%98%b2%e7%81%ab%e5%a2%99>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/sysconfig/iptables 在*filter下加入下
+</span></span><span style=display:flex><span>  -A OUTPUT -p tcp --sport 3000:4000 -j ACCEPT
+</span></span><span style=display:flex><span>  -A INPUT -p tcp --dport 3000:4000 -j ACCEPT
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>iptables-restore &lt; /etc/sysconfig/iptables 加载iptables配置
+</span></span></code></pre></div><h2 id=vsftpd虚拟用户>vsftpd虚拟用户
+<a class=anchor href=#vsftpd%e8%99%9a%e6%8b%9f%e7%94%a8%e6%88%b7>#</a></h2><h3 id=1vsftpd安装>1、vsftpd安装
+<a class=anchor href=#1vsftpd%e5%ae%89%e8%a3%85>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>yum -y install vsftpd <span style=color:#75715e>#vsftpd软件</span>
+</span></span><span style=display:flex><span>yum -y install db4-utils <span style=color:#75715e>#生成虚拟用户认证数据文件命令</span>
+</span></span></code></pre></div><h3 id=2配置vsftp>2、配置vsftp
+<a class=anchor href=#2%e9%85%8d%e7%bd%aevsftp>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vim /etc/vsftpd/vsftpd.conf
+</span></span><span style=display:flex><span>  listen<span style=color:#f92672>=</span>YES <span style=color:#75715e>#独立运行vsftpd</span>
+</span></span><span style=display:flex><span>  anonymous_enable<span style=color:#f92672>=</span>NO <span style=color:#75715e>#限制匿名用户登录</span>
+</span></span><span style=display:flex><span>  dirmessage_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  xferlog_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  xferlog_file<span style=color:#f92672>=</span>/var/log/vsftpd.log
+</span></span><span style=display:flex><span>  xferlog_std_format<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  chroot_list_enable<span style=color:#f92672>=</span>YES <span style=color:#75715e>#限制虚拟用户切换目录</span>
+</span></span><span style=display:flex><span>  chroot_list_file<span style=color:#f92672>=</span>/etc/vsftpd/chroot_list <span style=color:#75715e>#限制切换目录的用户列表</span>
+</span></span><span style=display:flex><span>  chroot_local_user<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  guest_enable<span style=color:#f92672>=</span>YES <span style=color:#75715e>#开启虚拟用户认证</span>
+</span></span><span style=display:flex><span>  guest_username<span style=color:#f92672>=</span>ftp <span style=color:#75715e>#映射的真实用户</span>
+</span></span><span style=display:flex><span>  user_config_dir<span style=color:#f92672>=</span>/etc/vsftpd/vsftpd_user_conf <span style=color:#75715e>#虚拟用户配置目录</span>
+</span></span><span style=display:flex><span>  pam_service_name<span style=color:#f92672>=</span>vsftpd.vu <span style=color:#75715e>#vsftpd认证的pam认证模块</span>
+</span></span><span style=display:flex><span>  local_enable<span style=color:#f92672>=</span>YES
+</span></span></code></pre></div><h3 id=3虚拟用户db>3、虚拟用户db
+<a class=anchor href=#3%e8%99%9a%e6%8b%9f%e7%94%a8%e6%88%b7db>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd /etc/vsftpd
+</span></span><span style=display:flex><span>vim user.txt
+</span></span><span style=display:flex><span>  yuangang <span style=color:#75715e>#用户名</span>
+</span></span><span style=display:flex><span>  <span style=color:#ae81ff>123456</span> <span style=color:#75715e>#密码</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>db_load -T -t hash -f user.txt /etc/vsftpd/vsftpd_login.db
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>600</span> /etc/vsftpd/vsftpd_login.db
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 配置pam认证</span>
+</span></span><span style=display:flex><span>vim /etc/pam.d/vsftpd.vu
+</span></span><span style=display:flex><span>  auth required /lib/security/pam_userdb.so db<span style=color:#f92672>=</span>/etc/vsftpd/vsftpd_login
+</span></span><span style=display:flex><span>  account required /lib/security/pam_userdb.so db<span style=color:#f92672>=</span>/etc/vsftpd/vsftpd_login
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vim /etc/vsftpd/chroot_list <span style=color:#75715e>#限制虚拟用户切换目录</span>
+</span></span><span style=display:flex><span>  ftp
+</span></span><span style=display:flex><span>  yuangang
+</span></span></code></pre></div><h3 id=4配置虚拟用户>4、配置虚拟用户
+<a class=anchor href=#4%e9%85%8d%e7%bd%ae%e8%99%9a%e6%8b%9f%e7%94%a8%e6%88%b7>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd /etc/vsftpd/vsftpd_user_conf
+</span></span><span style=display:flex><span>vim yuangang
+</span></span><span style=display:flex><span>  write_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  anon_world_readable_only<span style=color:#f92672>=</span>NO
+</span></span><span style=display:flex><span>  anon_upload_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  anon_mkdir_write_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  anon_other_write_enable<span style=color:#f92672>=</span>YES
+</span></span><span style=display:flex><span>  local_root<span style=color:#f92672>=</span>/data/httpd/yuangang
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 建立虚拟用户ftp目录</span>
+</span></span><span style=display:flex><span>mkdir /data/httpd/yuangang
+</span></span><span style=display:flex><span>chown -R ftp.root /data/httpd
+</span></span><span style=display:flex><span>chmod o+rw /data/httpd/yuangang
+</span></span></code></pre></div><h2 id=vsftpd-cmds_allowed>vsftpd cmds_allowed
+<a class=anchor href=#vsftpd-cmds_allowed>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cmds_allowed<span style=color:#f92672>=</span>ABOR,CWD,LIST,MDTM,MKD,NLST,
+</span></span><span style=display:flex><span>PASS,PASV,PORT,PWD,QUIT,RETR,RMD,RNFR,
+</span></span><span style=display:flex><span>RNTO,SITE,SIZE,STOR,TYPE,USER,ACCT,
+</span></span><span style=display:flex><span>APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST
+</span></span></code></pre></div><p>注意:一定不能使用换行和空格，不然就没效果..</p><a href=/blog/linux/BJrx8LE98CG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ_88EqU0M/>web运维相关查询命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none 1. 查看TCP连接状态 # netstat -nat |awk '{print $6}'|sort|uniq -c|sort -rn netstat -n | awk '/^tcp/ {++S[$NF]};END {for(a in S) print a, S[a]}' 或 netstat -n | awk '/^tcp/ {++state[$NF]}; END {for(key in state) print key,"\t",state[key]}' netstat -n | awk '/^tcp/ {++arr[$NF]};END {for(k in arr) print k,"\t",arr[k]}' netstat -n |awk '/^tcp/ {print $NF}'|sort|uniq -c|sort -rn netstat -ant | awk '{print $NF}' |
-<a href=/blog/linux/SJ_88EqU0M/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/categories/linux/page/6/ aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class="page-item active"><a aria-current=page aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=1-查看tcp连接状态>1. 查看TCP连接状态
+<a class=anchor href=#1-%e6%9f%a5%e7%9c%8btcp%e8%bf%9e%e6%8e%a5%e7%8a%b6%e6%80%81>#</a></h2><pre tabindex=0><code>netstat -nat |awk &#39;{print $6}&#39;|sort|uniq -c|sort -rn
+netstat -n | awk &#39;/^tcp/ {++S[$NF]};END {for(a in S) print a, S[a]}&#39; 或
+netstat -n | awk &#39;/^tcp/ {++state[$NF]}; END {for(key in state) print key,&#34;\t&#34;,state[key]}&#39;
+netstat -n | awk &#39;/^tcp/ {++arr[$NF]};END {for(k in arr) print k,&#34;\t&#34;,arr[k]}&#39;
+netstat -n |awk &#39;/^tcp/ {print $NF}&#39;|sort|uniq -c|sort -rn
+netstat -ant | awk &#39;{print $NF}&#39; | grep -v &#39;[a-z]&#39; | sort | uniq -c
+</code></pre><p>(以上每一行实现的效果基本相同，在此列出不同的写法，方便对脚本写法的更深理解）</p><a href=/blog/linux/SJ_88EqU0M/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class=page-item><a href=/categories/linux/page/6/ aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class="page-item active"><a aria-current=page aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>83</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
 <span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>

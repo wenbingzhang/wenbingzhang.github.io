@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/python/</link><description>Recent content in Python on 张文兵的笔记</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Wed, 27 Mar 2024 13:07:03 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。 安装 # brew install micromamba 配置 # # 根据命令提示，修改~/.zshrc文件</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/python/</link><description>Recent content in Python on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 27 Mar 2024 13:07:03 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>&lt;p>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。&lt;/p>
+&lt;h2 id="安装">
+ 安装
+ &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>brew install micromamba
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置">
+ 配置
+ &lt;a class="anchor" href="#%e9%85%8d%e7%bd%ae">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 根据命令提示，修改~/.zshrc文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba shell init -s zsh -p ~/.micromamba
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 添加配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cat ~/.mambarc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>channels:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - conda-forge
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>always_yes: false
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="使用">
+ 使用
+ &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>micromamba create -n python310 python&lt;span style="color:#f92672">=&lt;/span>3.10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 激活环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba activate python310
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 然后可以用 micromamba 或者 pip 装东西&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba install package_1 package_2&lt;span style="color:#f92672">=&lt;/span>version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">## 具体请参考 https://mamba.readthedocs.io/en/latest/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>micromamba --help
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

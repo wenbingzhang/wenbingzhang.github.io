@@ -1,5 +1,95 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。 nginx # 编译 # wget http://nginx.org/download/nginx-1.14.0.tar.gz wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz wget http://zlib.net/zlib-1.2.11.tar.gz wget #全部解压并编译nginx ./configure --sbin-path=/usr/local/nginx/nginx"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="nginx+rtmp+hls直播推流"><meta property="og:description" content="源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。 nginx # 编译 # wget http://nginx.org/download/nginx-1.14.0.tar.gz wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz wget http://zlib.net/zlib-1.2.11.tar.gz wget #全部解压并编译nginx ./configure --sbin-path=/usr/local/nginx/nginx"><meta property="og:type" content="article"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-07-05T10:04:28+08:00"><meta property="article:modified_time" content="2018-07-05T10:04:28+08:00"><title>nginx+rtmp+hls直播推流 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='
+源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。
+
+
+  nginx
+  #
+
+
+  编译
+  #
+
+wget http://nginx.org/download/nginx-1.14.0.tar.gz
+wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz
+wget http://zlib.net/zlib-1.2.11.tar.gz
+wget
+#全部解压并编译nginx
+./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf --pid-path=/usr/local/nginx/nginx.pid --with-http_ssl_module --with-pcre=/opt/app/openet/oetal1/chenhe/pcre-8.37 --with-zlib=/opt/app/openet/oetal1/chenhe/zlib-1.2.8 --with-openssl=/opt/app/openet/oetal1/chenhe/openssl-1.0.1t --add-module=../nginx-rtmp-module
+
+  配置
+  #
+
+worker_processes  auto;
+
+error_log  logs/error.log debug;
+
+events {
+    worker_connections  1024;
+}
+
+rtmp {
+    server {
+        listen 1935;
+        chunk_size 4000;
+
+        application myapp {
+            live on;
+        }
+
+        application hls {
+            live on;
+            hls on;
+            hls_path /data/y/ngnix/hls;
+            hls_playlist_length 1d;
+            hls_sync 100ms;
+            hls_continuous on;
+            hls_fragment 8s;
+        }
+    }
+}
+
+http {
+    server {
+        listen      80;
+
+        location / {
+            root html;
+        }
+
+        location /stat {
+            rtmp_stat all;
+            rtmp_stat_stylesheet stat.xsl;
+        }
+
+        location /stat.xsl {
+            root html;
+        }
+
+        location /hls {
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept";
+            add_header Access-Control-Allow-Methods "GET, POST, OPTIONS";
+            #server hls fragments
+            types{
+                application/vnd.apple.mpegurl m3u8;
+                video/mp2t ts;
+            }
+            alias /data/y/ngnix/hls;
+            expires -1;
+        }
+    }
+}
+
+  推流
+  #
+
+#RTMP方式
+/opt/ffmpeg/bin/ffmpeg -re -i "/home/1.mp4" -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/myapp/test1
+#HTTP方式
+/opt/ffmpeg/bin/ffmpeg -re -i "/home/2.mp4" -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/hls/test2
+具体参数可根据自己的需求调整'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="nginx+rtmp+hls直播推流"><meta property="og:description" content=' 源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。
+nginx # 编译 # wget http://nginx.org/download/nginx-1.14.0.tar.gz wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz wget http://zlib.net/zlib-1.2.11.tar.gz wget #全部解压并编译nginx ./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf --pid-path=/usr/local/nginx/nginx.pid --with-http_ssl_module --with-pcre=/opt/app/openet/oetal1/chenhe/pcre-8.37 --with-zlib=/opt/app/openet/oetal1/chenhe/zlib-1.2.8 --with-openssl=/opt/app/openet/oetal1/chenhe/openssl-1.0.1t --add-module=../nginx-rtmp-module 配置 # worker_processes auto; error_log logs/error.log debug; events { worker_connections 1024; } rtmp { server { listen 1935; chunk_size 4000; application myapp { live on; } application hls { live on; hls on; hls_path /data/y/ngnix/hls; hls_playlist_length 1d; hls_sync 100ms; hls_continuous on; hls_fragment 8s; } } } http { server { listen 80; location / { root html; } location /stat { rtmp_stat all; rtmp_stat_stylesheet stat.xsl; } location /stat.xsl { root html; } location /hls { add_header Access-Control-Allow-Origin *; add_header Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"; add_header Access-Control-Allow-Methods "GET, POST, OPTIONS"; #server hls fragments types{ application/vnd.apple.mpegurl m3u8; video/mp2t ts; } alias /data/y/ngnix/hls; expires -1; } } } 推流 # #RTMP方式 /opt/ffmpeg/bin/ffmpeg -re -i "/home/1.mp4" -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/myapp/test1 #HTTP方式 /opt/ffmpeg/bin/ffmpeg -re -i "/home/2.mp4" -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/hls/test2 具体参数可根据自己的需求调整'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-07-05T10:04:28+08:00"><meta property="article:modified_time" content="2018-07-05T10:04:28+08:00"><meta property="article:tag" content="FFmpeg"><title>nginx+rtmp+hls直播推流 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>

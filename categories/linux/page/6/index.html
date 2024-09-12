@@ -1,5 +1,5 @@
-<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Linux"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><title>Linux | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2d638338fb2e1ed4968e2bc7ab5abc7b20023e185c9f930c897cde2925372a9f.js integrity="sha256-LWODOPsuHtSWjivHq1q8eyACPhhcn5MMiXzeKSU3Kp8=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/categories/linux/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Linux"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>Linux | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/categories/linux/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.c07ff3d3de9a2b6b7dadb3cfa263c5b4ed9782d56cb13a49bb73fd2f8a5850d9.js integrity="sha256-wH/z096aK2t9rbPPomPFtO2XgtVssTpJu3P9L4pYUNk=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/categories/linux/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-0aec292f8bca227859512cec8a349fde class=toggle>
 <label for=section-0aec292f8bca227859512cec8a349fde class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-2c4b9a1cbc74613570f3c4585f635628 class=toggle>
@@ -23,53 +23,104 @@
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>功能 # 加载指定的文件系统。 语法 # mount [-afFhnrvVw] [-L] [-o] [-t] [设备名] [加载点] 用法 # 说明：mount可将指定设备中指定的文件系统加载到Linux目录下（也就
-<a href=/blog/linux/B1OZ8INcIAM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rJJe8UNcU0M/>linux nfs配置及访问控制</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><h2 id=功能>功能
+<a class=anchor href=#%e5%8a%9f%e8%83%bd>#</a></h2><p>加载指定的文件系统。</p><h2 id=语法>语法
+<a class=anchor href=#%e8%af%ad%e6%b3%95>#</a></h2><p>mount [-afFhnrvVw] [-L] [-o] [-t] [设备名] [加载点]</p><h2 id=用法>用法
+<a class=anchor href=#%e7%94%a8%e6%b3%95>#</a></h2><p>说明：mount可将指定设备中指定的文件系统加载到Linux目录下（也就是装载点）。可将经常使用的设备写入文件/etc/fastab,以使系统在每次启动时自动加载。mount加载设备的信息记录在/etc/mtab文件中。使用umount命令卸载设备时，记录将被清除。</p><a href=/blog/linux/B1OZ8INcIAM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rJJe8UNcU0M/>linux nfs配置及访问控制</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>NFS软件包 # nfs-utils portmap (rhel6换成了rpcbind ,所以启动服务时需要注意) NFS文件 # /etc/exports #NFS主配置文件 /etc/init.d/nfs #NFS启动脚本 /etc/init.d/protmap #portm
-<a href=/blog/linux/rJJe8UNcU0M/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ68UEcUCM/>linux openssh 常见问题汇总</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><h2 id=nfs软件包>NFS软件包
+<a class=anchor href=#nfs%e8%bd%af%e4%bb%b6%e5%8c%85>#</a></h2><p>nfs-utils portmap (rhel6换成了rpcbind ,所以启动服务时需要注意)</p><h2 id=nfs文件>NFS文件
+<a class=anchor href=#nfs%e6%96%87%e4%bb%b6>#</a></h2><p>/etc/exports #NFS主配置文件 /etc/init.d/nfs #NFS启动脚本 /etc/init.d/protmap</p><p>#portmap启动脚本 /var/lib/*tab #NFS日志文件</p><a href=/blog/linux/rJJe8UNcU0M/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/SJ68UEcUCM/>linux openssh 常见问题汇总</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>软件包名 openssh-server openssh-clients 服务名：sshd 服务端配置文件：/etc/ssh/sshd.config 客户端… 软件包名 # openssh-server openssh-clients 服务名：sshd # 服务端配置文件：
-<a href=/blog/linux/SJ68UEcUCM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkxlI845IAz/>linux samba配置及乱码的解决方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>软件包名</p></blockquote><p>openssh-server openssh-clients</p><p>服务名：sshd</p><p>服务端配置文件：/etc/ssh/sshd.config 客户端…</p><h2 id=软件包名>软件包名
+<a class=anchor href=#%e8%bd%af%e4%bb%b6%e5%8c%85%e5%90%8d>#</a></h2><p>openssh-server openssh-clients</p><h2 id=服务名sshd>服务名：sshd
+<a class=anchor href=#%e6%9c%8d%e5%8a%a1%e5%90%8dsshd>#</a></h2><p>服务端配置文件：/etc/ssh/sshd.config 客户端配置文件：/etc/ssh/ssh.config</p><a href=/blog/linux/SJ68UEcUCM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkxlI845IAz/>linux samba配置及乱码的解决方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>简要说明 # samba：这个软体主要提供了SMB伺服器所需的各项服务程式(smbd及nmbd)、的文件档、以及其他与SAMBA相关的logro
-<a href=/blog/linux/rkxlI845IAz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1muLLNcIRf/>Linux Screen命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><h2 id=简要说明>简要说明
+<a class=anchor href=#%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e>#</a></h2><p>samba：这个软体主要提供了SMB伺服器所需的各项服务程式(smbd及nmbd)、的文件档、以及其他与SAMBA相关的logrotate设定档及开机预设选项档案等；</p><a href=/blog/linux/rkxlI845IAz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B1muLLNcIRf/>Linux Screen命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>Linux screen 命令用于多重视窗管理程序。 screen 为多重视窗管理程序。此处所谓的视窗，是指一个全屏幕的文字模式画面。通常只有在使用 telnet 登入主机或是使用老式的终端
-<a href=/blog/linux/B1muLLNcIRf/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/Hk2bI84c8Rz/>linux VM虚拟内存和BDP优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><p>Linux screen 命令用于多重视窗管理程序。</p><p>screen 为多重视窗管理程序。此处所谓的视窗，是指一个全屏幕的文字模式画面。通常只有在使用 telnet 登入主机或是使用老式的终端机时，才有可能用到 screen 程序。</p><a href=/blog/linux/B1muLLNcIRf/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/Hk2bI84c8Rz/>linux VM虚拟内存和BDP优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none VM虚拟内存优化 # #getconf PAGESIZE vm.dirty_background_bytes 系统内所包含的脏数据总数 vm.dirty_background_ratio 脏数据所占用内存的百分比 vm.dirty_expire_centisecs 脏数据在内存中的存放时间 vm.dirty_bytes 如果进程的脏数据超过该值时则要求写到
-<a href=/blog/linux/Hk2bI84c8Rz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H13UIE5LRM/>linux vnc简单配置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=vm虚拟内存优化>VM虚拟内存优化
+<a class=anchor href=#vm%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e4%bc%98%e5%8c%96>#</a></h2><p>#getconf PAGESIZE</p><p>vm.dirty_background_bytes 系统内所包含的脏数据总数</p><p>vm.dirty_background_ratio 脏数据所占用内存的百分比</p><p>vm.dirty_expire_centisecs 脏数据在内存中的存放时间</p><p>vm.dirty_bytes 如果进程的脏数据超过该值时则要求写到磁盘</p><h2 id=bdp优化>BDP优化
+<a class=anchor href=#bdp%e4%bc%98%e5%8c%96>#</a></h2><p>BDP=Bandwidth*RRT net.core.rmem_max 最大缓冲区(窗口)大小</p><a href=/blog/linux/Hk2bI84c8Rz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H13UIE5LRM/>linux vnc简单配置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none VNC端口 # vncserver监听端口 RFB协议：5900+桌面号 HTTP协议：5800+桌面号 X协议：6000+桌面号 vncserver
-<a href=/blog/linux/H13UIE5LRM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/S19ZLLE9I0G/>linux 常用系统资源查看命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=vnc端口>VNC端口
+<a class=anchor href=#vnc%e7%ab%af%e5%8f%a3>#</a></h2><p>vncserver监听端口 RFB协议：5900+桌面号 HTTP协议：5800+桌面号 X协议：6000+桌面号</p><p>vncserver使用的桌面编号默认是从1开始，依次使用。</p><a href=/blog/linux/H13UIE5LRM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/S19ZLLE9I0G/>linux 常用系统资源查看命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none 一、sar命令 # # sar 1 10 监控CPU，每秒监控一次，共监控10次 # sar -P ALL 1 5 监控所有CPU # sar -S 1 10 监控交换分区 # sar -d 1 10 监控磁盘IO # sar -b
-<a href=/blog/linux/S19ZLLE9I0G/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1sZIUN9I0f/>linux 防拒绝服务攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=一sar命令>一、sar命令
+<a class=anchor href=#%e4%b8%80sar%e5%91%bd%e4%bb%a4>#</a></h2><pre tabindex=0><code># sar 1 10  监控CPU，每秒监控一次，共监控10次
+# sar -P ALL 1 5   监控所有CPU
+# sar -S 1 10      监控交换分区
+# sar -d 1 10      监控磁盘IO
+# sar -b 1 10      监控磁盘IO和速率
+# sar -r 1 10      监控内存使用
+# sar -n DEV  1 10 监控网络接口卡的数据传输
+</code></pre><h2 id=二mpstat>二、mpstat
+<a class=anchor href=#%e4%ba%8cmpstat>#</a></h2><pre tabindex=0><code># mpstat -P ALL 1 10
+</code></pre><h2 id=三iostat>三、iostat
+<a class=anchor href=#%e4%b8%89iostat>#</a></h2><pre tabindex=0><code># iostat -c 2
+# iostat -d 1 100
+# iostat 1 20
+# iostat -p /dev/sda2 1 10
+</code></pre><h2 id=四vmstat>四、vmstat
+<a class=anchor href=#%e5%9b%9bvmstat>#</a></h2><pre tabindex=0><code>#vmstat -d 1 20
+输出信息
+r 运行队列中的进程数，不要长时间超过CPU核心总数
+b 等待IO的进程数
+si 每秒从交换分区写到内存的数据大小
+so 每秒写入交换分区的数据大小
+#vmstat -a 1 10
+</code></pre><h2 id=五其它常用监控命令>五、其它常用监控命令
+<a class=anchor href=#%e4%ba%94%e5%85%b6%e5%ae%83%e5%b8%b8%e7%94%a8%e7%9b%91%e6%8e%a7%e5%91%bd%e4%bb%a4>#</a></h2><p>(1) top (2) free (3) iptraf</p><a href=/blog/linux/S19ZLLE9I0G/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1sZIUN9I0f/>linux 防拒绝服务攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none 一、使用脚本 # wget http://www.inetbase.com/scripts/ddos/install.sh 安装脚本 wget http://www.inetbase.com/scripts/ddos/uninstall.sh 卸载脚本 二、内核优化 # net.ipv4.tcp_max_syn_backlog = 1024 #设定syn队列长度 net.ipv4.tcp_syncookies = 1 #设定是否启用cookies net.ipv4.tcp_synack_retries = 3 #设定synack重
-<a href=/blog/linux/H1sZIUN9I0f/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HyYg884c80f/>linux 防御SYN攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=一使用脚本>一、使用脚本
+<a class=anchor href=#%e4%b8%80%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac>#</a></h2><pre tabindex=0><code>wget http://www.inetbase.com/scripts/ddos/install.sh 安装脚本
+wget http://www.inetbase.com/scripts/ddos/uninstall.sh 卸载脚本
+</code></pre><h2 id=二内核优化>二、内核优化
+<a class=anchor href=#%e4%ba%8c%e5%86%85%e6%a0%b8%e4%bc%98%e5%8c%96>#</a></h2><pre tabindex=0><code>net.ipv4.tcp_max_syn_backlog = 1024 #设定syn队列长度
+net.ipv4.tcp_syncookies = 1 #设定是否启用cookies
+net.ipv4.tcp_synack_retries = 3 #设定synack重试次数
+net.ipv4.tcp_syn_retries = 2 #设定syn重试次数
+net.ipv4.icmp_echo_ignore_all = 1 #不回应ping
+net.ipv4.icmp_echo_ignore_broadcast = 1 #不回应广播ping
+</code></pre><h2 id=三防火墙配置>三、防火墙配置
+<a class=anchor href=#%e4%b8%89%e9%98%b2%e7%81%ab%e5%a2%99%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1基于数据包进行限制>1、基于数据包进行限制
+<a class=anchor href=#1%e5%9f%ba%e4%ba%8e%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6>#</a></h3><pre tabindex=0><code>#iptables -A INPUT -p tcp --tcp-flags syn,ack,fin syn -m limit --limit 5/s --limit-burst 8 -j ACCEPT
+#iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
+</code></pre><h3 id=2基于连接数进行限制>2、基于连接数进行限制
+<a class=anchor href=#2%e5%9f%ba%e4%ba%8e%e8%bf%9e%e6%8e%a5%e6%95%b0%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6>#</a></h3><pre tabindex=0><code>#iptables -A INPUT -s 192.168.0.0/24 -p tcp --dport 23 -m connlimit --connlimit-above 2 -j DROP
+</code></pre><h3 id=3基于地址列表进行限制>3、基于地址列表进行限制
+<a class=anchor href=#3%e5%9f%ba%e4%ba%8e%e5%9c%b0%e5%9d%80%e5%88%97%e8%a1%a8%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6>#</a></h3><pre tabindex=0><code>#iptables -A INPUT -p tcp --dport 80 --tcp-flags syn,ack,fin syn -m recent --name webpool --rcheck --seconds 120 --hitcount 10 -j LOG --log-prefix=&#34;ddos:&#34; --log-ip-options
+#iptables -A INPUT -p tcp --dport 80 --syn -m recent --name webpool --rcheck --seconds 120 --hitcount 10 -j DROP
+#iptables -A INPUT -p tcp --dport 80 --syn -m recent --name webpool --set -j ACCEPT
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HyYg884c80f/>linux 防御SYN攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p>none 一、默认syn配置 # sysctl -a | grep _syn net.ipv4.tcp_max_syn_backlog = 1024 net.ipv4.tcp_syncookies = 1 net.ipv4.tcp_synack_retries = 5 net.ipv4.tcp_syn_retries = 5 tcp_max_syn_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。 tcp_s
-<a href=/blog/linux/HyYg884c80f/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class="page-item active"><a aria-current=page aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class=page-item><a href=/categories/linux/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=一默认syn配置>一、默认syn配置
+<a class=anchor href=#%e4%b8%80%e9%bb%98%e8%ae%a4syn%e9%85%8d%e7%bd%ae>#</a></h2><pre tabindex=0><code>sysctl -a | grep _syn
+net.ipv4.tcp_max_syn_backlog = 1024
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_synack_retries = 5
+net.ipv4.tcp_syn_retries = 5
+</code></pre><p>tcp_max_syn_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。</p><p>tcp_syncookies是一个开关，是否打开SYN Cookie 功能，该功能可以防止部分SYN攻击。</p><a href=/blog/linux/HyYg884c80f/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/categories/linux/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/categories/linux/page/4/ aria-label="Page 4" class=page-link role=button>4</a></li><li class=page-item><a href=/categories/linux/page/5/ aria-label="Page 5" class=page-link role=button>5</a></li><li class="page-item active"><a aria-current=page aria-label="Page 6" class=page-link role=button>6</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label="Page 7" class=page-link role=button>7</a></li><li class=page-item><a href=/categories/linux/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/categories/linux/page/7/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/categories/linux/page/9/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>83</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
 <span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>

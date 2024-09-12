@@ -1,1 +1,335 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FFmpeg on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/ffmpeg/</link><description>Recent content in FFmpeg on 张文兵的笔记</description><generator>Hugo -- gohugo.io</generator><language>zh</language><lastBuildDate>Tue, 06 Feb 2024 16:31:04 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml"/><item><title>FFmpeg检测透明通道</title><link>https://notes.zhangwenbing.com/articles/2024/02/06/kkcc5t2y88hybafpourudv/</link><pubDate>Tue, 06 Feb 2024 16:31:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/02/06/kkcc5t2y88hybafpourudv/</guid><description>检测透明通道 # FFmpeg命令 # $ ffmpeg -v error -i 123.mp4 -vf &amp;#34;select=&amp;#39;eq(n,0)&amp;#39;, alphaextract&amp;#34; -f null /dev/null [Parsed_alphaextract_1 @ 0x7fe8f5208100] Requested planes not available. [Parsed_alphaextract_1 @ 0x7fe8f5208100] Failed to configure input pad on Parsed_alphaextract_1 [vf#0:0 @ 0x7fe8f5005f40] Error reinitializing filters! Failed to inject frame into filter network: Invalid argument Error while filtering: Invalid argument [out#0/null @ 0x7fe8f5004900] Nothing was</description></item><item><title>ffmpeg规范音频的响度</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/ROS_KIbGg/</link><pubDate>Tue, 22 Dec 2020 14:53:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/ROS_KIbGg/</guid><description>通过FFmpeg内置滤镜、手动调整音量、或者ffmpeg-normalize实现对响度的控制。 内置归一化滤波器 # loudnorm：通过EBU</description></item><item><title>ffmpeg在特定的时间混合一个或多个音频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Mv3bzfgqM/</link><pubDate>Tue, 13 Oct 2020 08:24:19 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Mv3bzfgqM/</guid><description>使用FFmpeg中的adelay和amix滤镜给音频做混音 在30秒后混合1个音频 ffmpeg -i 1-1.mp3 -i 2.mp3 -filter_complex &amp;#34;[1]adelay=delays=30s:all=1[aud1];[0][aud1]amix=inputs=2&amp;#34; -vsync 2 -y 3.mp3 在30秒后混合2个音频 ffmpeg -i 1-1.mp3 -i 2.mp3 -i 3.mp3 -filter_complex</description></item><item><title>FFmpeg 水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</link><pubDate>Wed, 15 Jul 2020 06:31:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</guid><description>图片水印、文字水印、画中画 图片水印 # ffmpeg -i input.mp4 -vf &amp;#34;movie=wenzi.png[watermark];[in][watermark] overlay=main_w-overlay_w-10:main_h-overlay_h-10[out] &amp;#34; output.mp4 -i :一般表示输入 input.mp4:这里表示要处理的视频源 -vf:滤镜相关，视频裁剪，水</description></item><item><title>ffprobe详解</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</link><pubDate>Wed, 13 May 2020 09:51:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</guid><description>ffprobe是ffmpeg提供的三大工具之一，用来查看音视频文件的各种信息，比如：封装格式、音频/视频流信息、数据包信息等。 ffprobe</description></item><item><title>ffmpeg 删除音视频文件中的元数据</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/ovfEIBOES/</link><pubDate>Thu, 07 Nov 2019 09:55:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/ovfEIBOES/</guid><description>清除mp3文件中自带的专辑（album），艺术家（artist），流派（genre）等元数据。 ffmpeg -i &amp;#34;test.mp3&amp;#34; -b:a 320k -map_metadata -1 -y &amp;#34;out.mp3&amp;#34; -map_metadata -1 表示清除所有元数据</description></item><item><title>ffmpeg 裁剪视频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</link><pubDate>Tue, 27 Nov 2018 08:49:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</guid><description>ffmpeg命令裁剪视频，一般用于裁剪黑边 说明 # 命令 # ffmpeg -i input.mp4 -vf crop=iw/3:ih:0:0 output.mp4 ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3:0 output.mp4 ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3*2:0 output.mp4</description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化</description></item><item><title>ffmpeg 9:16和16:9互相转换</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</link><pubDate>Thu, 30 Aug 2018 03:00:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</guid><description>​今天搜集了一下16:9和9:16相互转换的命令。将多余的部分用模糊背景填充，感觉比直接加黑边好很多。 16:9转9:16 # 命令 # ffmpeg -i input.mp4 -lavfi &amp;#34;[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256&amp;#34; output.mp4</description></item><item><title>ffmpeg输出苹果编码格式prores</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SkuD1wO4X/</link><pubDate>Fri, 27 Jul 2018 09:05:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SkuD1wO4X/</guid><description>ffmpeg输出苹果编码格式prores。分辨率1080p，25帧，5个音轨。 ffmpeg -i 06无字幕mp4-使用此视频的画面.mp4 -i 06有字幕-使</description></item><item><title>ffmbc转码输出DVCPRO HD</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SJkrWTUVm/</link><pubDate>Thu, 26 Jul 2018 03:40:55 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SJkrWTUVm/</guid><description>使用ffmbc多线程转码输出DVCPRO HD。分辨率为1440x1080，隔行扫描。 一 # 将一个双声道音轨复制输出成两个单声道音轨 ffmbc -y -threads 8 -i 海</description></item><item><title>XDCAM HD422 MXF</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Hy8NTRZmm/</link><pubDate>Tue, 10 Jul 2018 07:25:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Hy8NTRZmm/</guid><description>分别使用ffmpeg ffmbc 实现 输出XDCAM HD422 MXF文件 ffmpeg # ffmpeg -i test.mov -pix_fmt yuv422p -vcodec mpeg2video -non_linear_quant 1 -flags +ildct+ilme -top 1 -dc 10 -intra_vlc 1 -qmax 3 -lmin &amp;#34;1*QP2LAMBDA&amp;#34; -vtag xd5c -rc_max_vbv_use 1 -rc_min_vbv_use 1 -g 12 -b:v 50000k -minrate 50000k -maxrate 50000k -bufsize 8000k -acodec pcm_s16le -ar 48000 -bf</description></item><item><title>nginx+rtmp+hls直播推流</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/</link><pubDate>Thu, 05 Jul 2018 10:04:28 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/</guid><description>源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。 nginx # 编译 # wget http://nginx.org/download/nginx-1.14.0.tar.gz wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz wget http://zlib.net/zlib-1.2.11.tar.gz wget #全部解压并编译nginx ./configure --sbin-path=/usr/local/nginx/nginx</description></item><item><title>AAC 到 PCM 音频解码</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/HJbQ88N980f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/HJbQ88N980f/</guid><description>最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝试用 AudioQueue 直接解 AAC 未果, 转而将 AAC 解码为 PCM, 最终实… 最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝</description></item><item><title>ffmbc之转DVCPROHD</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkpKIL498RM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkpKIL498RM/</guid><description>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scal… ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scale=1440:1080:1 -acodec pcm_s16le -ar 48000 -ac 1 -y xx.mxf</description></item><item><title>ffmoeg多音频合成(混流)使用方法</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1DOL84cLCz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1DOL84cLCz/</guid><description>ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=firs… ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT 它接受下列参数： inputs 输入数。如果没有指定，默认为2</description></item><item><title>ffmpeg 多音轨混合成多声道</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Hy0UI8V9I0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Hy0UI8V9I0M/</guid><description>使用FFmpeg制作多声道视频 将8个音轨混合成双声道 ffmpeg -i input.mkv -filter_complex &amp;#34;[0:1][0:2][0:3][0:4][0:5][0:6][0:7][0:8] amerge=inputs=8&amp;#34; -c:a pcm_s16le output.mkv</description></item><item><title>ffmpeg获取display_picture_number对应帧信息</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/</guid><description>使用方式 # ffmpeg -i input -vf &amp;#34;select=eq(n\,15237)&amp;#34;,showinfo -an -f null /dev/null 输出结果 # 15237为display_picture_number [Parsed_showinfo_1 @ 0x41ca760] n: 0 pts:54860400 pts_time:609.56 pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:[7E1FA1A9 3D005549 67BC0A32] mean:[92 127 134] stdev:[62.5 9.2</description></item><item><title>ffmpeg音频合成命令全集</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/</guid><description>等有时间了再将其翻译一下，源网址-&amp;gt;传送门 stereo → mono stream Mix a single stereo stream down to … 等有时间了再将其翻译一下，源网址-&amp;gt;传送门 stereo → mono stream # ![stereo to mono diagram](https://trac.ffmpeg.org/raw- attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix</description></item><item><title>ffmpeg逐行扫描转隔行扫描</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BJDz88N580G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BJDz88N580G/</guid><description>命令参数 # ffmpeg -i input -aspect 16:9 -c:v mpeg2video -b:v 4000k -minrate 4000k -maxrate 4000k -bufsize 2000k -dc 9 -flags +ilme+ildct -alternate_scan 1 -top 0 output 其实主要的就是如下参数： -flags +ilme+ildct -alternate_scan 1 -top 0 alternate_scan使用隔行转码，to</description></item><item><title>H.264：i帧，p帧，b帧介绍</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Sy778INqIRM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Sy778INqIRM/</guid><description>i帧 帧内编码帧，i帧表示关键帧，它保留了一副画面完整的数据信息，解码的时候只需要这归真数据就可以完成（因为i帧里面包含了花面狸免得所有信息）</description></item><item><title>H.264NAL头解析</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1cmUI4qUCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1cmUI4qUCf/</guid><description>H.264 NAL头解析 如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。 NAL He…</description></item><item><title>iOS FFmpeg集成</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SkNmLLVcUCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SkNmLLVcUCf/</guid><description>FFmpeg标准库 概念: FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。 采用LGPL或GPL许可证。它</description></item><item><title>Rematrix is needed between 10 channels and 7.1(wide) but there is not enough</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</guid><description>解决办法 将10个声道拆分成10个音轨 ffmpeg -i INPUTFILE -filter_complex “[0:a]pan=mono|c0=c0[… 解决办法 # 将10个声道拆分成10个音轨 ffmpeg -i INPUTFILE -filter_complex &amp;#34;[0:a]pan=mono|c0=c0[a0];[0:a]pan=mono|c0=c1[a1];[0:a]pan=mono|c0=c2[a2];[0:a]pan=mono|c0=c3[a3];[0:a]pan=mono|c0=c4[a4];[0:a]pan=mono|c0=c5[a5];[0:a]pan=mono|c0=c6[a6];[0:a]pan=mono|c0=c7[a7];[0:a]pan=mono|c0=c8[a8];[0:a]pan=mono|c0=c9[a9]&amp;#34; -map &amp;#34;[a0]&amp;#34;</description></item><item><title>简析Android集成FFMPEG推流</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/</guid><description>如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FFmpeg on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/ffmpeg/</link><description>Recent content in FFmpeg on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 06 Feb 2024 16:31:04 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml"/><item><title>FFmpeg检测透明通道</title><link>https://notes.zhangwenbing.com/articles/2024/02/06/kkcc5t2y88hybafpourudv/</link><pubDate>Tue, 06 Feb 2024 16:31:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/02/06/kkcc5t2y88hybafpourudv/</guid><description>&lt;h1 id="检测透明通道">
+ 检测透明通道
+ &lt;a class="anchor" href="#%e6%a3%80%e6%b5%8b%e9%80%8f%e6%98%8e%e9%80%9a%e9%81%93">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="ffmpeg命令">
+ FFmpeg命令
+ &lt;a class="anchor" href="#ffmpeg%e5%91%bd%e4%bb%a4">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ ffmpeg -v error -i 123.mp4 -vf &lt;span style="color:#e6db74">&amp;#34;select=&amp;#39;eq(n,0)&amp;#39;, alphaextract&amp;#34;&lt;/span> -f null /dev/null
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>Parsed_alphaextract_1 @ 0x7fe8f5208100&lt;span style="color:#f92672">]&lt;/span> Requested planes not available.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>Parsed_alphaextract_1 @ 0x7fe8f5208100&lt;span style="color:#f92672">]&lt;/span> Failed to configure input pad on Parsed_alphaextract_1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>vf#0:0 @ 0x7fe8f5005f40&lt;span style="color:#f92672">]&lt;/span> Error reinitializing filters!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Failed to inject frame into filter network: Invalid argument
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Error &lt;span style="color:#66d9ef">while&lt;/span> filtering: Invalid argument
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>out#0/null @ 0x7fe8f5004900&lt;span style="color:#f92672">]&lt;/span> Nothing was written into output file, because at least one of its streams received no packets.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="判断条件">
+ 判断条件
+ &lt;a class="anchor" href="#%e5%88%a4%e6%96%ad%e6%9d%a1%e4%bb%b6">#&lt;/a>
+&lt;/h2>
+&lt;p>如果出现以上报错信息，则说明视频中没有透明通道。&lt;/p></description></item><item><title>ffmpeg规范音频的响度</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/ROS_KIbGg/</link><pubDate>Tue, 22 Dec 2020 14:53:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/ROS_KIbGg/</guid><description>&lt;blockquote>
+&lt;p>通过FFmpeg内置滤镜、手动调整音量、或者ffmpeg-normalize实现对响度的控制。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="内置归一化滤波器">
+ 内置归一化滤波器
+ &lt;a class="anchor" href="#%e5%86%85%e7%bd%ae%e5%bd%92%e4%b8%80%e5%8c%96%e6%bb%a4%e6%b3%a2%e5%99%a8">#&lt;/a>
+&lt;/h2>
+&lt;p>loudnorm：通过EBU R.128进行响度标准化。您可以设置积分的体积目标，体积范围目标或最大真实峰。建议用于发布音频和视频，并被世界各地的广播公司使用。&lt;/p></description></item><item><title>ffmpeg在特定的时间混合一个或多个音频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Mv3bzfgqM/</link><pubDate>Tue, 13 Oct 2020 08:24:19 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Mv3bzfgqM/</guid><description>&lt;blockquote>
+&lt;p>使用FFmpeg中的adelay和amix滤镜给音频做混音&lt;/p>
+&lt;/blockquote>
+&lt;p>在30秒后混合1个音频&lt;/p>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i 1-1.mp3 -i 2.mp3 -filter_complex &amp;#34;[1]adelay=delays=30s:all=1[aud1];[0][aud1]amix=inputs=2&amp;#34; -vsync 2 -y 3.mp3
+&lt;/code>&lt;/pre>&lt;p>在30秒后混合2个音频&lt;/p>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i 1-1.mp3 -i 2.mp3 -i 3.mp3 -filter_complex &amp;#34;[1]adelay=delays=30s:all=1[aud1];[2]adelay=delays=30s:all=1[aud2];[0][aud1][aud2]amix=inputs=3&amp;#34; -vsync 2 -y 4.mp3
+&lt;/code>&lt;/pre>&lt;p>混合多个参照混合2个的命令修改下即可&lt;/p></description></item><item><title>FFmpeg 水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</link><pubDate>Wed, 15 Jul 2020 06:31:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</guid><description>&lt;blockquote>
+&lt;p>图片水印、文字水印、画中画&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="图片水印">
+ 图片水印
+ &lt;a class="anchor" href="#%e5%9b%be%e7%89%87%e6%b0%b4%e5%8d%b0">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -vf &amp;#34;movie=wenzi.png[watermark];[in][watermark] overlay=main_w-overlay_w-10:main_h-overlay_h-10[out] &amp;#34; output.mp4
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>-i :一般表示输入&lt;/p>
+&lt;p>input.mp4:这里表示要处理的视频源&lt;/p>
+&lt;p>-vf:滤镜相关，视频裁剪，水印等等操作都需要它完成&lt;/p></description></item><item><title>ffprobe详解</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</link><pubDate>Wed, 13 May 2020 09:51:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</guid><description>&lt;blockquote>
+&lt;p>ffprobe是ffmpeg提供的三大工具之一，用来查看音视频文件的各种信息，比如：封装格式、音频/视频流信息、数据包信息等。&lt;/p>
+&lt;/blockquote>
+&lt;p>ffprobe的源码是ffprobe.c，开发过程中如果想获取ffprobe查看的信息，可以通过分析源码，获得对应字段。&lt;/p></description></item><item><title>ffmpeg 删除音视频文件中的元数据</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/ovfEIBOES/</link><pubDate>Thu, 07 Nov 2019 09:55:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/ovfEIBOES/</guid><description>&lt;blockquote>
+&lt;p>清除mp3文件中自带的专辑（album），艺术家（artist），流派（genre）等元数据。&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i &amp;#34;test.mp3&amp;#34; -b:a 320k -map_metadata -1 -y &amp;#34;out.mp3&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>-map_metadata -1 表示清除所有元数据&lt;/p></description></item><item><title>ffmpeg 裁剪视频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</link><pubDate>Tue, 27 Nov 2018 08:49:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</guid><description>&lt;blockquote>
+&lt;p>ffmpeg命令裁剪视频，一般用于裁剪黑边&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/BkjYYAI3X/img/ffmpeg_HJ9roRU2Q.png" alt="ffmpeg_HJ9roRU2Q.png" />&lt;/p>
+&lt;h2 id="说明">
+ 说明
+ &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
+&lt;/h2>
+&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/H1mn7tcA7/img/FFmpeg%e8%a3%81%e5%89%aa%e8%a7%86%e9%a2%91_Sk624F907.png" alt="FFmpeg裁剪视频.png" />&lt;/p>
+&lt;h2 id="命令">
+ 命令
+ &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -vf crop=iw/3:ih:0:0 output.mp4
+ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3:0 output.mp4
+ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3*2:0 output.mp4
+&lt;/code>&lt;/pre></description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>&lt;blockquote>
+&lt;p>FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。&lt;/p></description></item><item><title>ffmpeg 9:16和16:9互相转换</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</link><pubDate>Thu, 30 Aug 2018 03:00:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</guid><description>&lt;blockquote>
+&lt;p>​今天搜集了一下16:9和9:16相互转换的命令。将多余的部分用模糊背景填充，感觉比直接加黑边好很多。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="169转916">
+ 16:9转9:16
+ &lt;a class="anchor" href="#169%e8%bd%ac916">#&lt;/a>
+&lt;/h2>
+&lt;h3 id="命令">
+ 命令
+ &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4">#&lt;/a>
+&lt;/h3>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -lavfi &amp;#34;[0:v]scale=256/81*iw:256/81*ih,boxblur=luma_radius=min(h\,w)/40:luma_power=3:chroma_radius=min(cw\,ch)/40:chroma_power=1[bg];[bg][0:v]overlay=(W-w)/2:(H-h)/2,setsar=1,crop=w=iw*81/256&amp;#34; output.mp4
+&lt;/code>&lt;/pre>&lt;h3 id="效果">
+ 效果
+ &lt;a class="anchor" href="#%e6%95%88%e6%9e%9c">#&lt;/a>
+&lt;/h3>
+&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/Bki3dANDX/img/16-9_SJ0ij04w7.jpg" alt="16-9.jpg" />&lt;/p></description></item><item><title>ffmpeg输出苹果编码格式prores</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SkuD1wO4X/</link><pubDate>Fri, 27 Jul 2018 09:05:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SkuD1wO4X/</guid><description>&lt;blockquote>
+&lt;p>ffmpeg输出苹果编码格式prores。分辨率1080p，25帧，5个音轨。&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i 06无字幕mp4-使用此视频的画面.mp4 -i 06有字幕-使用此视频的国际音轨.mov -map 0:v -s 1920x1080 -r 25 -c:v prores_ks -profile:v 3 -pix_fmt yuv422p10le -map 1:1 -acodec pcm_s24le -ar 48000 -ac 1 -map 1:2 -acodec pcm_s24le -ar 48000 -ac 1 -map 1:3 -acodec pcm_s24le -ar 48000 -ac 1 -map 1:4 -acodec pcm_s24le -ar 48000 -ac 1 -map 1:5 -acodec pcm_s24le -ar 48000 -ac 1 06-out.mov
+&lt;/code>&lt;/pre></description></item><item><title>ffmbc转码输出DVCPRO HD</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SJkrWTUVm/</link><pubDate>Thu, 26 Jul 2018 03:40:55 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SJkrWTUVm/</guid><description>&lt;blockquote>
+&lt;p>使用ffmbc多线程转码输出DVCPRO HD。分辨率为1440x1080，隔行扫描。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="一">
+ 一
+ &lt;a class="anchor" href="#%e4%b8%80">#&lt;/a>
+&lt;/h2>
+&lt;p>将一个双声道音轨复制输出成两个单声道音轨&lt;/p>
+&lt;pre tabindex="0">&lt;code>ffmbc -y -threads 8 -i 海外发行测试源文件0726.mp4 -target dvcprohd -tff -an 海外发行测试源文件0726-out.mxf -acodec pcm_s24le -ar 48000 -ac 1 -newaudio -acodec pcm_s24le -ar 48000 -newaudio -acodec pcm_s24le -ar 48000
+&lt;/code>&lt;/pre>&lt;h2 id="二">
+ 二
+ &lt;a class="anchor" href="#%e4%ba%8c">#&lt;/a>
+&lt;/h2>
+&lt;p>将一个双声道音轨复制拆分成两个左右单声道音轨&lt;/p></description></item><item><title>XDCAM HD422 MXF</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Hy8NTRZmm/</link><pubDate>Tue, 10 Jul 2018 07:25:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Hy8NTRZmm/</guid><description>&lt;blockquote>
+&lt;p>分别使用ffmpeg ffmbc 实现 输出XDCAM HD422 MXF文件&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="ffmpeg">
+ ffmpeg
+ &lt;a class="anchor" href="#ffmpeg">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i test.mov -pix_fmt yuv422p -vcodec mpeg2video -non_linear_quant 1 -flags +ildct+ilme -top 1 -dc 10 -intra_vlc 1 -qmax 3 -lmin &amp;#34;1*QP2LAMBDA&amp;#34; -vtag xd5c -rc_max_vbv_use 1 -rc_min_vbv_use 1 -g 12 -b:v 50000k -minrate 50000k -maxrate 50000k -bufsize 8000k -acodec pcm_s16le -ar 48000 -bf 2 -ac 2 -f mxf_d10 output.mxf
+&lt;/code>&lt;/pre>&lt;h2 id="ffmbc">
+ ffmbc
+ &lt;a class="anchor" href="#ffmbc">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>ffmbc -y -threads 8 -i 先导片.mp4 -target xdcamhd422 -tff -acodec pcm_s24le 先导片-out.mov
+&lt;/code>&lt;/pre></description></item><item><title>nginx+rtmp+hls直播推流</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/</link><pubDate>Thu, 05 Jul 2018 10:04:28 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkPsvPiGm/</guid><description>&lt;blockquote>
+&lt;p>源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="nginx">
+ nginx
+ &lt;a class="anchor" href="#nginx">#&lt;/a>
+&lt;/h2>
+&lt;h3 id="编译">
+ 编译
+ &lt;a class="anchor" href="#%e7%bc%96%e8%af%91">#&lt;/a>
+&lt;/h3>
+&lt;pre tabindex="0">&lt;code>wget http://nginx.org/download/nginx-1.14.0.tar.gz
+wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz
+wget http://zlib.net/zlib-1.2.11.tar.gz
+wget
+#全部解压并编译nginx
+./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf --pid-path=/usr/local/nginx/nginx.pid --with-http_ssl_module --with-pcre=/opt/app/openet/oetal1/chenhe/pcre-8.37 --with-zlib=/opt/app/openet/oetal1/chenhe/zlib-1.2.8 --with-openssl=/opt/app/openet/oetal1/chenhe/openssl-1.0.1t --add-module=../nginx-rtmp-module
+&lt;/code>&lt;/pre>&lt;h3 id="配置">
+ 配置
+ &lt;a class="anchor" href="#%e9%85%8d%e7%bd%ae">#&lt;/a>
+&lt;/h3>
+&lt;pre tabindex="0">&lt;code>worker_processes auto;
+
+error_log logs/error.log debug;
+
+events {
+ worker_connections 1024;
+}
+
+rtmp {
+ server {
+ listen 1935;
+ chunk_size 4000;
+
+ application myapp {
+ live on;
+ }
+
+ application hls {
+ live on;
+ hls on;
+ hls_path /data/y/ngnix/hls;
+ hls_playlist_length 1d;
+ hls_sync 100ms;
+ hls_continuous on;
+ hls_fragment 8s;
+ }
+ }
+}
+
+http {
+ server {
+ listen 80;
+
+ location / {
+ root html;
+ }
+
+ location /stat {
+ rtmp_stat all;
+ rtmp_stat_stylesheet stat.xsl;
+ }
+
+ location /stat.xsl {
+ root html;
+ }
+
+ location /hls {
+ add_header Access-Control-Allow-Origin *;
+ add_header Access-Control-Allow-Headers &amp;#34;Origin, X-Requested-With, Content-Type, Accept&amp;#34;;
+ add_header Access-Control-Allow-Methods &amp;#34;GET, POST, OPTIONS&amp;#34;;
+ #server hls fragments
+ types{
+ application/vnd.apple.mpegurl m3u8;
+ video/mp2t ts;
+ }
+ alias /data/y/ngnix/hls;
+ expires -1;
+ }
+ }
+}
+&lt;/code>&lt;/pre>&lt;h2 id="推流">
+ 推流
+ &lt;a class="anchor" href="#%e6%8e%a8%e6%b5%81">#&lt;/a>
+&lt;/h2>
+&lt;pre tabindex="0">&lt;code>#RTMP方式
+/opt/ffmpeg/bin/ffmpeg -re -i &amp;#34;/home/1.mp4&amp;#34; -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/myapp/test1
+#HTTP方式
+/opt/ffmpeg/bin/ffmpeg -re -i &amp;#34;/home/2.mp4&amp;#34; -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/hls/test2
+&lt;/code>&lt;/pre>&lt;p>具体参数可根据自己的需求调整&lt;/p></description></item><item><title>AAC 到 PCM 音频解码</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/HJbQ88N980f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/HJbQ88N980f/</guid><description>&lt;blockquote>
+&lt;p>最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝试用 AudioQueue 直接解 AAC 未果, 转而将 AAC 解码为 PCM,&lt;/p>
+&lt;p>最终实…&lt;/p>
+&lt;p>最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝试用 AudioQueue 直接解 AAC 未果, 转而将 AAC 解码为 PCM,&lt;/p></description></item><item><title>ffmbc之转DVCPROHD</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkpKIL498RM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkpKIL498RM/</guid><description>&lt;blockquote>
+&lt;p>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scal…&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scale=1440:1080:1 -acodec pcm_s16le -ar 48000 -ac 1 -y xx.mxf
+&lt;/code>&lt;/pre></description></item><item><title>ffmoeg多音频合成(混流)使用方法</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1DOL84cLCz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1DOL84cLCz/</guid><description>&lt;blockquote>
+&lt;p>ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=firs…&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT
+&lt;/code>&lt;/pre>&lt;p>它接受下列参数：&lt;/p>
+&lt;p>inputs&lt;/p>
+&lt;pre tabindex="0">&lt;code>输入数。如果没有指定，默认为2。
+&lt;/code>&lt;/pre>&lt;p>duration&lt;/p>
+&lt;pre tabindex="0">&lt;code>如何确定流的结尾。
+&lt;/code>&lt;/pre>&lt;p>longest&lt;/p>
+&lt;pre tabindex="0">&lt;code>最长的输入时间。（默认）
+&lt;/code>&lt;/pre>&lt;p>shortest&lt;/p>
+&lt;pre tabindex="0">&lt;code>最短的输入时间。
+&lt;/code>&lt;/pre>&lt;p>first&lt;/p>
+&lt;pre tabindex="0">&lt;code>第一个输入的时间。
+&lt;/code>&lt;/pre>&lt;p>dropout_transition&lt;/p>
+&lt;pre tabindex="0">&lt;code>当输入流结束时，体积重整化的过渡时间（以秒为单位）。默认值是2秒。
+&lt;/code>&lt;/pre></description></item><item><title>ffmpeg 多音轨混合成多声道</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Hy0UI8V9I0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Hy0UI8V9I0M/</guid><description>&lt;blockquote>
+&lt;p>使用FFmpeg制作多声道视频&lt;/p>
+&lt;/blockquote>
+&lt;p>将8个音轨混合成双声道&lt;/p>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mkv -filter_complex &amp;#34;[0:1][0:2][0:3][0:4][0:5][0:6][0:7][0:8] amerge=inputs=8&amp;#34; -c:a pcm_s16le output.mkv
+&lt;/code>&lt;/pre></description></item><item><title>ffmpeg获取display_picture_number对应帧信息</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/B1mILV58AM/</guid><description>&lt;h2 id="使用方式">
+ 使用方式
+ &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -i input -vf &lt;span style="color:#e6db74">&amp;#34;select=eq(n\,15237)&amp;#34;&lt;/span>,showinfo -an -f null /dev/null
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="输出结果">
+ 输出结果
+ &lt;a class="anchor" href="#%e8%be%93%e5%87%ba%e7%bb%93%e6%9e%9c">#&lt;/a>
+&lt;/h2>
+&lt;p>15237为display_picture_number&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>Parsed_showinfo_1 @ 0x41ca760&lt;span style="color:#f92672">]&lt;/span> n: &lt;span style="color:#ae81ff">0&lt;/span> pts:54860400 pts_time:609.56 pos:427032896 fmt:yuv420p sar:1/1 s:1920x1080 i:T iskey:0 type:B checksum:A2FB0133 plane_checksum:&lt;span style="color:#f92672">[&lt;/span>7E1FA1A9 3D005549 67BC0A32&lt;span style="color:#f92672">]&lt;/span> mean:&lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#ae81ff">92&lt;/span> &lt;span style="color:#ae81ff">127&lt;/span> 134&lt;span style="color:#f92672">]&lt;/span> stdev:&lt;span style="color:#f92672">[&lt;/span>62.5 9.2 20.7&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参数解释">
+ 参数解释
+ &lt;a class="anchor" href="#%e5%8f%82%e6%95%b0%e8%a7%a3%e9%87%8a">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">### showinfo ### 不改变输入而在行中显示每帧信息。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>显示的信息以&lt;span style="color:#e6db74">`&lt;/span>key/value&lt;span style="color:#e6db74">`&lt;/span>的序列形式给出
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>下面是将显示在输出中的值：
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- n
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>帧序数，从0开始计数
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- pts
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧的时间戳，以时基为单位，时间依赖于输入
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- pts_time
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>按秒计的时间戳
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- pos
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧在输入流中的偏移定位，-1表示信息不可用和/或无意义（例如合成视频中）
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- fmt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>像素格式名
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- sar
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧的宽高比，表示为&lt;span style="color:#e6db74">`&lt;/span>num/den&lt;span style="color:#e6db74">`&lt;/span>格式
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧尺寸，语法同于&lt;span style="color:#f92672">[&lt;/span>视频尺寸（分辨率）&lt;span style="color:#f92672">](&lt;/span>ffmpeg-doc-cn-07.md#视频尺寸（分辨率）&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- i
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>交错模式 &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;P&amp;#34;&lt;/span>对应 &lt;span style="color:#e6db74">&amp;#34;逐行&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;T&amp;#34;&lt;/span> 对应上场优先, &lt;span style="color:#e6db74">&amp;#34;B&amp;#34;&lt;/span>为下场优先t&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- iskey
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>为1表示是关键帧，0则不是
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- type
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧图片类型 &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#34;I&amp;#34;&lt;/span>对应I帧, &lt;span style="color:#e6db74">&amp;#34;P&amp;#34;&lt;/span> 对应P帧, &lt;span style="color:#e6db74">&amp;#34;B&amp;#34;&lt;/span> 对应B帧,或者 &lt;span style="color:#e6db74">&amp;#34;?&amp;#34;&lt;/span>对应未知类型&lt;span style="color:#f92672">)&lt;/span>.参考定义与&lt;span style="color:#e6db74">`&lt;/span>libavutil/avutil.h&lt;span style="color:#e6db74">`&lt;/span>中的&lt;span style="color:#e6db74">`&lt;/span>av_get_picture_type_char&lt;span style="color:#e6db74">`&lt;/span>函数和&lt;span style="color:#e6db74">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- checksum
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧所有信息内容的 Adler-32校验值 &lt;span style="color:#f92672">(&lt;/span>以16进制输出&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- plane_checksum
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>输入帧所有信息内容的 Adler-32校验值 &lt;span style="color:#f92672">(&lt;/span>以16进制输出&lt;span style="color:#f92672">)&lt;/span>, 以格式&lt;span style="color:#e6db74">&amp;#34;[c0 c1 c2 c3]&amp;#34;&lt;/span>显示
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>ffmpeg音频合成命令全集</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1uzUUNc8Cf/</guid><description>&lt;blockquote>
+&lt;p>等有时间了再将其翻译一下，源网址-&amp;gt;传送门&lt;/p>
+&lt;/blockquote>
+&lt;p>stereo → mono stream&lt;/p>
+&lt;p>Mix a single stereo&lt;/p>
+&lt;p>stream down to …&lt;/p>
+&lt;p>等有时间了再将其翻译一下，源网址-&amp;gt;传送门&lt;/p>
+&lt;h2 id="stereo--mono-stream">
+ stereo → mono stream
+ &lt;a class="anchor" href="#stereo--mono-stream">#&lt;/a>
+&lt;/h2>
+&lt;p>![stereo to mono diagram](&lt;a href="https://trac.ffmpeg.org/raw-">https://trac.ffmpeg.org/raw-&lt;/a>&lt;br>
+attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix a single stereo&lt;/p></description></item><item><title>ffmpeg逐行扫描转隔行扫描</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BJDz88N580G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BJDz88N580G/</guid><description>&lt;h2 id="命令参数">
+ 命令参数
+ &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4%e5%8f%82%e6%95%b0">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -i input -aspect 16:9 -c:v mpeg2video -b:v 4000k -minrate 4000k -maxrate 4000k -bufsize 2000k -dc &lt;span style="color:#ae81ff">9&lt;/span> -flags +ilme+ildct -alternate_scan &lt;span style="color:#ae81ff">1&lt;/span> -top &lt;span style="color:#ae81ff">0&lt;/span> output
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其实主要的就是如下参数：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>-flags +ilme+ildct -alternate_scan &lt;span style="color:#ae81ff">1&lt;/span> -top &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>alternate_scan使用隔行转码，top不一般没有什么要求的话頂场优先就可以了。&lt;/p></description></item><item><title>H.264：i帧，p帧，b帧介绍</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Sy778INqIRM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Sy778INqIRM/</guid><description>&lt;blockquote>
+&lt;p>i帧&lt;/p>
+&lt;/blockquote>
+&lt;p>帧内编码帧，i帧表示关键帧，它保留了一副画面完整的数据信息，解码的时候只需要这归真数据就可以完成（因为i帧里面包含了花面狸免得所有信息）&lt;/p>
+&lt;p>i帧的特点&lt;/p></description></item><item><title>H.264NAL头解析</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1cmUI4qUCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1cmUI4qUCf/</guid><description>&lt;blockquote>
+&lt;p>H.264 NAL头解析 如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。&lt;/p>
+&lt;/blockquote>
+&lt;p>NAL&lt;/p>
+&lt;p>He…&lt;/p>
+&lt;p>H.264 NAL头解析 如果NALU对应的Slice为一帧的开始，则用4字节表示，即0x00000001；否则用3字节表示，0x000001。&lt;/p></description></item><item><title>iOS FFmpeg集成</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SkNmLLVcUCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SkNmLLVcUCf/</guid><description>&lt;blockquote>
+&lt;p>FFmpeg标准库&lt;/p>
+&lt;/blockquote>
+&lt;p>概念:&lt;/p>
+&lt;p>FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。&lt;/p>
+&lt;p>采用LGPL或GPL许可证。它提供了录制…&lt;/p></description></item><item><title>Rematrix is needed between 10 channels and 7.1(wide) but there is not enough</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</guid><description>&lt;blockquote>
+&lt;p>解决办法&lt;/p>
+&lt;/blockquote>
+&lt;p>将10个声道拆分成10个音轨&lt;/p>
+&lt;p>ffmpeg -i INPUTFILE -filter_complex “[0:a]pan=mono|c0=c0[…&lt;/p>
+&lt;h2 id="解决办法">
+ 解决办法
+ &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95">#&lt;/a>
+&lt;/h2>
+&lt;p>将10个声道拆分成10个音轨&lt;/p>
+&lt;pre tabindex="0">&lt;code>ffmpeg -i INPUTFILE -filter_complex &amp;#34;[0:a]pan=mono|c0=c0[a0];[0:a]pan=mono|c0=c1[a1];[0:a]pan=mono|c0=c2[a2];[0:a]pan=mono|c0=c3[a3];[0:a]pan=mono|c0=c4[a4];[0:a]pan=mono|c0=c5[a5];[0:a]pan=mono|c0=c6[a6];[0:a]pan=mono|c0=c7[a7];[0:a]pan=mono|c0=c8[a8];[0:a]pan=mono|c0=c9[a9]&amp;#34; -map &amp;#34;[a0]&amp;#34; -map &amp;#34;[a1]&amp;#34; -map &amp;#34;[a2]&amp;#34; -map &amp;#34;[a3]&amp;#34; -map &amp;#34;[a4]&amp;#34; -map &amp;#34;[a5]&amp;#34; -map &amp;#34;[a6]&amp;#34; -map &amp;#34;[a7]&amp;#34; -map &amp;#34;[a8]&amp;#34; -map &amp;#34;[a9]&amp;#34; -vn -c:a pcm_s24le OUTPUTFILE
+
+ffmpeg -i INPUTFILE -vn -c:a pcm_s24le -map 0:1 -filter:a:0 &amp;#34;pan=mono|c0=c0&amp;#34; -map 0:1 -filter:a:1 &amp;#34;pan=mono|c0=c1&amp;#34; -map 0:1 -filter:a:2 &amp;#34;pan=mono|c0=c2&amp;#34; -map 0:1 -filter:a:3 &amp;#34;pan=mono|c0=c3&amp;#34; -map 0:1 -filter:a:4 &amp;#34;pan=mono|c0=c4&amp;#34; -map 0:1 -filter:a:5 &amp;#34;pan=mono|c0=c5&amp;#34; -map 0:1 -filter:a:6 &amp;#34;pan=mono|c0=c6&amp;#34; -map 0:1 -filter:a:7 &amp;#34;pan=mono|c0=c7&amp;#34; -map 0:1 -filter:a:8 &amp;#34;pan=mono|c0=c8&amp;#34; -map 0:1 -filter:a:9 &amp;#34;pan=mono|c0=c9&amp;#34; OUTPUTFILE
+&lt;/code>&lt;/pre></description></item><item><title>简析Android集成FFMPEG推流</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/SyD7UIEcUAM/</guid><description>&lt;blockquote>
+&lt;p>如今，视频直播行业在中国算是比较热门。在刚刚过去的2015年，视频直播成为互联网行业最抢眼的领域之一。从游戏到秀场，从传统的网页端到移动互联网，各大直播平台包括…&lt;/p></description></item></channel></rss>
