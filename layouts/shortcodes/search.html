@@ -1,12 +1,26 @@
 <style>
-  .search-container {
-    /* background-color: #ffffff; */
-    padding: 15px;
-    border-radius: 8px;
+  .shortcodes-search {
     width: 100%;
+    text-align: center;
   }
 
-  .search-container .tabs {
+  .shortcodes-search .search-container {
+      /* background-color: #ffffff; */
+      padding: 15px;
+      border-radius: 8px;
+      width: 650px;
+      margin: 0 auto;
+    }
+
+
+  @media screen and (max-width: 768px) {
+    .shortcodes-search .search-container {
+      width: 350px;
+    }
+  }
+
+
+  .shortcodes-search .search-container .tabs {
     display: flex;
     width: 300px;
     justify-content: space-between;
@@ -14,7 +28,7 @@
     margin: 0 auto;
   }
 
-  .search-container .tabs .tab {
+  .shortcodes-search .search-container .tabs .tab {
     flex: 1;
     text-align: center;
     padding: 8px 0;
@@ -23,11 +37,11 @@
     font-size: 14px;
   }
 
-  .search-container .tabs .tab.active {
+  .shortcodes-search .search-container .tabs .tab.active {
     color: #1e88e5;
   }
 
-  .search-bar {
+  .shortcodes-search .search-bar {
     display: flex;
     align-items: center;
     border: 2px solid #42a5f5;
@@ -35,28 +49,28 @@
     overflow: hidden;
   }
 
-  .search-bar select,
-  input[type="text"],
-  button {
+  .shortcodes-search .search-bar select,
+  .shortcodes-search input[type="text"],
+  .shortcodes-search button {
     height: 35px;
     font-size: 14px;
     border: none;
     outline: none;
   }
 
-  .search-bar select {
+  .shortcodes-search .search-bar select {
     padding: 0 8px;
     /* background-color: #f8f9fa; */
     border-right: 1px solid #dee2e6;
   }
 
-  .search-bar input[type="text"] {
+  .shortcodes-search .search-bar input[type="text"] {
     flex: 1;
     padding: 0 10px;
     /* border-right: 1px solid #dee2e6; */
   }
 
-  .search-bar button {
+  .shortcodes-search .search-bar button {
     padding: 0 15px;
     background-color: #42a5f5;
     color: rgb(245, 245, 245);
@@ -64,30 +78,33 @@
     transition: background-color 0.3s ease;
   }
 
-  button:hover {
+  .shortcodes-search button:hover {
     color: rgb(255, 255, 255);
   }
 
-  .search-bar button:focus {
+  .shortcodes-search .search-bar button:focus {
     outline: none;
   }
 </style>
 
 
-<div class="search-container">
-  <div class="tabs">
-    <div class="tab active" data-engine="https://www.google.com/search?q=">Google</div>
-    <div class="tab" data-engine="https://www.bing.com/search?q=">Bing</div>
-    <div class="tab" data-engine="https://search.yahoo.com/search?p=">Yahoo</div>
-    <div class="tab" data-engine="https://www.baidu.com/s?wd=">Baidu</div>
-  </div>
-  <div class="search-bar">
-    <select id="site-filter">
-      <option value="all">全网</option>
-      <option value="site">本站</option>
-    </select>
-    <input type="text" id="search-query" placeholder="输入您的搜索查询" onkeypress="handleEnter(event)">
-    <button onclick="search()">搜索</button>
+
+<div class="shortcodes-search">
+  <div class="search-container">
+    <div class="tabs">
+      <div class="tab active" data-engine="https://www.google.com/search?q=">Google</div>
+      <div class="tab" data-engine="https://www.bing.com/search?q=">Bing</div>
+      <div class="tab" data-engine="https://search.yahoo.com/search?p=">Yahoo</div>
+      <div class="tab" data-engine="https://www.baidu.com/s?wd=">Baidu</div>
+    </div>
+    <div class="search-bar">
+      <select id="site-filter">
+        <option value="all">全网</option>
+        <option value="site">本站</option>
+      </select>
+      <input type="text" id="search-query" placeholder="输入您的搜索查询" onkeypress="handleEnter(event)">
+      <button onclick="search()">搜索</button>
+    </div>
   </div>
 </div>
 
