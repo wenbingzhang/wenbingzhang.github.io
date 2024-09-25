@@ -6,6 +6,8 @@ Disallow: /notes/
 
 Disallow: /notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/
 
+Disallow: /notes/
+
 Disallow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
 
 Disallow: /notes/
@@ -26,8 +28,6 @@ Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
 Disallow: /notes/
 
-Disallow: /notes/
-
 Disallow: /blog/git/WNYzxj6GR/
 
 Disallow: /blog/git/-fZeBsu3T/
@@ -37,6 +37,8 @@ Disallow: /blog/git/H1Krv6b-4/
 Disallow: /blog/git/By9OI51xN/
 
 Disallow: /blog/git/Hk6GGp6cQ/
+
+Disallow: /notes/
 
 Disallow: /notes/
 

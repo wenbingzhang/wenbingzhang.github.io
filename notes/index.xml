@@ -1,105 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>📔 Git on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/notes/</link><description>Recent content in 📔 Git on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Thu, 14 Mar 2024 16:10:13 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 标签操作</title><link>https://notes.zhangwenbing.com/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/</link><pubDate>Mon, 11 Mar 2024 17:17:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/</guid><description>&lt;h2 id="创建标签">
- 创建标签
- &lt;a class="anchor" href="#%e5%88%9b%e5%bb%ba%e6%a0%87%e7%ad%be">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git tag &amp;lt;tagname&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="推送标签到远程仓库">
- 推送标签到远程仓库
- &lt;a class="anchor" href="#%e6%8e%a8%e9%80%81%e6%a0%87%e7%ad%be%e5%88%b0%e8%bf%9c%e7%a8%8b%e4%bb%93%e5%ba%93">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git push origin &amp;lt;tagname&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="推送所有标签到远程仓库">
- 推送所有标签到远程仓库
- &lt;a class="anchor" href="#%e6%8e%a8%e9%80%81%e6%89%80%e6%9c%89%e6%a0%87%e7%ad%be%e5%88%b0%e8%bf%9c%e7%a8%8b%e4%bb%93%e5%ba%93">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git push origin --tags
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看本地所有标签">
- 查看本地所有标签
- &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e6%9c%ac%e5%9c%b0%e6%89%80%e6%9c%89%e6%a0%87%e7%ad%be">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git tag
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看远程所有标签">
- 查看远程所有标签
- &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e8%bf%9c%e7%a8%8b%e6%89%80%e6%9c%89%e6%a0%87%e7%ad%be">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git ls-remote --tags origin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="删除本地或远程标签">
- 删除本地或远程标签
- &lt;a class="anchor" href="#%e5%88%a0%e9%99%a4%e6%9c%ac%e5%9c%b0%e6%88%96%e8%bf%9c%e7%a8%8b%e6%a0%87%e7%ad%be">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git tag -d &amp;lt;tagname&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 删除远程标签&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git push origin :refs/tags/&amp;lt;tagname&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 删除Commit</title><link>https://notes.zhangwenbing.com/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/</link><pubDate>Thu, 14 Mar 2024 16:10:13 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 获取commit信息&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git log
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># commit-id 要删除commit的下一个commit-id&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git rebase -i &lt;span style="color:#f92672">(&lt;/span>commit-id&lt;span style="color:#f92672">)&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 编辑文件，将要删除的commit之前的pick改为drop&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 保存文件退出&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 再次查看commit信息，确认删除成功&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git log
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 git之删除远程分支</title><link>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</link><pubDate>Thu, 10 Jun 2021 19:09:17 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</guid><description>&lt;blockquote>
-&lt;p>git删除远程分支就这么简单&lt;/p>
-&lt;/blockquote>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git push origin --delete &lt;span style="color:#f92672">[&lt;/span>branch_name&lt;span style="color:#f92672">]&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 git更新.gitignore</title><link>https://notes.zhangwenbing.com/blog/git/-fZeBsu3T/</link><pubDate>Tue, 25 Aug 2020 11:22:54 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/-fZeBsu3T/</guid><description>&lt;blockquote>
-&lt;p>一般直接修改.gitignore是不生效的，需要先清理缓存，再修改.gitignore。&lt;/p>
-&lt;/blockquote>
-&lt;pre tabindex="0">&lt;code>git rm -r --cached .
-git add .
-git commit -m &amp;#39;update .gitignore&amp;#39;
-&lt;/code>&lt;/pre></description></item><item><title>📝 git修改历史cimmit信息</title><link>https://notes.zhangwenbing.com/blog/git/H1Krv6b-4/</link><pubDate>Fri, 28 Dec 2018 10:17:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/H1Krv6b-4/</guid><description>&lt;blockquote>
-&lt;p>git 使用rebase修改历史提交的cimmit信息&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/H1Krv6b-4/img/git_Bk_FuTW-V.jpg" alt="git.jpg" />&lt;/p>
-&lt;h2 id="1修改指定commit">
- 1、修改指定commit
- &lt;a class="anchor" href="#1%e4%bf%ae%e6%94%b9%e6%8c%87%e5%ae%9acommit">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>git rebase -i 36224db
-&lt;/code>&lt;/pre>&lt;p>或:&lt;/p>
-&lt;pre tabindex="0">&lt;code>git rebase -i HEAD~3
-&lt;/code>&lt;/pre>&lt;h2 id="2把pick改为edit">
- 2、把pick改为edit
- &lt;a class="anchor" href="#2%e6%8a%8apick%e6%94%b9%e4%b8%baedit">#&lt;/a>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>🔖 学习笔记 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/notes/</link><description>Recent content in 🔖 学习笔记 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 06 Mar 2024 16:39:04 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 所有权</title><link>https://notes.zhangwenbing.com/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/</link><pubDate>Wed, 06 Mar 2024 15:40:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/</guid><description>&lt;h1 id="所有权">
+ 所有权
+ &lt;a class="anchor" href="#%e6%89%80%e6%9c%89%e6%9d%83">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="所有权规则">
+ 所有权规则
+ &lt;a class="anchor" href="#%e6%89%80%e6%9c%89%e6%9d%83%e8%a7%84%e5%88%99">#&lt;/a>
 &lt;/h2>
 &lt;ul>
-&lt;li>
-&lt;p>pick：保留该commit（缩写:p）&lt;/p></description></item><item><title>📝 git基础笔记</title><link>https://notes.zhangwenbing.com/blog/git/By9OI51xN/</link><pubDate>Thu, 13 Dec 2018 08:33:55 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/By9OI51xN/</guid><description>&lt;blockquote>
-&lt;p>git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="克隆项目">
- 克隆项目
- &lt;a class="anchor" href="#%e5%85%8b%e9%9a%86%e9%a1%b9%e7%9b%ae">#&lt;/a>
+&lt;li>Rust 中的每一个值都有一个 所有者（owner）。&lt;/li>
+&lt;li>值在任一时刻有且只有一个所有者。&lt;/li>
+&lt;li>当所有者（变量）离开作用域，这个值将被丢弃。&lt;/li>
+&lt;/ul>
+&lt;h2 id="可copy的类型">
+ 可Copy的类型
+ &lt;a class="anchor" href="#%e5%8f%afcopy%e7%9a%84%e7%b1%bb%e5%9e%8b">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>git clone https://github.com/golang/go.git
-&lt;/code>&lt;/pre>&lt;h2 id="查看远程仓库">
- 查看远程仓库
- &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e8%bf%9c%e7%a8%8b%e4%bb%93%e5%ba%93">#&lt;/a>
+&lt;ul>
+&lt;li>所有整数类型，比如 u32 。&lt;/li>
+&lt;li>布尔类型，bool ，它的值是 true 和 false 。&lt;/li>
+&lt;li>所有浮点数类型，比如 f64 。&lt;/li>
+&lt;li>字符类型，char 。&lt;/li>
+&lt;li>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 Copy ，但(i32, String) 就没有。&lt;/li>
+&lt;/ul></description></item><item><title>📝 借用与引用</title><link>https://notes.zhangwenbing.com/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/</link><pubDate>Wed, 06 Mar 2024 16:39:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/</guid><description>&lt;h1 id="借用与引用">
+ 借用与引用
+ &lt;a class="anchor" href="#%e5%80%9f%e7%94%a8%e4%b8%8e%e5%bc%95%e7%94%a8">#&lt;/a>
+&lt;/h1>
+&lt;ul>
+&lt;li>创建一个引用的行为称为 借用&lt;/li>
+&lt;li>允许使用值但不获取其所有权&lt;/li>
+&lt;/ul>
+&lt;h2 id="引用规则">
+ 引用规则
+ &lt;a class="anchor" href="#%e5%bc%95%e7%94%a8%e8%a7%84%e5%88%99">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>git remote -v
-&lt;/code>&lt;/pre>&lt;h2 id="添加远程仓库">
- 添加远程仓库
- &lt;a class="anchor" href="#%e6%b7%bb%e5%8a%a0%e8%bf%9c%e7%a8%8b%e4%bb%93%e5%ba%93">#&lt;/a>
+&lt;ul>
+&lt;li>在任意给定时间，要么 只能有一个可变引用，要么 只能有多个不可变引用。&lt;/li>
+&lt;li>引用必须总是有效的。&lt;/li>
+&lt;/ul>
+&lt;h2 id="可变引用">
+ 可变引用
+ &lt;a class="anchor" href="#%e5%8f%af%e5%8f%98%e5%bc%95%e7%94%a8">#&lt;/a>
 &lt;/h2>
-&lt;p>要添加一个新的远程仓库，可以指定一个简单的名字，以便将来引用，运行 git remote add [shortname] [url]：&lt;/p></description></item><item><title>📝 Git回滚到某个commit</title><link>https://notes.zhangwenbing.com/blog/git/Hk6GGp6cQ/</link><pubDate>Fri, 12 Oct 2018 06:49:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/Hk6GGp6cQ/</guid><description>&lt;blockquote>
-&lt;p>git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="回滚命令">
- 回滚命令
- &lt;a class="anchor" href="#%e5%9b%9e%e6%bb%9a%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>git reset --hard HEAD^ #回滚到上个版本
-git reset --hard HEAD~3 #回滚到前3次提交之前，以此类推，回退到n次提交之前
-git reset --hard commit_id #回滚到指定commit的sha版本
-&lt;/code>&lt;/pre>&lt;h2 id="推送命令">
- 推送命令
- &lt;a class="anchor" href="#%e6%8e%a8%e9%80%81%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>git push origin HEAD --force #强制推送到远程
-&lt;/code>&lt;/pre>&lt;h2 id="温馨提示">
- 温馨提示
- &lt;a class="anchor" href="#%e6%b8%a9%e9%a6%a8%e6%8f%90%e7%a4%ba">#&lt;/a>
-&lt;/h2>
-&lt;p>回滚有风险，请提前做好备份。&lt;/p></description></item></channel></rss>
+&lt;p>允许修改一个借用的值，这就是可变引用（&amp;amp;mut）。&lt;/p></description></item></channel></rss>
