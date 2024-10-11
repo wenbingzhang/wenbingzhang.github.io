@@ -1,315 +1,315 @@
 User-agent: *
 
-Disallow: /notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/
+Allow: /notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/
+Allow: /notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
+Allow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
+Allow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
 
-Disallow: /notes/2024/08/06/ny773erqjgbzmzgfikfvds/
+Allow: /notes/2024/08/06/ny773erqjgbzmzgfikfvds/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/
+Allow: /notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/
 
-Disallow: /notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/
+Allow: /notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
+Allow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /blog/git/WNYzxj6GR/
+Allow: /blog/git/WNYzxj6GR/
 
-Disallow: /blog/git/-fZeBsu3T/
+Allow: /blog/git/-fZeBsu3T/
 
-Disallow: /blog/git/H1Krv6b-4/
+Allow: /blog/git/H1Krv6b-4/
 
-Disallow: /blog/git/By9OI51xN/
+Allow: /blog/git/By9OI51xN/
 
-Disallow: /blog/git/Hk6GGp6cQ/
+Allow: /blog/git/Hk6GGp6cQ/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /links/
+Allow: /links/
 
-Disallow: /notes/
+Allow: /notes/
 
-Disallow: /
+Allow: /
 
-Disallow: /articles/
+Allow: /articles/
 
-Disallow: /categories/
+Allow: /categories/
 
-Disallow: /tags/linux/
+Allow: /tags/linux/
 
-Disallow: /categories/linux/
+Allow: /categories/linux/
 
-Disallow: /tags/macos/
+Allow: /tags/macos/
 
-Disallow: /categories/macos/
+Allow: /categories/macos/
 
-Disallow: /articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/
+Allow: /articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/
 
-Disallow: /tags/python/
+Allow: /tags/python/
 
-Disallow: /tags/
+Allow: /tags/
 
-Disallow: /tags/blog/
+Allow: /tags/blog/
 
-Disallow: /tags/hugo/
+Allow: /tags/hugo/
 
-Disallow: /categories/hugo/
+Allow: /categories/hugo/
 
-Disallow: /articles/2024/03/06/9mzhfnl58azjmeibfblvjy/
+Allow: /articles/2024/03/06/9mzhfnl58azjmeibfblvjy/
 
-Disallow: /tags/ffmpeg/
+Allow: /tags/ffmpeg/
 
-Disallow: /categories/ffmpeg/
+Allow: /categories/ffmpeg/
 
-Disallow: /articles/2024/02/06/kkcc5t2y88hybafpourudv/
+Allow: /articles/2024/02/06/kkcc5t2y88hybafpourudv/
 
-Disallow: /blog/linux/fSHb366Mg/
+Allow: /blog/linux/fSHb366Mg/
 
-Disallow: /blog/linux/G0DCCusMR/
+Allow: /blog/linux/G0DCCusMR/
 
-Disallow: /blog/linux/xd2UELYGR/
+Allow: /blog/linux/xd2UELYGR/
 
-Disallow: /blog/linux/SNyWJwbGR/
+Allow: /blog/linux/SNyWJwbGR/
 
-Disallow: /blog/linux/tqj7MybMg/
+Allow: /blog/linux/tqj7MybMg/
 
-Disallow: /blog/ffmpeg/ROS_KIbGg/
+Allow: /blog/ffmpeg/ROS_KIbGg/
 
-Disallow: /blog/linux/-vpymjJGg/
+Allow: /blog/linux/-vpymjJGg/
 
-Disallow: /blog/linux/h5sGcU1MR/
+Allow: /blog/linux/h5sGcU1MR/
 
-Disallow: /blog/linux/loBZJ41MR/
+Allow: /blog/linux/loBZJ41MR/
 
-Disallow: /blog/macos/aaELFz1Mg/
+Allow: /blog/macos/aaELFz1Mg/
 
-Disallow: /blog/linux/bdpp4QAMg/
+Allow: /blog/linux/bdpp4QAMg/
 
-Disallow: /blog/ffmpeg/Mv3bzfgqM/
+Allow: /blog/ffmpeg/Mv3bzfgqM/
 
-Disallow: /blog/linux/HTLMANZea/
+Allow: /blog/linux/HTLMANZea/
 
-Disallow: /blog/ffmpeg/UtHueryud/
+Allow: /blog/ffmpeg/UtHueryud/
 
-Disallow: /blog/linux/QNIBzjz3k/
+Allow: /blog/linux/QNIBzjz3k/
 
-Disallow: /blog/linux/N2EsU3hZT/
+Allow: /blog/linux/N2EsU3hZT/
 
-Disallow: /blog/ffmpeg/rdgQnFI6j/
+Allow: /blog/ffmpeg/rdgQnFI6j/
 
-Disallow: /blog/macos/MiSev5_HW/
+Allow: /blog/macos/MiSev5_HW/
 
-Disallow: /blog/ffmpeg/ovfEIBOES/
+Allow: /blog/ffmpeg/ovfEIBOES/
 
-Disallow: /blog/linux/roH7hpe6L/
+Allow: /blog/linux/roH7hpe6L/
 
-Disallow: /blog/linux/RRaHkWbSu/
+Allow: /blog/linux/RRaHkWbSu/
 
-Disallow: /blog/linux/JQIo7dGc1/
+Allow: /blog/linux/JQIo7dGc1/
 
-Disallow: /blog/linux/yhK4y-gaU/
+Allow: /blog/linux/yhK4y-gaU/
 
-Disallow: /blog/linux/B1G3FwCaN/
+Allow: /blog/linux/B1G3FwCaN/
 
-Disallow: /blog/linux/HkCTnskvV/
+Allow: /blog/linux/HkCTnskvV/
 
-Disallow: /blog/linux/rk-lmMGL4/
+Allow: /blog/linux/rk-lmMGL4/
 
-Disallow: /blog/linux/H10_K-VQ4/
+Allow: /blog/linux/H10_K-VQ4/
 
-Disallow: /blog/linux/S1wDPAKf4/
+Allow: /blog/linux/S1wDPAKf4/
 
-Disallow: /blog/linux/B1rSV2FzE/
+Allow: /blog/linux/B1rSV2FzE/
 
-Disallow: /blog/linux/H1xaQL3-N/
+Allow: /blog/linux/H1xaQL3-N/
 
-Disallow: /blog/macos/HJvNDli-4/
+Allow: /blog/macos/HJvNDli-4/
 
-Disallow: /blog/linux/B11j0sF-N/
+Allow: /blog/linux/B11j0sF-N/
 
-Disallow: /blog/macos/Hka7rLR0Q/
+Allow: /blog/macos/Hka7rLR0Q/
 
-Disallow: /blog/ffmpeg/H1mn7tcA7/
+Allow: /blog/ffmpeg/H1mn7tcA7/
 
-Disallow: /blog/macos/BkiIyglTX/
+Allow: /blog/macos/BkiIyglTX/
 
-Disallow: /blog/ffmpeg/BkjYYAI3X/
+Allow: /blog/ffmpeg/BkjYYAI3X/
 
-Disallow: /blog/linux/SJ10UoTom/
+Allow: /blog/linux/SJ10UoTom/
 
-Disallow: /blog/linux/BkKKGWnsQ/
+Allow: /blog/linux/BkKKGWnsQ/
 
-Disallow: /blog/linux/HJJ4wWwim/
+Allow: /blog/linux/HJJ4wWwim/
 
-Disallow: /blog/linux/SJWuUJwsQ/
+Allow: /blog/linux/SJWuUJwsQ/
 
-Disallow: /blog/linux/SJyvgQAOm/
+Allow: /blog/linux/SJyvgQAOm/
 
-Disallow: /blog/ffmpeg/Bki3dANDX/
+Allow: /blog/ffmpeg/Bki3dANDX/
 
-Disallow: /blog/linux/ByaB7yPSQ/
+Allow: /blog/linux/ByaB7yPSQ/
 
-Disallow: /blog/linux/rJa7oi0EQ/
+Allow: /blog/linux/rJa7oi0EQ/
 
-Disallow: /blog/linux/Skl7i90EQ/
+Allow: /blog/linux/Skl7i90EQ/
 
-Disallow: /blog/ffmpeg/SkuD1wO4X/
+Allow: /blog/ffmpeg/SkuD1wO4X/
 
-Disallow: /blog/ffmpeg/SJkrWTUVm/
+Allow: /blog/ffmpeg/SJkrWTUVm/
 
-Disallow: /blog/linux/S1ywxQEN7/
+Allow: /blog/linux/S1ywxQEN7/
 
-Disallow: /blog/linux/HkgnaWVNm/
+Allow: /blog/linux/HkgnaWVNm/
 
-Disallow: /blog/linux/HJlvWaG47/
+Allow: /blog/linux/HJlvWaG47/
 
-Disallow: /blog/ffmpeg/Hy8NTRZmm/
+Allow: /blog/ffmpeg/Hy8NTRZmm/
 
-Disallow: /blog/ffmpeg/BkPsvPiGm/
+Allow: /blog/ffmpeg/BkPsvPiGm/
 
-Disallow: /blog/linux/H10wzCxGX/
+Allow: /blog/linux/H10wzCxGX/
 
-Disallow: /blog/macos/BkWmi6d-7/
+Allow: /blog/macos/BkWmi6d-7/
 
-Disallow: /blog/macos/ry29U6xW7/
+Allow: /blog/macos/ry29U6xW7/
 
-Disallow: /blog/linux/S1cZ9qilm/
+Allow: /blog/linux/S1cZ9qilm/
 
-Disallow: /blog/macos/SkOqdFUxX/
+Allow: /blog/macos/SkOqdFUxX/
 
-Disallow: /blog/macos/BkHOYBUgX/
+Allow: /blog/macos/BkHOYBUgX/
 
-Disallow: /blog/linux/H1BwMFoy7/
+Allow: /blog/linux/H1BwMFoy7/
 
-Disallow: /blog/ffmpeg/HJbQ88N980f/
+Allow: /blog/ffmpeg/HJbQ88N980f/
 
-Disallow: /blog/linux/rJY7U8E9U0z/
+Allow: /blog/linux/rJY7U8E9U0z/
 
-Disallow: /blog/linux/HyEL84qI0M/
+Allow: /blog/linux/HyEL84qI0M/
 
-Disallow: /blog/linux/rytGLI49LCf/
+Allow: /blog/linux/rytGLI49LCf/
 
-Disallow: /blog/linux/B1AMUL45ICM/
+Allow: /blog/linux/B1AMUL45ICM/
 
-Disallow: /blog/linux/rJFUIE5I0G/
+Allow: /blog/linux/rJFUIE5I0G/
 
-Disallow: /blog/linux/r1bIUL458Cz/
+Allow: /blog/linux/r1bIUL458Cz/
 
-Disallow: /blog/ffmpeg/BkpKIL498RM/
+Allow: /blog/ffmpeg/BkpKIL498RM/
 
-Disallow: /blog/ffmpeg/S1DOL84cLCz/
+Allow: /blog/ffmpeg/S1DOL84cLCz/
 
-Disallow: /blog/ffmpeg/Hy0UI8V9I0M/
+Allow: /blog/ffmpeg/Hy0UI8V9I0M/
 
-Disallow: /blog/ffmpeg/B1mILV58AM/
+Allow: /blog/ffmpeg/B1mILV58AM/
 
-Disallow: /blog/ffmpeg/S1uzUUNc8Cf/
+Allow: /blog/ffmpeg/S1uzUUNc8Cf/
 
-Disallow: /blog/ffmpeg/BJDz88N580G/
+Allow: /blog/ffmpeg/BJDz88N580G/
 
-Disallow: /blog/ffmpeg/Sy778INqIRM/
+Allow: /blog/ffmpeg/Sy778INqIRM/
 
-Disallow: /blog/ffmpeg/S1cmUI4qUCf/
+Allow: /blog/ffmpeg/S1cmUI4qUCf/
 
-Disallow: /blog/ffmpeg/SkNmLLVcUCf/
+Allow: /blog/ffmpeg/SkNmLLVcUCf/
 
-Disallow: /blog/linux/SkaWUIN5U0z/
+Allow: /blog/linux/SkaWUIN5U0z/
 
-Disallow: /blog/linux/HJi_UUE5ICG/
+Allow: /blog/linux/HJi_UUE5ICG/
 
-Disallow: /blog/linux/rJvbIUV580z/
+Allow: /blog/linux/rJvbIUV580z/
 
-Disallow: /blog/linux/B1CLLE98CG/
+Allow: /blog/linux/B1CLLE98CG/
 
-Disallow: /blog/linux/HkiLUE5UCf/
+Allow: /blog/linux/HkiLUE5UCf/
 
-Disallow: /blog/linux/B1OZ8INcIAM/
+Allow: /blog/linux/B1OZ8INcIAM/
 
-Disallow: /blog/linux/rJJe8UNcU0M/
+Allow: /blog/linux/rJJe8UNcU0M/
 
-Disallow: /blog/linux/SJ68UEcUCM/
+Allow: /blog/linux/SJ68UEcUCM/
 
-Disallow: /blog/linux/rkxlI845IAz/
+Allow: /blog/linux/rkxlI845IAz/
 
-Disallow: /blog/linux/B1muLLNcIRf/
+Allow: /blog/linux/B1muLLNcIRf/
 
-Disallow: /blog/linux/Hk2bI84c8Rz/
+Allow: /blog/linux/Hk2bI84c8Rz/
 
-Disallow: /blog/linux/H13UIE5LRM/
+Allow: /blog/linux/H13UIE5LRM/
 
-Disallow: /blog/linux/S19ZLLE9I0G/
+Allow: /blog/linux/S19ZLLE9I0G/
 
-Disallow: /blog/linux/H1sZIUN9I0f/
+Allow: /blog/linux/H1sZIUN9I0f/
 
-Disallow: /blog/linux/HyYg884c80f/
+Allow: /blog/linux/HyYg884c80f/
 
-Disallow: /blog/linux/HkGxI8VcL0f/
+Allow: /blog/linux/HkGxI8VcL0f/
 
-Disallow: /blog/linux/HJCOI8NqUAG/
+Allow: /blog/linux/HJCOI8NqUAG/
 
-Disallow: /blog/linux/S13z8UE5UCf/
+Allow: /blog/linux/S13z8UE5UCf/
 
-Disallow: /blog/linux/B1FO88V580M/
+Allow: /blog/linux/B1FO88V580M/
 
-Disallow: /blog/linux/ryedLUN9UAf/
+Allow: /blog/linux/ryedLUN9UAf/
 
-Disallow: /blog/macos/HkGt88E9U0f/
+Allow: /blog/macos/HkGt88E9U0f/
 
-Disallow: /blog/macos/H1JGLLVcL0G/
+Allow: /blog/macos/H1JGLLVcL0G/
 
-Disallow: /blog/linux/Sky_LU458CM/
+Allow: /blog/linux/Sky_LU458CM/
 
-Disallow: /blog/linux/SyqLL45IRz/
+Allow: /blog/linux/SyqLL45IRz/
 
-Disallow: /blog/linux/ByS8884qI0M/
+Allow: /blog/linux/ByS8884qI0M/
 
-Disallow: /blog/linux/H1v8I4cLAf/
+Allow: /blog/linux/H1v8I4cLAf/
 
-Disallow: /blog/linux/rykY88V58CG/
+Allow: /blog/linux/rykY88V58CG/
 
-Disallow: /blog/linux/HkXeLI4cIAG/
+Allow: /blog/linux/HkXeLI4cIAG/
 
-Disallow: /blog/linux/HybPILE5U0z/
+Allow: /blog/linux/HybPILE5U0z/
 
-Disallow: /blog/linux/H1z5LL49I0z/
+Allow: /blog/linux/H1z5LL49I0z/
 
-Disallow: /blog/linux/rkCKI84cLAG/
+Allow: /blog/linux/rkCKI84cLAG/
 
-Disallow: /blog/linux/ry3FIUV58AM/
+Allow: /blog/linux/ry3FIUV58AM/
 
-Disallow: /blog/ffmpeg/S1EdILNqU0M/
+Allow: /blog/ffmpeg/S1EdILNqU0M/
 
-Disallow: /blog/linux/B11rILN5UAz/
+Allow: /blog/linux/B11rILN5UAz/
 
-Disallow: /blog/linux/HyGHL8E5LRM/
+Allow: /blog/linux/HyGHL8E5LRM/
 
-Disallow: /blog/linux/BJ8I8E9U0M/
+Allow: /blog/linux/BJ8I8E9U0M/
 
-Disallow: /blog/linux/BJrx8LE98CG/
+Allow: /blog/linux/BJrx8LE98CG/
 
-Disallow: /blog/linux/SJ_88EqU0M/
+Allow: /blog/linux/SJ_88EqU0M/
 
-Disallow: /blog/linux/Sykc8UNqICz/
+Allow: /blog/linux/Sykc8UNqICz/
 
-Disallow: /blog/linux/SytNL84q8Af/
+Allow: /blog/linux/SytNL84q8Af/
 
-Disallow: /blog/ffmpeg/SyD7UIEcUAM/
+Allow: /blog/ffmpeg/SyD7UIEcUAM/
 
-Disallow: /blog/linux/HJqtULE5I0z/
+Allow: /blog/linux/HJqtULE5I0z/
