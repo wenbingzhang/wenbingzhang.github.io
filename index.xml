@@ -272,7 +272,6 @@ git commit -m &amp;#39;update .gitignore&amp;#39;
 &lt;/code>&lt;/pre></description></item><item><title>📝 git修改历史cimmit信息</title><link>https://notes.zhangwenbing.com/blog/git/H1Krv6b-4/</link><pubDate>Fri, 28 Dec 2018 10:17:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/H1Krv6b-4/</guid><description>&lt;blockquote>
 &lt;p>git 使用rebase修改历史提交的cimmit信息&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/H1Krv6b-4/img/git_Bk_FuTW-V.jpg" alt="git.jpg" />&lt;/p>
 &lt;h2 id="1修改指定commit">
  1、修改指定commit
  &lt;a class="anchor" href="#1%e4%bf%ae%e6%94%b9%e6%8c%87%e5%ae%9acommit">#&lt;/a>
