@@ -10,7 +10,6 @@ weight: 5
 
 > git 使用rebase修改历史提交的cimmit信息
 
-![git.jpg](/static/uploads/H1Krv6b-4/img/git_Bk_FuTW-V.jpg)
 
 ## 1、修改指定commit
 
