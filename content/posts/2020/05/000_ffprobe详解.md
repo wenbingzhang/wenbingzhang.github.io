@@ -18,14 +18,13 @@ ffprobe的源码是ffprobe.c，开发过程中如果想获取ffprobe查看的信
 
 ## 查看音视频文件的封装格式
 
-```
+```bash
 ffprobe -show_format inputFile
-
 ```
 
 输出信息：
 
-```
+```bash
 [FORMAT]
 // 文件名
 filename=VID_20190811_113717.mp4
@@ -48,19 +47,17 @@ bit_rate=20756240
 // 即AVFormatContext->probe_score
 probe_score=100
 [/FORMAT]
-
 ```
 
 ## 查看音视频文件的流信息
 
-```
+```bash
 ffprobe -show_streams inputFile
-
 ```
 
 输出信息：
 
-```
+```bash
 [STREAM]
 // 当前流的索引信息,对应于AVStream->index
 index=0
@@ -220,7 +217,6 @@ TAG:creation_time=2019-08-11T03:37:28.000000Z
 TAG:language=eng
 TAG:handler_name=SoundHandle
 [/STREAM]
-
 ```
 
 > SAR(Sample Aspect Ratio): 采样数宽高比，图像的横向采集点数与纵向采集点数的比值，即像素个数的比值。
@@ -276,15 +272,14 @@ TAG:handler_name=SoundHandle
 
 ## 查看音视频文件的数据包信息
 
-```
+```bash
 // -select_streams表示选择音频或者视频
 ffprobe -show_format [-select_streams audio | video] inputFile
-
 ```
 
 首先看下视频流的第一个Packet和第二个Packet：
 
-```
+```bash
 [PACKET]
 //Packet类型，即av_get_media_type_string(AVStream->codecpar->codec_type)
 codec_type=video
@@ -329,12 +324,11 @@ size=31200
 pos=1018714
 flags=__
 [/PACKET]
-
 ```
 
 然后看下音频流的第一个Packet和第二个Packet：
 
-```
+```bash
 [PACKET]
 // 音频帧
 codec_type=audio
@@ -374,20 +368,18 @@ size=416
 pos=810874
 flags=K_
 [/PACKET]
-
 ```
 
 ## 查看音视频文件解码后的帧信息
 
-```
+```bash
 // -select_streams表示选择音频或者视频
 ffprobe -show_frames [-select_streams audio | video] inputFile
-
 ```
 
 首先看下视频流的第一帧和第二帧：
 
-```
+```bash
 [FRAME]
 // 帧类型，即av_get_media_type_string(AVStream->codecpar->codec_type)
 media_type=video
@@ -481,13 +473,12 @@ color_primaries=bt470bg
 color_transfer=smpte170m
 chroma_location=left
 [/FRAME]
-
 ```
 
 然后看下音频流的第一帧和第二帧：
 
-```
-FRAME]
+```bash
+[FRAME]
 // 帧类型，即av_get_media_type_string(AVStream->codecpar->codec_type)
 media_type=audio
 // 当前帧所属流的索引信息, 对应于AVStream->index
@@ -542,11 +533,9 @@ nb_samples=1024
 channels=2
 channel_layout=stereo
 [/FRAME]
-
 ```
 
 ## 参考文章
 
 FFmpeg获取视频正确的宽高比
-
 转载自->https://www.zybuluo.com/ltlovezh/note/1534824

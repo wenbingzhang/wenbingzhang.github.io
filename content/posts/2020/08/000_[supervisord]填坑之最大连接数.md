@@ -18,7 +18,7 @@ menu: main
 
 ## 解决办法
 
-```
+```bash
 cat /etc/supervisord.conf
 
 [supervisord]
@@ -32,5 +32,4 @@ minfds=81920
 minprocs=81920
 
 systemctl restart supervisord.service
-
 ```

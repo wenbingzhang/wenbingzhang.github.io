@@ -14,11 +14,11 @@ menu: main
 
 ## Nginx 优化
 
-**1. TCP 与 UNIX 套接字**
+### 1. TCP 与 UNIX 套接字
 
 UNIX 域套接字提供的性能略高于 TCP 套接字在回送接口上的性能（较少的数据复制，较少的上下文切换）。如果每个服务器需要支持超过 1000 个连接，请使用 TCP 套接字 - 它们可以更好地扩展。
 
-```
+```bash
 upstream backend
 {
   server unix:/var/run/fastcgi.sock;
@@ -26,7 +26,7 @@ upstream backend
 
 ```
 
-**2. 调整 worker_processes 参数**
+### 2. 调整 worker_processes 参数
 
 现代硬件是多处理器，NGINX 可以利用多个物理或虚拟处理器。在大多数情况下，您的 Web 服务器计算机不会配置为处理多个工作负载（例如同时提供 Web 服务器和打印服务器的服务），因此您需要配置 NGINX 以使用所有可用的处理器，因为 NGINX 工作进程是不是多线程的。
 
@@ -34,7 +34,7 @@ upstream backend
 
 当你在它的时候，增加 worker_connections 的数量（每个核心应该处理多少个连接）并将 multi_accept 设置为 ON，如果你在 Linux 上则设置为 epoll：
 
-```
+```bash
 worker_processes 4;
 events
 {
@@ -44,9 +44,9 @@ events
 
 ```
 
-**3. 禁用访问日志**
+### 3. 禁用访问日志
 
-```
+```bash
 access_log off;
 log_not_found off;
 error_log /var/log/nginx-error.log warn;
@@ -55,14 +55,14 @@ error_log /var/log/nginx-error.log warn;
 
 如果有需要不可以关闭，至少是缓存他们
 
-```
+```bash
 access_log /var/log/nginx/access.log main buffer=16k;
 
 ```
 
-**4. 开启 gzip 压缩**
+### 4. 开启 gzip 压缩
 
-```
+```bash
 gzip on;
 gzip_disable "msie6";
 gzip_vary on;
@@ -75,9 +75,9 @@ gzip_types text/plain text/css application/json application/javascript text/xml 
 
 ```
 
-**5. 缓存访问频次较高的文件**
+### 5. 缓存访问频次较高的文件
 
-```
+```bash
 open_file_cache max=2000 inactive=20s;
 open_file_cache_valid 60s;
 open_file_cache_min_uses 5;
@@ -85,9 +85,9 @@ open_file_cache_errors off;
 
 ```
 
-**6. 调整客户端超时**
+### 6. 调整客户端超时
 
-```
+```bash
 client_max_body_size 50M;
 client_body_buffer_size 1m;
 client_body_timeout 15;
@@ -100,9 +100,9 @@ tcp_nodelay on;
 
 ```
 
-**7. 调整输出缓存**
+### 7. 调整输出缓存
 
-```
+```bash
 fastcgi_buffers 256 16k;
 fastcgi_buffer_size 128k;
 fastcgi_connect_timeout 3s;
@@ -115,13 +115,13 @@ server_names_hash_bucket_size 100;
 
 ```
 
-**8. 负载均衡策略**
+### 8. 负载均衡策略
 
 Nginx 提供轮询（round robin）、用户 IP 哈希（client IP）和指定权重 3 种方式。
 
 默认情况下，Nginx 会为你提供轮询作为负载均衡策略。但是这并不一定能够让你满意。比如，某一时段内的一连串访问都是由同一个用户 Michael 发起的，那么第一次 Michael 的请求可能是 backend2，而下一次是 backend3，然后是 backend1、backend2、backend3…… 在大多数应用场景中，这样并不高效。当然，也正因如此，Nginx 为你提供了一个按照 Michael、Jason、David 等等这些乱七八糟的用户的 IP 来 hash 的方式，这样每个 client 的访问请求都会被甩给同一个后端服务器。
 
-```
+```bash
 upstream backend {
   ip_hash;
   server unix:/var/run/php7.2-fpm.sock1 weight=100 max_fails=5 fail_timeout=5;
@@ -130,18 +130,18 @@ upstream backend {
 
 ```
 
-**9. 持续监控日志**
+### 9. 持续监控日志
 
 尤其是在调优最初期，在一个窗口
 
-```
+```bash
 tail -f /var/log/nginx/error.log
 
 ```
 
 在另外两个窗口分别：
 
-```
+```bash
 tail -f /var/log/php-fpm/error.log
 tail -f /var/log/php-fpm/www-error.log
 
@@ -149,11 +149,11 @@ tail -f /var/log/php-fpm/www-error.log
 
 ## PHP-fpm 优化
 
-**1. 修改进程管理模式**
+### 1. 修改进程管理模式
 
 static 管理模式适合比较大内存的服务器，而 dynamic 则适合小内存的服务器，你可以设置一个 pm.min_spare_servers 和 pm.max_spare_servers 合理范围，这样进程数会不断变动。ondemand 模式则更加适合微小内存，例如 512MB 或者 256MB 内存，以及对可用性要求不高的环境。
 
-```
+```bash
 pm = dynamic #指定进程管理方式，有3种可供选择：static、dynamic和ondemand。
 pm.max_children = 16 #static模式下创建的子进程数或dynamic模式下同一时刻允许最大的php-fpm子进程数量。
 pm.start_servers = 10 #动态方式下的起始php-fpm进程数量。
@@ -171,9 +171,9 @@ pm = dynamic，启动时会产生固定数量的子进程（由 pm.start_servers
 
 pm = ondemand，这种模式和 pm = dynamic 相反，把内存放在第一位，每个闲置进程在持续闲置了 pm.process_idle_timeout 秒后就会被杀掉，如果服务器长时间没有请求，就只会有一个 php-fpm 主进程。弊端是遇到高峰期或者如果 pm.process_idle_timeout 的值太短的话，容易出现 504 Gateway Time-out 错误，因此 pm = dynamic 和 pm = ondemand 谁更适合视实际情况而定。
 
-**2. 释放内存的配置**
+### 2. 释放内存的配置
 
-```
+```bash
 pm.max_requests = 1000
 
 ```
@@ -182,9 +182,9 @@ pm.max_requests = 1000
 
 也就是当一个 PHP-CGI 进程处理的请求数累积到 1000 个后，自动重启该进程，防止第三方库造成的内存泄漏。 重启时可能会导致 502 错误，在高并发站点时有出现。
 
-**3. php-fpm 慢日志**
+### 3. php-fpm 慢日志
 
-```
+```bash
 request_terminate_timeout = 30s #将执行时间太长的进程直接终止
 request_slowlog_timeout = 2s #2秒
 slowlog = log/$pool.log.slow #日志文件
@@ -193,7 +193,7 @@ slowlog = log/$pool.log.slow #日志文件
 
 ## 内核优化
 
-### 一 TIME_WAIT产生原因：
+### 1. TIME_WAIT产生原因：
 
 1、nginx现有的负载均衡模块实现php fastcgi负载均衡，nginx使用了短连接方式，所以会造成大量处于TIME_WAIT状态的连接。
 
@@ -207,11 +207,11 @@ slowlog = log/$pool.log.slow #日志文件
 
 在主动关闭方发送的最后一个 ack(fin) ，有可能丢失，这时被动方会重新发fin, 如果这时主动方处于 CLOSED 状态 ，就会响应 rst 而不是 ack。所以主动方要处于 TIME_WAIT 状态，而不能是 CLOSED 。
 
-### 二 过多TIME_WAIT危害
+### 2. 过多TIME_WAIT危害
 
 TIME_WAIT 并不会占用很大资源的，除非受到攻击。只要把TIME_WAIT所占用内存控制在一定范围。一般默认最大是35600条TIME_WAIT。
 
-### 三 解决方法
+### 3. 解决方法
 
 net.ipv4.tcp_syncookies = 1 表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭。
 

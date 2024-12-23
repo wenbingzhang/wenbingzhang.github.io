@@ -18,7 +18,7 @@ Linux、nvidia、cuda
 
 ## 命令
 
-```
+```bash
 /usr/local/cuda/extras/demo_suite/deviceQuery
 
  CUDA Device Query (Runtime API) version (CUDART static linking)
@@ -100,7 +100,6 @@ Device 1: "GeForce RTX 2080 Ti"
 > Peer access from GeForce RTX 2080 Ti (GPU1) -> GeForce RTX 2080 Ti (GPU0) : Yes
 
 deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.1, CUDA Runtime Version = 10.1, NumDevs = 2
-
 ```
 
 ## 源码
@@ -109,7 +108,6 @@ https://github.com/NVIDIA/cuda-samples/tree/master/Samples/deviceQuery
 
 ### 编译
 
-```
+```bash
 /usr/local/cuda/bin/nvcc deviceQuery.cpp -I /usr/local/cuda/samples/common/inc/ -o deviceQuery
-
 ```

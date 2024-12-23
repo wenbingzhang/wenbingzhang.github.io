@@ -14,9 +14,8 @@ menu: main
 
 ## 图片水印
 
-```
+```bash
 ffmpeg -i input.mp4 -vf "movie=wenzi.png[watermark];[in][watermark] overlay=main_w-overlay_w-10:main_h-overlay_h-10[out] " output.mp4
-
 ```
 
 > -i :一般表示输入
@@ -33,9 +32,8 @@ ffmpeg -i input.mp4 -vf "movie=wenzi.png[watermark];[in][watermark] overlay=main
 >
 > main_h-overlay_h-10：水印在y轴的位置
 
-```
+```bash
 ffmpeg -i input.mp4 -i logo.png -filter_complex 'overlay=x=10:y=main_h-overlay_h-10' output.mp4
-
 ```
 
 > -filter_complex: 相比-vf,
@@ -52,9 +50,8 @@ ffmpeg -i input.mp4 -i logo.png -filter_complex 'overlay=x=10:y=main_h-overlay_h
 
 ## 文字水印
 
-```
+```bash
 ffmpeg -i input.mp4 -vf "drawtext=fontfile=simhei.ttf: text=‘技术是第一生产力’:x=10:y=10:fontsize=24:fontcolor=white:shadowy=2" output.mp4
-
 ```
 
 > fontfile:字体类型
@@ -69,21 +66,18 @@ ffmpeg -i input.mp4 -vf "drawtext=fontfile=simhei.ttf: text=‘技术是第一�
 
 只显示1遍，后边重复显示最后一帧。
 
-```
+```bash
 ffmpeg -i bunny.mp4 -vf "movie=test.mov[logo];[0:v][logo]overlay=x=100:y=100"  -y out.mp4
-
 ```
 
 mov一直循环显示。 添加 **loop=0,setpts=N/FRAME_RATE/TB** 即可。
 
-```
+```bash
 ffmpeg -i bunny.mp4 -vf "movie=test.mov:loop=0,setpts=N/FRAME_RATE/TB[logo];[0:v][logo]overlay=x=100:y=100"  -y out.mp4
-
 ```
 
 只显示一遍 添加eof_action即可。
 
-```
+```bash
 ffmpeg -i bunny.mp4 -vf "movie=test.mov[logo];[0:v][logo]overlay=x=100:y=100:eof_action=pass" -vframes 1000 -y out.mp4
-
 ```

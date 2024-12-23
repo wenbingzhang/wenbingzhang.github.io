@@ -14,24 +14,22 @@ menu: main
 
 ## Too many open files
 
-```
+```bash
 vim /etc/supervisord.conf
 [supervisord]
 minfds=81920
 minprocs=81920
 
 # systemctl restart supervisord
-
 ```
 
 ## 获取不到$HOME
 
-```
+```bash
 [program:apache2]
 command=/home/chrism/bin/httpd -c "ErrorLog /dev/stdout" -DFOREGROUND
 user=chrism
 environment=HOME="/home/chrism",USER="chrism"
 
 supervisorctl update
-
 ```
