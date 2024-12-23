@@ -34,18 +34,18 @@
 &lt;p>使用FFmpeg中的adelay和amix滤镜给音频做混音&lt;/p>
 &lt;/blockquote>
 &lt;p>在30秒后混合1个音频&lt;/p>
-&lt;pre tabindex="0">&lt;code>ffmpeg -i 1-1.mp3 -i 2.mp3 -filter_complex &amp;#34;[1]adelay=delays=30s:all=1[aud1];[0][aud1]amix=inputs=2&amp;#34; -vsync 2 -y 3.mp3
-&lt;/code>&lt;/pre>&lt;p>在30秒后混合2个音频&lt;/p>
-&lt;pre tabindex="0">&lt;code>ffmpeg -i 1-1.mp3 -i 2.mp3 -i 3.mp3 -filter_complex &amp;#34;[1]adelay=delays=30s:all=1[aud1];[2]adelay=delays=30s:all=1[aud2];[0][aud1][aud2]amix=inputs=3&amp;#34; -vsync 2 -y 4.mp3
-&lt;/code>&lt;/pre>&lt;p>混合多个参照混合2个的命令修改下即可&lt;/p></description></item><item><title>FFmpeg 水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</link><pubDate>Wed, 15 Jul 2020 06:31:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -i 1-1.mp3 -i 2.mp3 -filter_complex &lt;span style="color:#e6db74">&amp;#34;[1]adelay=delays=30s:all=1[aud1];[0][aud1]amix=inputs=2&amp;#34;&lt;/span> -vsync &lt;span style="color:#ae81ff">2&lt;/span> -y 3.mp3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在30秒后混合2个音频&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -i 1-1.mp3 -i 2.mp3 -i 3.mp3 -filter_complex &lt;span style="color:#e6db74">&amp;#34;[1]adelay=delays=30s:all=1[aud1];[2]adelay=delays=30s:all=1[aud2];[0][aud1][aud2]amix=inputs=3&amp;#34;&lt;/span> -vsync &lt;span style="color:#ae81ff">2&lt;/span> -y 4.mp3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>混合多个参照混合2个的命令修改下即可&lt;/p></description></item><item><title>FFmpeg 水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</link><pubDate>Wed, 15 Jul 2020 06:31:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/UtHueryud/</guid><description>&lt;blockquote>
 &lt;p>图片水印、文字水印、画中画&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="图片水印">
  图片水印
  &lt;a class="anchor" href="#%e5%9b%be%e7%89%87%e6%b0%b4%e5%8d%b0">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -vf &amp;#34;movie=wenzi.png[watermark];[in][watermark] overlay=main_w-overlay_w-10:main_h-overlay_h-10[out] &amp;#34; output.mp4
-&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -i input.mp4 -vf &lt;span style="color:#e6db74">&amp;#34;movie=wenzi.png[watermark];[in][watermark] overlay=main_w-overlay_w-10:main_h-overlay_h-10[out] &amp;#34;&lt;/span> output.mp4
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
 &lt;p>-i :一般表示输入&lt;/p>
 &lt;p>input.mp4:这里表示要处理的视频源&lt;/p>
 &lt;p>-vf:滤镜相关，视频裁剪，水印等等操作都需要它完成&lt;/p></description></item><item><title>ffprobe详解</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</link><pubDate>Wed, 13 May 2020 09:51:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/rdgQnFI6j/</guid><description>&lt;blockquote>
