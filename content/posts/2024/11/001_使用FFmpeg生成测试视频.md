@@ -3,9 +3,9 @@ slug: mCaGbs9LFDrNxXu9k29t9J
 title: 使用FFmpeg生成测试视频
 description:
 categories:
-  - default
+  - FFmpeg
 tags:
-  - default
+  - FFmpeg
 date: 2024-11-15 14:45:26+08:00
 menu: main
 ---
