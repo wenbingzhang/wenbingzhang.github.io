@@ -148,12 +148,6 @@ Allow: /blog/macos/HJvNDli-4/
 
 Allow: /blog/linux/B11j0sF-N/
 
-Allow: /blog/macos/Hka7rLR0Q/
-
-Allow: /blog/ffmpeg/H1mn7tcA7/
-
-Allow: /blog/macos/BkiIyglTX/
-
 Allow: /blog/ffmpeg/BkjYYAI3X/
 
 Allow: /blog/linux/SJ10UoTom/

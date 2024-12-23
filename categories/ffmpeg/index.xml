@@ -55,23 +55,7 @@
 &lt;p>清除mp3文件中自带的专辑（album），艺术家（artist），流派（genre）等元数据。&lt;/p>
 &lt;/blockquote>
 &lt;pre tabindex="0">&lt;code>ffmpeg -i &amp;#34;test.mp3&amp;#34; -b:a 320k -map_metadata -1 -y &amp;#34;out.mp3&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>-map_metadata -1 表示清除所有元数据&lt;/p></description></item><item><title>ffmpeg 裁剪视频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</link><pubDate>Tue, 27 Nov 2018 08:49:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</guid><description>&lt;blockquote>
-&lt;p>ffmpeg命令裁剪视频，一般用于裁剪黑边&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/BkjYYAI3X/img/ffmpeg_HJ9roRU2Q.png" alt="ffmpeg_HJ9roRU2Q.png" />&lt;/p>
-&lt;h2 id="说明">
- 说明
- &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
-&lt;/h2>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/H1mn7tcA7/img/FFmpeg%e8%a3%81%e5%89%aa%e8%a7%86%e9%a2%91_Sk624F907.png" alt="FFmpeg裁剪视频.png" />&lt;/p>
-&lt;h2 id="命令">
- 命令
- &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -vf crop=iw/3:ih:0:0 output.mp4
-ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3:0 output.mp4
-ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3*2:0 output.mp4
-&lt;/code>&lt;/pre></description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>&lt;blockquote>
+&lt;/code>&lt;/pre>&lt;p>-map_metadata -1 表示清除所有元数据&lt;/p></description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>&lt;blockquote>
 &lt;p>FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。&lt;/p></description></item><item><title>ffmpeg 9:16和16:9互相转换</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</link><pubDate>Thu, 30 Aug 2018 03:00:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/Bki3dANDX/</guid><description>&lt;blockquote>
 &lt;p>​今天搜集了一下16:9和9:16相互转换的命令。将多余的部分用模糊背景填充，感觉比直接加黑边好很多。&lt;/p>
 &lt;/blockquote>

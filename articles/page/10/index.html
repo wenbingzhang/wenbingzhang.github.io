@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/articles/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="📚 我的文章"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>📚 我的文章 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.56ff4159e60e22c4c0c6602ed5d45b4db454f2b7c57e0b66f5dd9ae472889565.js integrity="sha256-Vv9BWeYOIsTAxmAu1dRbTbRU8rfFfgtm9d2a5HKIlWU=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.d36a4f2932ccf1b32997b3e9d0e3e4612b2dc0c4868d279f3bd833f90a3a51a6.js integrity="sha256-02pPKTLM8bMpl7Pp0OPkYSstwMSGjSefO9gz+Qo6UaY=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-f56428119b0aac71309abf8dfea134ce class=toggle>
 <label for=section-f56428119b0aac71309abf8dfea134ce class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><input type=checkbox id=section-fb47b341e1fcc9c423db5ed573183d82 class=toggle>
@@ -12,54 +12,15 @@
 </label><strong>📚 我的文章</strong>
 <label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>84</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
-<span>26</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
-<span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
+<span>25</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
+<span>10</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/linux/>Linux</a>
 <span>85</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
-<span>26</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
-<span>12</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
+<span>25</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
+<span>10</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/blog/>Blog</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>Hugo</a>
-<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/Hk2bI84c8Rz/>linux VM虚拟内存和BDP优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=vm虚拟内存优化>VM虚拟内存优化
-<a class=anchor href=#vm%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e4%bc%98%e5%8c%96>#</a></h2><p>#getconf PAGESIZE</p><p>vm.dirty_background_bytes 系统内所包含的脏数据总数</p><p>vm.dirty_background_ratio 脏数据所占用内存的百分比</p><p>vm.dirty_expire_centisecs 脏数据在内存中的存放时间</p><p>vm.dirty_bytes 如果进程的脏数据超过该值时则要求写到磁盘</p><h2 id=bdp优化>BDP优化
-<a class=anchor href=#bdp%e4%bc%98%e5%8c%96>#</a></h2><p>BDP=Bandwidth*RRT net.core.rmem_max 最大缓冲区(窗口)大小</p><a href=/blog/linux/Hk2bI84c8Rz/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H13UIE5LRM/>linux vnc简单配置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=vnc端口>VNC端口
-<a class=anchor href=#vnc%e7%ab%af%e5%8f%a3>#</a></h2><p>vncserver监听端口 RFB协议：5900+桌面号 HTTP协议：5800+桌面号 X协议：6000+桌面号</p><p>vncserver使用的桌面编号默认是从1开始，依次使用。</p><a href=/blog/linux/H13UIE5LRM/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/S19ZLLE9I0G/>linux 常用系统资源查看命令</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=一sar命令>一、sar命令
-<a class=anchor href=#%e4%b8%80sar%e5%91%bd%e4%bb%a4>#</a></h2><pre tabindex=0><code># sar 1 10  监控CPU，每秒监控一次，共监控10次
-# sar -P ALL 1 5   监控所有CPU
-# sar -S 1 10      监控交换分区
-# sar -d 1 10      监控磁盘IO
-# sar -b 1 10      监控磁盘IO和速率
-# sar -r 1 10      监控内存使用
-# sar -n DEV  1 10 监控网络接口卡的数据传输
-</code></pre><h2 id=二mpstat>二、mpstat
-<a class=anchor href=#%e4%ba%8cmpstat>#</a></h2><pre tabindex=0><code># mpstat -P ALL 1 10
-</code></pre><h2 id=三iostat>三、iostat
-<a class=anchor href=#%e4%b8%89iostat>#</a></h2><pre tabindex=0><code># iostat -c 2
-# iostat -d 1 100
-# iostat 1 20
-# iostat -p /dev/sda2 1 10
-</code></pre><h2 id=四vmstat>四、vmstat
-<a class=anchor href=#%e5%9b%9bvmstat>#</a></h2><pre tabindex=0><code>#vmstat -d 1 20
-输出信息
-r 运行队列中的进程数，不要长时间超过CPU核心总数
-b 等待IO的进程数
-si 每秒从交换分区写到内存的数据大小
-so 每秒写入交换分区的数据大小
-#vmstat -a 1 10
-</code></pre><h2 id=五其它常用监控命令>五、其它常用监控命令
-<a class=anchor href=#%e4%ba%94%e5%85%b6%e5%ae%83%e5%b8%b8%e7%94%a8%e7%9b%91%e6%8e%a7%e5%91%bd%e4%bb%a4>#</a></h2><p>(1) top (2) free (3) iptraf</p><a href=/blog/linux/S19ZLLE9I0G/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1sZIUN9I0f/>linux 防拒绝服务攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1sZIUN9I0f/>linux 防拒绝服务攻击</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
@@ -142,14 +103,29 @@ echo 3 &gt; /proc/sys/vm/drop_caches
 <a class=anchor href=#%e8%a7%a3%e5%86%b3%e6%80%9d%e8%b7%af>#</a></h2><pre tabindex=0><code>yum search pxelinux
 </code></pre><p>通过上面的方法我们找到了syslinux包</p><p>然后安装syslinux</p><pre tabindex=0><code>yum install syslinux
 </code></pre><p>最后找到pxelinux.0文件</p><pre tabindex=0><code>ls /usr/share/syslinux/pxelinux.0
-</code></pre></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/articles/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/articles/page/9/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/articles/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/articles/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class="page-item active"><a aria-current=page aria-label="Page 10" class=page-link role=button>10</a></li><li class=page-item><a href=/articles/page/11/ aria-label="Page 11" class=page-link role=button>11</a></li><li class=page-item><a href=/articles/page/12/ aria-label="Page 12" class=page-link role=button>12</a></li><li class=page-item><a href=/articles/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/articles/page/13/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/macos/HkGt88E9U0f/>Mac terminal清除历史命令纪录</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/macos/>MacOS</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/macos/>MacOS</a></span></div><p><blockquote><p>Linux传统清除方式并没能解决</p></blockquote><p>history -c</p><p>我用的iterm2 + zsh</p><p>常用history命令：</p><p>查看历史命令纪录:</p><p>history…</p><p>Linux传统清除方式并没能解决</p><pre tabindex=0><code>history -c
+</code></pre><p>我用的iterm2 + zsh</p><a href=/blog/macos/HkGt88E9U0f/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/macos/H1JGLLVcL0G/>MacOS 10.12 解决找不到任何来源设置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/macos/>MacOS</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/macos/>MacOS</a></span></div><p><blockquote><p>安装第三方软件必备技能</p></blockquote><p>打开终端 ( 终端在 应用程序 - 实用工具内 )</p><p>输入以下命令并回车</p><pre tabindex=0><code>sudo spctl --master-disable
+</code></pre><p>然后查看问题是否解决， 偏好设置->安全性与隐私->通用->任何来源</p><a href=/blog/macos/H1JGLLVcL0G/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/Sky_LU458CM/>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>解决mediainfo获取ts媒体信息不准确问题</p></blockquote><h2 id=场景>场景
+<a class=anchor href=#%e5%9c%ba%e6%99%af>#</a></h2><p>在/opt/目录下总共有200多个文件文件名分别如下：</p><p>/opt/2017LPL夏季赛第01集.ts</p><a href=/blog/linux/Sky_LU458CM/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/articles/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/articles/page/9/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/articles/page/8/ aria-label="Page 8" class=page-link role=button>8</a></li><li class=page-item><a href=/articles/page/9/ aria-label="Page 9" class=page-link role=button>9</a></li><li class="page-item active"><a aria-current=page aria-label="Page 10" class=page-link role=button>10</a></li><li class=page-item><a href=/articles/page/11/ aria-label="Page 11" class=page-link role=button>11</a></li><li class=page-item><a href=/articles/page/12/ aria-label="Page 12" class=page-link role=button>12</a></li><li class=page-item><a href=/articles/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/articles/page/12/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
 <span>84</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
-<span>26</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
-<span>12</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
+<span>25</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
+<span>10</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/linux/>Linux</a>
 <span>85</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
-<span>26</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
-<span>12</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
+<span>25</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
+<span>10</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/blog/>Blog</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>Hugo</a>
 <span>1</span></li></ul></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>

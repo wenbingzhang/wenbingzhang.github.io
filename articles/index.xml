@@ -930,59 +930,7 @@ Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
  故障
  &lt;a class="anchor" href="#%e6%95%85%e9%9a%9c">#&lt;/a>
 &lt;/h2>
-&lt;p>因为跳跃的时间太大，导致系统的各种服务中断（网络中断和systemctl管理的服务也有问题）。&lt;/p></description></item><item><title>NET Core 2.x 安装失败，出现异常“Xamarin.Web.Installer.InstallException”</title><link>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</link><pubDate>Fri, 30 Nov 2018 06:25:07 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/Hka7rLR0Q/</guid><description>&lt;blockquote>
-&lt;p>visual studio for mac 下载的安装包损坏的解决方法&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="错误代码">
- 错误代码
- &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e4%bb%a3%e7%a0%81">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>Visual Studio installation failed with exception &amp;#39;Xamarin.Web.Installer.InstallException&amp;#39; (Attempt #3)
-Message: Failed to attach DMG image &amp;#39;/Users/qatesting/Library/Caches/XamarinInstaller/Universal/downloads/visualstudioformac-7.6.10.27.dmg&amp;#39;. Error code 1.
-Exception type: Xamarin.Web.Installer.InstallException
-at Xamarin.Web.Installer.MacInstallationArchiveHandler.MountDmg (System.String path) [0x00059] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:71
-at Xamarin.Web.Installer.MacInstallationArchiveHandler.InstallDmg (System.String path, System.Boolean needsPrivileges) [0x0002f] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/MacInstallationArchiveHandler.Mac.cs:100
-at Xamarin.Web.Installer.Installer.InstallationArchiveHandler.Install (System.String path, System.Boolean needsPrivileges) [0x00056] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/InstallationArchiveHandler.cs:33
-at (wrapper dynamic-method) System.Object.CallSite.Target(System.Runtime.CompilerServices.Closure,System.Runtime.CompilerServices.CallSite,Xamarin.Web.Installer.Installer.InstallationArchiveHandler,string,object)
-at Xamarin.Web.Installer.Installer.BaseSoftwareItem.InstallDownloadedItem (System.String url, Xamarin.Web.Installer.Installer.InstallationArchiveHandler handler, Xamarin.Web.Installer.DownloadServiceWorkItem download) [0x0025e] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/BaseSoftwareItem.cs:278
-at Xamarin.Web.Installer.Installer.BaseSoftwareItem.Install (System.UInt32 tryNumber) [0x000ed] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/BaseSoftwareItem.cs:303
-at Xamarin.Web.Installer.Installer.XamarinIDEBase.Install (System.UInt32 tryNumber) [0x00000] in /Users/vsts/agent/2.139.1/work/1/installer/Xamarin.Web.Installer/Installer/XamarinIDEBase.Mac.cs:74
-at MacInstaller.WizardPageInstallationController.InstallationWorker () [0x001f1] in /Users/vsts/agent/2.139.1/work/1/installer/MacInstaller.Universal/WizardPageInstallationController.cs:551
-&lt;/code>&lt;/pre>&lt;h2 id="解决方法">
- 解决方法
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>rm -rf ~/Library/Caches/XamarinInstaller/Universal
-&lt;/code>&lt;/pre>&lt;p>执行上面的命令后，然后重新打开安装程序，会重新下载并安装&lt;/p></description></item><item><title>ffmpeg 裁剪视频</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</link><pubDate>Tue, 27 Nov 2018 08:49:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/H1mn7tcA7/</guid><description>&lt;blockquote>
-&lt;p>ffmpeg命令裁剪视频，一般用于裁剪黑边&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/BkjYYAI3X/img/ffmpeg_HJ9roRU2Q.png" alt="ffmpeg_HJ9roRU2Q.png" />&lt;/p>
-&lt;h2 id="说明">
- 说明
- &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
-&lt;/h2>
-&lt;p>&lt;img src="https://notes.zhangwenbing.com/static/uploads/H1mn7tcA7/img/FFmpeg%e8%a3%81%e5%89%aa%e8%a7%86%e9%a2%91_Sk624F907.png" alt="FFmpeg裁剪视频.png" />&lt;/p>
-&lt;h2 id="命令">
- 命令
- &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>ffmpeg -i input.mp4 -vf crop=iw/3:ih:0:0 output.mp4
-ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3:0 output.mp4
-ffmpeg -i input.mp4 -vf crop=iw/3:ih:iw/3*2:0 output.mp4
-&lt;/code>&lt;/pre></description></item><item><title>Mac出现Operation not permitted</title><link>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</link><pubDate>Wed, 07 Nov 2018 04:56:25 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/macos/BkiIyglTX/</guid><description>&lt;blockquote>
-&lt;p>Rootless 机制&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="报错">
- 报错
- &lt;a class="anchor" href="#%e6%8a%a5%e9%94%99">#&lt;/a>
-&lt;/h2>
-&lt;p>Mac使用sudo或切换成root权限，还是出现&lt;/p>
-&lt;pre tabindex="0">&lt;code>Operation not permitted
-&lt;/code>&lt;/pre>&lt;h2 id="解决">
- 解决
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3">#&lt;/a>
-&lt;/h2>
-&lt;p>这是由于Mac的rootless机制，可以进入恢复模式关闭rootless机制：&lt;/p></description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>&lt;blockquote>
+&lt;p>因为跳跃的时间太大，导致系统的各种服务中断（网络中断和systemctl管理的服务也有问题）。&lt;/p></description></item><item><title>ffmpeg加水印</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</link><pubDate>Wed, 31 Oct 2018 07:48:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/BkjYYAI3X/</guid><description>&lt;blockquote>
 &lt;p>FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。&lt;/p></description></item><item><title>solr7.3.1单机版添加core</title><link>https://notes.zhangwenbing.com/blog/linux/SJ10UoTom/</link><pubDate>Wed, 24 Oct 2018 08:07:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJ10UoTom/</guid><description>&lt;blockquote>
 &lt;p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。&lt;/p></description></item><item><title>solr-7.3.1 单机安装教程</title><link>https://notes.zhangwenbing.com/blog/linux/BkKKGWnsQ/</link><pubDate>Tue, 23 Oct 2018 02:26:38 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/BkKKGWnsQ/</guid><description>&lt;blockquote>
 &lt;p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。&lt;/p></description></item><item><title>解决rabbitmq依赖问题</title><link>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</link><pubDate>Fri, 19 Oct 2018 07:30:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</guid><description>&lt;blockquote>
