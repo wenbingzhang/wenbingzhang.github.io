@@ -44,13 +44,21 @@ Allow: /notes/
 
 Allow: /links/
 
-Allow: /notes/
-
-Allow: /
-
 Allow: /articles/
 
 Allow: /categories/
+
+Allow: /tags/default/
+
+Allow: /categories/default/
+
+Allow: /tags/
+
+Allow: /articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/
+
+Allow: /
+
+Allow: /notes/
 
 Allow: /tags/linux/
 
@@ -63,8 +71,6 @@ Allow: /categories/macos/
 Allow: /articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/
 
 Allow: /tags/python/
-
-Allow: /tags/
 
 Allow: /tags/blog/
 
