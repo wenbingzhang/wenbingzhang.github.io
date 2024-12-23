@@ -48,21 +48,23 @@ Allow: /articles/
 
 Allow: /categories/
 
-Allow: /tags/default/
-
-Allow: /categories/default/
-
-Allow: /tags/
-
-Allow: /articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/
-
-Allow: /
-
-Allow: /notes/
-
 Allow: /tags/linux/
 
 Allow: /categories/linux/
+
+Allow: /articles/2024/12/23/wvkjyjt7qhumo4jpucheca/
+
+Allow: /tags/
+
+Allow: /
+
+Allow: /tags/ffmpeg/
+
+Allow: /categories/ffmpeg/
+
+Allow: /articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/
+
+Allow: /notes/
 
 Allow: /tags/macos/
 
@@ -79,10 +81,6 @@ Allow: /tags/hugo/
 Allow: /categories/hugo/
 
 Allow: /articles/2024/03/06/9mzhfnl58azjmeibfblvjy/
-
-Allow: /tags/ffmpeg/
-
-Allow: /categories/ffmpeg/
 
 Allow: /articles/2024/02/06/kkcc5t2y88hybafpourudv/
 

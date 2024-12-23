@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/linux/</link><description>Recent content in Linux on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 27 Mar 2024 13:07:03 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>&lt;p>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/tags/linux/</link><description>Recent content in Linux on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Mon, 23 Dec 2024 18:17:28 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux硬盘故障相关的查询命令</title><link>https://notes.zhangwenbing.com/articles/2024/12/23/wvkjyjt7qhumo4jpucheca/</link><pubDate>Mon, 23 Dec 2024 18:17:28 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/12/23/wvkjyjt7qhumo4jpucheca/</guid><description>&lt;h2 id="查看硬盘及对应的uuid信息">
+ 查看硬盘及对应的UUID信息
+ &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e7%a1%ac%e7%9b%98%e5%8f%8a%e5%af%b9%e5%ba%94%e7%9a%84uuid%e4%bf%a1%e6%81%af">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 查看硬盘及对应的UUID信息 或者是所有硬盘的UUID信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>blkid &lt;span style="color:#f92672">[&lt;/span>/dev/sda1&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#75715e"># lsblk -o NAME,UUID -p&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看uuid对应的硬盘路径">
+ 查看UUID对应的硬盘路径
+ &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8buuid%e5%af%b9%e5%ba%94%e7%9a%84%e7%a1%ac%e7%9b%98%e8%b7%af%e5%be%84">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>blkid -U 383bc776-fc1a-4040-ad8f-45f4f5d96fcf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看硬盘信息">
+ 查看硬盘信息
+ &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e7%a1%ac%e7%9b%98%e4%bf%a1%e6%81%af">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>lshw -class disk
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="检测磁盘是否损坏">
+ 检测磁盘是否损坏
+ &lt;a class="anchor" href="#%e6%a3%80%e6%b5%8b%e7%a3%81%e7%9b%98%e6%98%af%e5%90%a6%e6%8d%9f%e5%9d%8f">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>badblocks -b &lt;span style="color:#ae81ff">4096&lt;/span> -v /dev/sda &lt;span style="color:#75715e"># 也有坏快的屏蔽方式这个里就不列举了&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="点亮硬盘led">
+ 点亮硬盘LED
+ &lt;a class="anchor" href="#%e7%82%b9%e4%ba%ae%e7%a1%ac%e7%9b%98led">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>dd &lt;span style="color:#66d9ef">if&lt;/span>&lt;span style="color:#f92672">=&lt;/span>/dev/sda of&lt;span style="color:#f92672">=&lt;/span>/dev/null bs&lt;span style="color:#f92672">=&lt;/span>1M count&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">100&lt;/span> &lt;span style="color:#75715e"># 点亮硬盘LED&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看服务器序列号">
+ 查看服务器序列号
+ &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ba%8f%e5%88%97%e5%8f%b7">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>dmidecode -t &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#75715e"># 查看对应的&amp;#39;Serial Number&amp;#39;字段&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>&lt;p>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。&lt;/p>
 &lt;h2 id="安装">
  安装
  &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85">#&lt;/a>
