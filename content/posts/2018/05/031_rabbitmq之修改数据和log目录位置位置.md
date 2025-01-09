@@ -14,7 +14,7 @@ menu: main
 
 # I am a complete /etc/rabbitmq/rabbitmq-e…
 
-```
+```bash
  vim /etc/rabbitmq/rabbitmq-env.conf
 
 # I am a complete /etc/rabbitmq/rabbitmq-env.conf file.

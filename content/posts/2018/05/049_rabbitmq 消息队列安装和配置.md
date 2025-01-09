@@ -16,7 +16,7 @@ menu: main
 
 首先安装erlang语言环境
 
-```
+```bash
 yum install erlang -y
 
 ```
@@ -25,7 +25,7 @@ yum install erlang -y
 
 rabbitMQ下载地址：直达安装方法:
 
-```
+```bash
 rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
 或者
 yum localinstall  rabbitmq-server-3.6.0-1.noarch.rpm -y
@@ -34,7 +34,7 @@ yum localinstall  rabbitmq-server-3.6.0-1.noarch.rpm -y
 
 ## 启动服务
 
-```
+```bash
 /etc/init.d/rabbitmq-server start
 rabbitmq-plugins enable rabbitmq_management
 
@@ -44,7 +44,7 @@ rabbitmq-plugins enable rabbitmq_management
 
 ### 同步cookie
 
-```
+```bash
 chmod 777 /var/lib/rabbitmq/.erlang.cookie
 scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
 chmod 400 /var/lib/rabbitmq/.erlang.cookie
@@ -53,7 +53,7 @@ chmod 400 /var/lib/rabbitmq/.erlang.cookie
 
 ### 添加节点
 
-```
+```bash
 rabbitmqctl stop_app
 rabbitmqctl reset
 rabbitmqctl join_cluster [--ram] rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
@@ -63,7 +63,7 @@ rabbitmqctl start_app
 
 ### 删除节点
 
-```
+```bash
 rabbitmqctl stop_app
 rabbitmqctl forget_cluster_node rabbit@rabbit1
 
@@ -71,7 +71,7 @@ rabbitmqctl forget_cluster_node rabbit@rabbit1
 
 ### 修改类型
 
-```
+```bash
 rabbitmqctl stop_app
 rabbitmqctl change_cluster_node_type ram
 rabbitmqctl start_app
@@ -80,7 +80,7 @@ rabbitmqctl start_app
 
 ### 添加用户
 
-```
+```bash
 rabbitmqctl add_user admin admin
 添加权限:
 rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
@@ -93,7 +93,7 @@ rabbitmqctl set_user_tags admin administrator
 
 ### 修改配置
 
-```
+```bash
 //防止服务端异常中断恢复后镜像队列不能恢复的问题
 
 vim /etc/rabbitmq/rabbitmq.conf
@@ -107,7 +107,7 @@ vim /etc/rabbitmq/rabbitmq.conf
 
 ### 环境变量
 
-```
+```bash
 touch /etc/rabbitmq/rabbitmq-env.conf#输入
     RABBITMQ_NODENAME=FZTEC-240088 节点名称    RABBITMQ_NODE_IP_ADDRESS=127.0.0.1 监听IP
     RABBITMQ_NODE_PORT=5672 监听端口    RABBITMQ_LOG_BASE=/data/rabbitmq/log 日志目录

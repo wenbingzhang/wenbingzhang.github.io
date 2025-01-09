@@ -14,14 +14,14 @@ menu: main
 
 ## 1、安装编译环境
 
-```
+```bash
 yum install cmake gcc gcc-c++ make openssl-devel
 
 ```
 
 ## 2、安装rabbitmq-c
 
-```
+```bash
 wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.zip
 unzip v0.9.0.zip
 cd rabbitmq-c-0.9.0/
@@ -32,7 +32,7 @@ make && make install
 
 ## 3、安装amqp
 
-```
+```bash
 wget http://pecl.php.net/get/amqp-1.9.4.tgz
 tar zxf amqp-1.9.4.tgz
 cd amqp-1.9.4
@@ -50,7 +50,7 @@ make && make install
 
 ## 4、php.ini 添加模块
 
-```
+```bash
 vi /usr/local/php/etc/php.ini
 #增加
 extension = /usr/lib64/php/modules/amqp.so
@@ -59,7 +59,7 @@ extension = /usr/lib64/php/modules/amqp.so
 
 ## 5、重启服务
 
-```
+```bash
 systemctl restart php-fpm
 
 ```

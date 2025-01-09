@@ -18,7 +18,7 @@ rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定
 
 rabbitmq.config文件位置：
 
-```
+```bash
 Unix $RABBITMQ_HOME/etc/rabbitmq
 
 Windows %APPDATA%\RabbitMQ\
@@ -27,7 +27,7 @@ Windows %APPDATA%\RabbitMQ\
 
 例子如下：
 
-```
+```bash
 [
     {mnesia, [{dump_log_write_threshold, 1000}]},
     {rabbit, [{tcp_listeners, [5673]}]}
@@ -57,7 +57,7 @@ file.
 
 默认配置RabbitMQ的vm_memory_high_watermark=0.4
 
-```
+```bash
 [{rabbit, [{vm_memory_high_watermark, 0.4}]}].
 
 ```
@@ -78,7 +78,7 @@ vm_memory_high_watermark_paging_ratio=0.5。也就是vm_memory_high_watermark0.5
 
 因此我们可以将页面置换的百分比调高。设置为0.75
 
-```
+```bash
 [{rabbit, [{vm_memory_high_watermark_paging_ratio, 0.75},
          {vm_memory_high_watermark, 0.4}]}].
 
@@ -88,21 +88,21 @@ vm_memory_high_watermark_paging_ratio=0.5。也就是vm_memory_high_watermark0.5
 
 ### 配置命令
 
-```
+```bash
 rabbitmqctl  set_vm_memory_high_watermark 0.4
 
 ```
 
 这是内存使用占总内存数的百分比
 
-```
+```bash
 rabbitmqctl set_vm_memory_high_watermark_paging_ratio 0.75
 
 ```
 
 设置rabbitmq使用内存达到rabbitmq可用内存百分比，就出发页面交换功能。
 
-```
+```bash
 rabbitmqctl status
 
 ```
@@ -127,14 +127,14 @@ RabbitMQ会定期价检查总磁盘可用空间的大小。通常时间为10秒�
 
 先设置磁盘1GB限制
 
-```
+```bash
 [{rabbit, [{disk_free_limit, 1000000000}]}].
 
 ```
 
 在这时相对于机器总内存
 
-```
+```bash
 [{rabbit, [{disk_free_limit, {mem_relative, 1.0}}]}].
 
 ```
@@ -147,7 +147,7 @@ HiPE需要你检查是否编译进入你的Erlang安装环境。Ubuntu，需要�
 
 segfaults,请关闭这个选项。
 
-```
+```bash
 [{rabbit, [{hipe_compile, true}]}].
 
 ```

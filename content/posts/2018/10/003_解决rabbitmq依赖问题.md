@@ -14,7 +14,7 @@ menu: main
 
 ## 错误提示
 
-```
+```bash
 warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 6026dfca: NOKEYerror: Failed dependencies:
     erlang >= R16B-03 is needed by rabbitmq-server-3.6.6-1.el6.noarch
     socat is needed by rabbitmq-server-3.6.6-1.el6.noarch
@@ -23,7 +23,7 @@ warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, k
 
 ## 解决方法
 
-```
+```bash
 cd /etc/yum.repos.d/
 cat erlang.repo
 [erlang-solutions]
@@ -37,14 +37,14 @@ enabled=1
 
 然后再安装rabbitmq
 
-```
+```bash
 yum localinstall rabbitmq-server-3.6.6-1.el6.noarch.rpm
 
 ```
 
 ## 其他问题
 
-```
+```bash
 # /etc/init.d/rabbitmq-server start
 Starting rabbitmq-server: FAILED - check /var/log/rabbitmq/startup_{log, _err}
 rabbitmq-server.
