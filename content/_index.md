@@ -5,3 +5,5 @@ type: docs
 
 
 {{<search>}}
+
+{{<navigate>}}

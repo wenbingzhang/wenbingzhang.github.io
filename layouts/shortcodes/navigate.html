@@ -1,0 +1,129 @@
+<!-- 内联CSS样式 -->
+<style>
+  /* shortcodes-navigate 内的所有样式 */
+  .shortcodes-navigate {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* 调整为居左 */
+    padding: 0;
+    margin: 0;
+  }
+
+  .shortcodes-navigate header h1 {
+    font-size: 2.2em;
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* h2 标题居左 */
+  .shortcodes-navigate h2 {
+    color: #2196F3;
+    font-size: 2em;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: left;
+    /* 调整为居左 */
+  }
+
+  /* 网站卡片布局 */
+  .shortcodes-navigate ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    /* 卡片居左 */
+    flex-wrap: wrap;
+  }
+
+  /* 网站卡片样式，长方形，高度较小 */
+  .shortcodes-navigate ul li {
+    width: 160px;
+    height: 60px;
+    margin: 10px;
+  }
+
+  .shortcodes-navigate ul li a {
+    text-decoration: none !important;
+    display: block;
+    color: #333;
+    background-color: #FFF;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .shortcodes-navigate ul li a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 网站描述样式 */
+  .shortcodes-navigate .description {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #666;
+  }
+
+  .shortcodes-navigate footer p {
+    margin: 0;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 600px) {
+    .shortcodes-navigate ul {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  /* 暗色模式样式 */
+  @media (prefers-color-scheme: dark) {
+    .shortcodes-navigate ul li a {
+      color: #E6E9EC;
+      background-color: #1a1a1a;
+    }
+
+    /* 网站描述样式 */
+    .shortcodes-navigate .description {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #c1c5c8;
+    }
+  }
+</style>
+
+<!-- 主体内容用 div 包裹，class 为 shortcodes-navigate -->
+<div class="shortcodes-navigate">
+  <!-- <section>
+    h2 标题居左
+    <h2>常用导航</h2>
+    <ul>
+      <li>
+        <a href="https://www.zhangwenbing.com" target="_blank">
+          张文兵笔记
+          <span class="description">记录日常</span>
+        </a>
+      </li>
+    </ul>
+  </section> -->
+</div>
+
+<!-- 内联JavaScript -->
+<!-- <script>
+  document.querySelectorAll('.shortcodes-navigate a').forEach(link => {
+    link.addEventListener('click', function () {
+      alert('即将访问：' + this.textContent.trim());
+    });
+  });
+</script> -->
