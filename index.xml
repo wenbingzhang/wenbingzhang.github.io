@@ -1131,45 +1131,45 @@ Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Pl
  1、安装编译环境
  &lt;a class="anchor" href="#1%e5%ae%89%e8%a3%85%e7%bc%96%e8%af%91%e7%8e%af%e5%a2%83">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>yum install cmake gcc gcc-c++ make openssl-devel
-&lt;/code>&lt;/pre>&lt;h2 id="2安装rabbitmq-c">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>yum install cmake gcc gcc-c++ make openssl-devel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2安装rabbitmq-c">
  2、安装rabbitmq-c
  &lt;a class="anchor" href="#2%e5%ae%89%e8%a3%85rabbitmq-c">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.zip
-unzip v0.9.0.zip
-cd rabbitmq-c-0.9.0/
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local/rabbitmq-c-0.9.0/
-make &amp;amp;&amp;amp; make install
-&lt;/code>&lt;/pre>&lt;h2 id="3安装amqp">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wget https://github.com/alanxz/rabbitmq-c/archive/v0.9.0.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>unzip v0.9.0.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd rabbitmq-c-0.9.0/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cmake -DCMAKE_INSTALL_PREFIX&lt;span style="color:#f92672">=&lt;/span>/usr/local/rabbitmq-c-0.9.0/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3安装amqp">
  3、安装amqp
  &lt;a class="anchor" href="#3%e5%ae%89%e8%a3%85amqp">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>wget http://pecl.php.net/get/amqp-1.9.4.tgz
-tar zxf amqp-1.9.4.tgz
-cd amqp-1.9.4
-/usr/bin/phpize
-./configure --with-php-config=/usr/bin/php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c-0.9.0
-
-#由于rabbitmq-c编译出来的lib目录是lib64，所以我们要做一些小的修改
-vim Makefile
-#将 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib -L/usr/local/rabbitmq-c-0.9.0/lib -lrabbitmq
-#修改为 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib64 -L/usr/local/rabbitmq-c-0.9.0/lib64 -lrabbitmq
-
-make &amp;amp;&amp;amp; make install
-&lt;/code>&lt;/pre>&lt;h2 id="4phpini-添加模块">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wget http://pecl.php.net/get/amqp-1.9.4.tgz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tar zxf amqp-1.9.4.tgz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd amqp-1.9.4
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/usr/bin/phpize
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./configure --with-php-config&lt;span style="color:#f92672">=&lt;/span>/usr/bin/php-config --with-amqp --with-librabbitmq-dir&lt;span style="color:#f92672">=&lt;/span>/usr/local/rabbitmq-c-0.9.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#由于rabbitmq-c编译出来的lib目录是lib64，所以我们要做一些小的修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vim Makefile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#将 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib -L/usr/local/rabbitmq-c-0.9.0/lib -lrabbitmq&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#修改为 AMQP_SHARED_LIBADD = -Wl,-rpath,/usr/local/rabbitmq-c-0.9.0/lib64 -L/usr/local/rabbitmq-c-0.9.0/lib64 -lrabbitmq&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="4phpini-添加模块">
  4、php.ini 添加模块
  &lt;a class="anchor" href="#4phpini-%e6%b7%bb%e5%8a%a0%e6%a8%a1%e5%9d%97">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>vi /usr/local/php/etc/php.ini
-#增加
-extension = /usr/lib64/php/modules/amqp.so
-&lt;/code>&lt;/pre>&lt;h2 id="5重启服务">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>vi /usr/local/php/etc/php.ini
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#增加&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>extension &lt;span style="color:#f92672">=&lt;/span> /usr/lib64/php/modules/amqp.so
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="5重启服务">
  5、重启服务
  &lt;a class="anchor" href="#5%e9%87%8d%e5%90%af%e6%9c%8d%e5%8a%a1">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>systemctl restart php-fpm
-&lt;/code>&lt;/pre></description></item><item><title>hadoop下载文件遇到的坑</title><link>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</link><pubDate>Mon, 14 Jan 2019 09:38:20 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>systemctl restart php-fpm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>hadoop下载文件遇到的坑</title><link>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</link><pubDate>Mon, 14 Jan 2019 09:38:20 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</guid><description>&lt;blockquote>
 &lt;p>hadoop fs -get 下载带特殊字符文件失败的一些解决方法。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="错误范例">
@@ -1266,22 +1266,22 @@ Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
  错误提示
  &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 6026dfca: NOKEYerror: Failed dependencies:
- erlang &amp;gt;= R16B-03 is needed by rabbitmq-server-3.6.6-1.el6.noarch
- socat is needed by rabbitmq-server-3.6.6-1.el6.noarch
-&lt;/code>&lt;/pre>&lt;h2 id="解决方法">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>warning: rabbitmq-server-3.6.6-1.el6.noarch.rpm: Header V4 RSA/SHA1 Signature, key ID 6026dfca: NOKEYerror: Failed dependencies:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> erlang &amp;gt;&lt;span style="color:#f92672">=&lt;/span> R16B-03 is needed by rabbitmq-server-3.6.6-1.el6.noarch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> socat is needed by rabbitmq-server-3.6.6-1.el6.noarch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="解决方法">
  解决方法
  &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>cd /etc/yum.repos.d/
-cat erlang.repo
-[erlang-solutions]
-name=Centos $releasever - $basearch - Erlang Solutions
-baseurl=http://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
-gpgcheck=0
-gpgkey=http://packages.erlang-solutions.com/debian/erlang_solutions.asc
-enabled=1
-&lt;/code>&lt;/pre>&lt;p>然后再安装rabbitmq&lt;/p></description></item><item><title>grafana重置管理员密码</title><link>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</link><pubDate>Fri, 19 Oct 2018 05:13:46 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd /etc/yum.repos.d/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat erlang.repo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>erlang-solutions&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>name&lt;span style="color:#f92672">=&lt;/span>Centos $releasever - $basearch - Erlang Solutions
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>baseurl&lt;span style="color:#f92672">=&lt;/span>http://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpgcheck&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gpgkey&lt;span style="color:#f92672">=&lt;/span>http://packages.erlang-solutions.com/debian/erlang_solutions.asc
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>enabled&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后再安装rabbitmq&lt;/p></description></item><item><title>grafana重置管理员密码</title><link>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</link><pubDate>Fri, 19 Oct 2018 05:13:46 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</guid><description>&lt;blockquote>
 &lt;p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器，支持Graphite、zabbix、InfluxDB、Prometheus和OpenTSDB作为数据源。Grafana主要特性：灵活丰富的图形化选项；可以混合多种风格；支持白天和夜间模式；多个数据源。&lt;/p></description></item><item><title>Linux bash 提取文件名和目录名</title><link>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</link><pubDate>Tue, 18 Sep 2018 07:01:06 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</guid><description>&lt;blockquote>
 &lt;p>在Linux Bash中分别使用basename、dirname、${}，提取文件名和目录名。&lt;/p>
 &lt;/blockquote>
@@ -2573,22 +2573,22 @@ location ~ .*.(js|css)?$
  &lt;a class="anchor" href="#erlang">#&lt;/a>
 &lt;/h2>
 &lt;p>首先安装erlang语言环境&lt;/p>
-&lt;pre tabindex="0">&lt;code>yum install erlang -y
-&lt;/code>&lt;/pre>&lt;h2 id="rabbitmq">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>yum install erlang -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="rabbitmq">
  rabbitMQ
  &lt;a class="anchor" href="#rabbitmq">#&lt;/a>
 &lt;/h2>
 &lt;p>rabbitMQ下载地址：直达安装方法:&lt;/p>
-&lt;pre tabindex="0">&lt;code>rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
-或者
-yum localinstall rabbitmq-server-3.6.0-1.noarch.rpm -y
-&lt;/code>&lt;/pre>&lt;h2 id="启动服务">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>或者
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>yum localinstall rabbitmq-server-3.6.0-1.noarch.rpm -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="启动服务">
  启动服务
  &lt;a class="anchor" href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>/etc/init.d/rabbitmq-server start
-rabbitmq-plugins enable rabbitmq_management
-&lt;/code>&lt;/pre>&lt;h2 id="配置主备">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>/etc/init.d/rabbitmq-server start
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmq-plugins enable rabbitmq_management
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置主备">
  配置主备
  &lt;a class="anchor" href="#%e9%85%8d%e7%bd%ae%e4%b8%bb%e5%a4%87">#&lt;/a>
 &lt;/h2>
@@ -2596,63 +2596,63 @@ rabbitmq-plugins enable rabbitmq_management
  同步cookie
  &lt;a class="anchor" href="#%e5%90%8c%e6%ad%a5cookie">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>chmod 777 /var/lib/rabbitmq/.erlang.cookie
-scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
-chmod 400 /var/lib/rabbitmq/.erlang.cookie
-&lt;/code>&lt;/pre>&lt;h3 id="添加节点">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>chmod &lt;span style="color:#ae81ff">777&lt;/span> /var/lib/rabbitmq/.erlang.cookie
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>chmod &lt;span style="color:#ae81ff">400&lt;/span> /var/lib/rabbitmq/.erlang.cookie
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="添加节点">
  添加节点
  &lt;a class="anchor" href="#%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>rabbitmqctl stop_app
-rabbitmqctl reset
-rabbitmqctl join_cluster [--ram] rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
-rabbitmqctl start_app
-&lt;/code>&lt;/pre>&lt;h3 id="删除节点">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rabbitmqctl stop_app
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl reset
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl join_cluster &lt;span style="color:#f92672">[&lt;/span>--ram&lt;span style="color:#f92672">]&lt;/span> rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl start_app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="删除节点">
  删除节点
  &lt;a class="anchor" href="#%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>rabbitmqctl stop_app
-rabbitmqctl forget_cluster_node rabbit@rabbit1
-&lt;/code>&lt;/pre>&lt;h3 id="修改类型">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rabbitmqctl stop_app
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl forget_cluster_node rabbit@rabbit1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="修改类型">
  修改类型
  &lt;a class="anchor" href="#%e4%bf%ae%e6%94%b9%e7%b1%bb%e5%9e%8b">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>rabbitmqctl stop_app
-rabbitmqctl change_cluster_node_type ram
-rabbitmqctl start_app
-&lt;/code>&lt;/pre>&lt;h3 id="添加用户">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rabbitmqctl stop_app
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl change_cluster_node_type ram
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl start_app
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="添加用户">
  添加用户
  &lt;a class="anchor" href="#%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>rabbitmqctl add_user admin admin
-添加权限:
-rabbitmqctl set_permissions -p &amp;#34;/&amp;#34; admin &amp;#34;.*&amp;#34; &amp;#34;.*&amp;#34; &amp;#34;.*&amp;#34;
-删除测试用户:
-rabbitmqctl delete_user guest
-赋予其administrator角色：
-rabbitmqctl set_user_tags admin administrator
-&lt;/code>&lt;/pre>&lt;h3 id="修改配置">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rabbitmqctl add_user admin admin
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>添加权限:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl set_permissions -p &lt;span style="color:#e6db74">&amp;#34;/&amp;#34;&lt;/span> admin &lt;span style="color:#e6db74">&amp;#34;.*&amp;#34;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;.*&amp;#34;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;.*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>删除测试用户:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl delete_user guest
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>赋予其administrator角色：
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rabbitmqctl set_user_tags admin administrator
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="修改配置">
  修改配置
  &lt;a class="anchor" href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>//防止服务端异常中断恢复后镜像队列不能恢复的问题
-
-vim /etc/rabbitmq/rabbitmq.conf
-[
- {rabbit,[{tcp_listeners,[5672]},
- {cluster_partition_handling, autoheal}]}
-].
-#不要忘记最后面的那个点号哦！
-&lt;/code>&lt;/pre>&lt;h3 id="环境变量">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>//防止服务端异常中断恢复后镜像队列不能恢复的问题
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vim /etc/rabbitmq/rabbitmq.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">{&lt;/span>rabbit,&lt;span style="color:#f92672">[{&lt;/span>tcp_listeners,&lt;span style="color:#f92672">[&lt;/span>5672&lt;span style="color:#f92672">]}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">{&lt;/span>cluster_partition_handling, autoheal&lt;span style="color:#f92672">}]}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">]&lt;/span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#不要忘记最后面的那个点号哦！&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="环境变量">
  环境变量
  &lt;a class="anchor" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>touch /etc/rabbitmq/rabbitmq-env.conf#输入
- RABBITMQ_NODENAME=FZTEC-240088 节点名称 RABBITMQ_NODE_IP_ADDRESS=127.0.0.1 监听IP
- RABBITMQ_NODE_PORT=5672 监听端口 RABBITMQ_LOG_BASE=/data/rabbitmq/log 日志目录
- RABBITMQ_PLUGINS_DIR=/data/rabbitmq/plugins 插件目录
- RABBITMQ_MNESIA_BASE=/data/rabbitmq/mnesia 后端存储目录
-&lt;/code>&lt;/pre>&lt;h3 id="rabbitmq的用户角色分类">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>touch /etc/rabbitmq/rabbitmq-env.conf#输入
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> RABBITMQ_NODENAME&lt;span style="color:#f92672">=&lt;/span>FZTEC-240088 节点名称 RABBITMQ_NODE_IP_ADDRESS&lt;span style="color:#f92672">=&lt;/span>127.0.0.1 监听IP
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> RABBITMQ_NODE_PORT&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">5672&lt;/span> 监听端口 RABBITMQ_LOG_BASE&lt;span style="color:#f92672">=&lt;/span>/data/rabbitmq/log 日志目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> RABBITMQ_PLUGINS_DIR&lt;span style="color:#f92672">=&lt;/span>/data/rabbitmq/plugins 插件目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> RABBITMQ_MNESIA_BASE&lt;span style="color:#f92672">=&lt;/span>/data/rabbitmq/mnesia 后端存储目录
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rabbitmq的用户角色分类">
  RabbitMQ的用户角色分类
  &lt;a class="anchor" href="#rabbitmq%e7%9a%84%e7%94%a8%e6%88%b7%e8%a7%92%e8%89%b2%e5%88%86%e7%b1%bb">#&lt;/a>
 &lt;/h3>
@@ -2729,14 +2729,14 @@ vim /etc/rabbitmq/rabbitmq.conf
  I am a complete /etc/rabbitmq/rabbitmq-e…
  &lt;a class="anchor" href="#i-am-a-complete-etcrabbitmqrabbitmq-e">#&lt;/a>
 &lt;/h1>
-&lt;pre tabindex="0">&lt;code> vim /etc/rabbitmq/rabbitmq-env.conf
-
-# I am a complete /etc/rabbitmq/rabbitmq-env.conf file.
-# Comment lines start with a hash character.
-# This is a /bin/sh script file - use ordinary envt var syntax
-MNESIA_BASE=/data/rabbitmq/mnesia
-LOG_BASE=/data/logs/rabbitmq
-&lt;/code>&lt;/pre></description></item><item><title>Rematrix is needed between 10 channels and 7.1(wide) but there is not enough</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> vim /etc/rabbitmq/rabbitmq-env.conf
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># I am a complete /etc/rabbitmq/rabbitmq-env.conf file.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># Comment lines start with a hash character.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># This is a /bin/sh script file - use ordinary envt var syntax&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MNESIA_BASE&lt;span style="color:#f92672">=&lt;/span>/data/rabbitmq/mnesia
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LOG_BASE&lt;span style="color:#f92672">=&lt;/span>/data/logs/rabbitmq
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Rematrix is needed between 10 channels and 7.1(wide) but there is not enough</title><link>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/ffmpeg/S1EdILNqU0M/</guid><description>&lt;blockquote>
 &lt;p>解决办法&lt;/p>
 &lt;/blockquote>
 &lt;p>将10个声道拆分成10个音轨&lt;/p>

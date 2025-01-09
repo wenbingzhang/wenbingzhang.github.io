@@ -38,55 +38,55 @@
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=erlang>erlang
-<a class=anchor href=#erlang>#</a></h2><p>首先安装erlang语言环境</p><pre tabindex=0><code>yum install erlang -y
-</code></pre><h2 id=rabbitmq>rabbitMQ
-<a class=anchor href=#rabbitmq>#</a></h2><p>rabbitMQ下载地址：直达安装方法:</p><pre tabindex=0><code>rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
-或者
-yum localinstall  rabbitmq-server-3.6.0-1.noarch.rpm -y
-</code></pre><h2 id=启动服务>启动服务
-<a class=anchor href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1>#</a></h2><pre tabindex=0><code>/etc/init.d/rabbitmq-server start
-rabbitmq-plugins enable rabbitmq_management
-</code></pre><h2 id=配置主备>配置主备
+<a class=anchor href=#erlang>#</a></h2><p>首先安装erlang语言环境</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>yum install erlang -y
+</span></span></code></pre></div><h2 id=rabbitmq>rabbitMQ
+<a class=anchor href=#rabbitmq>#</a></h2><p>rabbitMQ下载地址：直达安装方法:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rpm -ivh --force --nodeps rabbitmq-server-3.6.0-1.noarch.rpm
+</span></span><span style=display:flex><span>或者
+</span></span><span style=display:flex><span>yum localinstall  rabbitmq-server-3.6.0-1.noarch.rpm -y
+</span></span></code></pre></div><h2 id=启动服务>启动服务
+<a class=anchor href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/etc/init.d/rabbitmq-server start
+</span></span><span style=display:flex><span>rabbitmq-plugins enable rabbitmq_management
+</span></span></code></pre></div><h2 id=配置主备>配置主备
 <a class=anchor href=#%e9%85%8d%e7%bd%ae%e4%b8%bb%e5%a4%87>#</a></h2><h3 id=同步cookie>同步cookie
-<a class=anchor href=#%e5%90%8c%e6%ad%a5cookie>#</a></h3><pre tabindex=0><code>chmod 777 /var/lib/rabbitmq/.erlang.cookie
-scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
-chmod 400 /var/lib/rabbitmq/.erlang.cookie
-</code></pre><h3 id=添加节点>添加节点
-<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
-rabbitmqctl reset
-rabbitmqctl join_cluster [--ram] rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
-rabbitmqctl start_app
-</code></pre><h3 id=删除节点>删除节点
-<a class=anchor href=#%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
-rabbitmqctl forget_cluster_node rabbit@rabbit1
-</code></pre><h3 id=修改类型>修改类型
-<a class=anchor href=#%e4%bf%ae%e6%94%b9%e7%b1%bb%e5%9e%8b>#</a></h3><pre tabindex=0><code>rabbitmqctl stop_app
-rabbitmqctl change_cluster_node_type ram
-rabbitmqctl start_app
-</code></pre><h3 id=添加用户>添加用户
-<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7>#</a></h3><pre tabindex=0><code>rabbitmqctl add_user admin admin
-添加权限:
-rabbitmqctl set_permissions -p &#34;/&#34; admin &#34;.*&#34; &#34;.*&#34; &#34;.*&#34;
-删除测试用户:
-rabbitmqctl delete_user guest
-赋予其administrator角色：
-rabbitmqctl set_user_tags admin administrator
-</code></pre><h3 id=修改配置>修改配置
-<a class=anchor href=#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>//防止服务端异常中断恢复后镜像队列不能恢复的问题
-
-vim /etc/rabbitmq/rabbitmq.conf
-[
-  {rabbit,[{tcp_listeners,[5672]},
-  {cluster_partition_handling, autoheal}]}
-].
-#不要忘记最后面的那个点号哦！
-</code></pre><h3 id=环境变量>环境变量
-<a class=anchor href=#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f>#</a></h3><pre tabindex=0><code>touch /etc/rabbitmq/rabbitmq-env.conf#输入
-    RABBITMQ_NODENAME=FZTEC-240088 节点名称    RABBITMQ_NODE_IP_ADDRESS=127.0.0.1 监听IP
-    RABBITMQ_NODE_PORT=5672 监听端口    RABBITMQ_LOG_BASE=/data/rabbitmq/log 日志目录
-    RABBITMQ_PLUGINS_DIR=/data/rabbitmq/plugins 插件目录
-    RABBITMQ_MNESIA_BASE=/data/rabbitmq/mnesia 后端存储目录
-</code></pre><h3 id=rabbitmq的用户角色分类>RabbitMQ的用户角色分类
+<a class=anchor href=#%e5%90%8c%e6%ad%a5cookie>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>chmod <span style=color:#ae81ff>777</span> /var/lib/rabbitmq/.erlang.cookie
+</span></span><span style=display:flex><span>scp /var/lib/rabbitmq/.erlang.cookie Go02:/var/lib/rabbitmq/.erlang.cookie
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>400</span> /var/lib/rabbitmq/.erlang.cookie
+</span></span></code></pre></div><h3 id=添加节点>添加节点
+<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rabbitmqctl stop_app
+</span></span><span style=display:flex><span>rabbitmqctl reset
+</span></span><span style=display:flex><span>rabbitmqctl join_cluster <span style=color:#f92672>[</span>--ram<span style=color:#f92672>]</span> rabbit@Go01 //此处的Go01为主节点的hostname,需要在/etc/hosts中指定
+</span></span><span style=display:flex><span>rabbitmqctl start_app
+</span></span></code></pre></div><h3 id=删除节点>删除节点
+<a class=anchor href=#%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rabbitmqctl stop_app
+</span></span><span style=display:flex><span>rabbitmqctl forget_cluster_node rabbit@rabbit1
+</span></span></code></pre></div><h3 id=修改类型>修改类型
+<a class=anchor href=#%e4%bf%ae%e6%94%b9%e7%b1%bb%e5%9e%8b>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rabbitmqctl stop_app
+</span></span><span style=display:flex><span>rabbitmqctl change_cluster_node_type ram
+</span></span><span style=display:flex><span>rabbitmqctl start_app
+</span></span></code></pre></div><h3 id=添加用户>添加用户
+<a class=anchor href=#%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rabbitmqctl add_user admin admin
+</span></span><span style=display:flex><span>添加权限:
+</span></span><span style=display:flex><span>rabbitmqctl set_permissions -p <span style=color:#e6db74>&#34;/&#34;</span> admin <span style=color:#e6db74>&#34;.*&#34;</span> <span style=color:#e6db74>&#34;.*&#34;</span> <span style=color:#e6db74>&#34;.*&#34;</span>
+</span></span><span style=display:flex><span>删除测试用户:
+</span></span><span style=display:flex><span>rabbitmqctl delete_user guest
+</span></span><span style=display:flex><span>赋予其administrator角色：
+</span></span><span style=display:flex><span>rabbitmqctl set_user_tags admin administrator
+</span></span></code></pre></div><h3 id=修改配置>修改配置
+<a class=anchor href=#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>//防止服务端异常中断恢复后镜像队列不能恢复的问题
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vim /etc/rabbitmq/rabbitmq.conf
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>{</span>rabbit,<span style=color:#f92672>[{</span>tcp_listeners,<span style=color:#f92672>[</span>5672<span style=color:#f92672>]}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>{</span>cluster_partition_handling, autoheal<span style=color:#f92672>}]}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>]</span>.
+</span></span><span style=display:flex><span><span style=color:#75715e>#不要忘记最后面的那个点号哦！</span>
+</span></span></code></pre></div><h3 id=环境变量>环境变量
+<a class=anchor href=#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>touch /etc/rabbitmq/rabbitmq-env.conf#输入
+</span></span><span style=display:flex><span>    RABBITMQ_NODENAME<span style=color:#f92672>=</span>FZTEC-240088 节点名称    RABBITMQ_NODE_IP_ADDRESS<span style=color:#f92672>=</span>127.0.0.1 监听IP
+</span></span><span style=display:flex><span>    RABBITMQ_NODE_PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>5672</span> 监听端口    RABBITMQ_LOG_BASE<span style=color:#f92672>=</span>/data/rabbitmq/log 日志目录
+</span></span><span style=display:flex><span>    RABBITMQ_PLUGINS_DIR<span style=color:#f92672>=</span>/data/rabbitmq/plugins 插件目录
+</span></span><span style=display:flex><span>    RABBITMQ_MNESIA_BASE<span style=color:#f92672>=</span>/data/rabbitmq/mnesia 后端存储目录
+</span></span></code></pre></div><h3 id=rabbitmq的用户角色分类>RabbitMQ的用户角色分类
 <a class=anchor href=#rabbitmq%e7%9a%84%e7%94%a8%e6%88%b7%e8%a7%92%e8%89%b2%e5%88%86%e7%b1%bb>#</a></h3><p>none、management、policymaker、monitoring、administrator</p><a href=/blog/linux/HkXeLI4cIAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HybPILE5U0z/>RabbitMQ三种Exchange模式(fanout,direct,topic)的性能比较</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
@@ -158,14 +158,14 @@ vim /etc/rabbitmq/rabbitmq.conf
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>vim /etc/rabbitmq/rabbitmq-env.conf</p></blockquote><h1 id=i-am-a-complete-etcrabbitmqrabbitmq-e>I am a complete /etc/rabbitmq/rabbitmq-e…
-<a class=anchor href=#i-am-a-complete-etcrabbitmqrabbitmq-e>#</a></h1><pre tabindex=0><code> vim /etc/rabbitmq/rabbitmq-env.conf
-
-# I am a complete /etc/rabbitmq/rabbitmq-env.conf file.
-# Comment lines start with a hash character.
-# This is a /bin/sh script file - use ordinary envt var syntax
-MNESIA_BASE=/data/rabbitmq/mnesia
-LOG_BASE=/data/logs/rabbitmq
-</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11rILN5UAz/>Ubuntu 阿里云镜像源</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<a class=anchor href=#i-am-a-complete-etcrabbitmqrabbitmq-e>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span> vim /etc/rabbitmq/rabbitmq-env.conf
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># I am a complete /etc/rabbitmq/rabbitmq-env.conf file.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Comment lines start with a hash character.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># This is a /bin/sh script file - use ordinary envt var syntax</span>
+</span></span><span style=display:flex><span>MNESIA_BASE<span style=color:#f92672>=</span>/data/rabbitmq/mnesia
+</span></span><span style=display:flex><span>LOG_BASE<span style=color:#f92672>=</span>/data/logs/rabbitmq
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/B11rILN5UAz/>Ubuntu 阿里云镜像源</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
