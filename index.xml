@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/</link><description>Recent content in 首页 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Mon, 23 Dec 2024 18:17:28 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 QML鼠标事件</title><link>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</link><pubDate>Thu, 01 Aug 2024 10:21:38 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</guid><description>&lt;h2 id="示例代码">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/</link><description>Recent content in 首页 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Mon, 10 Feb 2025 17:49:08 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 调用Python代码</title><link>https://notes.zhangwenbing.com/notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/</link><pubDate>Mon, 10 Feb 2025 17:42:52 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;cstdio&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;Python.h&amp;gt;&lt;/span>&lt;span style="color:#75715e"> &lt;/span>&lt;span style="color:#75715e">// 包含 Python 头文件
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 初始化 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Initialize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 创建一个 Python 字典来传递参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pName &lt;span style="color:#f92672">=&lt;/span> PyUnicode_FromString(&lt;span style="color:#e6db74">&amp;#34;__main__&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyObject&lt;span style="color:#f92672">*&lt;/span> pModule &lt;span style="color:#f92672">=&lt;/span> PyImport_Import(pName);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pName);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (pModule &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 创建一个全局字典来存储参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pGlobals &lt;span style="color:#f92672">=&lt;/span> PyModule_GetDict(pModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 将参数作为 Python 对象添加到全局字典中
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyDict_SetItemString(pGlobals, &lt;span style="color:#e6db74">&amp;#34;param1&amp;#34;&lt;/span>, PyLong_FromLong(&lt;span style="color:#ae81ff">42&lt;/span>)); &lt;span style="color:#75715e">// 示例参数1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyDict_SetItemString(pGlobals, &lt;span style="color:#e6db74">&amp;#34;param2&amp;#34;&lt;/span>, PyUnicode_FromString(&lt;span style="color:#e6db74">&amp;#34;Hello from C++&amp;#34;&lt;/span>)); &lt;span style="color:#75715e">// 示例参数2
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 定义并执行 Python 代码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">char&lt;/span>&lt;span style="color:#f92672">*&lt;/span> script &lt;span style="color:#f92672">=&lt;/span> R&lt;span style="color:#e6db74">&amp;#34;(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>import platform
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>import sys
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>import os
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>system_info &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>param1&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> param1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>param2&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> param2,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>OS&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> platform.system(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>OS Version&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> platform.version(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>Release&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> platform.release(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>Machine&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> platform.machine(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>Processor&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> platform.processor(),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>Python Version&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> sys.version,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(system_info)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)&lt;span style="color:#e6db74">&amp;#34;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行 Python 代码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">auto&lt;/span> result &lt;span style="color:#f92672">=&lt;/span> PyRun_SimpleString(script);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Result from Python: &amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> result &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cerr &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Failed to load the Python script&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 关闭 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Finalize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 QML鼠标事件</title><link>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</link><pubDate>Thu, 01 Aug 2024 10:21:38 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</guid><description>&lt;h2 id="示例代码">
  示例代码
  &lt;a class="anchor" href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81">#&lt;/a>
 &lt;/h2>
@@ -123,7 +178,61 @@
 &lt;li>所有浮点数类型，比如 f64 。&lt;/li>
 &lt;li>字符类型，char 。&lt;/li>
 &lt;li>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 Copy ，但(i32, String) 就没有。&lt;/li>
-&lt;/ul></description></item><item><title>📝 QML虚拟列表</title><link>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</link><pubDate>Tue, 06 Aug 2024 11:17:35 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-qml" data-lang="qml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
+&lt;/ul></description></item><item><title>📝 调用Python方法</title><link>https://notes.zhangwenbing.com/notes/2025/02/10/gqci9riugfetribe6j6fou/</link><pubDate>Mon, 10 Feb 2025 17:44:56 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/02/10/gqci9riugfetribe6j6fou/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;Python.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 初始化 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Initialize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 创建 Python 字典并将参数传递给 Python
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pName &lt;span style="color:#f92672">=&lt;/span> PyUnicode_FromString(&lt;span style="color:#e6db74">&amp;#34;__main__&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyObject&lt;span style="color:#f92672">*&lt;/span> pModule &lt;span style="color:#f92672">=&lt;/span> PyImport_Import(pName);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pName);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (pModule &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 创建一个全局字典来存储参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pGlobals &lt;span style="color:#f92672">=&lt;/span> PyModule_GetDict(pModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 创建 Python 函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">char&lt;/span>&lt;span style="color:#f92672">*&lt;/span> func_code &lt;span style="color:#f92672">=&lt;/span> R&lt;span style="color:#e6db74">&amp;#34;(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>def &lt;span style="color:#a6e22e">my_function&lt;/span>(param1, param2)&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> f&lt;span style="color:#e6db74">&amp;#34;Received param1: &lt;/span>{param1}, param2: {param2}&lt;span style="color:#e6db74">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)&lt;span style="color:#e6db74">&amp;#34;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行定义函数的代码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyRun_SimpleString(func_code);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 获取 Python 函数对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pFunc &lt;span style="color:#f92672">=&lt;/span> PyDict_GetItemString(pGlobals, &lt;span style="color:#e6db74">&amp;#34;my_function&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (PyCallable_Check(pFunc)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 准备参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pArgs &lt;span style="color:#f92672">=&lt;/span> PyTuple_Pack(&lt;span style="color:#ae81ff">2&lt;/span>, PyLong_FromLong(&lt;span style="color:#ae81ff">42&lt;/span>), PyUnicode_FromString(&lt;span style="color:#e6db74">&amp;#34;Hello from C++&amp;#34;&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pValue &lt;span style="color:#f92672">=&lt;/span> PyObject_CallObject(pFunc, pArgs);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (pValue &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 打印函数返回值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Function returned: &amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> PyUnicode_AsUTF8(pValue) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pValue);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pArgs);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cerr &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Failed to load the Python module&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 关闭 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Finalize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 QML虚拟列表</title><link>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</link><pubDate>Tue, 06 Aug 2024 11:17:35 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-qml" data-lang="qml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span>.&lt;span style="color:#a6e22e">Controls&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ApplicationWindow&lt;/span> {
@@ -259,7 +368,92 @@
  可变引用
  &lt;a class="anchor" href="#%e5%8f%af%e5%8f%98%e5%bc%95%e7%94%a8">#&lt;/a>
 &lt;/h2>
-&lt;p>允许修改一个借用的值，这就是可变引用（&amp;amp;mut）。&lt;/p></description></item><item><title>📝 git之删除远程分支</title><link>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</link><pubDate>Thu, 10 Jun 2021 19:09:17 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</guid><description>&lt;blockquote>
+&lt;p>允许修改一个借用的值，这就是可变引用（&amp;amp;mut）。&lt;/p></description></item><item><title>📝 注册Python模块</title><link>https://notes.zhangwenbing.com/notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/</link><pubDate>Mon, 10 Feb 2025 17:49:08 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;Python.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 示例结构体（C++对象）
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">MyStruct&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> value;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// C++ 从 Python 获取 `void*` 并使用
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">static&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">use_object&lt;/span>(PyObject&lt;span style="color:#f92672">*&lt;/span> self, PyObject&lt;span style="color:#f92672">*&lt;/span> args) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyObject&lt;span style="color:#f92672">*&lt;/span> capsule;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>PyArg_ParseTuple(args, &lt;span style="color:#e6db74">&amp;#34;O&amp;#34;&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>capsule)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 取回 `void*` 并转换回 C++ 指针
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">auto&lt;/span>&lt;span style="color:#f92672">*&lt;/span> obj &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">static_cast&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>MyStruct&lt;span style="color:#f92672">*&amp;gt;&lt;/span>(PyCapsule_GetPointer(capsule, &lt;span style="color:#e6db74">&amp;#34;this&amp;#34;&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>obj) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_SetString(PyExc_RuntimeError, &lt;span style="color:#e6db74">&amp;#34;Invalid capsule!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Received C++ object with value: &amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> obj&lt;span style="color:#f92672">-&amp;gt;&lt;/span>value &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> PyLong_FromLong(obj&lt;span style="color:#f92672">-&amp;gt;&lt;/span>value);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Python 方法表
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">static&lt;/span> PyMethodDef CppMethods[] &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&lt;span style="color:#e6db74">&amp;#34;use_object&amp;#34;&lt;/span>, use_object, METH_VARARGS, &lt;span style="color:#e6db74">&amp;#34;Use a C++ object from PyCapsule&amp;#34;&lt;/span>},
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&lt;span style="color:#66d9ef">nullptr&lt;/span>, &lt;span style="color:#66d9ef">nullptr&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#66d9ef">nullptr&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Python 模块定义
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">PyModuleDef&lt;/span> cppModule &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyModuleDef_HEAD_INIT, &lt;span style="color:#e6db74">&amp;#34;cppModule&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">nullptr&lt;/span>, &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>, CppMethods
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 初始化 Python 模块
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>PyMODINIT_FUNC &lt;span style="color:#a6e22e">PyInit_cppModule&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> PyModule_Create(&lt;span style="color:#f92672">&amp;amp;&lt;/span>cppModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 初始化 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Initialize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyObject&lt;span style="color:#f92672">*&lt;/span> pModule &lt;span style="color:#f92672">=&lt;/span> PyImport_AddModule(&lt;span style="color:#e6db74">&amp;#34;__main__&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyObject&lt;span style="color:#f92672">*&lt;/span> pGlobals &lt;span style="color:#f92672">=&lt;/span> PyModule_GetDict(pModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 注册 C++ 方法到 Python
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pCppModule &lt;span style="color:#f92672">=&lt;/span> PyModule_Create(&lt;span style="color:#f92672">&amp;amp;&lt;/span>cppModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyDict_SetItemString(pGlobals, &lt;span style="color:#e6db74">&amp;#34;cppModule&amp;#34;&lt;/span>, pCppModule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行 Python 代码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">auto&lt;/span> python_code &lt;span style="color:#f92672">=&lt;/span> R&lt;span style="color:#e6db74">&amp;#34;(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>def &lt;span style="color:#a6e22e">my_function&lt;/span>(capsule)&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> result &lt;span style="color:#f92672">=&lt;/span> cppModule.use_object(capsule) &lt;span style="color:#960050;background-color:#1e0010">#&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">传回&lt;/span> C&lt;span style="color:#f92672">++&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">处理&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> print(f&lt;span style="color:#e6db74">&amp;#34;Python received: &lt;/span>{result}&lt;span style="color:#e6db74">&amp;#34;)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> result
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)&lt;span style="color:#e6db74">&amp;#34;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyRun_SimpleString(python_code);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 获取 Python 函数对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (PyObject&lt;span style="color:#f92672">*&lt;/span> pFunc &lt;span style="color:#f92672">=&lt;/span> PyDict_GetItemString(pGlobals, &lt;span style="color:#e6db74">&amp;#34;my_function&amp;#34;&lt;/span>); PyCallable_Check(pFunc)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">auto&lt;/span>&lt;span style="color:#f92672">*&lt;/span> obj &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> MyStruct{&lt;span style="color:#ae81ff">42&lt;/span>}; &lt;span style="color:#75715e">// 创建 C++ 对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">auto&lt;/span> capsule &lt;span style="color:#f92672">=&lt;/span> PyCapsule_New(obj, &lt;span style="color:#e6db74">&amp;#34;this&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">nullptr&lt;/span>); &lt;span style="color:#75715e">// 返回封装的指针
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 准备参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> PyObject&lt;span style="color:#f92672">*&lt;/span> pArgs &lt;span style="color:#f92672">=&lt;/span> PyTuple_Pack(&lt;span style="color:#ae81ff">1&lt;/span>, capsule);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (PyObject&lt;span style="color:#f92672">*&lt;/span> pValue &lt;span style="color:#f92672">=&lt;/span> PyObject_CallObject(pFunc, pArgs); pValue &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 打印函数返回值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Function returned: &amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> PyLong_AsLong(pValue) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pValue);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Py_XDECREF(pArgs);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PyErr_Print();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 关闭 Python 解释器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Py_Finalize();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 git之删除远程分支</title><link>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</link><pubDate>Thu, 10 Jun 2021 19:09:17 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/git/WNYzxj6GR/</guid><description>&lt;blockquote>
 &lt;p>git删除远程分支就这么简单&lt;/p>
 &lt;/blockquote>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>git push origin --delete &lt;span style="color:#f92672">[&lt;/span>branch_name&lt;span style="color:#f92672">]&lt;/span>

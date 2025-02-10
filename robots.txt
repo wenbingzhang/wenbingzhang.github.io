@@ -1,5 +1,7 @@
 User-agent: *
 
+Allow: /notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/
+
 Allow: /notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/
 
 Allow: /notes/
@@ -14,6 +16,8 @@ Allow: /notes/
 
 Allow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
 
+Allow: /notes/2025/02/10/gqci9riugfetribe6j6fou/
+
 Allow: /notes/2024/08/06/ny773erqjgbzmzgfikfvds/
 
 Allow: /notes/
@@ -25,6 +29,10 @@ Allow: /notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/
 Allow: /notes/
 
 Allow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
+
+Allow: /notes/
+
+Allow: /notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/
 
 Allow: /notes/
 
@@ -44,6 +52,10 @@ Allow: /notes/
 
 Allow: /links/
 
+Allow: /notes/
+
+Allow: /
+
 Allow: /articles/
 
 Allow: /categories/
@@ -56,15 +68,11 @@ Allow: /articles/2024/12/23/wvkjyjt7qhumo4jpucheca/
 
 Allow: /tags/
 
-Allow: /
-
 Allow: /tags/ffmpeg/
 
 Allow: /categories/ffmpeg/
 
 Allow: /articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/
-
-Allow: /notes/
 
 Allow: /tags/macos/
 
