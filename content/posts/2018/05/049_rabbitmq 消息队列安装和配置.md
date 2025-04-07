@@ -10,8 +10,6 @@ tags:
 menu: main
 ---
 
-> none
-
 ## erlang
 
 首先安装erlang语言环境
