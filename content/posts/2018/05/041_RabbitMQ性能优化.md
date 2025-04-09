@@ -10,8 +10,6 @@ tags:
 menu: main
 ---
 
-> none
-
 ## rabbitmq.config
 
 rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定义。

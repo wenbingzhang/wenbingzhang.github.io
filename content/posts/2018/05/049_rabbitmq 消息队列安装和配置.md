@@ -80,13 +80,14 @@ rabbitmqctl start_app
 
 ```bash
 rabbitmqctl add_user admin admin
-添加权限:
+# 添加权限:
 rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
-删除测试用户:
+# 删除测试用户:
 rabbitmqctl delete_user guest
-赋予其administrator角色：
+# 赋予其administrator角色：
 rabbitmqctl set_user_tags admin administrator
-
+# 修改密码：
+rabbitmqctl  change_password  admin  '12341234'
 ```
 
 ### 修改配置

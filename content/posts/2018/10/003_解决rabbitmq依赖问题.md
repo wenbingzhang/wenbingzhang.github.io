@@ -10,8 +10,6 @@ tags:
 menu: main
 ---
 
-> MQ全称为Message Queue, 消息队列（MQ）是一种应用程序对应用程序的通信方法。
-
 ## 错误提示
 
 ```bash

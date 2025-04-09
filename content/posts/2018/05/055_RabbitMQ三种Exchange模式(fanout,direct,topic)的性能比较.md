@@ -1,6 +1,6 @@
 ---
 url: /blog/linux/HybPILE5U0z
-title: "RabbitMQ三种Exchange模式(fanout,direct,topic)的性能比较"
+title: "RabbitMQ 三种 Exchange 模式"
 date: 2018-05-14T04:45:01+08:00
 description:
 categories:
@@ -10,58 +10,82 @@ tags:
 menu: main
 ---
 
-> none
 
-RabbitMQ中，所有生产者提交的消息都由Exchange来接受，然后Exchange按照特定的策略转发到Queue进行存储
+RabbitMQ 中的 Exchange（交换机）负责接收生产者发送的消息，并根据类型将消息路由到相应的队列。常见的三种 Exchange 类型如下：
 
-RabbitMQ提供了四种Exchange：fanout,direct,topic,header
+---
 
-header模式在实际使用中较少，本文只对前三种模式进行比较。
+## 1. Direct Exchange（直连模式）
 
-性能排序：fanout > direct >> topic。比例大约为11：10：6
+### ✅ 特点：
+- 根据消息的 **routing key** 精确匹配，将消息路由到绑定了 **相同 routing key** 的队列。
 
-## 一.Direct Exchange
+### 🎯 适用场景：
+- 一对一消息传递。
+- 多个队列分别订阅不同的消息类型。
 
-![r1.png](/static/uploads/images/20171103/6364532072265077778318349.png)
+### 📌 示例：
+绑定情况：
+- Queue A 绑定 routing key：`error`
+- Queue B 绑定 routing key：`info`
 
-任何发送到Direct Exchange的消息都会被转发到RouteKey中指定的Queue。
+发送消息：
+- Producer 发送消息，routing key 为 `error`
 
-1.一般情况可以使用rabbitMQ自带的Exchange：””(该Exchange的名字为空字符串，下文称其为default Exchange)。
+结果：
+- 只有 Queue A 会接收到该消息。
 
-2.这种模式下不需要将Exchange进行任何绑定(binding)操作
+---
 
-3.消息传递时需要一个“RouteKey”，可以简单的理解为要发送到的队列名字。
+## 2. Fanout Exchange（广播模式）
 
-4.如果vhost中不存在RouteKey中指定的队列名，则该消息会被抛弃。
+### ✅ 特点：
+- **忽略 routing key**。
+- 所有绑定到该 Exchange 的队列都会收到消息。
 
-## 二.Fanout Exchange
+### 🎯 适用场景：
+- 广播场景，例如系统通知、群发消息。
 
-![r2.png](/static/uploads/images/20171103/6364532073804675165663805.png)
+### 📌 示例：
+绑定情况：
+- Queue A、Queue B 都绑定到同一个 fanout Exchange
 
-任何发送到Fanout Exchange的消息都会被转发到与该Exchange绑定(Binding)的所有Queue上。
+发送消息：
+- Producer 发送任意消息（routing key 无效）
 
-1.可以理解为路由表的模式
+结果：
+- Queue A 和 Queue B 都会接收到该消息。
 
-2.这种模式不需要RouteKey
+---
 
-3.这种模式需要提前将Exchange与Queue进行绑定，一个Exchange可以绑定多个Queue，一个Queue可以同多个Exchange进行绑定。
+## 3. Topic Exchange（主题模式）
 
-4.如果接受到消息的Exchange没有与任何Queue绑定，则消息会被抛弃。
+### ✅ 特点：
+- 支持 **通配符** 匹配 routing key：
+  - `*`：匹配一个单词（以 `.` 分隔）
+  - `#`：匹配零个或多个单词
 
-## 三.Topic Exchange
+### 🎯 适用场景：
+- 灵活的订阅机制，如日志系统、新闻推送等。
 
-![r3.png](/static/uploads/images/20171103/6364532074845526115373958.png)
+### 📌 示例：
+绑定情况：
+- Queue A 绑定 routing key：`*.error`
+- Queue B 绑定 routing key：`log.#`
 
-任何发送到Topic Exchange的消息都会被转发到所有关心RouteKey中指定话题的Queue上
+发送消息：
+- Producer 发送 routing key：`app.error` → Queue A 接收
+- Producer 发送 routing key：`log.system.info` → Queue B 接收
 
-1.这种模式较为复杂，简单来说，就是每个队列都有其关心的主题，所有的消息都带有一个“标题”(RouteKey)，Exchange会将消息转发到所有关注主题能与RouteKey模糊匹配的队列。
+---
 
-2.这种模式需要RouteKey，也许要提前绑定Exchange与Queue。
+## 🧾 模式对比表
 
-3.在进行绑定时，要提供一个该队列关心的主题，如“#.log.#”表示该队列关心所有涉及log的消息(一个RouteKey为”MQ.log.error”的消息会被转发到该队列)。
+| Exchange 类型 | Routing Key 是否参与路由 | 匹配方式           | 典型应用场景         |
+|---------------|--------------------------|--------------------|----------------------|
+| Direct        | ✅ 是                     | 精确匹配           | 精准路由，分类消息   |
+| Fanout        | ❌ 否                     | 广播               | 系统通知，全员推送   |
+| Topic         | ✅ 是                     | 通配符匹配（`*`/`#`） | 日志订阅，事件分发   |
 
-4.“#”表示0个或若干个关键字，“*”表示一个关键字。如“log.*”能与“log.warn”匹配，无法与“log.warn.timeout”匹配；但是“log.#”能与上述两者匹配。
+---
 
-5.同样，如果Exchange没有发现能够与RouteKey匹配的Queue，则会抛弃此消息。
-
-原文地址：http://www.gaort.com/index.php/archives/366
