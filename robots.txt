@@ -1,7 +1,5 @@
 User-agent: *
 
-Allow: /notes/
-
 Allow: /notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/
 
 Allow: /notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/
