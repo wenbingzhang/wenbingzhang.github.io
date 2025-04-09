@@ -14,7 +14,7 @@ menu: main
 
 ## 问题
 
-```
+```bash
 htpasswd -c /etc/nginx/.htpasswd  test
 
 ```
@@ -29,7 +29,7 @@ htpasswd -c /etc/nginx/.htpasswd  test
 
 ## 解决方法
 
-```
+```bash
 htpasswd -m -c /etc/nginx/.htpasswd  test
 
 ```

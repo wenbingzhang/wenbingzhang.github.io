@@ -22,7 +22,7 @@ mediainfo版本：0.7.71
 
 ## 脚本
 
-```
+```bash
 #!/bin/bash
 
 cd ~/
@@ -60,6 +60,7 @@ git checkout v0.7.71
 cd Project/GNU/Library/
 make clean
 ./autogen
+## --with-libcurl 开启支持http和ftp
 ./configure --enable-static --with-libcurl=../../../../curl-$curl_vserion/
 make -j2
 
@@ -76,3 +77,4 @@ make -j2
 g++ -static -O2 -DUNICODE -DUNICODE -DSIZE_T_IS_LONG -o mediainfo CLI_Main.o CommandLine_Parser.o Help.o Core.o  ../../../../MediaInfoLib/Project/GNU/Library/.libs/libmediainfo.a -lz  ../../../../ZenLib/Project/GNU/Library/.libs/libzen.a ../../../../curl-$curl_vserion/lib/.libs/libcurl.a ../../../../openssl/libssl.a ../../../../openssl/libcrypto.a -lpthread -lstdc++ -pthread -Wl,-rpath -Wl,../../../../ZenLib/Project/GNU/Library/.libs -Wl,-rpath -Wl,../../../../curl-$curl_vserion/lib/.libs -Wl,-rpath -Wl,../../../../openssl -ldl
 
 ```
+

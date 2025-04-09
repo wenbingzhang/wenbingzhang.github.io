@@ -10,8 +10,6 @@ tags:
 menu: main
 ---
 
-> none
-
 ## 发现问题
 
 首先使用”df -Th”查看根目录的空间使用和”du -sh /“的结果进行对比。
@@ -22,7 +20,7 @@ menu: main
 
 文件被删掉，但是写这个文件的进程没退出
 
-```
+```bash
  lsof -n|grep delete
 
 ```
@@ -31,7 +29,7 @@ menu: main
 
 ### 第二种情况
 
-```
+```bash
 lsof -n|grep delete
 
 ```
@@ -40,14 +38,14 @@ lsof -n|grep delete
 
 那么我们首先查看下根目录的文件系统，如果是“xfs”,那么可以使用
 
-```
+```bash
 xfs_db -c frag -r /dev/sdxx
 
 ```
 
 查看碎片的占比，如果较高的话，那么我们应该整理下xfs的碎片了。
 
-```
+```bash
 xfs_fsr /dev/sdxx #整理碎片
 
 ```

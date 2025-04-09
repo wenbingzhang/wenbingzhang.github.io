@@ -14,7 +14,7 @@ menu: main
 
 ## CA根证书制作
 
-```
+```bash
 #1.生成根证书密钥
 $ openssl genrsa -out ca.key 4096 #建议长度为4096,1024长度已经被列为不安全。
 #2.生成自签名根证书
@@ -26,7 +26,7 @@ $ openssl req -new -x509 -days 3650 -key ca.key -out ca.crt #这里在输入Comm
 
 ### **1.生成证书密钥**
 
-```
+```bash
 $ openssl genrsa -out server.key 4096
 
 ```
@@ -39,7 +39,7 @@ $ openssl genrsa -out server.key 4096
 
 新建文件 `san.conf`
 
-```
+```bash
 [req]
 default_bits = 4096
 distinguished_name = req_distinguished_name
@@ -65,7 +65,7 @@ IP.1=xxx.xxx.xxx.xxx
 
 向根证书请求签名一个新的证书，由于用户信任了你的根证书，所以根证书签名的其它证书也会被信任
 
-```
+```bash
 # 生成csr 注意要使用sha256算法（推荐是sha256算法，默认算法浏览器会报弱加密算法错误）
 $ openssl req -new -key server.key -out server.csr -config san.conf -sha256
 # 查看csr信息
@@ -75,7 +75,7 @@ $ openssl req -text -in server.csr
 
 csr信息中会有类似的信息
 
-```
+```bash
 Requested Extensions:
             X509v3 Subject Alternative Name:
                 IP Address:xxxxxx
@@ -84,21 +84,21 @@ Requested Extensions:
 
 ### **4.使用根证书按照csr给证书签名，生成新证书server.crt**
 
-```
+```bash
 $ openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out server.crt -extfile san.conf -extensions v3_req
 
 ```
 
 查看证书信息
 
-```
+```bash
 $ openssl x509 -text -in server.crt
 
 ```
 
 证书信息中会有类似信息
 
-```
+```bash
 X509v3 extensions:
             X509v3 Subject Alternative Name:
                 IP Address:xxxxxx

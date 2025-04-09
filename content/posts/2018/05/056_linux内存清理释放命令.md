@@ -10,11 +10,9 @@ tags:
 menu: main
 ---
 
-> none
-
 ## 命令
 
-```
+```bash
 sync
 echo 1 > /proc/sys/vm/drop_caches
 echo 2 > /proc/sys/vm/drop_caches
@@ -24,7 +22,7 @@ echo 3 > /proc/sys/vm/drop_caches
 
 ## 解释
 
-```
+```bash
 cache释放：
 To free pagecache:
 echo 1 > /proc/sys/vm/drop_caches

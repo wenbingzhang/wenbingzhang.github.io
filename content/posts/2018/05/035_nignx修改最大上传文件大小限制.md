@@ -10,9 +10,7 @@ tags:
 menu: main
 ---
 
-> none
-
-```
+```bash
 location / {
             root   html;
             index  index.html index.htm;

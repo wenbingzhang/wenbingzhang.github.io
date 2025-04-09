@@ -14,7 +14,7 @@ menu: main
 
 ## 准备工作
 
-```
+```bash
 yum install epel-* -y
 yum install python34 -y
 wget --no-check-certificate
@@ -24,14 +24,14 @@ python3 get-pip.py
 
 ## 安装supervisor
 
-```
+```bash
 pip3 install supervisor
 
 ```
 
 ## 配置supervisor
 
-```
+```bash
 echo_supervisord_conf >/etc/supervisord.conf
 
 vi /etc/supervisord.conf
@@ -45,7 +45,7 @@ vi /etc/supervisord.conf
 
 去掉上面两行的”;“然后将files改成自己的目录
 
-```
+```bash
 vi /etc/supervisord.conf
 
 [unix_http_server]
@@ -90,7 +90,7 @@ mkdir /etc/supervisord.d/
 
 ## 启动supervisor
 
-```
+```bash
 supervisord -c /etc/supervisord.conf
 
 ```
@@ -99,48 +99,51 @@ supervisord -c /etc/supervisord.conf
 
 ### 查看状态
 
-```
+```bash
 supervisorctl status
 
 ```
 
 ### 启动服务
 
-```
+```bash
 supervisorctl start 服务名
 
 ```
 
 ### 停止服务
 
-```
+```bash
 supervisorctl stop 服务名
 
 ```
 
 ### 重启服务
 
-```
+```bash
 supervisorctl restart 服务名
 
 ```
 
 ### 增加服务
 
-```
+```bash
 vim /etc/supervisord.d/test.ini
-
 [program:test] #程序的名字，在supervisor中可以用这个名字来管理该程序。
-user=root #指定运行用户
-command=bash /root/1.sh #启动程序的命令
-autorstart=true #设置改程序是否虽supervisor的启动而启动
-directory=/home/lege #相当于在该目录下执行程序
-autorestart=true #程序停止之后是否需要重新将其启动
-startsecs=5 #重新启动时，等待的时间
-startretries=100 #重启程序的次数
-redirect_stderr=true #是否将程序错误信息重定向的到文件
-stdout_logfile=/var/log/log.txt #将程序输出重定向到该文件
-stderr_logfile=/var/log/err.txt #将程序错误信息重定向到该文件
+directory = /root #相当于在该目录下执行程序
+command = /root/1.sh #启动程序的命令
+autorestart = true #是否自动重启
+autostart = true #设置改程序是否虽supervisor的启动而启动
+startsecs = 5 重新启动时，等待的时间
+startretries = 3 #重启程序的次数
+user = root #指定运行用户
+redirect_stderr = true #是否将程序错误信息重定向的到文件
+stdout_logfile_backups = 10
+stdout_logfile_maxbytes = 10MB
+stdout_logfile = /var/log/supervisord/ameRender.log
+environment = HOME="/root",USER="root"
+minfds=81920
+minprocs=81920
 
 supervisorctl update
 

@@ -18,7 +18,7 @@ ${}用于字符串的读取，提取和替换功能，可以使用${} 提取字�
 
 ### 1、提取文件名
 
-```
+```bash
 # file1=/dir1/dir2/file.txt
 # echo ${file1##*/}
 file.txt
@@ -27,7 +27,7 @@ file.txt
 
 ### 2、提取后缀
 
-```
+```bash
 # echo ${file1##*.}
 txt
 
@@ -35,7 +35,7 @@ txt
 
 ### 3、提取不带后缀的文件名
 
-```
+```bash
 # tmp=${file1##*/}
 # echo $tmp
 file.txt
@@ -46,7 +46,7 @@ file
 
 ### 4、提取目录
 
-```
+```bash
 # echo ${var%/*}
 /dir1/dir2
 
@@ -58,7 +58,7 @@ file
 
 ### 1、提取文件名
 
-```
+```bash
 # file2=/dir1/dir2/file2.txt
 # echo $(basename $file2)
 file2.txt
@@ -67,7 +67,7 @@ file2.txt
 
 ### 2、提取不带后缀的文件名
 
-```
+```bash
 # echo $(basename $file2 .txt)
 file2
 
@@ -75,7 +75,7 @@ file2
 
 ### 3、提取目录
 
-```
+```bash
 # dirname $file2
 /dir1/dir2
 # echo $(dirname $file2)

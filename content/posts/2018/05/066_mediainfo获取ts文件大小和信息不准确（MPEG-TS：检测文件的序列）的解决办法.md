@@ -30,7 +30,7 @@ menu: main
 
 ## 错误结果
 
-```
+```bash
 mediainfo /opt/2017LPL夏季赛第01集.ts
 General
 ID                                       : 1 (0x1)
@@ -94,7 +94,7 @@ Service type                             : digital television
 
 ## 正确结果
 
-```
+```bash
 mediainfo /opt/2017LPL夏季赛第01集.ts
 General
 ID                                       : 1 (0x1)
@@ -160,7 +160,7 @@ Service type                             : digital television
 
 https://github.com/MediaArea/MediaInfoLib/commit/78f739893c85d4b1397276ef15badd160907b7aa
 
-```
+```bash
 vim "Source/MediaInfo/Multiple/File_MpegTs.cpp"
 
 void File_MpegTs::Streams_Accept()

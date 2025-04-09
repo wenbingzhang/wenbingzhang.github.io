@@ -10,13 +10,11 @@ tags:
 menu: main
 ---
 
-> none
-
 ## 内核模块
 
 通过modinfo bonding命令查看Linux是否支持bonding
 
-```
+```bash
 lsmod |grep bonding
 #载入bonding模块
 modprobe bonding
@@ -25,7 +23,7 @@ modprobe bonding
 
 ## 配置bonding
 
-```
+```bash
 # cat /etc/modprobe.d/bond0.conf
 alias bond0 bonding
 cd /etc/sysconfig/network-scripts/

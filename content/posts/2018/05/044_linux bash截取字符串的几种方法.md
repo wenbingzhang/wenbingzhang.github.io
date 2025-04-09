@@ -10,17 +10,9 @@ tags:
 menu: main
 ---
 
-> # 号截取，删除左边字符，保留右边字符
-
-var=http://www.aaa.com/123.htm
-
-echo ${var#*//}
-
-其中var是变量名，…
-
 ### \# 号截取，删除左边字符，保留右边字符
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var#*//}
 
@@ -32,7 +24,7 @@ echo ${var#*//}
 
 ### \#\# 号截取，删除左边字符，保留右边字符
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var##*/}
 
@@ -44,7 +36,7 @@ echo ${var##*/}
 
 ### % 号截取，删除右边字符，保留左边字符
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var%/*}
 
@@ -56,7 +48,7 @@ echo ${var%/*}
 
 ### %% 号截取，删除右边字符，保留左边字符
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var%%/*}
 
@@ -68,7 +60,7 @@ echo ${var%%/*}
 
 ### : 号截取，从左边第几个字符开始，及字符的个数
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var:0:5}
 
@@ -80,7 +72,7 @@ echo ${var:0:5}
 
 ### : 号截取，从左边第几个字符开始，一直到结束
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var:7}
 
@@ -92,7 +84,7 @@ echo ${var:7}
 
 ### : 号截取，从右边第几个字符开始，及字符的个数
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var:0-7:3}
 
@@ -104,7 +96,7 @@ echo ${var:0-7:3}
 
 ### : 号截取，从右边第几个字符开始，一直到结束
 
-```
+```bash
 var=http://www.aaa.com/123.htm
 echo ${var:0-7}
 

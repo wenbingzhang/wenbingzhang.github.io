@@ -28,14 +28,14 @@ openssh-server openssh-clients
 
 ## 启动服务
 
-```
+```bash
 server sshd start
 
 ```
 
 ## 文件说明
 
-```
+```bash
 ~/.ssh/known_hosts #存放访问过的服务器的公钥
 ~/.ssh/authorized_keys #存放需要验证的客户机的公钥
 
@@ -57,7 +57,7 @@ server sshd start
 
 .ssh目录和下面的文件权限，组和其他人不能有w的权限 解决方法：降低第服务端的权限检查
 
-```
+```bash
 vim /etc/ssh/sshd_config
 StrictModes no
 
@@ -65,7 +65,7 @@ StrictModes no
 
 ### 3、第一次访问sshserver时不用输入yes
 
-```
+```bash
 ssh -o StrictHostKeyChecking=no username@sshserver
 vim /etc/ssh/ssh.config
 StrictHostKeyChecking=no
@@ -74,9 +74,11 @@ StrictHostKeyChecking=no
 
 ## 公钥认证
 
+```bash
 ssh-keygen -t rsa #指定rsa算法 在~/.ssh/下生产两个文件 id_rsa用户的私钥 id_rsa.pub用户的公钥ssh-
-
 copy-id -i ~/.ssh/id_rsa.pub username@sshserver
+
+```
 
 ## scp使用
 
@@ -90,14 +92,14 @@ sftp 用户名@服务器地址
 
 检查某个服务是否受tcp_wrappers管理支持
 
-```
+```bash
 ldd $(which sshd)|grep libwrap
 
 ```
 
 先检查/etc/hosts.allow然后检查/etc/hosts.deny 如果两个文件都没有匹配的规则，则放行。
 
-```
+```bash
 sshd:all EXCEPT 192.168.0.0/255.255.255.0
 
 ```

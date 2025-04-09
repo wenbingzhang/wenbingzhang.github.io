@@ -16,7 +16,7 @@ menu: main
 
 ## 错误一
 
-```
+```bash
 2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.31.26.114, server: localhost, request: "GET /1.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "10.200.8.220:8000"
 
 ```
@@ -25,7 +25,7 @@ menu: main
 
 在server节点下添加以下配置
 
-```
+```bash
 root   /var/www/web;
 index  index.php index.html index.htm;
 
@@ -43,7 +43,7 @@ location ~ \.php$ {
 
 假如网站的根目录是/var/www/web，如果ThinkPHP的网站在/var/www/web/Test目录配置如下
 
-```
+```bash
         location /Test/ {
             if (!-e $request_filename){
                 rewrite ^/Test/(.*)$ /Test/index.php?s=$1 last;
@@ -71,7 +71,7 @@ location ~ \.php$ {
 
 如果是放在根目录下
 
-```
+```bash
         location / {
             if (!-e $request_filename){
                 rewrite ^/(.*)$ /index.php?s=$1 last;
@@ -99,7 +99,7 @@ location ~ \.php$ {
 
 最后来个完整的例子
 
-```
+```bash
 user  root;
 worker_processes  auto;
 #error_log  logs/error.log;

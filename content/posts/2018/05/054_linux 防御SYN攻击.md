@@ -10,11 +10,10 @@ tags:
 menu: main
 ---
 
-> none
 
 ## 一、默认syn配置
 
-```
+```bash
 sysctl -a | grep _syn
 net.ipv4.tcp_max_syn_backlog = 1024
 net.ipv4.tcp_syncookies = 1
@@ -31,7 +30,7 @@ tcp_synack_retries和tcp_syn_retries定义SYN 的重试连接次数，将默认�
 
 ## 二、修改syn配置
 
-```
+```bash
 ulimit -HSn 65535
 sysctl -w net.ipv4.tcp_max_syn_backlog=2048
 sysctl -w net.ipv4.tcp_syncookies=1
@@ -42,7 +41,7 @@ sysctl -w net.ipv4.tcp_syn_retries=2
 
 ## 三、添加防火墙规则
 
-```
+```bash
 #Syn 洪水攻击(--limit 1/s 限制syn并发数每秒1次)
 iptables -A INPUT -p tcp --syn -m limit --limit 1/s -j ACCEPT
 #防端口扫描

@@ -18,7 +18,7 @@ menu: main
 
 ## 解决方法
 
-```
+```bash
 chmod +x /etc/rc.local
 
 ```
