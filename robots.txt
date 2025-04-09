@@ -290,9 +290,9 @@ Allow: /blog/linux/H1v8I4cLAf/
 
 Allow: /blog/linux/rykY88V58CG/
 
-Allow: /blog/linux/HkXeLI4cIAG/
-
 Allow: /blog/linux/HybPILE5U0z/
+
+Allow: /blog/linux/HkXeLI4cIAG/
 
 Allow: /blog/linux/H1z5LL49I0z/
 

@@ -1,119 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>🔖 Qt on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/notes/</link><description>Recent content in 🔖 Qt on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 06 Aug 2024 11:17:35 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 QML鼠标事件</title><link>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</link><pubDate>Thu, 01 Aug 2024 10:21:38 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/</guid><description>&lt;h2 id="示例代码">
- 示例代码
- &lt;a class="anchor" href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81">#&lt;/a>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>🔖 学习笔记 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/notes/</link><description>Recent content in 🔖 学习笔记 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 06 Mar 2024 16:39:04 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/notes/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 所有权</title><link>https://notes.zhangwenbing.com/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/</link><pubDate>Wed, 06 Mar 2024 15:40:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/</guid><description>&lt;h1 id="所有权">
+ 所有权
+ &lt;a class="anchor" href="#%e6%89%80%e6%9c%89%e6%9d%83">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="所有权规则">
+ 所有权规则
+ &lt;a class="anchor" href="#%e6%89%80%e6%9c%89%e6%9d%83%e8%a7%84%e5%88%99">#&lt;/a>
 &lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-qml" data-lang="qml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span>.&lt;span style="color:#a6e22e">Controls&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ApplicationWindow&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">visible:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#ae81ff">640&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#ae81ff">480&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Rectangle&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">id: container&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">color:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;lightblue&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">MouseArea&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.fill:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">onEntered:&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Mouse entered&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">container&lt;/span>.&lt;span style="color:#a6e22e">color&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;lightgreen&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">onExited:&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Mouse exited&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">container&lt;/span>.&lt;span style="color:#a6e22e">color&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;lightblue&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="问题描述">
- 问题描述
- &lt;a class="anchor" href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0">#&lt;/a>
+&lt;ul>
+&lt;li>Rust 中的每一个值都有一个 所有者（owner）。&lt;/li>
+&lt;li>值在任一时刻有且只有一个所有者。&lt;/li>
+&lt;li>当所有者（变量）离开作用域，这个值将被丢弃。&lt;/li>
+&lt;/ul>
+&lt;h2 id="可copy的类型">
+ 可Copy的类型
+ &lt;a class="anchor" href="#%e5%8f%afcopy%e7%9a%84%e7%b1%bb%e5%9e%8b">#&lt;/a>
 &lt;/h2>
-&lt;p>鼠标进入矩形区域时，不会改变矩形的颜色。&lt;/p></description></item><item><title>📝 QML虚拟列表</title><link>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</link><pubDate>Tue, 06 Aug 2024 11:17:35 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/08/06/ny773erqjgbzmzgfikfvds/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-qml" data-lang="qml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">QtQuick&lt;/span>.&lt;span style="color:#a6e22e">Controls&lt;/span> &lt;span style="color:#ae81ff">2.15&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ApplicationWindow&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">visible:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#ae81ff">640&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#ae81ff">28&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Flickable&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">id: flickable&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">contentWidth:&lt;/span> &lt;span style="color:#ae81ff">51200&lt;/span> &lt;span style="color:#75715e">// 根据需要调整刻度尺长度（1000个刻度，每个刻度间隔51.2）
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">clip:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">Component.onCompleted:&lt;/span> &lt;span style="color:#a6e22e">updateVisibleRange&lt;/span>()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">onContentXChanged:&lt;/span> &lt;span style="color:#a6e22e">updateVisibleRange&lt;/span>()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">onWidthChanged:&lt;/span> &lt;span style="color:#a6e22e">updateVisibleRange&lt;/span>()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">updateVisibleRange&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">itemWidth&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">51.2&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">firstIndex&lt;/span> &lt;span style="color:#f92672">=&lt;/span> Math.&lt;span style="color:#a6e22e">floor&lt;/span>(&lt;span style="color:#a6e22e">flickable&lt;/span>.&lt;span style="color:#a6e22e">contentX&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#a6e22e">itemWidth&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">visibleCount&lt;/span> &lt;span style="color:#f92672">=&lt;/span> Math.&lt;span style="color:#a6e22e">ceil&lt;/span>(&lt;span style="color:#a6e22e">flickable&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#a6e22e">itemWidth&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">firstVisibleIndex&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">firstIndex&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">lastVisibleIndex&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">firstIndex&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">visibleCount&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">createVisibleItems&lt;/span>();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">property&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#66d9ef">firstVisibleIndex:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">property&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#66d9ef">lastVisibleIndex:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">createVisibleItems&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">itemContainer&lt;/span>.&lt;span style="color:#a6e22e">children&lt;/span>.&lt;span style="color:#a6e22e">forEach&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>(&lt;span style="color:#a6e22e">item&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">item&lt;/span>.&lt;span style="color:#a6e22e">destroy&lt;/span>();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">firstVisibleIndex&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">&amp;lt;=&lt;/span> &lt;span style="color:#a6e22e">lastVisibleIndex&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">item&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">itemComponent&lt;/span>.&lt;span style="color:#a6e22e">createObject&lt;/span>(&lt;span style="color:#a6e22e">itemContainer&lt;/span>, {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">index:&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#a6e22e">flickable&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">x:&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">51.2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Item&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">id: itemContainer&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.fill:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Component&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">id: itemComponent&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Item&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">property&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Rectangle&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">property&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#66d9ef">itemIndex:&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.bottom:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">bottom&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">width:&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">height:&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span> &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#ae81ff">18&lt;/span> &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span> &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#ae81ff">9&lt;/span> &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">color:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;black&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Repeater&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">model:&lt;/span> &lt;span style="color:#a6e22e">index&lt;/span> &lt;span style="color:#f92672">%&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Label&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.left:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">right&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.leftMargin:&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.bottom:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">bottom&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">anchors.bottomMargin:&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// color: activePalette.windowText
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">text:&lt;/span> &lt;span style="color:#a6e22e">parent&lt;/span>.&lt;span style="color:#a6e22e">itemIndex&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;ul>
+&lt;li>所有整数类型，比如 u32 。&lt;/li>
+&lt;li>布尔类型，bool ，它的值是 true 和 false 。&lt;/li>
+&lt;li>所有浮点数类型，比如 f64 。&lt;/li>
+&lt;li>字符类型，char 。&lt;/li>
+&lt;li>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 Copy ，但(i32, String) 就没有。&lt;/li>
+&lt;/ul></description></item><item><title>📝 借用与引用</title><link>https://notes.zhangwenbing.com/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/</link><pubDate>Wed, 06 Mar 2024 16:39:04 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/</guid><description>&lt;h1 id="借用与引用">
+ 借用与引用
+ &lt;a class="anchor" href="#%e5%80%9f%e7%94%a8%e4%b8%8e%e5%bc%95%e7%94%a8">#&lt;/a>
+&lt;/h1>
+&lt;ul>
+&lt;li>创建一个引用的行为称为 借用&lt;/li>
+&lt;li>允许使用值但不获取其所有权&lt;/li>
+&lt;/ul>
+&lt;h2 id="引用规则">
+ 引用规则
+ &lt;a class="anchor" href="#%e5%bc%95%e7%94%a8%e8%a7%84%e5%88%99">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>在任意给定时间，要么 只能有一个可变引用，要么 只能有多个不可变引用。&lt;/li>
+&lt;li>引用必须总是有效的。&lt;/li>
+&lt;/ul>
+&lt;h2 id="可变引用">
+ 可变引用
+ &lt;a class="anchor" href="#%e5%8f%af%e5%8f%98%e5%bc%95%e7%94%a8">#&lt;/a>
+&lt;/h2>
+&lt;p>允许修改一个借用的值，这就是可变引用（&amp;amp;mut）。&lt;/p></description></item></channel></rss>

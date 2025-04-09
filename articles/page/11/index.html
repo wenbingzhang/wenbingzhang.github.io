@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/articles/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="📚 我的文章"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>📚 我的文章 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.341f63499f92249bc924ac7508939aec7ae268385455b3059a28d6d4d77f36e0.js integrity="sha256-NB9jSZ+SJJvJJKx1CJOa7HriaDhUVbMFmijW1Nd/NuA=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9cd03a0d8b5b3ae9a9b7d7066805a088c7effbfb06ee82fad5ad1d579dab6251.js integrity="sha256-nNA6DYtbOumpt9cGaAWgiMfv+/sG7oL61a0dV52rYlE=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-f56428119b0aac71309abf8dfea134ce class=toggle>
 <label for=section-f56428119b0aac71309abf8dfea134ce class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><input type=checkbox id=section-fb47b341e1fcc9c423db5ed573183d82 class=toggle>
@@ -312,7 +312,15 @@ location ~ .*.(js|css)?$
             index  index.html index.htm;
             client_max_body_size    1000m;
   }
-</code></pre><p>“client_max_body_size”设置一下上传的最大上限,然后重启nginx即可。</p></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HkXeLI4cIAG/>rabbitmq 消息队列安装和配置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+</code></pre><p>“client_max_body_size”设置一下上传的最大上限,然后重启nginx即可。</p></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HybPILE5U0z/>RabbitMQ 三种 Exchange 模式</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><p>RabbitMQ 中的 Exchange（交换机）负责接收生产者发送的消息，并根据类型将消息路由到相应的队列。常见的三种 Exchange 类型如下：</p><hr><h2 id=1-direct-exchange直连模式>1. Direct Exchange（直连模式）
+<a class=anchor href=#1-direct-exchange%e7%9b%b4%e8%bf%9e%e6%a8%a1%e5%bc%8f>#</a></h2><h3 id=-特点>✅ 特点：
+<a class=anchor href=#-%e7%89%b9%e7%82%b9>#</a></h3><ul><li>根据消息的 <strong>routing key</strong> 精确匹配，将消息路由到绑定了 <strong>相同 routing key</strong> 的队列。</li></ul><h3 id=-适用场景>🎯 适用场景：
+<a class=anchor href=#-%e9%80%82%e7%94%a8%e5%9c%ba%e6%99%af>#</a></h3><ul><li>一对一消息传递。</li><li>多个队列分别订阅不同的消息类型。</li></ul><h3 id=-示例>📌 示例：
+<a class=anchor href=#-%e7%a4%ba%e4%be%8b>#</a></h3><p>绑定情况：</p><a href=/blog/linux/HybPILE5U0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HkXeLI4cIAG/>rabbitmq 消息队列安装和配置</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
@@ -344,12 +352,14 @@ location ~ .*.(js|css)?$
 </span></span><span style=display:flex><span>rabbitmqctl start_app
 </span></span></code></pre></div><h3 id=添加用户>添加用户
 <a class=anchor href=#%e6%b7%bb%e5%8a%a0%e7%94%a8%e6%88%b7>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>rabbitmqctl add_user admin admin
-</span></span><span style=display:flex><span>添加权限:
+</span></span><span style=display:flex><span><span style=color:#75715e># 添加权限:</span>
 </span></span><span style=display:flex><span>rabbitmqctl set_permissions -p <span style=color:#e6db74>&#34;/&#34;</span> admin <span style=color:#e6db74>&#34;.*&#34;</span> <span style=color:#e6db74>&#34;.*&#34;</span> <span style=color:#e6db74>&#34;.*&#34;</span>
-</span></span><span style=display:flex><span>删除测试用户:
+</span></span><span style=display:flex><span><span style=color:#75715e># 删除测试用户:</span>
 </span></span><span style=display:flex><span>rabbitmqctl delete_user guest
-</span></span><span style=display:flex><span>赋予其administrator角色：
+</span></span><span style=display:flex><span><span style=color:#75715e># 赋予其administrator角色：</span>
 </span></span><span style=display:flex><span>rabbitmqctl set_user_tags admin administrator
+</span></span><span style=display:flex><span><span style=color:#75715e># 修改密码：</span>
+</span></span><span style=display:flex><span>rabbitmqctl  change_password  admin  <span style=color:#e6db74>&#39;12341234&#39;</span>
 </span></span></code></pre></div><h3 id=修改配置>修改配置
 <a class=anchor href=#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>//防止服务端异常中断恢复后镜像队列不能恢复的问题
 </span></span><span style=display:flex><span>
@@ -366,16 +376,15 @@ location ~ .*.(js|css)?$
 </span></span><span style=display:flex><span>    RABBITMQ_PLUGINS_DIR<span style=color:#f92672>=</span>/data/rabbitmq/plugins 插件目录
 </span></span><span style=display:flex><span>    RABBITMQ_MNESIA_BASE<span style=color:#f92672>=</span>/data/rabbitmq/mnesia 后端存储目录
 </span></span></code></pre></div><h3 id=rabbitmq的用户角色分类>RabbitMQ的用户角色分类
-<a class=anchor href=#rabbitmq%e7%9a%84%e7%94%a8%e6%88%b7%e8%a7%92%e8%89%b2%e5%88%86%e7%b1%bb>#</a></h3><p>none、management、policymaker、monitoring、administrator</p><a href=/blog/linux/HkXeLI4cIAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/HybPILE5U0z/>RabbitMQ三种Exchange模式(fanout,direct,topic)的性能比较</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<a class=anchor href=#rabbitmq%e7%9a%84%e7%94%a8%e6%88%b7%e8%a7%92%e8%89%b2%e5%88%86%e7%b1%bb>#</a></h3><p>none、management、policymaker、monitoring、administrator</p><a href=/blog/linux/HkXeLI4cIAG/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1z5LL49I0z/>RabbitMQ性能优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><p>RabbitMQ中，所有生产者提交的消息都由Exchange来接受，然后Exchange按照特定的策略转发到Queue进行存储</p><p>RabbitMQ提供了四种Exchange：fanout,direct,topic,header</p><a href=/blog/linux/HybPILE5U0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/H1z5LL49I0z/>RabbitMQ性能优化</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>none</p></blockquote><h2 id=rabbitmqconfig>rabbitmq.config
-<a class=anchor href=#rabbitmqconfig>#</a></h2><p>rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定义。</p><p>rabbitmq.config文件位置：</p><a href=/blog/linux/H1z5LL49I0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkCKI84cLAG/>rabbitmq之机器机器全部断电恢复记录</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><h2 id=rabbitmqconfig>rabbitmq.config
+<a class=anchor href=#rabbitmqconfig>#</a></h2><p>rabbitmq.config文件时rabbitmq的配置文件，他遵守Erlang配置文件定义。</p><p>rabbitmq.config文件位置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Unix $RABBITMQ_HOME/etc/rabbitmq
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Windows %APPDATA%<span style=color:#ae81ff>\R</span>abbitMQ<span style=color:#ae81ff>\
+</span></span></span></code></pre></div><p>例子如下：</p><a href=/blog/linux/H1z5LL49I0z/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/linux/rkCKI84cLAG/>rabbitmq之机器机器全部断电恢复记录</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
@@ -436,8 +445,7 @@ location ~ .*.(js|css)?$
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><blockquote><p>vim /etc/rabbitmq/rabbitmq-env.conf</p></blockquote><h1 id=i-am-a-complete-etcrabbitmqrabbitmq-e>I am a complete /etc/rabbitmq/rabbitmq-e…
-<a class=anchor href=#i-am-a-complete-etcrabbitmqrabbitmq-e>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span> vim /etc/rabbitmq/rabbitmq-env.conf
+<span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span> vim /etc/rabbitmq/rabbitmq-env.conf
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># I am a complete /etc/rabbitmq/rabbitmq-env.conf file.</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Comment lines start with a hash character.</span>
