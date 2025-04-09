@@ -7,7 +7,7 @@
 
 系统：ubuntu 14.04 (其他版本可能会有少许改动)"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/roH7hpe6L/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="mediainfo 静态编译脚本"><meta property="og:description" content=" 因为需要mediainfo支持http协议，在老的版本中是不支持的，所以只能自己动手编译了。
 说明 # 系统：ubuntu 14.04 (其他版本可能会有少许改动)"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-08-13T01:38:19+08:00"><meta property="article:modified_time" content="2019-08-13T01:38:19+08:00"><meta property="article:tag" content="Linux"><title>mediainfo 静态编译脚本 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/roH7hpe6L/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9cd03a0d8b5b3ae9a9b7d7066805a088c7effbfb06ee82fad5ad1d579dab6251.js integrity="sha256-nNA6DYtbOumpt9cGaAWgiMfv+/sG7oL61a0dV52rYlE=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/roH7hpe6L/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.48800af68fbedb7c84ccea7977f9fc153f33baead16235bd8ce38d14a2214a8a.js integrity="sha256-SIAK9o++23yEzOp5d/n8FT8zuurRYjW9jOONFKIhSoo=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-f56428119b0aac71309abf8dfea134ce class=toggle>
 <label for=section-f56428119b0aac71309abf8dfea134ce class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><input type=checkbox id=section-fb47b341e1fcc9c423db5ed573183d82 class=toggle>
@@ -25,56 +25,57 @@
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>因为需要mediainfo支持http协议，在老的版本中是不支持的，所以只能自己动手编译了。</p></blockquote><h2 id=说明>说明
 <a class=anchor href=#%e8%af%b4%e6%98%8e>#</a></h2><p>系统：ubuntu 14.04 (其他版本可能会有少许改动)</p><p>mediainfo版本：0.7.71</p><p>编译环境：c/c++</p><h2 id=脚本>脚本
-<a class=anchor href=#%e8%84%9a%e6%9c%ac>#</a></h2><pre tabindex=0><code>#!/bin/bash
-
-cd ~/
-apt-get install git automake autoconf libtool pkg-config make g++ zlib1g-dev libcurl4-gnutls-dev
-git clone https://github.com/MediaArea/ZenLib.git
-cd ZenLib
-make clean
-git checkout v0.4.37
-cd Project/GNU/Library
-./autogen.sh
-./configure --enable-static
-make -j2
-
-cd ~/
-git clone https://github.com/openssl/openssl.git
-cd openssl
-make clean
-git checkout OpenSSL_1_0_2i
-./Configure linux-generic64
-make -j2
-
-curl_vserion=7.50.0
-cd ~/
-wget --no-check-certificate https://curl.haxx.se/download/curl-$curl_vserion.tar.gz
-tar -zxvf curl-$curl_vserion.tar.gz
-cd curl-$curl_vserion/
-make clean
-./configure --enable-static --disable-share --disable-ldap --disable-ldaps  --without-librtmp --without-libidn
-make -j2
-
-cd ~/
-git clone https://github.com/MediaArea/MediaInfoLib.git
-cd MediaInfoLib
-git checkout v0.7.71
-cd Project/GNU/Library/
-make clean
-./autogen
-./configure --enable-static --with-libcurl=../../../../curl-$curl_vserion/
-make -j2
-
-cd ~/
-git clone https://github.com/MediaArea/MediaInfo.git
-cd MediaInfo
-git checkout v0.7.71
-cd Project/GNU/CLI
-make clean
-./autogen
-./configure --enable-staticlibs
-make -j2
-# make install
-g++ -static -O2 -DUNICODE -DUNICODE -DSIZE_T_IS_LONG -o mediainfo CLI_Main.o CommandLine_Parser.o Help.o Core.o  ../../../../MediaInfoLib/Project/GNU/Library/.libs/libmediainfo.a -lz  ../../../../ZenLib/Project/GNU/Library/.libs/libzen.a ../../../../curl-$curl_vserion/lib/.libs/libcurl.a ../../../../openssl/libssl.a ../../../../openssl/libcrypto.a -lpthread -lstdc++ -pthread -Wl,-rpath -Wl,../../../../ZenLib/Project/GNU/Library/.libs -Wl,-rpath -Wl,../../../../curl-$curl_vserion/lib/.libs -Wl,-rpath -Wl,../../../../openssl -ldl
-</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#说明>说明</a></li><li><a href=#脚本>脚本</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
+<a class=anchor href=#%e8%84%9a%e6%9c%ac>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>cd ~/
+</span></span><span style=display:flex><span>apt-get install git automake autoconf libtool pkg-config make g++ zlib1g-dev libcurl4-gnutls-dev
+</span></span><span style=display:flex><span>git clone https://github.com/MediaArea/ZenLib.git
+</span></span><span style=display:flex><span>cd ZenLib
+</span></span><span style=display:flex><span>make clean
+</span></span><span style=display:flex><span>git checkout v0.4.37
+</span></span><span style=display:flex><span>cd Project/GNU/Library
+</span></span><span style=display:flex><span>./autogen.sh
+</span></span><span style=display:flex><span>./configure --enable-static
+</span></span><span style=display:flex><span>make -j2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cd ~/
+</span></span><span style=display:flex><span>git clone https://github.com/openssl/openssl.git
+</span></span><span style=display:flex><span>cd openssl
+</span></span><span style=display:flex><span>make clean
+</span></span><span style=display:flex><span>git checkout OpenSSL_1_0_2i
+</span></span><span style=display:flex><span>./Configure linux-generic64
+</span></span><span style=display:flex><span>make -j2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>curl_vserion<span style=color:#f92672>=</span>7.50.0
+</span></span><span style=display:flex><span>cd ~/
+</span></span><span style=display:flex><span>wget --no-check-certificate https://curl.haxx.se/download/curl-$curl_vserion.tar.gz
+</span></span><span style=display:flex><span>tar -zxvf curl-$curl_vserion.tar.gz
+</span></span><span style=display:flex><span>cd curl-$curl_vserion/
+</span></span><span style=display:flex><span>make clean
+</span></span><span style=display:flex><span>./configure --enable-static --disable-share --disable-ldap --disable-ldaps  --without-librtmp --without-libidn
+</span></span><span style=display:flex><span>make -j2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cd ~/
+</span></span><span style=display:flex><span>git clone https://github.com/MediaArea/MediaInfoLib.git
+</span></span><span style=display:flex><span>cd MediaInfoLib
+</span></span><span style=display:flex><span>git checkout v0.7.71
+</span></span><span style=display:flex><span>cd Project/GNU/Library/
+</span></span><span style=display:flex><span>make clean
+</span></span><span style=display:flex><span>./autogen
+</span></span><span style=display:flex><span><span style=color:#75715e>## --with-libcurl 开启支持http和ftp</span>
+</span></span><span style=display:flex><span>./configure --enable-static --with-libcurl<span style=color:#f92672>=</span>../../../../curl-$curl_vserion/
+</span></span><span style=display:flex><span>make -j2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cd ~/
+</span></span><span style=display:flex><span>git clone https://github.com/MediaArea/MediaInfo.git
+</span></span><span style=display:flex><span>cd MediaInfo
+</span></span><span style=display:flex><span>git checkout v0.7.71
+</span></span><span style=display:flex><span>cd Project/GNU/CLI
+</span></span><span style=display:flex><span>make clean
+</span></span><span style=display:flex><span>./autogen
+</span></span><span style=display:flex><span>./configure --enable-staticlibs
+</span></span><span style=display:flex><span>make -j2
+</span></span><span style=display:flex><span><span style=color:#75715e># make install</span>
+</span></span><span style=display:flex><span>g++ -static -O2 -DUNICODE -DUNICODE -DSIZE_T_IS_LONG -o mediainfo CLI_Main.o CommandLine_Parser.o Help.o Core.o  ../../../../MediaInfoLib/Project/GNU/Library/.libs/libmediainfo.a -lz  ../../../../ZenLib/Project/GNU/Library/.libs/libzen.a ../../../../curl-$curl_vserion/lib/.libs/libcurl.a ../../../../openssl/libssl.a ../../../../openssl/libcrypto.a -lpthread -lstdc++ -pthread -Wl,-rpath -Wl,../../../../ZenLib/Project/GNU/Library/.libs -Wl,-rpath -Wl,../../../../curl-$curl_vserion/lib/.libs -Wl,-rpath -Wl,../../../../openssl -ldl
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#说明>说明</a></li><li><a href=#脚本>脚本</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
 <script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p></footer></body></html>

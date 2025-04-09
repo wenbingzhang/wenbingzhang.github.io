@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/tags/ffmpeg/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="FFmpeg"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>FFmpeg | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/tags/ffmpeg/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9cd03a0d8b5b3ae9a9b7d7066805a088c7effbfb06ee82fad5ad1d579dab6251.js integrity="sha256-nNA6DYtbOumpt9cGaAWgiMfv+/sG7oL61a0dV52rYlE=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/tags/ffmpeg/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/tags/ffmpeg/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.48800af68fbedb7c84ccea7977f9fc153f33baead16235bd8ce38d14a2214a8a.js integrity="sha256-SIAK9o++23yEzOp5d/n8FT8zuurRYjW9jOONFKIhSoo=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/tags/ffmpeg/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-f56428119b0aac71309abf8dfea134ce class=toggle>
 <label for=section-f56428119b0aac71309abf8dfea134ce class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><input type=checkbox id=section-fb47b341e1fcc9c423db5ed573183d82 class=toggle>
@@ -12,134 +12,34 @@
 <label for=section-8aa26b33a0315c1be70924160dd1a92c class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
 </label><strong>FFmpeg</strong>
 <label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
-<span>84</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
-<span>25</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
-<span>10</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
+<span>51</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
+<span>16</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
+<span>5</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/linux/>Linux</a>
-<span>85</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
-<span>25</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
-<span>10</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
+<span>52</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
+<span>16</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/blog/>Blog</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>Hugo</a>
-<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/SJkrWTUVm/>ffmbc转码输出DVCPRO HD</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-07-26</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>使用ffmbc多线程转码输出DVCPRO HD。分辨率为1440x1080，隔行扫描。</p></blockquote><h2 id=一>一
-<a class=anchor href=#%e4%b8%80>#</a></h2><p>将一个双声道音轨复制输出成两个单声道音轨</p><pre tabindex=0><code>ffmbc -y -threads 8 -i 海外发行测试源文件0726.mp4  -target dvcprohd -tff -an 海外发行测试源文件0726-out.mxf  -acodec pcm_s24le -ar 48000 -ac 1 -newaudio -acodec pcm_s24le -ar 48000  -newaudio -acodec pcm_s24le  -ar 48000
-</code></pre><h2 id=二>二
-<a class=anchor href=#%e4%ba%8c>#</a></h2><p>将一个双声道音轨复制拆分成两个左右单声道音轨</p><a href=/blog/ffmpeg/SJkrWTUVm/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/Hy8NTRZmm/>XDCAM HD422 MXF</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-07-10</span>
+<span>1</span></li></ul></li></ul></nav></aside></header><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/Hy8NTRZmm/>XDCAM HD422 MXF</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-07-10</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>分别使用ffmpeg ffmbc 实现 输出XDCAM HD422 MXF文件</p></blockquote><h2 id=ffmpeg>ffmpeg
-<a class=anchor href=#ffmpeg>#</a></h2><pre tabindex=0><code>ffmpeg -i test.mov -pix_fmt yuv422p -vcodec mpeg2video -non_linear_quant 1 -flags +ildct+ilme -top 1 -dc 10 -intra_vlc 1 -qmax 3 -lmin &#34;1*QP2LAMBDA&#34; -vtag xd5c -rc_max_vbv_use 1 -rc_min_vbv_use 1 -g 12 -b:v 50000k -minrate 50000k -maxrate 50000k -bufsize 8000k -acodec pcm_s16le -ar 48000 -bf 2 -ac 2 -f mxf_d10 output.mxf
-</code></pre><h2 id=ffmbc>ffmbc
-<a class=anchor href=#ffmbc>#</a></h2><pre tabindex=0><code>ffmbc  -y -threads 8 -i 先导片.mp4 -target xdcamhd422 -tff -acodec pcm_s24le 先导片-out.mov
-</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/BkPsvPiGm/>nginx+rtmp+hls直播推流</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-07-05</span>
+<a class=anchor href=#ffmpeg>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmpeg -i test.mov -pix_fmt yuv422p -vcodec mpeg2video -non_linear_quant <span style=color:#ae81ff>1</span> -flags +ildct+ilme -top <span style=color:#ae81ff>1</span> -dc <span style=color:#ae81ff>10</span> -intra_vlc <span style=color:#ae81ff>1</span> -qmax <span style=color:#ae81ff>3</span> -lmin <span style=color:#e6db74>&#34;1*QP2LAMBDA&#34;</span> -vtag xd5c -rc_max_vbv_use <span style=color:#ae81ff>1</span> -rc_min_vbv_use <span style=color:#ae81ff>1</span> -g <span style=color:#ae81ff>12</span> -b:v 50000k -minrate 50000k -maxrate 50000k -bufsize 8000k -acodec pcm_s16le -ar <span style=color:#ae81ff>48000</span> -bf <span style=color:#ae81ff>2</span> -ac <span style=color:#ae81ff>2</span> -f mxf_d10 output.mxf
+</span></span></code></pre></div><h2 id=ffmbc>ffmbc
+<a class=anchor href=#ffmbc>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmbc  -y -threads <span style=color:#ae81ff>8</span> -i 先导片.mp4 -target xdcamhd422 -tff -acodec pcm_s24le 先导片-out.mov
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/BkpKIL498RM/>ffmbc之转DVCPROHD</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>源码编译nginx+rtmp+hls，并附带nginx配置文件、推流的方式及播放方法。</p></blockquote><h2 id=nginx>nginx
-<a class=anchor href=#nginx>#</a></h2><h3 id=编译>编译
-<a class=anchor href=#%e7%bc%96%e8%af%91>#</a></h3><pre tabindex=0><code>wget http://nginx.org/download/nginx-1.14.0.tar.gz
-wget https://github.com/arut/nginx-rtmp-module/archive/v1.2.1.tar.gz
-wget http://zlib.net/zlib-1.2.11.tar.gz
-wget
-#全部解压并编译nginx
-./configure --sbin-path=/usr/local/nginx/nginx --conf-path=/usr/local/nginx/nginx.conf --pid-path=/usr/local/nginx/nginx.pid --with-http_ssl_module --with-pcre=/opt/app/openet/oetal1/chenhe/pcre-8.37 --with-zlib=/opt/app/openet/oetal1/chenhe/zlib-1.2.8 --with-openssl=/opt/app/openet/oetal1/chenhe/openssl-1.0.1t --add-module=../nginx-rtmp-module
-</code></pre><h3 id=配置>配置
-<a class=anchor href=#%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>worker_processes  auto;
-
-error_log  logs/error.log debug;
-
-events {
-    worker_connections  1024;
-}
-
-rtmp {
-    server {
-        listen 1935;
-        chunk_size 4000;
-
-        application myapp {
-            live on;
-        }
-
-        application hls {
-            live on;
-            hls on;
-            hls_path /data/y/ngnix/hls;
-            hls_playlist_length 1d;
-            hls_sync 100ms;
-            hls_continuous on;
-            hls_fragment 8s;
-        }
-    }
-}
-
-http {
-    server {
-        listen      80;
-
-        location / {
-            root html;
-        }
-
-        location /stat {
-            rtmp_stat all;
-            rtmp_stat_stylesheet stat.xsl;
-        }
-
-        location /stat.xsl {
-            root html;
-        }
-
-        location /hls {
-            add_header Access-Control-Allow-Origin *;
-            add_header Access-Control-Allow-Headers &#34;Origin, X-Requested-With, Content-Type, Accept&#34;;
-            add_header Access-Control-Allow-Methods &#34;GET, POST, OPTIONS&#34;;
-            #server hls fragments
-            types{
-                application/vnd.apple.mpegurl m3u8;
-                video/mp2t ts;
-            }
-            alias /data/y/ngnix/hls;
-            expires -1;
-        }
-    }
-}
-</code></pre><h2 id=推流>推流
-<a class=anchor href=#%e6%8e%a8%e6%b5%81>#</a></h2><pre tabindex=0><code>#RTMP方式
-/opt/ffmpeg/bin/ffmpeg -re -i &#34;/home/1.mp4&#34; -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/myapp/test1
-#HTTP方式
-/opt/ffmpeg/bin/ffmpeg -re -i &#34;/home/2.mp4&#34; -vcodec libx264 -vprofile baseline -acodec aac -ar 44100 -strict -2 -ac 1 -f flv -s 1280x720 -q 10 rtmp://127.0.0.1:1935/hls/test2
-</code></pre><p>具体参数可根据自己的需求调整</p><a href=/blog/ffmpeg/BkPsvPiGm/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/HJbQ88N980f/>AAC 到 PCM 音频解码</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scale<span style=color:#f92672>=</span>1440:1080:1 -acodec pcm_s16le -ar <span style=color:#ae81ff>48000</span> -ac <span style=color:#ae81ff>1</span> -y xx.mxf
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/Hy0UI8V9I0M/>ffmpeg 多音轨混合成多声道</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝试用 AudioQueue 直接解 AAC 未果, 转而将 AAC 解码为 PCM,</p><p>最终实…</p><p>最近遇到在 iOS 平台上实时播放 AAC 音频数据流, 一开始尝试用 AudioQueue 直接解 AAC 未果, 转而将 AAC 解码为 PCM,</p><a href=/blog/ffmpeg/HJbQ88N980f/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/BkpKIL498RM/>ffmbc之转DVCPROHD</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scal…</p></blockquote><pre tabindex=0><code>ffmbc -i xx.ts -vcodec dvvideo -flags +ildct+ilme -tff -pix_fmt yuv422p -vf scale=1440:1080:1 -acodec pcm_s16le -ar 48000 -ac 1 -y xx.mxf
-</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/S1DOL84cLCz/>ffmoeg多音频合成(混流)使用方法</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=firs…</p></blockquote><pre tabindex=0><code>ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT
-</code></pre><p>它接受下列参数：</p><p>inputs</p><pre tabindex=0><code>输入数。如果没有指定，默认为2。
-</code></pre><p>duration</p><pre tabindex=0><code>如何确定流的结尾。
-</code></pre><p>longest</p><pre tabindex=0><code>最长的输入时间。（默认）
-</code></pre><p>shortest</p><pre tabindex=0><code>最短的输入时间。
-</code></pre><p>first</p><pre tabindex=0><code>第一个输入的时间。
-</code></pre><p>dropout_transition</p><pre tabindex=0><code>当输入流结束时，体积重整化的过渡时间（以秒为单位）。默认值是2秒。
-</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/Hy0UI8V9I0M/>ffmpeg 多音轨混合成多声道</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>使用FFmpeg制作多声道视频</p></blockquote><p>将8个音轨混合成双声道</p><pre tabindex=0><code>ffmpeg -i input.mkv -filter_complex &#34;[0:1][0:2][0:3][0:4][0:5][0:6][0:7][0:8] amerge=inputs=8&#34; -c:a pcm_s16le output.mkv
-</code></pre></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/B1mILV58AM/>ffmpeg获取display_picture_number对应帧信息</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>使用FFmpeg制作多声道视频</p></blockquote><p>将8个音轨混合成双声道</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmpeg -i input.mkv -filter_complex <span style=color:#e6db74>&#34;[0:1][0:2][0:3][0:4][0:5][0:6][0:7][0:8] amerge=inputs=8&#34;</span> -c:a pcm_s16le output.mkv
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/B1mILV58AM/>ffmpeg获取display_picture_number对应帧信息</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
@@ -187,26 +87,29 @@ http {
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>- plane_checksum
 </span></span><span style=display:flex><span>输入帧所有信息内容的 Adler-32校验值 <span style=color:#f92672>(</span>以16进制输出<span style=color:#f92672>)</span>, 以格式<span style=color:#e6db74>&#34;[c0 c1 c2 c3]&#34;</span>显示
-</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/S1uzUUNc8Cf/>ffmpeg音频合成命令全集</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
-<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
-</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
-<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>等有时间了再将其翻译一下，源网址->传送门</p></blockquote><p>stereo → mono stream</p><p>Mix a single stereo</p><p>stream down to …</p><p>等有时间了再将其翻译一下，源网址->传送门</p><h2 id=stereo--mono-stream>stereo → mono stream
-<a class=anchor href=#stereo--mono-stream>#</a></h2><p>![stereo to mono diagram](<a href=https://trac.ffmpeg.org/raw->https://trac.ffmpeg.org/raw-</a><br>attachment/wiki/AudioChannelManipulation/stereo_mono.png)Mix a single stereo</p><a href=/blog/ffmpeg/S1uzUUNc8Cf/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/BJDz88N580G/>ffmpeg逐行扫描转隔行扫描</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+</span></span></code></pre></div></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/BJDz88N580G/>ffmpeg逐行扫描转隔行扫描</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><h2 id=命令参数>命令参数
 <a class=anchor href=#%e5%91%bd%e4%bb%a4%e5%8f%82%e6%95%b0>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmpeg -i input -aspect 16:9 -c:v mpeg2video -b:v 4000k -minrate 4000k -maxrate 4000k -bufsize 2000k -dc <span style=color:#ae81ff>9</span> -flags +ilme+ildct -alternate_scan <span style=color:#ae81ff>1</span> -top <span style=color:#ae81ff>0</span> output
 </span></span></code></pre></div><p>其实主要的就是如下参数：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>-flags +ilme+ildct -alternate_scan <span style=color:#ae81ff>1</span> -top <span style=color:#ae81ff>0</span>
-</span></span></code></pre></div><p>alternate_scan使用隔行转码，top不一般没有什么要求的话頂场优先就可以了。</p><a href=/blog/ffmpeg/BJDz88N580G/>...</a></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/tags/ffmpeg/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/tags/ffmpeg/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/tags/ffmpeg/ aria-label="Page 1" class=page-link role=button>1</a></li><li class="page-item active"><a aria-current=page aria-label="Page 2" class=page-link role=button>2</a></li><li class=page-item><a href=/tags/ffmpeg/page/3/ aria-label="Page 3" class=page-link role=button>3</a></li><li class=page-item><a href=/tags/ffmpeg/page/3/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/tags/ffmpeg/page/3/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
-<span>84</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
-<span>25</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
-<span>10</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
+</span></span></code></pre></div><p>alternate_scan使用隔行转码，top不一般没有什么要求的话頂场优先就可以了。</p><a href=/blog/ffmpeg/BJDz88N580G/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/blog/ffmpeg/S1EdILNqU0M/>Rematrix is needed between 10 channels and 7.1(wide) but there is not enough</a></h2><div class=book-post-meta><span class=book-post-meta-date>2018-05-14</span>
+<span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
+</span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
+<span class=book-post-meta-tags><a href=/tags/ffmpeg/>FFmpeg</a></span></div><p><blockquote><p>解决办法</p></blockquote><p>将10个声道拆分成10个音轨</p><p>ffmpeg -i INPUTFILE -filter_complex “[0:a]pan=mono|c0=c0[…</p><h2 id=解决办法>解决办法
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95>#</a></h2><p>将10个声道拆分成10个音轨</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ffmpeg -i INPUTFILE  -filter_complex <span style=color:#e6db74>&#34;[0:a]pan=mono|c0=c0[a0];[0:a]pan=mono|c0=c1[a1];[0:a]pan=mono|c0=c2[a2];[0:a]pan=mono|c0=c3[a3];[0:a]pan=mono|c0=c4[a4];[0:a]pan=mono|c0=c5[a5];[0:a]pan=mono|c0=c6[a6];[0:a]pan=mono|c0=c7[a7];[0:a]pan=mono|c0=c8[a8];[0:a]pan=mono|c0=c9[a9]&#34;</span> -map <span style=color:#e6db74>&#34;[a0]&#34;</span> -map <span style=color:#e6db74>&#34;[a1]&#34;</span> -map <span style=color:#e6db74>&#34;[a2]&#34;</span> -map <span style=color:#e6db74>&#34;[a3]&#34;</span> -map <span style=color:#e6db74>&#34;[a4]&#34;</span> -map <span style=color:#e6db74>&#34;[a5]&#34;</span> -map <span style=color:#e6db74>&#34;[a6]&#34;</span> -map <span style=color:#e6db74>&#34;[a7]&#34;</span> -map <span style=color:#e6db74>&#34;[a8]&#34;</span> -map <span style=color:#e6db74>&#34;[a9]&#34;</span> -vn -c:a pcm_s24le  OUTPUTFILE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ffmpeg -i INPUTFILE -vn -c:a pcm_s24le -map 0:1 -filter:a:0 <span style=color:#e6db74>&#34;pan=mono|c0=c0&#34;</span> -map 0:1 -filter:a:1 <span style=color:#e6db74>&#34;pan=mono|c0=c1&#34;</span> -map 0:1 -filter:a:2 <span style=color:#e6db74>&#34;pan=mono|c0=c2&#34;</span> -map 0:1 -filter:a:3 <span style=color:#e6db74>&#34;pan=mono|c0=c3&#34;</span> -map 0:1 -filter:a:4 <span style=color:#e6db74>&#34;pan=mono|c0=c4&#34;</span> -map 0:1 -filter:a:5 <span style=color:#e6db74>&#34;pan=mono|c0=c5&#34;</span> -map 0:1 -filter:a:6 <span style=color:#e6db74>&#34;pan=mono|c0=c6&#34;</span> -map 0:1 -filter:a:7 <span style=color:#e6db74>&#34;pan=mono|c0=c7&#34;</span> -map 0:1 -filter:a:8 <span style=color:#e6db74>&#34;pan=mono|c0=c8&#34;</span> -map 0:1 -filter:a:9 <span style=color:#e6db74>&#34;pan=mono|c0=c9&#34;</span> OUTPUTFILE
+</span></span></code></pre></div></p></article><ul class="pagination pagination-default"><li class=page-item><a href=/tags/ffmpeg/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/tags/ffmpeg/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/tags/ffmpeg/ aria-label="Page 1" class=page-link role=button>1</a></li><li class="page-item active"><a aria-current=page aria-label="Page 2" class=page-link role=button>2</a></li><li class="page-item disabled"><a aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a></li><li class="page-item disabled"><a aria-disabled=true aria-label=Last class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;&#187;</span></a></li></ul><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav><ul><li class=book-section-flat><strong>Categories</strong><ul><li class="flex justify-between"><a href=/categories/linux/>Linux</a>
+<span>51</span></li><li class="flex justify-between"><a href=/categories/ffmpeg/>FFmpeg</a>
+<span>16</span></li><li class="flex justify-between"><a href=/categories/macos/>MacOS</a>
+<span>5</span></li><li class="flex justify-between"><a href=/categories/hugo/>Hugo</a>
 <span>1</span></li></ul></li><li class=book-section-flat><strong>Tags</strong><ul><li class="flex justify-between"><a href=/tags/linux/>Linux</a>
-<span>85</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
-<span>25</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
-<span>10</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
+<span>52</span></li><li class="flex justify-between"><a href=/tags/ffmpeg/>FFmpeg</a>
+<span>16</span></li><li class="flex justify-between"><a href=/tags/macos/>MacOS</a>
+<span>5</span></li><li class="flex justify-between"><a href=/tags/python/>Python</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/blog/>Blog</a>
 <span>1</span></li><li class="flex justify-between"><a href=/tags/hugo/>Hugo</a>
 <span>1</span></li></ul></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>

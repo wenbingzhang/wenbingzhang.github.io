@@ -14,7 +14,7 @@
 在server节点下添加以下配置'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="nginx+php+ThinkPHP环境常见错误总结"><meta property="og:description" content=' 错误一
 2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: “Primary s…
 错误一 # 2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.31.26.114, server: localhost, request: "GET /1.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "10.200.8.220:8000" 解决版本 # 在server节点下添加以下配置'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-05-14T04:45:01+08:00"><meta property="article:modified_time" content="2018-05-14T04:45:01+08:00"><meta property="article:tag" content="Linux"><title>nginx+php+ThinkPHP环境常见错误总结 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9cd03a0d8b5b3ae9a9b7d7066805a088c7effbfb06ee82fad5ad1d579dab6251.js integrity="sha256-nNA6DYtbOumpt9cGaAWgiMfv+/sG7oL61a0dV52rYlE=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.48800af68fbedb7c84ccea7977f9fc153f33baead16235bd8ce38d14a2214a8a.js integrity="sha256-SIAK9o++23yEzOp5d/n8FT8zuurRYjW9jOONFKIhSoo=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-f56428119b0aac71309abf8dfea134ce class=toggle>
 <label for=section-f56428119b0aac71309abf8dfea134ce class="flex justify-between"><a role=button>📔 C++</a></label><ul><li><input type=checkbox id=section-fb47b341e1fcc9c423db5ed573183d82 class=toggle>
@@ -31,111 +31,111 @@
 <span class=book-post-meta-categories><a href=/categories/linux/>Linux</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/linux/>Linux</a></span></div><blockquote><p>错误一</p></blockquote><p>2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: “Primary s…</p><h2 id=错误一>错误一
-<a class=anchor href=#%e9%94%99%e8%af%af%e4%b8%80>#</a></h2><pre tabindex=0><code>2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: &#34;Primary script unknown&#34; while reading response header from upstream, client: 172.31.26.114, server: localhost, request: &#34;GET /1.php HTTP/1.1&#34;, upstream: &#34;fastcgi://127.0.0.1:9000&#34;, host: &#34;10.200.8.220:8000&#34;
-</code></pre><h3 id=解决版本>解决版本
-<a class=anchor href=#%e8%a7%a3%e5%86%b3%e7%89%88%e6%9c%ac>#</a></h3><p>在server节点下添加以下配置</p><pre tabindex=0><code>root   /var/www/web;
-index  index.php index.html index.htm;
-
-location ~ \.php$ {
-    try_files $uri = 404;
-    fastcgi_pass   127.0.0.1:9000;
-    fastcgi_index  index.php;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    include        fastcgi.conf;
-}
-</code></pre><h2 id=thinkphp配置>ThinkPHP配置
-<a class=anchor href=#thinkphp%e9%85%8d%e7%bd%ae>#</a></h2><p>假如网站的根目录是/var/www/web，如果ThinkPHP的网站在/var/www/web/Test目录配置如下</p><pre tabindex=0><code>        location /Test/ {
-            if (!-e $request_filename){
-                rewrite ^/Test/(.*)$ /Test/index.php?s=$1 last;
-            }
-        }
-
-        location ~ \.php/?.*$ {
-            try_files $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi.conf;
-            #设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量
-            #set $fastcgi_script_name2 $fastcgi_script_name;
-            #if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {
-            #    set $fastcgi_script_name2 $1;
-            #    set $path_info $2;
-            #}
-            #fastcgi_param   PATH_INFO $path_info;
-            #fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;
-            #fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;
-        }
-</code></pre><p>如果是放在根目录下</p><pre tabindex=0><code>        location / {
-            if (!-e $request_filename){
-                rewrite ^/(.*)$ /index.php?s=$1 last;
-            }
-        }
-
-        location ~ \.php/?.*$ {
-            try_files $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi.conf;
-            #设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量
-            #set $fastcgi_script_name2 $fastcgi_script_name;
-            #if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {
-            #    set $fastcgi_script_name2 $1;
-            #    set $path_info $2;
-            #}
-            #fastcgi_param   PATH_INFO $path_info;
-            #fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;
-            #fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;
-        }
-</code></pre><p>最后来个完整的例子</p><pre tabindex=0><code>user  root;
-worker_processes  auto;
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
-#pid        logs/nginx.pid;
-events {
-    worker_connections  1024;
-}
-http {
-    include       mime.types;
-    default_type  application/octet-stream;
-    sendfile        on;
-    keepalive_timeout  65;
-    server {
-        listen       80;
-        server_name  localhost;
-        root   /var/www/web;
-        index  index.php index.html index.htm;
-        location / {
-        index  index.htm index.html index.php;
-        }
-        location /Test/ {
-            if (!-e $request_filename){
-                rewrite ^/Test/(.*)$ /Test/index.php?s=$1 last;
-            }
-        }
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   html;
-        }
-        location ~ \.php/?.*$ {
-            try_files $uri = 404;
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  index.php;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include        fastcgi.conf;
-            #设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量
-            #set $fastcgi_script_name2 $fastcgi_script_name;
-            #if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {
-            #    set $fastcgi_script_name2 $1;
-            #    set $path_info $2;
-            #}
-            #fastcgi_param   PATH_INFO $path_info;
-            #fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;
-            #fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;
-        }
-    }
-}
-</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#错误一>错误一</a><ul><li><a href=#解决版本>解决版本</a></li></ul></li><li><a href=#thinkphp配置>ThinkPHP配置</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
+<a class=anchor href=#%e9%94%99%e8%af%af%e4%b8%80>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>2017/09/07 16:39:18 <span style=color:#f92672>[</span>error<span style=color:#f92672>]</span> 21753#0: *26 FastCGI sent in stderr: <span style=color:#e6db74>&#34;Primary script unknown&#34;</span> <span style=color:#66d9ef>while</span> reading response header from upstream, client: 172.31.26.114, server: localhost, request: <span style=color:#e6db74>&#34;GET /1.php HTTP/1.1&#34;</span>, upstream: <span style=color:#e6db74>&#34;fastcgi://127.0.0.1:9000&#34;</span>, host: <span style=color:#e6db74>&#34;10.200.8.220:8000&#34;</span>
+</span></span></code></pre></div><h3 id=解决版本>解决版本
+<a class=anchor href=#%e8%a7%a3%e5%86%b3%e7%89%88%e6%9c%ac>#</a></h3><p>在server节点下添加以下配置</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>root   /var/www/web;
+</span></span><span style=display:flex><span>index  index.php index.html index.htm;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>location ~ <span style=color:#ae81ff>\.</span>php$ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    try_files $uri <span style=color:#f92672>=</span> 404;
+</span></span><span style=display:flex><span>    fastcgi_pass   127.0.0.1:9000;
+</span></span><span style=display:flex><span>    fastcgi_index  index.php;
+</span></span><span style=display:flex><span>    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+</span></span><span style=display:flex><span>    include        fastcgi.conf;
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=thinkphp配置>ThinkPHP配置
+<a class=anchor href=#thinkphp%e9%85%8d%e7%bd%ae>#</a></h2><p>假如网站的根目录是/var/www/web，如果ThinkPHP的网站在/var/www/web/Test目录配置如下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>        location /Test/ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>!-e $request_filename<span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>                rewrite ^/Test/<span style=color:#f92672>(</span>.*<span style=color:#f92672>)</span>$ /Test/index.php?s<span style=color:#f92672>=</span>$1 last;
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        location ~ <span style=color:#ae81ff>\.</span>php/?.*$ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            try_files $uri <span style=color:#f92672>=</span> 404;
+</span></span><span style=display:flex><span>            fastcgi_pass   127.0.0.1:9000;
+</span></span><span style=display:flex><span>            fastcgi_index  index.php;
+</span></span><span style=display:flex><span>            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+</span></span><span style=display:flex><span>            include        fastcgi.conf;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#set $fastcgi_script_name2 $fastcgi_script_name;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $fastcgi_script_name2 $1;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $path_info $2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#}</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   PATH_INFO $path_info;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>如果是放在根目录下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>        location / <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>!-e $request_filename<span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>                rewrite ^/<span style=color:#f92672>(</span>.*<span style=color:#f92672>)</span>$ /index.php?s<span style=color:#f92672>=</span>$1 last;
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        location ~ <span style=color:#ae81ff>\.</span>php/?.*$ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            try_files $uri <span style=color:#f92672>=</span> 404;
+</span></span><span style=display:flex><span>            fastcgi_pass   127.0.0.1:9000;
+</span></span><span style=display:flex><span>            fastcgi_index  index.php;
+</span></span><span style=display:flex><span>            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+</span></span><span style=display:flex><span>            include        fastcgi.conf;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#set $fastcgi_script_name2 $fastcgi_script_name;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $fastcgi_script_name2 $1;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $path_info $2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#}</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   PATH_INFO $path_info;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span></code></pre></div><p>最后来个完整的例子</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>user  root;
+</span></span><span style=display:flex><span>worker_processes  auto;
+</span></span><span style=display:flex><span><span style=color:#75715e>#error_log  logs/error.log;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#error_log  logs/error.log  notice;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#error_log  logs/error.log  info;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#pid        logs/nginx.pid;</span>
+</span></span><span style=display:flex><span>events <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    worker_connections  1024;
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>http <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    include       mime.types;
+</span></span><span style=display:flex><span>    default_type  application/octet-stream;
+</span></span><span style=display:flex><span>    sendfile        on;
+</span></span><span style=display:flex><span>    keepalive_timeout  65;
+</span></span><span style=display:flex><span>    server <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        listen       80;
+</span></span><span style=display:flex><span>        server_name  localhost;
+</span></span><span style=display:flex><span>        root   /var/www/web;
+</span></span><span style=display:flex><span>        index  index.php index.html index.htm;
+</span></span><span style=display:flex><span>        location / <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        index  index.htm index.html index.php;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        location /Test/ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>!-e $request_filename<span style=color:#f92672>){</span>
+</span></span><span style=display:flex><span>                rewrite ^/Test/<span style=color:#f92672>(</span>.*<span style=color:#f92672>)</span>$ /Test/index.php?s<span style=color:#f92672>=</span>$1 last;
+</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        error_page   <span style=color:#ae81ff>500</span> <span style=color:#ae81ff>502</span> <span style=color:#ae81ff>503</span> <span style=color:#ae81ff>504</span>  /50x.html;
+</span></span><span style=display:flex><span>        location <span style=color:#f92672>=</span> /50x.html <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            root   html;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>        location ~ <span style=color:#ae81ff>\.</span>php/?.*$ <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>            try_files $uri <span style=color:#f92672>=</span> 404;
+</span></span><span style=display:flex><span>            fastcgi_pass   127.0.0.1:9000;
+</span></span><span style=display:flex><span>            fastcgi_index  index.php;
+</span></span><span style=display:flex><span>            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+</span></span><span style=display:flex><span>            include        fastcgi.conf;
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#设置PATH_INFO并改写SCRIPT_FILENAME,SCRIPT_NAME服务器环境变量</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#set $fastcgi_script_name2 $fastcgi_script_name;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#if ($fastcgi_script_name ~ &#34;^(.+\.php)(/.+)$&#34;) {</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $fastcgi_script_name2 $1;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#    set $path_info $2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#}</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   PATH_INFO $path_info;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e>#fastcgi_param   SCRIPT_NAME   $fastcgi_script_name2;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#错误一>错误一</a><ul><li><a href=#解决版本>解决版本</a></li></ul></li><li><a href=#thinkphp配置>ThinkPHP配置</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
 <script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p></footer></body></html>

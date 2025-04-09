@@ -487,46 +487,18 @@
  说明
  &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
 &lt;/h2>
-&lt;p>系统：ubuntu 14.04 (其他版本可能会有少许改动)&lt;/p></description></item><item><title>ssh免秘钥登陆常见问题</title><link>https://notes.zhangwenbing.com/blog/linux/RRaHkWbSu/</link><pubDate>Fri, 02 Aug 2019 02:04:27 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/RRaHkWbSu/</guid><description>&lt;blockquote>
-&lt;p>收集一些ssh登陆常见的问题，方便快速解决问题。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="重要事情">
- 重要事情
- &lt;a class="anchor" href="#%e9%87%8d%e8%a6%81%e4%ba%8b%e6%83%85">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>cat /var/log/secure
-cat /var/log/message
-&lt;/code>&lt;/pre>&lt;p>无论你遇到任何奇葩的sshd问题，你先执行上面的命令查看下日志。&lt;/p>
-&lt;h2 id="错误一">
- 错误一
- &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e4%b8%80">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="问题描述">
- 问题描述
- &lt;a class="anchor" href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>Authentication refused:bad ownership or modes for dircetory /root
-&lt;/code>&lt;/pre>&lt;h3 id="解决方法">
- 解决方法
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>chmod 700 /root
-&lt;/code>&lt;/pre>&lt;h3 id="其他相关">
- 其他相关
- &lt;a class="anchor" href="#%e5%85%b6%e4%bb%96%e7%9b%b8%e5%85%b3">#&lt;/a>
-&lt;/h3>
-&lt;p>id_ras 权限为600&lt;/p></description></item><item><title>openssl - https SAN自签名证书</title><link>https://notes.zhangwenbing.com/blog/linux/JQIo7dGc1/</link><pubDate>Tue, 02 Jul 2019 12:15:46 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/JQIo7dGc1/</guid><description>&lt;blockquote>
+&lt;p>系统：ubuntu 14.04 (其他版本可能会有少许改动)&lt;/p></description></item><item><title>openssl - https SAN自签名证书</title><link>https://notes.zhangwenbing.com/blog/linux/JQIo7dGc1/</link><pubDate>Tue, 02 Jul 2019 12:15:46 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/JQIo7dGc1/</guid><description>&lt;blockquote>
 &lt;p>使用openssl生产自签名证书，用于https测试。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="ca根证书制作">
  CA根证书制作
  &lt;a class="anchor" href="#ca%e6%a0%b9%e8%af%81%e4%b9%a6%e5%88%b6%e4%bd%9c">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>#1.生成根证书密钥
-$ openssl genrsa -out ca.key 4096 #建议长度为4096,1024长度已经被列为不安全。
-#2.生成自签名根证书
-$ openssl req -new -x509 -days 3650 -key ca.key -out ca.crt #这里在输入CommonName的时候输入名称而不是域名或者ip,就是证书上显示的颁发者，虽然是自签名证书，但是尽量让证书看起来标准一些
-&lt;/code>&lt;/pre>&lt;h2 id="使用根证书来签名其它证书">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#1.生成根证书密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ openssl genrsa -out ca.key &lt;span style="color:#ae81ff">4096&lt;/span> &lt;span style="color:#75715e">#建议长度为4096,1024长度已经被列为不安全。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#2.生成自签名根证书&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ openssl req -new -x509 -days &lt;span style="color:#ae81ff">3650&lt;/span> -key ca.key -out ca.crt &lt;span style="color:#75715e">#这里在输入CommonName的时候输入名称而不是域名或者ip,就是证书上显示的颁发者，虽然是自签名证书，但是尽量让证书看起来标准一些&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="使用根证书来签名其它证书">
  使用根证书来签名其它证书
  &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8%e6%a0%b9%e8%af%81%e4%b9%a6%e6%9d%a5%e7%ad%be%e5%90%8d%e5%85%b6%e5%ae%83%e8%af%81%e4%b9%a6">#&lt;/a>
 &lt;/h2>
@@ -534,129 +506,35 @@ $ openssl req -new -x509 -days 3650 -key ca.key -out ca.crt #这里在输入Comm
  &lt;strong>1.生成证书密钥&lt;/strong>
  &lt;a class="anchor" href="#1%e7%94%9f%e6%88%90%e8%af%81%e4%b9%a6%e5%af%86%e9%92%a5">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>$ openssl genrsa -out server.key 4096
-&lt;/code>&lt;/pre>&lt;h2 id="2-subject-alt-namesan">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ openssl genrsa -out server.key &lt;span style="color:#ae81ff">4096&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-subject-alt-namesan">
  &lt;strong>2. Subject Alt Name(SAN)&lt;/strong>
  &lt;a class="anchor" href="#2-subject-alt-namesan">#&lt;/a>
 &lt;/h2>
-&lt;p>高版本的Chrome浏览器会要求设置 &lt;code>subjectAltName&lt;/code>,如果没有设置SAN会报证书错误&lt;/p></description></item><item><title>Centos7-yum安装MySQL5.6</title><link>https://notes.zhangwenbing.com/blog/linux/yhK4y-gaU/</link><pubDate>Thu, 27 Jun 2019 01:22:50 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/yhK4y-gaU/</guid><description>&lt;blockquote>
-&lt;p>centos自带的repo是不会自动更新每个软件的新版本，所以无法通过yum方式安装MySQL的高版本，所以一般通过社区rpm包安装。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="安装yum源">
- 安装yum源
- &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85yum%e6%ba%90">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>rpm -Uvh http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
-&lt;/code>&lt;/pre>&lt;h2 id="查看mysql安装源">
- 查看mysql安装源
- &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8bmysql%e5%ae%89%e8%a3%85%e6%ba%90">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>yum repolist enabled | grep &amp;#34;mysql.*-community.*&amp;#34;
-&lt;/code>&lt;/pre>&lt;h2 id="安装mysql56">
- 安装mysql56
- &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85mysql56">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>yum -y install mysql-community-server
-&lt;/code>&lt;/pre>&lt;h2 id="开机启动">
- 开机启动
- &lt;a class="anchor" href="#%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>systemctl enable mysqld
-&lt;/code>&lt;/pre>&lt;h2 id="启动服务">
- 启动服务
- &lt;a class="anchor" href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>systemctl start mysqld
-&lt;/code>&lt;/pre>&lt;h2 id="重置密码">
- 重置密码
- &lt;a class="anchor" href="#%e9%87%8d%e7%bd%ae%e5%af%86%e7%a0%81">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>mysql_secure_installation
-
-NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MySQL
- SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!
-
-In order to log into MySQL to secure it, we&amp;#39;ll need the current
-password for the root user. If you&amp;#39;ve just installed MySQL, and
-you haven&amp;#39;t set the root password yet, the password will be blank,
-so you should just press enter here.
-
-Enter current password for root (enter for none):
-ERROR 1045 (28000): Access denied for user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; (using password: YES)
-Enter current password for root (enter for none):
-ERROR 1045 (28000): Access denied for user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; (using password: YES)
-Enter current password for root (enter for none):
-OK, successfully used password, moving on...
-
-Setting the root password ensures that nobody can log into the MySQL
-root user without the proper authorisation.
-
-Set root password? [Y/n] y
-New password:
-Re-enter new password:
-Password updated successfully!
-Reloading privilege tables..
- ... Success!
-
-By default, a MySQL installation has an anonymous user, allowing anyone
-to log into MySQL without having to have a user account created for
-them. This is intended only for testing, and to make the installation
-go a bit smoother. You should remove them before moving into a
-production environment.
-
-Remove anonymous users? [Y/n] Y
- ... Success!
-
-Normally, root should only be allowed to connect from &amp;#39;localhost&amp;#39;. This
-ensures that someone cannot guess at the root password from the network.
-
-Disallow root login remotely? [Y/n] n
- ... skipping.
-
-By default, MySQL comes with a database named &amp;#39;test&amp;#39; that anyone can
-access. This is also intended only for testing, and should be removed
-before moving into a production environment.
-
-Remove test database and access to it? [Y/n] n
- ... skipping.
-
-Reloading the privilege tables will ensure that all changes made so far
-will take effect immediately.
-
-Reload privilege tables now? [Y/n] Y
- ... Success!
-
-All done! If you&amp;#39;ve completed all of the above steps, your MySQL
-installation should now be secure.
-
-Thanks for using MySQL!
-
-Cleaning up...
-&lt;/code>&lt;/pre></description></item><item><title>supervisor 安装和使用方法</title><link>https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/</link><pubDate>Fri, 31 May 2019 09:20:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/</guid><description>&lt;blockquote>
+&lt;p>高版本的Chrome浏览器会要求设置 &lt;code>subjectAltName&lt;/code>,如果没有设置SAN会报证书错误&lt;/p></description></item><item><title>supervisor 安装和使用方法</title><link>https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/</link><pubDate>Fri, 31 May 2019 09:20:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1G3FwCaN/</guid><description>&lt;blockquote>
 &lt;p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。&lt;/p></description></item><item><title>error while loading shared libraries: libc.so.6: cannot open shared object file: No such file or directory</title><link>https://notes.zhangwenbing.com/blog/linux/HkCTnskvV/</link><pubDate>Fri, 08 Mar 2019 09:24:10 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HkCTnskvV/</guid><description>&lt;blockquote>
-&lt;p>不小心误删libc.so.6&lt;/p>
+&lt;p>不小心误删libc.so的恢复方式&lt;/p>
 &lt;/blockquote>
 &lt;p>安装完成后, 建立软链指向glibc-2.14, 执行如下命令:&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ rm -rf /lib64/libc.so.6
-&lt;/code>&lt;/pre>&lt;p>// 先删除先前的libc.so.6软链&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ ln -s /opt/glibc-2.14/lib/libc-2.14.so /lib64/libc.so.6
-&lt;/code>&lt;/pre>&lt;p>注意：删除libc.so.6之后可能导致系统命令不可用的情况, 可使用如下方法解决:&lt;/p></description></item><item><title>yum错误:problem making ssl connection Trying other mirror</title><link>https://notes.zhangwenbing.com/blog/linux/rk-lmMGL4/</link><pubDate>Tue, 26 Feb 2019 01:20:26 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rk-lmMGL4/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rm -rf /lib64/libc.so.6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ln -s /opt/glibc-2.14/lib/libc-2.14.so /lib64/libc.so.6
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意：删除libc.so.6之后可能导致系统命令不可用的情况, 可使用如下方法解决:&lt;/p></description></item><item><title>yum错误:problem making ssl connection Trying other mirror</title><link>https://notes.zhangwenbing.com/blog/linux/rk-lmMGL4/</link><pubDate>Tue, 26 Feb 2019 01:20:26 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rk-lmMGL4/</guid><description>&lt;blockquote>
 &lt;p>yum无法使用带https的源&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="环境">
  环境
  &lt;a class="anchor" href="#%e7%8e%af%e5%a2%83">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>yum install epel-release
-&lt;/code>&lt;/pre>&lt;p>运行以上命令之后，安装其他软件就报错。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>yum install epel-release
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行以上命令之后，安装其他软件就报错。&lt;/p>
 &lt;h2 id="错误提示">
  错误提示
  &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>[Errno 14] problem making ssl connection Trying other mirror.
-Trying other mirror
-Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Please verify its path and try again
-&lt;/code>&lt;/pre>&lt;p>经过google查询，发现似乎是ssl证书的原因。&lt;/p></description></item><item><title>CentOS7 php5.6 编译安装amqp扩展</title><link>https://notes.zhangwenbing.com/blog/linux/H10_K-VQ4/</link><pubDate>Tue, 22 Jan 2019 03:21:18 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H10_K-VQ4/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">[&lt;/span>Errno 14&lt;span style="color:#f92672">]&lt;/span> problem making ssl connection Trying other mirror.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Trying other mirror
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Error: Cannot retrieve repository metadata &lt;span style="color:#f92672">(&lt;/span>repomd.xml&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> repository: xxxx. Please verify its path and try again
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>经过google查询，发现似乎是ssl证书的原因。&lt;/p></description></item><item><title>CentOS7 php5.6 编译安装amqp扩展</title><link>https://notes.zhangwenbing.com/blog/linux/H10_K-VQ4/</link><pubDate>Tue, 22 Jan 2019 03:21:18 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H10_K-VQ4/</guid><description>&lt;blockquote>
 &lt;p>php 安装最新rabbitmq扩展&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="1安装编译环境">
@@ -701,93 +579,30 @@ Error: Cannot retrieve repository metadata (repomd.xml) for repository: xxxx. Pl
  &lt;a class="anchor" href="#5%e9%87%8d%e5%90%af%e6%9c%8d%e5%8a%a1">#&lt;/a>
 &lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>systemctl restart php-fpm
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>hadoop下载文件遇到的坑</title><link>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</link><pubDate>Mon, 14 Jan 2019 09:38:20 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S1wDPAKf4/</guid><description>&lt;blockquote>
-&lt;p>hadoop fs -get 下载带特殊字符文件失败的一些解决方法。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="错误范例">
- 错误范例
- &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e8%8c%83%e4%be%8b">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>hadoop fs -get &amp;#34;/xxx/xxx分类/动漫Y/2005/蓝猫淘气3000问 航天系列（太空历险记）/第363集 协议.ts&amp;#34; &amp;#34;/media/bak/媒资源素材分类/动漫Y/2005/蓝猫淘气3000问 航天系列（太空历险记）/第363集 协议.ts&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>运行以上命令就报“unexpexted URISyntaxException”&lt;/p></description></item><item><title>linux-iftop实时流量监控</title><link>https://notes.zhangwenbing.com/blog/linux/B1rSV2FzE/</link><pubDate>Mon, 14 Jan 2019 07:06:13 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1rSV2FzE/</guid><description>&lt;blockquote>
-&lt;p>iftop是类似于top的实时流量监控工具。可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="安装">
- 安装
- &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85">#&lt;/a>
-&lt;/h2>
-&lt;p>Debian/Ubuntu/Deepin：&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt update
-sudo apt -y install iftop
-&lt;/code>&lt;/pre>&lt;p>CentOS/RHEL：&lt;/p></description></item><item><title>Centos7+Python2.7下yum安装软件报错解决办法</title><link>https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/</link><pubDate>Fri, 04 Jan 2019 03:42:18 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H1xaQL3-N/</guid><description>&lt;blockquote>
-&lt;p>yum安装软件报错，但可以下载文件。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="错误信息">
- 错误信息
- &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>Downloading packages:
-Running transaction check
-Running transaction test
-Transaction test succeeded
-Running transaction
-Traceback (most recent call last):
- File &amp;#34;/usr/bin/yum&amp;#34;, line 29, in &amp;lt;module&amp;gt;
- yummain.user_main(sys.argv[1:], exit_code=True)
- File &amp;#34;/usr/share/yum-cli/yummain.py&amp;#34;, line 365, in user_main
- errcode = main(args)
- File &amp;#34;/usr/share/yum-cli/yummain.py&amp;#34;, line 271, in main
- return_code = base.doTransaction()
- File &amp;#34;/usr/share/yum-cli/cli.py&amp;#34;, line 773, in doTransaction
- resultobject = self.runTransaction(cb=cb)
- File &amp;#34;/usr/lib/python2.7/site-packages/yum/__init__.py&amp;#34;, line 1736, in runTransaction
- if self.fssnap.available and ((self.conf.fssnap_automatic_pre or
- File &amp;#34;/usr/lib/python2.7/site-packages/yum/__init__.py&amp;#34;, line 1126, in &amp;lt;lambda&amp;gt;
- fssnap = property(fget=lambda self: self._getFSsnap(),
- File &amp;#34;/usr/lib/python2.7/site-packages/yum/__init__.py&amp;#34;, line 1062, in _getFSsnap
- devices=devices)
- File &amp;#34;/usr/lib/python2.7/site-packages/yum/fssnapshots.py&amp;#34;, line 158, in __init__
- self._vgnames = _list_vg_names() if self.available else []
- File &amp;#34;/usr/lib/python2.7/site-packages/yum/fssnapshots.py&amp;#34;, line 56, in _list_vg_names
- names = lvm.listVgNames()
-lvm.LibLVMError: (0, &amp;#39;&amp;#39;)
-&lt;/code>&lt;/pre>&lt;h2 id="解决方法">
- 解决方法
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>mkdir /tmp/down/
-yum install --downloadonly --downloaddir=/tmp/down/ yum
-cd /tmp/down/
-rpm -Uvh *
-
-yum clean metadata
-yum clean all
-&lt;/code>&lt;/pre></description></item><item><title>记一次时间同步引起的故障</title><link>https://notes.zhangwenbing.com/blog/linux/B11j0sF-N/</link><pubDate>Wed, 02 Jan 2019 04:24:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B11j0sF-N/</guid><description>&lt;blockquote>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>记一次时间同步引起的故障</title><link>https://notes.zhangwenbing.com/blog/linux/B11j0sF-N/</link><pubDate>Wed, 02 Jan 2019 04:24:43 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B11j0sF-N/</guid><description>&lt;blockquote>
 &lt;p>ntpdate同步时间，时间跳跃，引起服务中断。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="计划任务">
  计划任务
  &lt;a class="anchor" href="#%e8%ae%a1%e5%88%92%e4%bb%bb%e5%8a%a1">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>0 4 * * * /usr/sbin/ntpdate 10.200.3.71
-&lt;/code>&lt;/pre>&lt;h2 id="日志">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span> * * * /usr/sbin/ntpdate 10.200.3.71
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="日志">
  日志
  &lt;a class="anchor" href="#%e6%97%a5%e5%bf%97">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>Dec 30 04:00:01 localhost systemd: Created slice user-0.slice.
-Dec 30 04:00:01 localhost systemd: Starting user-0.slice.
-Dec 30 04:00:01 localhost systemd: Started Session 16 of user root.
-Dec 30 04:00:01 localhost systemd: Starting Session 16 of user root.
-Dec 29 20:09:59 localhost systemd: Time has been changed
-Dec 29 20:09:59 localhost systemd: Removed slice user-0.slice.
-Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
-&lt;/code>&lt;/pre>&lt;h2 id="故障">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">30&lt;/span> 04:00:01 localhost systemd: Created slice user-0.slice.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">30&lt;/span> 04:00:01 localhost systemd: Starting user-0.slice.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">30&lt;/span> 04:00:01 localhost systemd: Started Session &lt;span style="color:#ae81ff">16&lt;/span> of user root.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">30&lt;/span> 04:00:01 localhost systemd: Starting Session &lt;span style="color:#ae81ff">16&lt;/span> of user root.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">29&lt;/span> 20:09:59 localhost systemd: Time has been changed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">29&lt;/span> 20:09:59 localhost systemd: Removed slice user-0.slice.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Dec &lt;span style="color:#ae81ff">29&lt;/span> 20:09:59 localhost systemd: Stopping user-0.slice.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="故障">
  故障
  &lt;a class="anchor" href="#%e6%95%85%e9%9a%9c">#&lt;/a>
 &lt;/h2>
-&lt;p>因为跳跃的时间太大，导致系统的各种服务中断（网络中断和systemctl管理的服务也有问题）。&lt;/p></description></item><item><title>solr7.3.1单机版添加core</title><link>https://notes.zhangwenbing.com/blog/linux/SJ10UoTom/</link><pubDate>Wed, 24 Oct 2018 08:07:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJ10UoTom/</guid><description>&lt;blockquote>
-&lt;p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。&lt;/p></description></item><item><title>solr-7.3.1 单机安装教程</title><link>https://notes.zhangwenbing.com/blog/linux/BkKKGWnsQ/</link><pubDate>Tue, 23 Oct 2018 02:26:38 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/BkKKGWnsQ/</guid><description>&lt;blockquote>
-&lt;p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。&lt;/p></description></item><item><title>解决rabbitmq依赖问题</title><link>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</link><pubDate>Fri, 19 Oct 2018 07:30:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</guid><description>&lt;h2 id="错误提示">
+&lt;p>因为跳跃的时间太大，导致系统的各种服务中断（网络中断和systemctl管理的服务也有问题）。&lt;/p></description></item><item><title>解决rabbitmq依赖问题</title><link>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</link><pubDate>Fri, 19 Oct 2018 07:30:49 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJJ4wWwim/</guid><description>&lt;h2 id="错误提示">
  错误提示
  &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e6%8f%90%e7%a4%ba">#&lt;/a>
 &lt;/h2>
@@ -819,8 +634,7 @@ Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>init terminating in do_boot &lt;span style="color:#f92672">(&lt;/span>noproc&lt;span style="color:#f92672">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Crash dump is being written to: erl_crash.dump...done
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果出现以上问题，说明erlang和rabbitmq的版本不相符。只能重新安装erlang了。&lt;/p></description></item><item><title>grafana重置管理员密码</title><link>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</link><pubDate>Fri, 19 Oct 2018 05:13:46 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJWuUJwsQ/</guid><description>&lt;blockquote>
-&lt;p>Grafana是一个可视化面板（Dashboard），有着非常漂亮的图表和布局展示，功能齐全的度量仪表盘和图形编辑器，支持Graphite、zabbix、InfluxDB、Prometheus和OpenTSDB作为数据源。Grafana主要特性：灵活丰富的图形化选项；可以混合多种风格；支持白天和夜间模式；多个数据源。&lt;/p></description></item><item><title>Linux bash 提取文件名和目录名</title><link>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</link><pubDate>Tue, 18 Sep 2018 07:01:06 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</guid><description>&lt;blockquote>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果出现以上问题，说明erlang和rabbitmq的版本不相符。只能重新安装erlang了。&lt;/p></description></item><item><title>Linux bash 提取文件名和目录名</title><link>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</link><pubDate>Tue, 18 Sep 2018 07:01:06 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJyvgQAOm/</guid><description>&lt;blockquote>
 &lt;p>在Linux Bash中分别使用basename、dirname、${}，提取文件名和目录名。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="通过变量方式">
@@ -834,33 +648,9 @@ Dec 29 20:09:59 localhost systemd: Stopping user-0.slice.
  问题
  &lt;a class="anchor" href="#%e9%97%ae%e9%a2%98">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>htpasswd -c /etc/nginx/.htpasswd test
-&lt;/code>&lt;/pre>&lt;p>假如，密码为abcd12345&lt;/p>
-&lt;p>那么在登录的时候，不管是输入“abcd1234”、”abcd12345“或”abcd123456789sdjkal“ 都能通过验证。&lt;/p></description></item><item><title>solr oom_killer</title><link>https://notes.zhangwenbing.com/blog/linux/rJa7oi0EQ/</link><pubDate>Wed, 01 Aug 2018 04:18:18 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJa7oi0EQ/</guid><description>&lt;blockquote>
-&lt;p>记录oom_solr触发的问题分析及解决方法&lt;/p>
-&lt;/blockquote>
-&lt;p>昨天在测试solr_cloud的时候，看到$solr_home/logs下面有一个这样的日志&lt;/p>
-&lt;pre tabindex="0">&lt;code>solr_oom_killer-8983-2018-07-31_10_45_56.log
-&lt;/code>&lt;/pre>&lt;p>刚开始还以为是Linux系统的oom_killer,然后在/var/log/message中找日志，发现没有，当时就奇怪了，触发了oom_killer但是没记录日志？于是经过一番折腾终于发现问题了。&lt;/p></description></item><item><title>centos6 heartbeat双机热备</title><link>https://notes.zhangwenbing.com/blog/linux/Skl7i90EQ/</link><pubDate>Wed, 01 Aug 2018 02:54:29 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/Skl7i90EQ/</guid><description>&lt;blockquote>
-&lt;p>heartbeat （Linux-HA）的工作原理：heartbeat最核心的包括两个部分，心跳监测部分和资源接管部分，心跳监测可以通过网络链路和串口进行，而且支持冗 余链路，它们之间相互发送报文来告诉对方自己当前的状态，如果在指定的时间内未收到对方发送的报文，那么就认为对方失效，这时需启动资源接管模块来接管运 行在对方主机上的资源或者服务。&lt;/p></description></item><item><title>solrcloud上传配置文件</title><link>https://notes.zhangwenbing.com/blog/linux/S1ywxQEN7/</link><pubDate>Tue, 24 Jul 2018 04:15:05 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S1ywxQEN7/</guid><description>&lt;blockquote>
-&lt;p>使用solr自带的工具zkcli.sh上传配置文件&lt;/p>
-&lt;/blockquote>
-&lt;pre tabindex="0">&lt;code>chmod +x /opt/solr/server/scripts/cloud-scripts/zkcli.sh
-cp -r /opt/solr-7.3.1/server/solr/configsets/_default/conf /opt/solr-7.3.1/server/solr/_test1b/
-/opt/solr/server/scripts/cloud-scripts/zkcli.sh -cmd upconfig -zkhost 10.1.201.49:2181,10.1.201.50:2181 -confname test1b -confdir /opt/solr-7.3.1/server/solr/_test1b/
-&lt;/code>&lt;/pre>&lt;p>复制的时候一定要复制server/solr/configsets/_default/conf目录，而不是server/solr/configsets/_default&lt;/p></description></item><item><title>Schema Parsing Failed: unknown field id [Zookeeper, SolrCloud]</title><link>https://notes.zhangwenbing.com/blog/linux/HkgnaWVNm/</link><pubDate>Tue, 24 Jul 2018 02:31:15 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HkgnaWVNm/</guid><description>&lt;blockquote>
-&lt;p>不小心删除solr的主键id，导致报错Schema Parsing Failed: unknown field ‘id’&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="问题描述">
- 问题描述
- &lt;a class="anchor" href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0">#&lt;/a>
-&lt;/h2>
-&lt;p>Schema Parsing Failed: unknown field ‘id’&lt;/p>
-&lt;h2 id="解决方法">
- 解决方法
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95">#&lt;/a>
-&lt;/h2>
-&lt;p>关闭zookeeper、solr服务并删除zookeeper数据，然后重新启动zookeeper、solr服务。&lt;/p></description></item><item><title>Nginx的connect() to xxx failed (13: Permission denied) 和 Nginx 403 forbidden</title><link>https://notes.zhangwenbing.com/blog/linux/HJlvWaG47/</link><pubDate>Mon, 23 Jul 2018 02:53:40 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJlvWaG47/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>htpasswd -c /etc/nginx/.htpasswd test
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>假如，密码为abcd12345&lt;/p>
+&lt;p>那么在登录的时候，不管是输入“abcd1234”、”abcd12345“或”abcd123456789sdjkal“ 都能通过验证。&lt;/p></description></item><item><title>Nginx的connect() to xxx failed (13: Permission denied) 和 Nginx 403 forbidden</title><link>https://notes.zhangwenbing.com/blog/linux/HJlvWaG47/</link><pubDate>Mon, 23 Jul 2018 02:53:40 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJlvWaG47/</guid><description>&lt;blockquote>
 &lt;p>解决Nginx的connect() to xxx failed (13: Permission denied) 和 Nginx 403 forbidden 错误&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="查看selinux状态">
@@ -879,45 +669,7 @@ cp -r /opt/solr-7.3.1/server/solr/configsets/_default/conf /opt/solr-7.3.1/serve
  &lt;a class="anchor" href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h2>
 &lt;pre tabindex="0">&lt;code>vim /etc/selinux/config #将SELINUX=enforcing改为SELINUX=disabled
-&lt;/code>&lt;/pre>&lt;p>如果你执行了临时关闭SeLinux并机器上跑了重要的业务，那可以不需要马上重启机器，等待下次重启配置生效即可。&lt;/p></description></item><item><title>删除除link(软连接)对应的文件以外的所有文件</title><link>https://notes.zhangwenbing.com/blog/linux/H10wzCxGX/</link><pubDate>Wed, 27 Jun 2018 09:08:21 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H10wzCxGX/</guid><description>&lt;blockquote>
-&lt;p>使用find和readlink删除除link(软连接)对应的文件以外的所有文件，一般用于自动删除日志文件。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="脚本">
- 脚本
- &lt;a class="anchor" href="#%e8%84%9a%e6%9c%ac">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>#!/bin/bash
-
-linkArr=`find $1 -type l -exec readlink {} \;`
-fileArr=`find $1 -type f -name &amp;#34;*${2}*&amp;#34;`
-
-for f in $fileArr;do
- isLink=false
- for l in $linkArr;do
- #判断当前文件是否为link对应的文件
- if [ &amp;#34;${f##*/}&amp;#34; == &amp;#34;$l&amp;#34; ];then
- isLink=true
- break
- fi
- done
- if [ $isLink == false ];then
- rm -f $f
- fi
-done
-&lt;/code>&lt;/pre>&lt;h2 id="说明">
- 说明
- &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="功能">
- 功能
- &lt;a class="anchor" href="#%e5%8a%9f%e8%83%bd">#&lt;/a>
-&lt;/h3>
-&lt;p>删除除link对应的文件以外的所有文件&lt;/p></description></item><item><title>centos 6 搭建 SolrCloud 7.3.1 集群服务</title><link>https://notes.zhangwenbing.com/blog/linux/S1cZ9qilm/</link><pubDate>Mon, 11 Jun 2018 07:10:59 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S1cZ9qilm/</guid><description>&lt;blockquote>
-&lt;p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引；也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。&lt;/p></description></item><item><title>Mediainfo开启http ftp支持</title><link>https://notes.zhangwenbing.com/blog/linux/H1BwMFoy7/</link><pubDate>Wed, 30 May 2018 01:48:13 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H1BwMFoy7/</guid><description>&lt;blockquote>
-&lt;p>Libcurl support is disabled due to compilation options&lt;/p>
-&lt;/blockquote>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>./CLI_Compile.sh --with-libcurl
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>centos7 rdate 时间同步服务</title><link>https://notes.zhangwenbing.com/blog/linux/rJY7U8E9U0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJY7U8E9U0z/</guid><description>&lt;h2 id="安装软件">
+&lt;/code>&lt;/pre>&lt;p>如果你执行了临时关闭SeLinux并机器上跑了重要的业务，那可以不需要马上重启机器，等待下次重启配置生效即可。&lt;/p></description></item><item><title>centos7 rdate 时间同步服务</title><link>https://notes.zhangwenbing.com/blog/linux/rJY7U8E9U0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJY7U8E9U0z/</guid><description>&lt;h2 id="安装软件">
  安装软件
  &lt;a class="anchor" href="#%e5%ae%89%e8%a3%85%e8%bd%af%e4%bb%b6">#&lt;/a>
 &lt;/h2>
@@ -944,63 +696,28 @@ done
  服务端
  &lt;a class="anchor" href="#%e6%9c%8d%e5%8a%a1%e7%ab%af">#&lt;/a>
 &lt;/h3>
-&lt;p>首先在服务端执行以下命令（到底哪个是服务端呢？就是你在哪台机器上面执行了以上三个步骤就是服务端），在服务端上同步网络标准时间，然后再同步到内网各台机器上。&lt;/p></description></item><item><title>centos7 双ip策略路由配置方法</title><link>https://notes.zhangwenbing.com/blog/linux/HyEL84qI0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HyEL84qI0M/</guid><description>&lt;blockquote>
-&lt;p>服务器配置多网卡多网关时，为了避免时不时的去添加相关回程路由，因此需要配置一下策略路由。&lt;/p>
-&lt;/blockquote>
-&lt;p>原文地址 &lt;a href="https://blog.csdn.net/pyxllq/article/details/105817064">blog.csdn.net&lt;/a>&lt;/p>
-&lt;p>服务器系统版本：CentOS Linux release 7.3.1611&lt;/p>
-&lt;h2 id="1添加路由表">
- 1.添加路由表
- &lt;a class="anchor" href="#1%e6%b7%bb%e5%8a%a0%e8%b7%af%e7%94%b1%e8%a1%a8">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>vi /etc/iproute2/rt_tables
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>101     innerRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>102     globalRoute
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-添加路由配置脚本">
- 2. 添加路由配置脚本
- &lt;a class="anchor" href="#2-%e6%b7%bb%e5%8a%a0%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae%e8%84%9a%e6%9c%ac">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ip route flush table globalRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip rule add dev eth1 table globalRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> ! ip rule show | grep x.x.x.x ; &lt;span style="color:#66d9ef">then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ip rule add from x.x.x.x table globalRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">fi&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip route add default via y.y.y.y dev eth1 table globalRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip route flush table innerRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip rule add dev eth2 table innerRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> ! ip rule show | grep 172.16.x.x ; &lt;span style="color:#66d9ef">then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ip rule add from 172.16.x.x table innerRoute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">fi&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ip route add default via 172.16.y.y dev eth2 table innerRoute
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面 x.x.x.x 是配置在网口 eth1 上的 ip，y.y.y.y 是该 ip 的网关，172.16.x.x 是 eth2 的 ip，我这里是内网 ip，172.16.y.y 是 172 网关的网关。&lt;/p></description></item><item><title>centos7 修改内核引导顺序</title><link>https://notes.zhangwenbing.com/blog/linux/rytGLI49LCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rytGLI49LCf/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="查看内核">
+&lt;p>首先在服务端执行以下命令（到底哪个是服务端呢？就是你在哪台机器上面执行了以上三个步骤就是服务端），在服务端上同步网络标准时间，然后再同步到内网各台机器上。&lt;/p></description></item><item><title>centos7 修改内核引导顺序</title><link>https://notes.zhangwenbing.com/blog/linux/rytGLI49LCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rytGLI49LCf/</guid><description>&lt;h2 id="查看内核">
  查看内核
  &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e5%86%85%e6%a0%b8">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>cat /boot/grub2/grub.cfg |grep menuentry
-
-menuentry &amp;#39;CentOS Linux (3.10.0-327.36.3.el7.x86_64) 7 (Core)&amp;#39; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39; {
-menuentry &amp;#39;CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)&amp;#39; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39; {
-menuentry &amp;#39;CentOS Linux (3.10.0-327.el7.x86_64) 7 (Core)&amp;#39; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39; {
-menuentry &amp;#39;CentOS Linux (0-rescue-7d26c16f128042a684ea474c9e2c240f) 7 (Core)&amp;#39; --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &amp;#39;gnulinux-0-rescue-7d26c16f128042a684ea474c9e2c240f-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39;
-&lt;/code>&lt;/pre>&lt;h2 id="修改默认">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cat /boot/grub2/grub.cfg |grep menuentry
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>menuentry &lt;span style="color:#e6db74">&amp;#39;CentOS Linux (3.10.0-327.36.3.el7.x86_64) 7 (Core)&amp;#39;&lt;/span> --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &lt;span style="color:#e6db74">&amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39;&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>menuentry &lt;span style="color:#e6db74">&amp;#39;CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)&amp;#39;&lt;/span> --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &lt;span style="color:#e6db74">&amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39;&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>menuentry &lt;span style="color:#e6db74">&amp;#39;CentOS Linux (3.10.0-327.el7.x86_64) 7 (Core)&amp;#39;&lt;/span> --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &lt;span style="color:#e6db74">&amp;#39;gnulinux-3.10.0-327.el7.x86_64-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39;&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>menuentry &lt;span style="color:#e6db74">&amp;#39;CentOS Linux (0-rescue-7d26c16f128042a684ea474c9e2c240f) 7 (Core)&amp;#39;&lt;/span> --class centos --class gnu-linux --class gnu --class os --unrestricted $menuentry_id_option &lt;span style="color:#e6db74">&amp;#39;gnulinux-0-rescue-7d26c16f128042a684ea474c9e2c240f-advanced-80b9b662-0a1d-4e84-b07b-c1bf19e72d97&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改默认">
  修改默认
  &lt;a class="anchor" href="#%e4%bf%ae%e6%94%b9%e9%bb%98%e8%ae%a4">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>grub2-set-default &amp;#34;CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)&amp;#34;
-&lt;/code>&lt;/pre>&lt;h2 id="查看生效">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>grub2-set-default &lt;span style="color:#e6db74">&amp;#34;CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看生效">
  查看生效
  &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e7%94%9f%e6%95%88">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>grub2-editenv list
-saved_entry=CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)
-&lt;/code>&lt;/pre></description></item><item><title>Centos7搭建vpn</title><link>https://notes.zhangwenbing.com/blog/linux/B1AMUL45ICM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1AMUL45ICM/</guid><description>&lt;h2 id="准备环境">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>grub2-editenv list
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>saved_entry&lt;span style="color:#f92672">=&lt;/span>CentOS Linux &lt;span style="color:#f92672">(&lt;/span>3.10.0-327.22.2.el7.x86_64&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#ae81ff">7&lt;/span> &lt;span style="color:#f92672">(&lt;/span>Core&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Centos7搭建vpn</title><link>https://notes.zhangwenbing.com/blog/linux/B1AMUL45ICM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1AMUL45ICM/</guid><description>&lt;h2 id="准备环境">
  准备环境
  &lt;a class="anchor" href="#%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83">#&lt;/a>
 &lt;/h2>
@@ -1048,61 +765,58 @@ saved_entry=CentOS Linux (3.10.0-327.22.2.el7.x86_64) 7 (Core)
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>service iptables save
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl restart iptables
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl restart pptpd
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Centos多网卡绑定(bonding)</title><link>https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="内核模块">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Centos多网卡绑定(bonding)</title><link>https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJFUIE5I0G/</guid><description>&lt;h2 id="内核模块">
  内核模块
  &lt;a class="anchor" href="#%e5%86%85%e6%a0%b8%e6%a8%a1%e5%9d%97">#&lt;/a>
 &lt;/h2>
 &lt;p>通过modinfo bonding命令查看Linux是否支持bonding&lt;/p>
-&lt;pre tabindex="0">&lt;code>lsmod |grep bonding
-#载入bonding模块
-modprobe bonding
-&lt;/code>&lt;/pre>&lt;h2 id="配置bonding">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>lsmod |grep bonding
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#载入bonding模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>modprobe bonding
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置bonding">
  配置bonding
  &lt;a class="anchor" href="#%e9%85%8d%e7%bd%aebonding">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code># cat /etc/modprobe.d/bond0.conf
-alias bond0 bonding
-cd /etc/sysconfig/network-scripts/
-# grep -v &amp;#34;^#&amp;#34; ifcfg-bond0
-DEVICE=bond0
-BOOTPROTO=static
-ONBOOT=yes
-IPADDR=192.168.5.88
-NETMASK=255.255.255.0
-GATEWAY=192.168.5.1
-USERCTL=no
-====================================================
-BONDING_OPTS=&amp;#34;mode=0 miimon=100&amp;#34;
-说明：这里使用了BONDING_OPTS选项，则不需要再使用 /etc/modprobe.d/bond0.conf 配置文件对绑定设备进行配置。参数mode=0，指负载均衡模式，详见下文。miimon是用来进行链路监测的，其原理是检测网上的链路状态，一般将miimon值设为100，表示系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路。
-====================================================
-# grep -v &amp;#34;^#&amp;#34; ifcfg-eth1
-DEVICE=eth1
-ONBOOT=yes
-BOOTPROTO=static
-MASTER=bond0
-SLAVE=yes
-USERCTL=no
-# grep -v &amp;#34;^#&amp;#34; ifcfg-eth0
-DEVICE=eth0
-BOOTPROTO=static
-ONBOOT=yes
-MASTER=bond0
-SLAVE=yes
-USERCTL=no
-注意：建议不要指定MAC地址
-# echo 100 &amp;gt; /sys/class/net/bond0/bonding/miimon
-# echo 6 &amp;gt; /sys/class/net/bond0/bonding/mode
-Mode of operation : 0 for balance-rr, 1 for active-backup, 2 for balance-xor；
-3 for broadcast, 4 for 802.3ad, 5 for balance-tlb, 6 for balance-alb (charp)
-重启网络
-# /etc/init.d/network restart
-检查下
-ifconfig
-cat /proc/net/bonding/bond0
-&lt;/code>&lt;/pre>&lt;h2 id="bonding模式">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># cat /etc/modprobe.d/bond0.conf&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>alias bond0 bonding
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd /etc/sysconfig/network-scripts/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># grep -v &amp;#34;^#&amp;#34; ifcfg-bond0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEVICE&lt;span style="color:#f92672">=&lt;/span>bond0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>BOOTPROTO&lt;span style="color:#f92672">=&lt;/span>static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ONBOOT&lt;span style="color:#f92672">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>IPADDR&lt;span style="color:#f92672">=&lt;/span>192.168.5.88
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NETMASK&lt;span style="color:#f92672">=&lt;/span>255.255.255.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>GATEWAY&lt;span style="color:#f92672">=&lt;/span>192.168.5.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>USERCTL&lt;span style="color:#f92672">=&lt;/span>no
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">====================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>BONDING_OPTS&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;mode=0 miimon=100&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>说明：这里使用了BONDING_OPTS选项，则不需要再使用 /etc/modprobe.d/bond0.conf 配置文件对绑定设备进行配置。参数mode&lt;span style="color:#f92672">=&lt;/span>0，指负载均衡模式，详见下文。miimon是用来进行链路监测的，其原理是检测网上的链路状态，一般将miimon值设为100，表示系统每100ms监测一次链路连接状态，如果有一条线路不通就转入另一条线路。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">====================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># grep -v &amp;#34;^#&amp;#34; ifcfg-eth1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEVICE&lt;span style="color:#f92672">=&lt;/span>eth1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ONBOOT&lt;span style="color:#f92672">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>BOOTPROTO&lt;span style="color:#f92672">=&lt;/span>static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MASTER&lt;span style="color:#f92672">=&lt;/span>bond0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SLAVE&lt;span style="color:#f92672">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>USERCTL&lt;span style="color:#f92672">=&lt;/span>no
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># grep -v &amp;#34;^#&amp;#34; ifcfg-eth0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEVICE&lt;span style="color:#f92672">=&lt;/span>eth0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>BOOTPROTO&lt;span style="color:#f92672">=&lt;/span>static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ONBOOT&lt;span style="color:#f92672">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MASTER&lt;span style="color:#f92672">=&lt;/span>bond0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SLAVE&lt;span style="color:#f92672">=&lt;/span>yes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>USERCTL&lt;span style="color:#f92672">=&lt;/span>no
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>注意：建议不要指定MAC地址
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># echo 100 &amp;gt; /sys/class/net/bond0/bonding/miimon&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># echo 6 &amp;gt; /sys/class/net/bond0/bonding/mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Mode of operation : &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> balance-rr, &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> active-backup, &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> balance-xor；
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> broadcast, &lt;span style="color:#ae81ff">4&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> 802.3ad, &lt;span style="color:#ae81ff">5&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> balance-tlb, &lt;span style="color:#ae81ff">6&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> balance-alb &lt;span style="color:#f92672">(&lt;/span>charp&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>重启网络
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># /etc/init.d/network restart&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>检查下
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ifconfig
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cat /proc/net/bonding/bond0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="bonding模式">
  bonding模式
  &lt;a class="anchor" href="#bonding%e6%a8%a1%e5%bc%8f">#&lt;/a>
 &lt;/h2>
@@ -1125,74 +839,13 @@ cat /proc/net/bonding/bond0
  总结
  &lt;a class="anchor" href="#%e6%80%bb%e7%bb%93">#&lt;/a>
 &lt;/h2>
-&lt;p>方法一为零时的，也就是只在当次有效，而方法二为永久有效。可根据不同情况选择。&lt;/p></description></item><item><title>linux apache mysql php 优化</title><link>https://notes.zhangwenbing.com/blog/linux/SkaWUIN5U0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SkaWUIN5U0z/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="一准备环境">
- 一、准备环境
- &lt;a class="anchor" href="#%e4%b8%80%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="1安装mysql">
- 1、安装mysql
- &lt;a class="anchor" href="#1%e5%ae%89%e8%a3%85mysql">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql5.5 -DMYSQL_DATADIR=/usr/local/mysql5.5/data -DSYSCONFDIR=/usr/local/mysql5.5/etc -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_PERFSCHEMA_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLED_LOCAL_INFILE=1 -DWITH_EXTRA_CHARSETS=all
-#make
-#make install
-&lt;/code>&lt;/pre>&lt;h3 id="2安装nginx">
- 2、安装nginx
- &lt;a class="anchor" href="#2%e5%ae%89%e8%a3%85nginx">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#./configure --prefix=/usr/local/nginx --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --pid-path=/var/run/nginx/nginx.pid --user=daemon --group=daemon --with-pcre
-#make &amp;amp;&amp;amp; make install
-&lt;/code>&lt;/pre>&lt;h3 id="3安装php">
- 3、安装php
- &lt;a class="anchor" href="#3%e5%ae%89%e8%a3%85php">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#./configure --prefix=/usr/local/php5 --enable-bcmath --with-mysql=/usr/local/mysql5.5 --enable-fpm --with-fpm-user=daemon --with-fpm-group=daemon --with-config-file-path=/usr/local/php5
-#make &amp;amp;&amp;amp; make install
-&lt;/code>&lt;/pre>&lt;h3 id="4使nginx支持php">
- 4、使nginx支持php
- &lt;a class="anchor" href="#4%e4%bd%bfnginx%e6%94%af%e6%8c%81php">#&lt;/a>
-&lt;/h3>
-&lt;h4 id="1nginx配置">
- (1)nginx配置
- &lt;a class="anchor" href="#1nginx%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h4>
-&lt;pre tabindex="0">&lt;code>location ~ \.php$ {
-root html;
-fastcgi_pass 127.0.0.1:9000;
-fastcgi_index index.php;
-fastcgi_param SCRIPT_FILENAME /usr/local/nginx/html$fastcgi_script_name;
-include fastcgi_params;
-}
-&lt;/code>&lt;/pre>&lt;h4 id="2php配置">
- (2)php配置
- &lt;a class="anchor" href="#2php%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h4>
-&lt;pre tabindex="0">&lt;code>#vim /usr/local/php5/etc/php-fpm.conf
-#cd /usr/local/php5/sbin
-#./php-fpm -c /usr/local/php5/etc/php-fpm.conf
-&lt;/code>&lt;/pre>&lt;h2 id="二php优化">
- 二、php优化
- &lt;a class="anchor" href="#%e4%ba%8cphp%e4%bc%98%e5%8c%96">#&lt;/a>
-&lt;/h2>
-&lt;p>注意：如何添加php功能模块 例：安装mbstring多字节支持功能模块&lt;/p></description></item><item><title>linux bash截取字符串的几种方法</title><link>https://notes.zhangwenbing.com/blog/linux/HJi_UUE5ICG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJi_UUE5ICG/</guid><description>&lt;blockquote>
-&lt;h1 id="号截取删除左边字符保留右边字符">
- 号截取，删除左边字符，保留右边字符
- &lt;a class="anchor" href="#%e5%8f%b7%e6%88%aa%e5%8f%96%e5%88%a0%e9%99%a4%e5%b7%a6%e8%be%b9%e5%ad%97%e7%ac%a6%e4%bf%9d%e7%95%99%e5%8f%b3%e8%be%b9%e5%ad%97%e7%ac%a6">#&lt;/a>
-&lt;/h1>
-&lt;/blockquote>
-&lt;p>var=http://www.aaa.com/123.htm&lt;/p>
-&lt;p>echo ${var#*//}&lt;/p>
-&lt;p>其中var是变量名，…&lt;/p>
-&lt;h3 id="-号截取删除左边字符保留右边字符">
+&lt;p>方法一为零时的，也就是只在当次有效，而方法二为永久有效。可根据不同情况选择。&lt;/p></description></item><item><title>linux bash截取字符串的几种方法</title><link>https://notes.zhangwenbing.com/blog/linux/HJi_UUE5ICG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJi_UUE5ICG/</guid><description>&lt;h3 id="-号截取删除左边字符保留右边字符">
  # 号截取，删除左边字符，保留右边字符
  &lt;a class="anchor" href="#-%e5%8f%b7%e6%88%aa%e5%8f%96%e5%88%a0%e9%99%a4%e5%b7%a6%e8%be%b9%e5%ad%97%e7%ac%a6%e4%bf%9d%e7%95%99%e5%8f%b3%e8%be%b9%e5%ad%97%e7%ac%a6">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>var=http://www.aaa.com/123.htm
-echo ${var#*//}
-&lt;/code>&lt;/pre>&lt;p>其中var是变量名，#号是运算符， &lt;em>号是通配符，&lt;/em>//表示从左边开始删除第一个到//处的所有字符即删除http://&lt;/p></description></item><item><title>linux crontab计划任务详解</title><link>https://notes.zhangwenbing.com/blog/linux/rJvbIUV580z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJvbIUV580z/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>var&lt;span style="color:#f92672">=&lt;/span>http://www.aaa.com/123.htm
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#e6db74">${&lt;/span>var#*//&lt;span style="color:#e6db74">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中var是变量名，#号是运算符， &lt;em>号是通配符，&lt;/em>//表示从左边开始删除第一个到//处的所有字符即删除http://&lt;/p></description></item><item><title>linux crontab计划任务详解</title><link>https://notes.zhangwenbing.com/blog/linux/rJvbIUV580z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJvbIUV580z/</guid><description>&lt;blockquote>
 &lt;p>crontab命令常见于Unix和类Unix的操作系统之中，用于设置周期性被执行的指令&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="配置文件">
@@ -1213,58 +866,7 @@ echo ${var#*//}
  注意事项
  &lt;a class="anchor" href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9">#&lt;/a>
 &lt;/h2>
-&lt;p>多个计划任务不宜同时进行防止有非法计划任务周和日，月不可同时并存，容易导致计划任务时间混乱&lt;/p></description></item><item><title>linux DHCP简单使用方法</title><link>https://notes.zhangwenbing.com/blog/linux/B1CLLE98CG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1CLLE98CG/</guid><description>&lt;p>配置&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>vim /etc/dhcpd.conf
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>default-lease-time 1296000;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>max-lease-time 4000000;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#IP最长失效时间&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option subnet-mask 255.255.255.0;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#子网的掩码&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option broadcast-address 192.168.0.255;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#网络的广播地址&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option routers 192.168.0.254;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#网关的地址&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>option domain-name-servers 211.151.48.59,211.151.48.47;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#域名解析地址&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ddns-update-style ad-hoc;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>subnet 192.168.0.0 netmask 255.255.255.0 &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#定义IP池的内容&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>range 192.168.0.100 192.168.0.240;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#地址范围为 100-240 共140个IP地址。&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#也可以象下面一样按MAC地址指定IP&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#host Jephe {hardware ethernet 00:a0:c9:a6:96:33;fixed-address 192.168.1.12;}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="详解">
- 详解
- &lt;a class="anchor" href="#%e8%af%a6%e8%a7%a3">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="parameters参数">
- parameters（参数）
- &lt;a class="anchor" href="#parameters%e5%8f%82%e6%95%b0">#&lt;/a>
-&lt;/h3>
-&lt;p>ddns-update-style 配置DHCP-DNS互动更新模式 default-lease-time 指定缺省租赁时间的长度，单位是秒 max-&lt;/p></description></item><item><title>linux dns（named）最小配置</title><link>https://notes.zhangwenbing.com/blog/linux/HkiLUE5UCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HkiLUE5UCf/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="一简介">
- 一、简介
- &lt;a class="anchor" href="#%e4%b8%80%e7%ae%80%e4%bb%8b">#&lt;/a>
-&lt;/h2>
-&lt;p>相对于存储和大数据领域，CDN是一个相对小的领域，但行行出状元，BIND就是CDN领域的蝉联N届的状元郎。BIND是一款非常常用的DNS开源服务器，全球有90%的DNS用BIND实现。值得一提的是，BIND9.8.1用C语言实现，代码量巨大，其设计实现几乎涵盖了服务器编程的所有细节。&lt;/p></description></item><item><title>linux mount命令详解</title><link>https://notes.zhangwenbing.com/blog/linux/B1OZ8INcIAM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1OZ8INcIAM/</guid><description>&lt;h2 id="功能">
- 功能
- &lt;a class="anchor" href="#%e5%8a%9f%e8%83%bd">#&lt;/a>
-&lt;/h2>
-&lt;p>加载指定的文件系统。&lt;/p>
-&lt;h2 id="语法">
- 语法
- &lt;a class="anchor" href="#%e8%af%ad%e6%b3%95">#&lt;/a>
-&lt;/h2>
-&lt;p>mount [-afFhnrvVw] [-L] [-o] [-t] [设备名] [加载点]&lt;/p>
-&lt;h2 id="用法">
- 用法
- &lt;a class="anchor" href="#%e7%94%a8%e6%b3%95">#&lt;/a>
-&lt;/h2>
-&lt;p>说明：mount可将指定设备中指定的文件系统加载到Linux目录下（也就是装载点）。可将经常使用的设备写入文件/etc/fastab,以使系统在每次启动时自动加载。mount加载设备的信息记录在/etc/mtab文件中。使用umount命令卸载设备时，记录将被清除。&lt;/p></description></item><item><title>linux nfs配置及访问控制</title><link>https://notes.zhangwenbing.com/blog/linux/rJJe8UNcU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJJe8UNcU0M/</guid><description>&lt;h2 id="nfs软件包">
+&lt;p>多个计划任务不宜同时进行防止有非法计划任务周和日，月不可同时并存，容易导致计划任务时间混乱&lt;/p></description></item><item><title>linux nfs配置及访问控制</title><link>https://notes.zhangwenbing.com/blog/linux/rJJe8UNcU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rJJe8UNcU0M/</guid><description>&lt;h2 id="nfs软件包">
  NFS软件包
  &lt;a class="anchor" href="#nfs%e8%bd%af%e4%bb%b6%e5%8c%85">#&lt;/a>
 &lt;/h2>
@@ -1294,181 +896,38 @@ echo ${var#*//}
  &lt;a class="anchor" href="#%e7%ae%80%e8%a6%81%e8%af%b4%e6%98%8e">#&lt;/a>
 &lt;/h2>
 &lt;p>samba：这个软体主要提供了SMB伺服器所需的各项服务程式(smbd及nmbd)、的文件档、以及其他与SAMBA相关的logrotate设定档及开机预设选项档案等；&lt;/p></description></item><item><title>Linux Screen命令</title><link>https://notes.zhangwenbing.com/blog/linux/B1muLLNcIRf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B1muLLNcIRf/</guid><description>&lt;p>Linux screen 命令用于多重视窗管理程序。&lt;/p>
-&lt;p>screen 为多重视窗管理程序。此处所谓的视窗，是指一个全屏幕的文字模式画面。通常只有在使用 telnet 登入主机或是使用老式的终端机时，才有可能用到 screen 程序。&lt;/p></description></item><item><title>linux VM虚拟内存和BDP优化</title><link>https://notes.zhangwenbing.com/blog/linux/Hk2bI84c8Rz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/Hk2bI84c8Rz/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="vm虚拟内存优化">
- VM虚拟内存优化
- &lt;a class="anchor" href="#vm%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98%e4%bc%98%e5%8c%96">#&lt;/a>
-&lt;/h2>
-&lt;p>#getconf PAGESIZE&lt;/p>
-&lt;p>vm.dirty_background_bytes 系统内所包含的脏数据总数&lt;/p>
-&lt;p>vm.dirty_background_ratio 脏数据所占用内存的百分比&lt;/p>
-&lt;p>vm.dirty_expire_centisecs 脏数据在内存中的存放时间&lt;/p>
-&lt;p>vm.dirty_bytes 如果进程的脏数据超过该值时则要求写到磁盘&lt;/p>
-&lt;h2 id="bdp优化">
- BDP优化
- &lt;a class="anchor" href="#bdp%e4%bc%98%e5%8c%96">#&lt;/a>
-&lt;/h2>
-&lt;p>BDP=Bandwidth*RRT net.core.rmem_max 最大缓冲区(窗口)大小&lt;/p></description></item><item><title>linux vnc简单配置</title><link>https://notes.zhangwenbing.com/blog/linux/H13UIE5LRM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H13UIE5LRM/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="vnc端口">
- VNC端口
- &lt;a class="anchor" href="#vnc%e7%ab%af%e5%8f%a3">#&lt;/a>
-&lt;/h2>
-&lt;p>vncserver监听端口 RFB协议：5900+桌面号 HTTP协议：5800+桌面号 X协议：6000+桌面号&lt;/p>
-&lt;p>vncserver使用的桌面编号默认是从1开始，依次使用。&lt;/p></description></item><item><title>linux 常用系统资源查看命令</title><link>https://notes.zhangwenbing.com/blog/linux/S19ZLLE9I0G/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S19ZLLE9I0G/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="一sar命令">
- 一、sar命令
- &lt;a class="anchor" href="#%e4%b8%80sar%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code># sar 1 10 监控CPU，每秒监控一次，共监控10次
-# sar -P ALL 1 5 监控所有CPU
-# sar -S 1 10 监控交换分区
-# sar -d 1 10 监控磁盘IO
-# sar -b 1 10 监控磁盘IO和速率
-# sar -r 1 10 监控内存使用
-# sar -n DEV 1 10 监控网络接口卡的数据传输
-&lt;/code>&lt;/pre>&lt;h2 id="二mpstat">
- 二、mpstat
- &lt;a class="anchor" href="#%e4%ba%8cmpstat">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code># mpstat -P ALL 1 10
-&lt;/code>&lt;/pre>&lt;h2 id="三iostat">
- 三、iostat
- &lt;a class="anchor" href="#%e4%b8%89iostat">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code># iostat -c 2
-# iostat -d 1 100
-# iostat 1 20
-# iostat -p /dev/sda2 1 10
-&lt;/code>&lt;/pre>&lt;h2 id="四vmstat">
- 四、vmstat
- &lt;a class="anchor" href="#%e5%9b%9bvmstat">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>#vmstat -d 1 20
-输出信息
-r 运行队列中的进程数，不要长时间超过CPU核心总数
-b 等待IO的进程数
-si 每秒从交换分区写到内存的数据大小
-so 每秒写入交换分区的数据大小
-#vmstat -a 1 10
-&lt;/code>&lt;/pre>&lt;h2 id="五其它常用监控命令">
- 五、其它常用监控命令
- &lt;a class="anchor" href="#%e4%ba%94%e5%85%b6%e5%ae%83%e5%b8%b8%e7%94%a8%e7%9b%91%e6%8e%a7%e5%91%bd%e4%bb%a4">#&lt;/a>
-&lt;/h2>
-&lt;p>(1) top (2) free (3) iptraf&lt;/p></description></item><item><title>linux 防拒绝服务攻击</title><link>https://notes.zhangwenbing.com/blog/linux/H1sZIUN9I0f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H1sZIUN9I0f/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="一使用脚本">
- 一、使用脚本
- &lt;a class="anchor" href="#%e4%b8%80%e4%bd%bf%e7%94%a8%e8%84%9a%e6%9c%ac">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>wget http://www.inetbase.com/scripts/ddos/install.sh 安装脚本
-wget http://www.inetbase.com/scripts/ddos/uninstall.sh 卸载脚本
-&lt;/code>&lt;/pre>&lt;h2 id="二内核优化">
- 二、内核优化
- &lt;a class="anchor" href="#%e4%ba%8c%e5%86%85%e6%a0%b8%e4%bc%98%e5%8c%96">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>net.ipv4.tcp_max_syn_backlog = 1024 #设定syn队列长度
-net.ipv4.tcp_syncookies = 1 #设定是否启用cookies
-net.ipv4.tcp_synack_retries = 3 #设定synack重试次数
-net.ipv4.tcp_syn_retries = 2 #设定syn重试次数
-net.ipv4.icmp_echo_ignore_all = 1 #不回应ping
-net.ipv4.icmp_echo_ignore_broadcast = 1 #不回应广播ping
-&lt;/code>&lt;/pre>&lt;h2 id="三防火墙配置">
- 三、防火墙配置
- &lt;a class="anchor" href="#%e4%b8%89%e9%98%b2%e7%81%ab%e5%a2%99%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="1基于数据包进行限制">
- 1、基于数据包进行限制
- &lt;a class="anchor" href="#1%e5%9f%ba%e4%ba%8e%e6%95%b0%e6%8d%ae%e5%8c%85%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#iptables -A INPUT -p tcp --tcp-flags syn,ack,fin syn -m limit --limit 5/s --limit-burst 8 -j ACCEPT
-#iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
-&lt;/code>&lt;/pre>&lt;h3 id="2基于连接数进行限制">
- 2、基于连接数进行限制
- &lt;a class="anchor" href="#2%e5%9f%ba%e4%ba%8e%e8%bf%9e%e6%8e%a5%e6%95%b0%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#iptables -A INPUT -s 192.168.0.0/24 -p tcp --dport 23 -m connlimit --connlimit-above 2 -j DROP
-&lt;/code>&lt;/pre>&lt;h3 id="3基于地址列表进行限制">
- 3、基于地址列表进行限制
- &lt;a class="anchor" href="#3%e5%9f%ba%e4%ba%8e%e5%9c%b0%e5%9d%80%e5%88%97%e8%a1%a8%e8%bf%9b%e8%a1%8c%e9%99%90%e5%88%b6">#&lt;/a>
-&lt;/h3>
-&lt;pre tabindex="0">&lt;code>#iptables -A INPUT -p tcp --dport 80 --tcp-flags syn,ack,fin syn -m recent --name webpool --rcheck --seconds 120 --hitcount 10 -j LOG --log-prefix=&amp;#34;ddos:&amp;#34; --log-ip-options
-#iptables -A INPUT -p tcp --dport 80 --syn -m recent --name webpool --rcheck --seconds 120 --hitcount 10 -j DROP
-#iptables -A INPUT -p tcp --dport 80 --syn -m recent --name webpool --set -j ACCEPT
-&lt;/code>&lt;/pre></description></item><item><title>linux 防御SYN攻击</title><link>https://notes.zhangwenbing.com/blog/linux/HyYg884c80f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HyYg884c80f/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="一默认syn配置">
+&lt;p>screen 为多重视窗管理程序。此处所谓的视窗，是指一个全屏幕的文字模式画面。通常只有在使用 telnet 登入主机或是使用老式的终端机时，才有可能用到 screen 程序。&lt;/p></description></item><item><title>linux 防御SYN攻击</title><link>https://notes.zhangwenbing.com/blog/linux/HyYg884c80f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HyYg884c80f/</guid><description>&lt;h2 id="一默认syn配置">
  一、默认syn配置
  &lt;a class="anchor" href="#%e4%b8%80%e9%bb%98%e8%ae%a4syn%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>sysctl -a | grep _syn
-net.ipv4.tcp_max_syn_backlog = 1024
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_synack_retries = 5
-net.ipv4.tcp_syn_retries = 5
-&lt;/code>&lt;/pre>&lt;p>tcp_max_syn_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。&lt;/p>
-&lt;p>tcp_syncookies是一个开关，是否打开SYN Cookie 功能，该功能可以防止部分SYN攻击。&lt;/p></description></item><item><title>linux（内核）oom kille vm.overcommit_memory参数详解</title><link>https://notes.zhangwenbing.com/blog/linux/HkGxI8VcL0f/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HkGxI8VcL0f/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="详细说明">
- 详细说明
- &lt;a class="anchor" href="#%e8%af%a6%e7%bb%86%e8%af%b4%e6%98%8e">#&lt;/a>
-&lt;/h2>
-&lt;p>可选值：0、1、2。&lt;/p>
-&lt;p>0， 表示内核将检查是否有足够的可用内存供应用进程使用；如果有足够的可用内存，内存申请允许；否则，内存申请失败，并把错误返回给应用进程。&lt;/p></description></item><item><title>linux代理地址失效导致的问题解析</title><link>https://notes.zhangwenbing.com/blog/linux/HJCOI8NqUAG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJCOI8NqUAG/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="错误描述">
- 错误描述
- &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e6%8f%8f%e8%bf%b0">#&lt;/a>
-&lt;/h2>
-&lt;p>任何需要使用http服务的程序都会存在假死或超时，包括wget、cur、yum等等。&lt;/p>
-&lt;h2 id="初步发现">
- 初步发现
- &lt;a class="anchor" href="#%e5%88%9d%e6%ad%a5%e5%8f%91%e7%8e%b0">#&lt;/a>
-&lt;/h2>
-&lt;p>使用sudo 可是正常访问。&lt;/p>
-&lt;p>例如：&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo yum install wget
-&lt;/code>&lt;/pre>&lt;h2 id="然后发现">
- 然后发现
- &lt;a class="anchor" href="#%e7%84%b6%e5%90%8e%e5%8f%91%e7%8e%b0">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>[root@jn6 tmp]# wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
---2018-03-08 14:13:53-- http://mirrors.163.com/.help/CentOS6-Base-163.repo
-Connecting to 10.1.205.242:3128...
-&lt;/code>&lt;/pre>&lt;p>根据上面的提示发现了&lt;/p></description></item><item><title>linux内存清理释放命令</title><link>https://notes.zhangwenbing.com/blog/linux/S13z8UE5UCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S13z8UE5UCf/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="命令">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sysctl -a | grep _syn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv4.tcp_max_syn_backlog &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1024&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv4.tcp_syncookies &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv4.tcp_synack_retries &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>net.ipv4.tcp_syn_retries &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>tcp_max_syn_backlog 是SYN队列的长度，加大SYN队列长度可以容纳更多等待连接的网络连接数。&lt;/p>
+&lt;p>tcp_syncookies是一个开关，是否打开SYN Cookie 功能，该功能可以防止部分SYN攻击。&lt;/p></description></item><item><title>linux内存清理释放命令</title><link>https://notes.zhangwenbing.com/blog/linux/S13z8UE5UCf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/S13z8UE5UCf/</guid><description>&lt;h2 id="命令">
  命令
  &lt;a class="anchor" href="#%e5%91%bd%e4%bb%a4">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>sync
-echo 1 &amp;gt; /proc/sys/vm/drop_caches
-echo 2 &amp;gt; /proc/sys/vm/drop_caches
-echo 3 &amp;gt; /proc/sys/vm/drop_caches
-&lt;/code>&lt;/pre>&lt;h2 id="解释">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sync
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">1&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">2&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">3&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="解释">
  解释
  &lt;a class="anchor" href="#%e8%a7%a3%e9%87%8a">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>cache释放：
-To free pagecache:
-echo 1 &amp;gt; /proc/sys/vm/drop_caches
-
-To free dentries and inodes:
-echo 2 &amp;gt; /proc/sys/vm/drop_caches
-
-To free pagecache, dentries and inodes:
-echo 3 &amp;gt; /proc/sys/vm/drop_caches
-&lt;/code>&lt;/pre>&lt;h2 id="说明">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cache释放：
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>To free pagecache:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">1&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>To free dentries and inodes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">2&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>To free pagecache, dentries and inodes:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>echo &lt;span style="color:#ae81ff">3&lt;/span> &amp;gt; /proc/sys/vm/drop_caches
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="说明">
  说明
  &lt;a class="anchor" href="#%e8%af%b4%e6%98%8e">#&lt;/a>
 &lt;/h2>
@@ -1477,20 +936,7 @@ echo 3 &amp;gt; /proc/sys/vm/drop_caches
  &lt;a class="anchor" href="#%e5%a6%82%e4%bd%95%e5%9c%a8-linux-%e4%b8%ad%e6%b8%85%e9%99%a4%e7%bc%93%e5%ad%98cache">#&lt;/a>
 &lt;/h2>
 &lt;p>每个 Linux 系统有三种选项来清除缓存而不需要中断任何进程或服务。&lt;/p>
-&lt;p>（LCTT 译注：Cache，译作“缓存”，指 CPU&lt;/p></description></item><item><title>linux无人值守安装之找不到pxelinux.0文件的解决办法</title><link>https://notes.zhangwenbing.com/blog/linux/ryedLUN9UAf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/ryedLUN9UAf/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="解决思路">
- 解决思路
- &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e6%80%9d%e8%b7%af">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>yum search pxelinux
-&lt;/code>&lt;/pre>&lt;p>通过上面的方法我们找到了syslinux包&lt;/p>
-&lt;p>然后安装syslinux&lt;/p>
-&lt;pre tabindex="0">&lt;code>yum install syslinux
-&lt;/code>&lt;/pre>&lt;p>最后找到pxelinux.0文件&lt;/p>
-&lt;pre tabindex="0">&lt;code>ls /usr/share/syslinux/pxelinux.0
-&lt;/code>&lt;/pre></description></item><item><title>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法</title><link>https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/</guid><description>&lt;blockquote>
+&lt;p>（LCTT 译注：Cache，译作“缓存”，指 CPU&lt;/p></description></item><item><title>mediainfo获取ts文件大小和信息不准确（MPEG-TS：检测文件的序列）的解决办法</title><link>https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/Sky_LU458CM/</guid><description>&lt;blockquote>
 &lt;p>解决mediainfo获取ts媒体信息不准确问题&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="场景">
@@ -1498,283 +944,7 @@ echo 3 &amp;gt; /proc/sys/vm/drop_caches
  &lt;a class="anchor" href="#%e5%9c%ba%e6%99%af">#&lt;/a>
 &lt;/h2>
 &lt;p>在/opt/目录下总共有200多个文件文件名分别如下：&lt;/p>
-&lt;p>/opt/2017LPL夏季赛第01集.ts&lt;/p></description></item><item><title>nginx 简单配置及使用教程</title><link>https://notes.zhangwenbing.com/blog/linux/SyqLL45IRz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SyqLL45IRz/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="常用配置">
- 常用配置
- &lt;a class="anchor" href="#%e5%b8%b8%e7%94%a8%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>#运行用户
-user nobody;
-#启动进程,通常设置成和cpu的数量相等
-worker_processes 1;
-
-#全局错误日志及PID文件
-#error_log logs/error.log;
-#error_log logs/error.log notice;
-#error_log logs/error.log info;
-
-#pid logs/nginx.pid;
-
-#工作模式及连接数上限
-events {
- #epoll是多路复用IO(I/O Multiplexing)中的一种方式,
- #仅用于linux2.6以上内核,可以大大提高nginx的性能
- use epoll;
-
- #单个后台worker process进程的最大并发链接数
- worker_connections 1024;
-
- # 并发总数是 worker_processes 和 worker_connections 的乘积
- # 即 max_clients = worker_processes * worker_connections
- # 在设置了反向代理的情况下，max_clients = worker_processes * worker_connections / 4 为什么
- # 为什么上面反向代理要除以4，应该说是一个经验值
- # 根据以上条件，正常情况下的Nginx Server可以应付的最大连接数为：4 * 8000 = 32000
- # worker_connections 值的设置跟物理内存大小有关
- # 因为并发受IO约束，max_clients的值须小于系统可以打开的最大文件数
- # 而系统可以打开的最大文件数和内存大小成正比，一般1GB内存的机器上可以打开的文件数大约是10万左右
- # 我们来看看360M内存的VPS可以打开的文件句柄数是多少：
- # $ cat /proc/sys/fs/file-max
- # 输出 34336
- # 32000 &amp;lt; 34336，即并发连接总数小于系统可以打开的文件句柄总数，这样就在操作系统可以承受的范围之内
- # 所以，worker_connections 的值需根据 worker_processes 进程数目和系统可以打开的最大文件总数进行适当地进行设置
- # 使得并发总数小于操作系统可以打开的最大文件数目
- # 其实质也就是根据主机的物理CPU和内存进行配置
- # 当然，理论上的并发总数可能会和实际有所偏差，因为主机还有其他的工作进程需要消耗系统资源。
- # ulimit -SHn 65535
-
-}
-
-http {
- #设定mime类型,类型由mime.type文件定义
- include mime.types;
- default_type application/octet-stream;
- #设定日志格式
- log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
- &amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
- &amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
-
- access_log logs/access.log main;
-
- #sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，
- #对于普通应用，必须设为 on,
- #如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，
- #以平衡磁盘与网络I/O处理速度，降低系统的uptime.
- sendfile on;
- #tcp_nopush on;
-
- #连接超时时间
- #keepalive_timeout 0;
- keepalive_timeout 65;
- tcp_nodelay on;
-
- #开启gzip压缩
- gzip on;
- gzip_disable &amp;#34;MSIE [1-6].&amp;#34;;
-
- #设定请求缓冲
- client_header_buffer_size 128k;
- large_client_header_buffers 4 128k;
-
- #设定虚拟主机配置
- server {
- #侦听80端口
- listen 80;
- #定义使用 www.nginx.cn访问
- server_name www.nginx.cn;
-
- #定义服务器的默认网站根目录位置
- root html;
-
- #设定本虚拟主机的访问日志
- access_log logs/nginx.access.log main;
-
- #默认请求
- location / {
-
- #定义首页索引文件的名称
- index index.php index.html index.htm;
-
- }
-
- # 定义错误提示页面
- error_page 500 502 503 504 /50x.html;
- location = /50x.html {
- }
-
- #静态文件，nginx自己处理
- location ~ ^/(images|javascript|js|css|flash|media|static)/ {
-
- #过期30天，静态文件不怎么更新，过期可以设大一点，
- #如果频繁更新，则可以设置得小一点。
- expires 30d;
- }
-
- #PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.
- location ~ .php$ {
- fastcgi_pass 127.0.0.1:9000;
- fastcgi_index index.php;
- fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
- include fastcgi_params;
- }
-
- #禁止访问 .htxxx 文件
- location ~ /.ht {
- deny all;
- }
-
- }
-}
-&lt;/code>&lt;/pre>&lt;h2 id="其他配置">
- 其他配置
- &lt;a class="anchor" href="#%e5%85%b6%e4%bb%96%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h2>
-&lt;pre tabindex="0">&lt;code>#定义Nginx运行的用户和用户组
-user www www;
-
-#nginx进程数，建议设置为等于CPU总核心数。
-worker_processes 8;
-
-#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]
-error_log /var/log/nginx/error.log info;
-
-#进程文件
-pid /var/run/nginx.pid;
-
-#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。
-worker_rlimit_nofile 65535;
-
-#工作模式与连接数上限
-events
-{
-#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。
-use epoll;
-#单个进程最大连接数（最大连接数=连接数*进程数）
-worker_connections 65535;
-}
-
-#设定http服务器
-http
-{
-include mime.types; #文件扩展名与文件类型映射表
-default_type application/octet-stream; #默认文件类型
-#charset utf-8; #默认编码
-server_names_hash_bucket_size 128; #服务器名字的hash表大小
-client_header_buffer_size 32k; #上传文件大小限制
-large_client_header_buffers 4 64k; #设定请求缓
-client_max_body_size 8m; #设定请求缓
-sendfile on; #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。
-autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。
-tcp_nopush on; #防止网络阻塞
-tcp_nodelay on; #防止网络阻塞
-keepalive_timeout 120; #长连接超时时间，单位是秒
-
-#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。
-fastcgi_connect_timeout 300;
-fastcgi_send_timeout 300;
-fastcgi_read_timeout 300;
-fastcgi_buffer_size 64k;
-fastcgi_buffers 4 64k;
-fastcgi_busy_buffers_size 128k;
-fastcgi_temp_file_write_size 128k;
-
-#gzip模块设置
-gzip on; #开启gzip压缩输出
-gzip_min_length 1k; #最小压缩文件大小
-gzip_buffers 4 16k; #压缩缓冲区
-gzip_http_version 1.0; #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）
-gzip_comp_level 2; #压缩等级
-gzip_types text/plain application/x-javascript text/css application/xml;
-#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。
-gzip_vary on;
-#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用
-
-upstream blog.ha97.com {
-#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。
-server 192.168.80.121:80 weight=3;
-server 192.168.80.122:80 weight=2;
-server 192.168.80.123:80 weight=3;
-}
-
-#虚拟主机的配置
-server
-{
-#监听端口
-listen 80;
-#域名可以有多个，用空格隔开
-server_name www.ha97.com ha97.com;
-index index.html index.htm index.php;
-root /data/www/ha97;
-location ~ .*\.(php|php5)?$
-{
-fastcgi_pass 127.0.0.1:9000;
-fastcgi_index index.php;
-include fastcgi.conf;
-}
-#图片缓存时间设置
-location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
-{
-expires 10d;
-}
-#JS和CSS缓存时间设置
-location ~ .*\.(js|css)?$
-{
-expires 1h;
-}
-#日志格式设定
-log_format access &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
-&amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
-&amp;#39;&amp;#34;$http_user_agent&amp;#34; $http_x_forwarded_for&amp;#39;;
-#定义本虚拟主机的访问日志
-access_log /var/log/nginx/ha97access.log access;
-
-#对 &amp;#34;/&amp;#34; 启用反向代理
-location / {
-proxy_pass http://127.0.0.1:88;
-proxy_redirect off;
-proxy_set_header X-Real-IP $remote_addr;
-#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-#以下是一些反向代理的配置，可选。
-proxy_set_header Host $host;
-client_max_body_size 10m; #允许客户端请求的最大单文件字节数
-client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，
-proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)
-proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)
-proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)
-proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置
-proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）
-proxy_temp_file_write_size 64k;
-#设定缓存文件夹大小，大于这个值，将从upstream服务器传
-}
-
-#设定查看Nginx状态的地址
-location /NginxStatus {
-stub_status on;
-access_log on;
-auth_basic &amp;#34;NginxStatus&amp;#34;;
-auth_basic_user_file conf/htpasswd;
-#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。
-}
-
-#本地动静分离反向代理配置
-#所有jsp的页面均交由tomcat或resin处理
-location ~ .(jsp|jspx|do)?$ {
-proxy_set_header Host $host;
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_pass http://127.0.0.1:8080;
-}
-#所有静态文件由nginx直接读取不经过tomcat或resin
-location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$
-{ expires 15d; }
-location ~ .*.(js|css)?$
-{ expires 1h; }
-}
-}
-&lt;/code>&lt;/pre></description></item><item><title>nginx+php+ThinkPHP环境常见错误总结</title><link>https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/</guid><description>&lt;blockquote>
+&lt;p>/opt/2017LPL夏季赛第01集.ts&lt;/p></description></item><item><title>nginx+php+ThinkPHP环境常见错误总结</title><link>https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/ByS8884qI0M/</guid><description>&lt;blockquote>
 &lt;p>错误一&lt;/p>
 &lt;/blockquote>
 &lt;p>2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: “Primary s…&lt;/p>
@@ -1782,23 +952,17 @@ location ~ .*.(js|css)?$
  错误一
  &lt;a class="anchor" href="#%e9%94%99%e8%af%af%e4%b8%80">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>2017/09/07 16:39:18 [error] 21753#0: *26 FastCGI sent in stderr: &amp;#34;Primary script unknown&amp;#34; while reading response header from upstream, client: 172.31.26.114, server: localhost, request: &amp;#34;GET /1.php HTTP/1.1&amp;#34;, upstream: &amp;#34;fastcgi://127.0.0.1:9000&amp;#34;, host: &amp;#34;10.200.8.220:8000&amp;#34;
-&lt;/code>&lt;/pre>&lt;h3 id="解决版本">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2017/09/07 16:39:18 &lt;span style="color:#f92672">[&lt;/span>error&lt;span style="color:#f92672">]&lt;/span> 21753#0: *26 FastCGI sent in stderr: &lt;span style="color:#e6db74">&amp;#34;Primary script unknown&amp;#34;&lt;/span> &lt;span style="color:#66d9ef">while&lt;/span> reading response header from upstream, client: 172.31.26.114, server: localhost, request: &lt;span style="color:#e6db74">&amp;#34;GET /1.php HTTP/1.1&amp;#34;&lt;/span>, upstream: &lt;span style="color:#e6db74">&amp;#34;fastcgi://127.0.0.1:9000&amp;#34;&lt;/span>, host: &lt;span style="color:#e6db74">&amp;#34;10.200.8.220:8000&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解决版本">
  解决版本
  &lt;a class="anchor" href="#%e8%a7%a3%e5%86%b3%e7%89%88%e6%9c%ac">#&lt;/a>
 &lt;/h3>
-&lt;p>在server节点下添加以下配置&lt;/p></description></item><item><title>Nginx反向代理、镜像缓存加速及负载均衡的配置</title><link>https://notes.zhangwenbing.com/blog/linux/H1v8I4cLAf/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/H1v8I4cLAf/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;p>Nginx已经具备Squid所拥有的Web缓存加速功能、清除指定URL缓存的功能。而在性能上，Nginx对多核CPU的利用，胜过Squid不少。另外，在反向代理、负载均衡、健康检查、后端服务器故障转移、Rewrite重写、易用性上，Nginx也比Squid强大得多。&lt;/p></description></item><item><title>nignx修改最大上传文件大小限制</title><link>https://notes.zhangwenbing.com/blog/linux/rykY88V58CG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rykY88V58CG/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;pre tabindex="0">&lt;code>location / {
- root html;
- index index.html index.htm;
- client_max_body_size 1000m;
- }
-&lt;/code>&lt;/pre>&lt;p>“client_max_body_size”设置一下上传的最大上限,然后重启nginx即可。&lt;/p></description></item><item><title>RabbitMQ 三种 Exchange 模式</title><link>https://notes.zhangwenbing.com/blog/linux/HybPILE5U0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HybPILE5U0z/</guid><description>&lt;p>RabbitMQ 中的 Exchange（交换机）负责接收生产者发送的消息，并根据类型将消息路由到相应的队列。常见的三种 Exchange 类型如下：&lt;/p>
+&lt;p>在server节点下添加以下配置&lt;/p></description></item><item><title>nignx修改最大上传文件大小限制</title><link>https://notes.zhangwenbing.com/blog/linux/rykY88V58CG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/rykY88V58CG/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>location / &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> root html;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> index index.html index.htm;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> client_max_body_size 1000m;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>“client_max_body_size”设置一下上传的最大上限,然后重启nginx即可。&lt;/p></description></item><item><title>RabbitMQ 三种 Exchange 模式</title><link>https://notes.zhangwenbing.com/blog/linux/HybPILE5U0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HybPILE5U0z/</guid><description>&lt;p>RabbitMQ 中的 Exchange（交换机）负责接收生产者发送的消息，并根据类型将消息路由到相应的队列。常见的三种 Exchange 类型如下：&lt;/p>
 &lt;hr>
 &lt;h2 id="1-direct-exchange直连模式">
  1. Direct Exchange（直连模式）
@@ -1983,80 +1147,7 @@ location ~ .*.(js|css)?$
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># This is a /bin/sh script file - use ordinary envt var syntax&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MNESIA_BASE&lt;span style="color:#f92672">=&lt;/span>/data/rabbitmq/mnesia
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>LOG_BASE&lt;span style="color:#f92672">=&lt;/span>/data/logs/rabbitmq
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Ubuntu 阿里云镜像源</title><link>https://notes.zhangwenbing.com/blog/linux/B11rILN5UAz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/B11rILN5UAz/</guid><description>&lt;h2 id="准备工作">
- 准备工作
- &lt;a class="anchor" href="#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak &lt;span style="color:#75715e">#备份&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改配置">
- 修改配置
- &lt;a class="anchor" href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="1404">
- 14.04
- &lt;a class="anchor" href="#1404">#&lt;/a>
-&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo vim /etc/apt/sources.list &lt;span style="color:#75715e">#修改&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="1604">
- 16.04
- &lt;a class="anchor" href="#1604">#&lt;/a>
-&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo vim /etc/apt/sources.list &lt;span style="color:#75715e">#修改&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://archive.ubuntu.com/ubuntu xenial main restricted &lt;span style="color:#75715e">#Added by software-properties&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe &lt;span style="color:#75715e">#Added by software-properties&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe &lt;span style="color:#75715e">#Added by software-properties&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial universe
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse &lt;span style="color:#75715e">#Added by software-properties&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://archive.canonical.com/ubuntu xenial partner
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://archive.canonical.com/ubuntu xenial partner
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe &lt;span style="color:#75715e">#Added by software-properties&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="更新缓存">
- 更新缓存
- &lt;a class="anchor" href="#%e6%9b%b4%e6%96%b0%e7%bc%93%e5%ad%98">#&lt;/a>
-&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get update &lt;span style="color:#75715e">#更新列表&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>ubuntu编译安装vim及配制方法</title><link>https://notes.zhangwenbing.com/blog/linux/HyGHL8E5LRM/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HyGHL8E5LRM/</guid><description>&lt;blockquote>
-&lt;p>一个非常好用的vim配置文件&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="vim简介">
- vim简介
- &lt;a class="anchor" href="#vim%e7%ae%80%e4%bb%8b">#&lt;/a>
-&lt;/h2>
-&lt;p>Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器，在Vi的基础上改进和增加了很多特性。VIM是自由软件。&lt;/p></description></item><item><title>vim 快速入门手册</title><link>https://notes.zhangwenbing.com/blog/linux/BJ8I8E9U0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/BJ8I8E9U0M/</guid><description>&lt;blockquote>
-&lt;p>vim常见操作&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="图示">
- 图示
- &lt;a class="anchor" href="#%e5%9b%be%e7%a4%ba">#&lt;/a>
-&lt;/h2>
-&lt;p>![vi-vim-cheat-sheet-sch.png](/static/uploads/BJ8I8E9U0M/img/vi-vim-cheat-&lt;br>
-sheet-sch_SyLsV8yY4.png)&lt;/p>
-&lt;h2 id="一移动光标">
- 一、移动光标
- &lt;a class="anchor" href="#%e4%b8%80%e7%a7%bb%e5%8a%a8%e5%85%89%e6%a0%87">#&lt;/a>
-&lt;/h2>
-&lt;p>1、左移h、右移l、下移j、上移k&lt;/p>
-&lt;p>2、向下翻页ctrl + f，向上翻页ctrl + b&lt;/p>
-&lt;p>3、向下翻半页ctrl + d，向上翻半页ctrl + u&lt;/p></description></item><item><title>vsftpd 配置方法及访问控制</title><link>https://notes.zhangwenbing.com/blog/linux/BJrx8LE98CG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/BJrx8LE98CG/</guid><description>&lt;blockquote>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>vsftpd 配置方法及访问控制</title><link>https://notes.zhangwenbing.com/blog/linux/BJrx8LE98CG/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/BJrx8LE98CG/</guid><description>&lt;blockquote>
 &lt;p>vsftpd 详细配置说明&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="vsftpd常用配置">
@@ -2212,43 +1303,24 @@ sheet-sch_SyLsV8yY4.png)&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PASS,PASV,PORT,PWD,QUIT,RETR,RMD,RNFR,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>RNTO,SITE,SIZE,STOR,TYPE,USER,ACCT,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>APPE,CDUP,HELP,MODE,NOOP,REIN,STAT,STOU,STRU,SYST
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意:一定不能使用换行和空格，不然就没效果..&lt;/p></description></item><item><title>web运维相关查询命令</title><link>https://notes.zhangwenbing.com/blog/linux/SJ_88EqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJ_88EqU0M/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="1-查看tcp连接状态">
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>注意:一定不能使用换行和空格，不然就没效果..&lt;/p></description></item><item><title>web运维相关查询命令</title><link>https://notes.zhangwenbing.com/blog/linux/SJ_88EqU0M/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SJ_88EqU0M/</guid><description>&lt;h2 id="1-查看tcp连接状态">
  1. 查看TCP连接状态
  &lt;a class="anchor" href="#1-%e6%9f%a5%e7%9c%8btcp%e8%bf%9e%e6%8e%a5%e7%8a%b6%e6%80%81">#&lt;/a>
 &lt;/h2>
-&lt;pre tabindex="0">&lt;code>netstat -nat |awk &amp;#39;{print $6}&amp;#39;|sort|uniq -c|sort -rn
-netstat -n | awk &amp;#39;/^tcp/ {++S[$NF]};END {for(a in S) print a, S[a]}&amp;#39; 或
-netstat -n | awk &amp;#39;/^tcp/ {++state[$NF]}; END {for(key in state) print key,&amp;#34;\t&amp;#34;,state[key]}&amp;#39;
-netstat -n | awk &amp;#39;/^tcp/ {++arr[$NF]};END {for(k in arr) print k,&amp;#34;\t&amp;#34;,arr[k]}&amp;#39;
-netstat -n |awk &amp;#39;/^tcp/ {print $NF}&amp;#39;|sort|uniq -c|sort -rn
-netstat -ant | awk &amp;#39;{print $NF}&amp;#39; | grep -v &amp;#39;[a-z]&amp;#39; | sort | uniq -c
-&lt;/code>&lt;/pre>&lt;p>(以上每一行实现的效果基本相同，在此列出不同的写法，方便对脚本写法的更深理解）&lt;/p></description></item><item><title>zabbix之无法启动问题及解决办法</title><link>https://notes.zhangwenbing.com/blog/linux/Sykc8UNqICz/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/Sykc8UNqICz/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;p>1、&lt;/p>
-&lt;p>错误提示&lt;/p>
-&lt;pre tabindex="0">&lt;code>zabbix_agentd [1749]: cannot create PID file [/var/run/zabbix/zabbix_agentd.pid]: [2] No such file or directory
-&lt;/code>&lt;/pre>&lt;p>解决方法&lt;/p>
-&lt;pre tabindex="0">&lt;code>mkdir /var/run/zabbix/
-chown zabbix.zabbix /var/run/zabbix/
-chmod g+w /var/run/zabbix/
-touch /var/run/zabbix/zabbix_agentd.pid
-/etc/init.d/zabbix-agent restart
-ps aux | grep zabbix
-&lt;/code>&lt;/pre></description></item><item><title>阿里云ECS Linux的rc.local（开机启动）设置不生效</title><link>https://notes.zhangwenbing.com/blog/linux/SytNL84q8Af/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SytNL84q8Af/</guid><description>&lt;blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>netstat -nat |awk &lt;span style="color:#e6db74">&amp;#39;{print $6}&amp;#39;&lt;/span>|sort|uniq -c|sort -rn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#e6db74">&amp;#39;/^tcp/ {++S[$NF]};END {for(a in S) print a, S[a]}&amp;#39;&lt;/span> 或
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#e6db74">&amp;#39;/^tcp/ {++state[$NF]}; END {for(key in state) print key,&amp;#34;\t&amp;#34;,state[key]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -n | awk &lt;span style="color:#e6db74">&amp;#39;/^tcp/ {++arr[$NF]};END {for(k in arr) print k,&amp;#34;\t&amp;#34;,arr[k]}&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -n |awk &lt;span style="color:#e6db74">&amp;#39;/^tcp/ {print $NF}&amp;#39;&lt;/span>|sort|uniq -c|sort -rn
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>netstat -ant | awk &lt;span style="color:#e6db74">&amp;#39;{print $NF}&amp;#39;&lt;/span> | grep -v &lt;span style="color:#e6db74">&amp;#39;[a-z]&amp;#39;&lt;/span> | sort | uniq -c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>以上每一行实现的效果基本相同，在此列出不同的写法，方便对脚本写法的更深理解&lt;/p></description></item><item><title>阿里云ECS Linux的rc.local（开机启动）设置不生效</title><link>https://notes.zhangwenbing.com/blog/linux/SytNL84q8Af/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/SytNL84q8Af/</guid><description>&lt;blockquote>
 &lt;p>none&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="使用场景">
  使用场景
  &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af">#&lt;/a>
 &lt;/h2>
-&lt;p>前段时间使用阿里云的ecs，将一些开机启动的命令写到/etc/rc.local里面，发现不生效。经过一番查询和搜索之后，最后发现一个坑，居然要给这个文件设置执行权限才生效。&lt;/p></description></item><item><title>排查linux根目录空间占用与实际空间不符</title><link>https://notes.zhangwenbing.com/blog/linux/HJqtULE5I0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJqtULE5I0z/</guid><description>&lt;blockquote>
-&lt;p>none&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="发现问题">
+&lt;p>前段时间使用阿里云的ecs，将一些开机启动的命令写到/etc/rc.local里面，发现不生效。经过一番查询和搜索之后，最后发现一个坑，居然要给这个文件设置执行权限才生效。&lt;/p></description></item><item><title>排查linux根目录空间占用与实际空间不符</title><link>https://notes.zhangwenbing.com/blog/linux/HJqtULE5I0z/</link><pubDate>Mon, 14 May 2018 04:45:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/blog/linux/HJqtULE5I0z/</guid><description>&lt;h2 id="发现问题">
  发现问题
  &lt;a class="anchor" href="#%e5%8f%91%e7%8e%b0%e9%97%ae%e9%a2%98">#&lt;/a>
 &lt;/h2>
