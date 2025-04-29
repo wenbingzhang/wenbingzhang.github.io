@@ -1,5 +1,7 @@
 User-agent: *
 
+Allow: /notes/2025/04/28/akhjvrsank3gkyirsrxgtc/
+
 Allow: /notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/
 
 Allow: /notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/
@@ -37,6 +39,8 @@ Allow: /notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/
 Allow: /notes/
 
 Allow: /blog/git/WNYzxj6GR/
+
+Allow: /notes/
 
 Allow: /blog/git/-fZeBsu3T/
 
