@@ -1,6 +1,6 @@
 ---
-slug: c++
-title: 📔 C++
+slug: candc++
+title: 📔 C/C++
 date: 2024-05-28 15:20:02+08:00
 bookComments: false
 bookHidden: false
