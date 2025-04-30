@@ -1,7 +1,5 @@
 User-agent: *
 
-Allow: /notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/
-
 Allow: /notes/2025/04/28/akhjvrsank3gkyirsrxgtc/
 
 Allow: /notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/
@@ -19,6 +17,8 @@ Allow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
 Allow: /notes/
 
 Allow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
+
+Allow: /notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/
 
 Allow: /notes/2025/02/10/gqci9riugfetribe6j6fou/
 
