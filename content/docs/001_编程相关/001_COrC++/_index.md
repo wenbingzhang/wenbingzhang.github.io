@@ -1,5 +1,5 @@
 ---
-slug: candc++
+slug: corc++
 title: 📔 C/C++
 date: 2024-05-28 15:20:02+08:00
 bookComments: false
