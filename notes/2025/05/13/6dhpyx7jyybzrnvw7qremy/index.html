@@ -1,0 +1,149 @@
+<!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+  异步定时更新UI
+  #
+
+尽量的减少卡UI问题
+//
+// Created by 张文兵 on 2025/5/13.
+//
+
+#ifndef TASKRUNNER_H
+#define TASKRUNNER_H
+#include <QFuture>
+#include <QElapsedTimer>
+#include <QtConcurrent>
+#include <atomic>
+#include <functional>
+#include <QThread>
+
+class TaskRunner {
+public:
+    TaskRunner() = default;
+
+    ~TaskRunner() { stop(); }
+
+    void start(const int intervalMs, const std::function<void()> &amp;task) {
+        if (m_future.isRunning()) {
+            return;
+        }
+
+        m_exit = false;
+        m_future = QtConcurrent::run([=]() {
+            QElapsedTimer timer;
+            task(); // 立即执行一次
+            timer.start();
+            while (!m_exit) {
+                if (timer.elapsed() >= intervalMs) {
+                    task(); // 周期执行
+                    timer.restart();
+                }
+                if (!m_exit) {
+                    QThread::msleep(100); // 可调精度
+                }
+            }
+        });
+    }
+
+    void stop() {
+        m_exit = true;
+        if (m_future.isRunning()) {
+            m_future.waitForFinished();
+        }
+    }
+
+private:
+    std::atomic<bool> m_exit = false;
+    QFuture<void> m_future;
+};
+#endif //TASKRUNNER_H
+
+  使用方式
+  #
+
+// 运行任务
+m_taskRunner->start(5000, [this]() {
+    onUpdateTaskInfo();
+});
+
+// 停止任务
+m_taskRunner->stop();
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="📝 异步更新UI"><meta property="og:description" content=" 异步定时更新UI # 尽量的减少卡UI问题
+// // Created by 张文兵 on 2025/5/13. // #ifndef TASKRUNNER_H #define TASKRUNNER_H #include <QFuture> #include <QElapsedTimer> #include <QtConcurrent> #include <atomic> #include <functional> #include <QThread> class TaskRunner { public: TaskRunner() = default; ~TaskRunner() { stop(); } void start(const int intervalMs, const std::function<void()> &amp;task) { if (m_future.isRunning()) { return; } m_exit = false; m_future = QtConcurrent::run([=]() { QElapsedTimer timer; task(); // 立即执行一次 timer.start(); while (!m_exit) { if (timer.elapsed() >= intervalMs) { task(); // 周期执行 timer.restart(); } if (!m_exit) { QThread::msleep(100); // 可调精度 } } }); } void stop() { m_exit = true; if (m_future.isRunning()) { m_future.waitForFinished(); } } private: std::atomic<bool> m_exit = false; QFuture<void> m_future; }; #endif //TASKRUNNER_H 使用方式 # // 运行任务 m_taskRunner->start(5000, [this]() { onUpdateTaskInfo(); }); // 停止任务 m_taskRunner->stop(); "><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-05-13T20:19:27+08:00"><meta property="article:modified_time" content="2025-05-13T20:19:27+08:00"><title>📝 异步更新UI | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.6c3b90e3bd4c3975a19a872ca159ac8850c48c72c53da6be32e55a534c14a4ae.js integrity="sha256-bDuQ471MOXWhmocsoVmsiFDEjHLFPaa+MuVaU0wUpK4=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle checked>
+<label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-8ec8d24621de2d29aa3aa48e5e4147bf class=toggle checked>
+<label for=section-8ec8d24621de2d29aa3aa48e5e4147bf class="flex justify-between"><a role=button>📔 C/C++</a></label><ul><li><input type=checkbox id=section-3436919d500fd2bb71607f1799c530e9 class=toggle>
+<label for=section-3436919d500fd2bb71607f1799c530e9 class="flex justify-between"><a role=button>🔖 MacOS</a></label><ul><li><a href=/notes/2024/06/06/sf4ff6x8cuyhvzougj9dwg/>📝 MacOS签名</a></li><li><a href=/notes/2024/05/28/3txbbb7iruppjsg4p7rwnb/>📝 MacOS堆栈大小</a></li></ul></li><li><input type=checkbox id=section-9c529f10c7b539e237ae1f42d47b905f class=toggle checked>
+<label for=section-9c529f10c7b539e237ae1f42d47b905f class="flex justify-between"><a role=button>🔖 Qt</a></label><ul><li><a href=/notes/2025/05/13/gfegatfpustuecdeaifds7/>📝 defer实现</a></li><li><a href=/notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/ class=active>📝 异步更新UI</a></li></ul></li><li><input type=checkbox id=section-3be7c6476ab3ef4abcb7bd8a29aca7ca class=toggle>
+<label for=section-3be7c6476ab3ef4abcb7bd8a29aca7ca class="flex justify-between"><a role=button>🔖 QtQml</a></label><ul><li><a href=/notes/2024/08/01/rnc4n7cfifidx8ca2rhjme/>📝 QML鼠标事件</a></li><li><a href=/notes/2024/08/06/ny773erqjgbzmzgfikfvds/>📝 QML虚拟列表</a></li></ul></li><li><input type=checkbox id=section-543c46644dbaa17c070d1fbbe6f809c8 class=toggle>
+<label for=section-543c46644dbaa17c070d1fbbe6f809c8 class="flex justify-between"><a role=button>🔖 build</a></label><ul><li><a href=/notes/2025/04/28/akhjvrsank3gkyirsrxgtc/>📝 运行是崩溃</a></li><li><a href=/notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/>📝 内存重叠</a></li></ul></li><li><input type=checkbox id=section-7ef42c94e3a59c5cb77c843c093effb8 class=toggle>
+<label for=section-7ef42c94e3a59c5cb77c843c093effb8 class="flex justify-between"><a role=button>🔖 Python</a></label><ul><li><a href=/notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/>📝 调用Python代码</a></li><li><a href=/notes/2025/02/10/gqci9riugfetribe6j6fou/>📝 调用Python方法</a></li><li><a href=/notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/>📝 注册Python模块</a></li></ul></li></ul></li><li><input type=checkbox id=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class=toggle>
+<label for=section-aea9addc7ea0cf58a2c2c9ec52f959c9 class="flex justify-between"><a role=button>📔 Git</a></label><ul><li><a href=/notes/2024/03/11/j3c62fv8dglvf2kg975zlv/>📝 标签操作</a></li><li><a href=/notes/2024/03/14/5kqlzqjqawbxf2t6vusxar/>📝 删除Commit</a></li><li><a href=/blog/git/WNYzxj6GR/>📝 git之删除远程分支</a></li><li><a href=/blog/git/-fZeBsu3T/>📝 git更新.gitignore</a></li><li><a href=/blog/git/H1Krv6b-4/>📝 git修改历史cimmit信息</a></li><li><a href=/blog/git/By9OI51xN/>📝 git基础笔记</a></li><li><a href=/blog/git/Hk6GGp6cQ/>📝 Git回滚到某个commit</a></li></ul></li></ul></li><li><input type=checkbox id=section-caf3b688bb818cc6cfc82165db78eba5 class=toggle>
+<label for=section-caf3b688bb818cc6cfc82165db78eba5 class="flex justify-between"><a role=button>♻️ 回收归档</a></label><ul><li><input type=checkbox id=section-4a72fedb3d7dfc18dbbcab83511bf75a class=toggle>
+<label for=section-4a72fedb3d7dfc18dbbcab83511bf75a class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-8aa26b33a0315c1be70924160dd1a92c class=toggle>
+<label for=section-8aa26b33a0315c1be70924160dd1a92c class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>📝 异步更新UI</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#异步定时更新ui>异步定时更新UI</a></li><li><a href=#使用方式>使用方式</a></li></ul></nav></aside></header><article class="markdown book-article"><h2 id=异步定时更新ui>异步定时更新UI
+<a class=anchor href=#%e5%bc%82%e6%ad%a5%e5%ae%9a%e6%97%b6%e6%9b%b4%e6%96%b0ui>#</a></h2><p>尽量的减少卡UI问题</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// Created by 张文兵 on 2025/5/13.
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#ifndef TASKRUNNER_H
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#define TASKRUNNER_H
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;QFuture&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;QElapsedTimer&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;QtConcurrent&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;atomic&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;functional&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;QThread&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TaskRunner</span> {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    TaskRunner() <span style=color:#f92672>=</span> <span style=color:#66d9ef>default</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>~</span>TaskRunner() { stop(); }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>start</span>(<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> intervalMs, <span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>function<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>void</span>()<span style=color:#f92672>&gt;</span> <span style=color:#f92672>&amp;</span>task) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (m_future.isRunning()) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        m_exit <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span>        m_future <span style=color:#f92672>=</span> QtConcurrent<span style=color:#f92672>::</span>run([<span style=color:#f92672>=</span>]() {
+</span></span><span style=display:flex><span>            QElapsedTimer timer;
+</span></span><span style=display:flex><span>            task(); <span style=color:#75715e>// 立即执行一次
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            timer.start();
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> (<span style=color:#f92672>!</span>m_exit) {
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (timer.elapsed() <span style=color:#f92672>&gt;=</span> intervalMs) {
+</span></span><span style=display:flex><span>                    task(); <span style=color:#75715e>// 周期执行
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                    timer.restart();
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>m_exit) {
+</span></span><span style=display:flex><span>                    QThread<span style=color:#f92672>::</span>msleep(<span style=color:#ae81ff>100</span>); <span style=color:#75715e>// 可调精度
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>stop</span>() {
+</span></span><span style=display:flex><span>        m_exit <span style=color:#f92672>=</span> true;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (m_future.isRunning()) {
+</span></span><span style=display:flex><span>            m_future.waitForFinished();
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>private</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    std<span style=color:#f92672>::</span>atomic<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>bool</span><span style=color:#f92672>&gt;</span> m_exit <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span>    QFuture<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>void</span><span style=color:#f92672>&gt;</span> m_future;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span><span style=color:#75715e>#endif </span><span style=color:#75715e>//TASKRUNNER_H
+</span></span></span></code></pre></div><h2 id=使用方式>使用方式
+<a class=anchor href=#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>// 运行任务
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>m_taskRunner<span style=color:#f92672>-&gt;</span>start(<span style=color:#ae81ff>5000</span>, [<span style=color:#66d9ef>this</span>]() {
+</span></span><span style=display:flex><span>    onUpdateTaskInfo();
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 停止任务
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>m_taskRunner<span style=color:#f92672>-&gt;</span>stop();
+</span></span></code></pre></div></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#异步定时更新ui>异步定时更新UI</a></li><li><a href=#使用方式>使用方式</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
+<script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p></footer></body></html>

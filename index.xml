@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/</link><description>Recent content in 首页 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Wed, 30 Apr 2025 09:31:11 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 运行是崩溃</title><link>https://notes.zhangwenbing.com/notes/2025/04/28/akhjvrsank3gkyirsrxgtc/</link><pubDate>Mon, 28 Apr 2025 20:46:11 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/04/28/akhjvrsank3gkyirsrxgtc/</guid><description>&lt;h2 id="启动软件时崩溃crash">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>首页 on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/</link><description>Recent content in 首页 on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 13 May 2025 20:19:27 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/index.xml" rel="self" type="application/rss+xml"/><item><title>📝 defer实现</title><link>https://notes.zhangwenbing.com/notes/2025/05/13/gfegatfpustuecdeaifds7/</link><pubDate>Tue, 13 May 2025 20:15:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/05/13/gfegatfpustuecdeaifds7/</guid><description>&lt;h2 id="实现类似golang的defer的方式">
+ 实现类似Golang的defer的方式
+ &lt;a class="anchor" href="#%e5%ae%9e%e7%8e%b0%e7%b1%bb%e4%bc%bcgolang%e7%9a%84defer%e7%9a%84%e6%96%b9%e5%bc%8f">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Created by 张文兵 on 2025/5/13.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#ifndef DEFER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define DEFER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;functional&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Defer&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">explicit&lt;/span> Defer(&lt;span style="color:#66d9ef">const&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>function&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">void&lt;/span>()&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>func) &lt;span style="color:#f92672">:&lt;/span> m_func(func) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">~&lt;/span>Defer() { m_func(); } &lt;span style="color:#75715e">// 离开作用域时自动调用
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">private&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>function&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">void&lt;/span>()&lt;span style="color:#f92672">&amp;gt;&lt;/span> m_func;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#endif &lt;/span>&lt;span style="color:#75715e">//DEFER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="使用方式">
+ 使用方式
+ &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>m_mutex.lock();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Defer &lt;span style="color:#a6e22e">defer&lt;/span>([&lt;span style="color:#f92672">=&lt;/span>]() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m_mutex.unlock();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 运行是崩溃</title><link>https://notes.zhangwenbing.com/notes/2025/04/28/akhjvrsank3gkyirsrxgtc/</link><pubDate>Mon, 28 Apr 2025 20:46:11 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/04/28/akhjvrsank3gkyirsrxgtc/</guid><description>&lt;h2 id="启动软件时崩溃crash">
  启动软件时崩溃(crash)
  &lt;a class="anchor" href="#%e5%90%af%e5%8a%a8%e8%bd%af%e4%bb%b6%e6%97%b6%e5%b4%a9%e6%ba%83crash">#&lt;/a>
 &lt;/h2>
@@ -187,7 +217,76 @@
 &lt;li>所有浮点数类型，比如 f64 。&lt;/li>
 &lt;li>字符类型，char 。&lt;/li>
 &lt;li>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 Copy ，但(i32, String) 就没有。&lt;/li>
-&lt;/ul></description></item><item><title>📝 内存重叠</title><link>https://notes.zhangwenbing.com/notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/</link><pubDate>Wed, 30 Apr 2025 09:31:11 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/</guid><description>&lt;h1 id="sprintfsnprintf-与内存重叠问题分析ubuntudebian">
+&lt;/ul></description></item><item><title>📝 异步更新UI</title><link>https://notes.zhangwenbing.com/notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/</link><pubDate>Tue, 13 May 2025 20:19:27 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/</guid><description>&lt;h2 id="异步定时更新ui">
+ 异步定时更新UI
+ &lt;a class="anchor" href="#%e5%bc%82%e6%ad%a5%e5%ae%9a%e6%97%b6%e6%9b%b4%e6%96%b0ui">#&lt;/a>
+&lt;/h2>
+&lt;p>尽量的减少卡UI问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Created by 张文兵 on 2025/5/13.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#ifndef TASKRUNNER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define TASKRUNNER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;QFuture&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;QElapsedTimer&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;QtConcurrent&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;atomic&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;functional&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;QThread&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">TaskRunner&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> TaskRunner() &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">default&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">~&lt;/span>TaskRunner() { stop(); }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">start&lt;/span>(&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> intervalMs, &lt;span style="color:#66d9ef">const&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>function&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">void&lt;/span>()&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span>task) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (m_future.isRunning()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m_exit &lt;span style="color:#f92672">=&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m_future &lt;span style="color:#f92672">=&lt;/span> QtConcurrent&lt;span style="color:#f92672">::&lt;/span>run([&lt;span style="color:#f92672">=&lt;/span>]() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> QElapsedTimer timer;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> task(); &lt;span style="color:#75715e">// 立即执行一次
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> timer.start();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>m_exit) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (timer.elapsed() &lt;span style="color:#f92672">&amp;gt;=&lt;/span> intervalMs) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> task(); &lt;span style="color:#75715e">// 周期执行
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> timer.restart();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>m_exit) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> QThread&lt;span style="color:#f92672">::&lt;/span>msleep(&lt;span style="color:#ae81ff">100&lt;/span>); &lt;span style="color:#75715e">// 可调精度
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">stop&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m_exit &lt;span style="color:#f92672">=&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (m_future.isRunning()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m_future.waitForFinished();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">private&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>atomic&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">bool&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> m_exit &lt;span style="color:#f92672">=&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> QFuture&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">void&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> m_future;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#endif &lt;/span>&lt;span style="color:#75715e">//TASKRUNNER_H
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="使用方式">
+ 使用方式
+ &lt;a class="anchor" href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e5%bc%8f">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 运行任务
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>m_taskRunner&lt;span style="color:#f92672">-&amp;gt;&lt;/span>start(&lt;span style="color:#ae81ff">5000&lt;/span>, [&lt;span style="color:#66d9ef">this&lt;/span>]() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> onUpdateTaskInfo();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 停止任务
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>m_taskRunner&lt;span style="color:#f92672">-&amp;gt;&lt;/span>stop();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>📝 内存重叠</title><link>https://notes.zhangwenbing.com/notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/</link><pubDate>Wed, 30 Apr 2025 09:31:11 +0800</pubDate><guid>https://notes.zhangwenbing.com/notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/</guid><description>&lt;h1 id="sprintfsnprintf-与内存重叠问题分析ubuntudebian">
  sprintf/snprintf 与内存重叠问题分析（Ubuntu/Debian）
  &lt;a class="anchor" href="#sprintfsnprintf-%e4%b8%8e%e5%86%85%e5%ad%98%e9%87%8d%e5%8f%a0%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90ubuntudebian">#&lt;/a>
 &lt;/h1>

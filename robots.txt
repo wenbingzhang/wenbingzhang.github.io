@@ -1,5 +1,7 @@
 User-agent: *
 
+Allow: /notes/2025/05/13/gfegatfpustuecdeaifds7/
+
 Allow: /notes/2025/04/28/akhjvrsank3gkyirsrxgtc/
 
 Allow: /notes/2025/02/10/7auahqg8nnxm5ydhxzqrnr/
@@ -17,6 +19,8 @@ Allow: /notes/2024/03/11/j3c62fv8dglvf2kg975zlv/
 Allow: /notes/
 
 Allow: /notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/
+
+Allow: /notes/2025/05/13/6dhpyx7jyybzrnvw7qremy/
 
 Allow: /notes/2025/04/30/fqog2lfxmepcxbbyzucxeq/
 
@@ -36,15 +40,17 @@ Allow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
 Allow: /notes/
 
-Allow: /notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/
-
 Allow: /notes/
+
+Allow: /notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/
 
 Allow: /blog/git/WNYzxj6GR/
 
+Allow: /blog/git/-fZeBsu3T/
+
 Allow: /notes/
 
-Allow: /blog/git/-fZeBsu3T/
+Allow: /notes/
 
 Allow: /blog/git/H1Krv6b-4/
 
