@@ -64,25 +64,27 @@ Allow: /notes/
 
 Allow: /links/
 
-Allow: /notes/
-
-Allow: /
-
 Allow: /articles/
 
 Allow: /categories/
+
+Allow: /tags/ffmpeg/
+
+Allow: /categories/ffmpeg/
+
+Allow: /articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/
+
+Allow: /tags/
+
+Allow: /
+
+Allow: /notes/
 
 Allow: /tags/linux/
 
 Allow: /categories/linux/
 
 Allow: /articles/2024/12/23/wvkjyjt7qhumo4jpucheca/
-
-Allow: /tags/
-
-Allow: /tags/ffmpeg/
-
-Allow: /categories/ffmpeg/
 
 Allow: /articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/
 
