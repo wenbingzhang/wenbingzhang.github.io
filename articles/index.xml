@@ -54,11 +54,20 @@
  &lt;a class="anchor" href="#%e6%9f%a5%e7%9c%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ba%8f%e5%88%97%e5%8f%b7">#&lt;/a>
 &lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>dmidecode -t &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#75715e"># 查看对应的&amp;#39;Serial Number&amp;#39;字段&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>使用FFmpeg生成测试视频</title><link>https://notes.zhangwenbing.com/articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/</link><pubDate>Fri, 15 Nov 2024 14:45:26 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/</guid><description>&lt;h2 id="生成23976fps的测试视频">
- 生成23.976fps的测试视频
- &lt;a class="anchor" href="#%e7%94%9f%e6%88%9023976fps%e7%9a%84%e6%b5%8b%e8%af%95%e8%a7%86%e9%a2%91">#&lt;/a>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>使用FFmpeg生成测试视频</title><link>https://notes.zhangwenbing.com/articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/</link><pubDate>Fri, 15 Nov 2024 14:45:26 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/11/15/mcagbs9lfdrnxxu9k29t9j/</guid><description>&lt;h2 id="生成测试视频">
+ 生成测试视频
+ &lt;a class="anchor" href="#%e7%94%9f%e6%88%90%e6%b5%8b%e8%af%95%e8%a7%86%e9%a2%91">#&lt;/a>
 &lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -f lavfi -i testsrc&lt;span style="color:#f92672">=&lt;/span>size&lt;span style="color:#f92672">=&lt;/span>1280x720:rate&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">30&lt;/span> -vf &lt;span style="color:#e6db74">&amp;#34;drawtext=text=&amp;#39;%{pts\:hms} %{n}&amp;#39;:x=(w-text_w)/2:y=100:fontsize=48:fontcolor=white:boxcolor=black@0.5:borderw=2&amp;#34;&lt;/span> -r 23.976 -t &lt;span style="color:#ae81ff">10&lt;/span> -y output.mp4
+&lt;h3 id="生成时分秒测试视频">
+ 生成时分秒测试视频
+ &lt;a class="anchor" href="#%e7%94%9f%e6%88%90%e6%97%b6%e5%88%86%e7%a7%92%e6%b5%8b%e8%af%95%e8%a7%86%e9%a2%91">#&lt;/a>
+&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -f lavfi -i testsrc&lt;span style="color:#f92672">=&lt;/span>size&lt;span style="color:#f92672">=&lt;/span>1280x720:rate&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">25&lt;/span> -vf &lt;span style="color:#e6db74">&amp;#34;drawtext=text=&amp;#39;%{pts\:hms} %{n}&amp;#39;:x=(w-text_w)/2:y=100:fontsize=48:fontcolor=white:boxcolor=black@0.5:borderw=2&amp;#34;&lt;/span> -t &lt;span style="color:#ae81ff">10&lt;/span> -y output.mp4
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="生成时码测试视频">
+ 生成时码测试视频
+ &lt;a class="anchor" href="#%e7%94%9f%e6%88%90%e6%97%b6%e7%a0%81%e6%b5%8b%e8%af%95%e8%a7%86%e9%a2%91">#&lt;/a>
+&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ffmpeg -f lavfi -i testsrc&lt;span style="color:#f92672">=&lt;/span>size&lt;span style="color:#f92672">=&lt;/span>3840x2160:rate&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">50&lt;/span> -vf drawtext&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;timecode=&amp;#39;00\:00\:00\:00&amp;#39;:rate=50:text=&amp;#39;TCR\:&amp;#39;:fontsize=100:fontcolor=&amp;#39;white&amp;#39;:boxcolor=0x000000AA:box=1:boxborderw=20:x=(w-text_w)/2:y=h-th-350&amp;#34;&lt;/span> -y -t &lt;span style="color:#ae81ff">120&lt;/span> -c:v libx264 -pix_fmt yuv420p output_with_drawtext.mp4
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Mamba替代Conda</title><link>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</link><pubDate>Wed, 27 Mar 2024 13:07:03 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2024/03/27/e4c2nybngzu5eddbnmdjgq/</guid><description>&lt;p>mamba是一个conda的替代品，可以加速conda的包管理，提升包管理的效率。&lt;/p>
 &lt;h2 id="安装">
  安装
