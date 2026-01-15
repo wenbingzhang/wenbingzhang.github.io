@@ -17,7 +17,10 @@ mamba是一个conda的替代品，可以加速conda的包管理，提升包管�
 
 ## 安装
 ```bash
+# macos
 brew install micromamba
+# macos or linux
+"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
 ```
 
 ## 配置
