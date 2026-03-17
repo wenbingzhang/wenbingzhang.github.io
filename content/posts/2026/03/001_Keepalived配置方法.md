@@ -16,7 +16,7 @@ menu: main
 
 ### 1. 基础配置
 
-```
+```bash
 vrrp_script check_service {
     script       "/usr/local/bin/check_service.sh"  # 检测脚本路径（必填）
     interval      3                                  # 检测间隔，单位：秒
@@ -79,7 +79,7 @@ chmod +x /usr/local/bin/check_service.sh
 
 ## 三、多脚本检测配置
 
-```
+```bash
 # 检测多个不同的服务
 
 vrrp_script check_nginx {
@@ -114,7 +114,7 @@ vrrp_instance VI_1 {
 
 ## 四、完整配置示例
 
-```
+```bash
 # 全局配置
 global_defs {
     router_id LVS_01                 # 路由器标识，名称唯一
