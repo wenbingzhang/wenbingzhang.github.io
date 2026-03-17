@@ -6,11 +6,11 @@
  一、VRRP Script 检测脚本配置
  &lt;a class="anchor" href="#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h2>
-&lt;h3 id="1-vrrp_script-块说明">
- 1. vrrp_script 块说明
- &lt;a class="anchor" href="#1-vrrp_script-%e5%9d%97%e8%af%b4%e6%98%8e">#&lt;/a>
+&lt;h3 id="1-基础配置">
+ 1. 基础配置
+ &lt;a class="anchor" href="#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code class="language-conf" data-lang="conf">vrrp_script check_service {
+&lt;pre tabindex="0">&lt;code>vrrp_script check_service {
  script &amp;#34;/usr/local/bin/check_service.sh&amp;#34; # 检测脚本路径（必填）
  interval 3 # 检测间隔，单位：秒
  timeout 2 # 脚本超时时间，单位：秒
@@ -18,7 +18,51 @@
  fall 2 # 连续失败次数，达到此值转为DOWN状态
  rise 1 # 连续成功次数，达到此值转为UP状态
 }
-&lt;/code>&lt;/pre>&lt;p>&lt;strong>参数说明：&lt;/strong>&lt;/p></description></item><item><title>FFmpeg自动检测裁剪黑边</title><link>https://notes.zhangwenbing.com/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/</link><pubDate>Tue, 13 May 2025 20:26:12 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#!/bin/bash
+
+vrrp_instance VI_1 {
+ state MASTER # 实例状态：MASTER（主）或 BACKUP（备）
+ interface eth0 # 绑定VIP的网卡接口名称
+ virtual_router_id 51 # 虚拟路由ID，同一组Keepalived必须相同（0-255）
+ priority 100 # 优先级，MASTER应高于BACKUP（1-255）
+ advert_int 1 # VRRP广告间隔，单位：秒
+
+ # 引用检测脚本
+ track_script {
+ check_service weight -20 # 执行检测脚本，weight表示权重变化值
+ }
+
+ # 虚拟IP（VIP）配置
+ virtual_ipaddress {
+ 192.168.1.100 # VIP地址，可配置多个
+ }
+}
+&lt;/code>&lt;/pre>&lt;h2 id="二检测脚本示例">
+ 二、检测脚本示例
+ &lt;a class="anchor" href="#%e4%ba%8c%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e7%a4%ba%e4%be%8b">#&lt;/a>
+&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#!/bin/bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e"># 检测服务状态的脚本&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 返回 0 表示成功，服务正常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 返回 非0 表示失败，服务异常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SERVICE_NAME&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;nginx&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 方法1：使用systemctl检查服务状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> systemctl is-active --quiet &lt;span style="color:#e6db74">&amp;#34;&lt;/span>$SERVICE_NAME&lt;span style="color:#e6db74">&amp;#34;&lt;/span>; &lt;span style="color:#66d9ef">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> exit &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> exit &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">fi&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 方法2：检查端口是否监听（以80端口为例）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># nc -z 127.0.0.1 80 || exit 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 方法3：检查进程是否存在（以nginx为例）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># pgrep -x nginx &amp;gt; /dev/null || exit 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 方法4：HTTP健康检查（适用于Web服务）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># curl -sf http://127.0.0.1/health &amp;gt; /dev/null || exit 1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>脚本权限设置：&lt;/strong>&lt;/p></description></item><item><title>FFmpeg自动检测裁剪黑边</title><link>https://notes.zhangwenbing.com/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/</link><pubDate>Tue, 13 May 2025 20:26:12 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/</guid><description>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#!/bin/bash
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 用法提示&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">[&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&lt;/span>$#&lt;span style="color:#e6db74">&amp;#34;&lt;/span> -ne &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">]&lt;/span>; &lt;span style="color:#66d9ef">then&lt;/span>

@@ -7,7 +7,7 @@
   #
 
 
-  1. vrrp_script 块说明
+  1. 基础配置
   #
 
 vrrp_script check_service {
@@ -18,8 +18,52 @@ vrrp_script check_service {
     fall          2                                  # 连续失败次数，达到此值转为DOWN状态
     rise          1                                  # 连续成功次数，达到此值转为UP状态
 }
-参数说明：'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Keepalived配置方法"><meta property="og:description" content=' Keepalived 配置方法 # 一、VRRP Script 检测脚本配置 # 1. vrrp_script 块说明 # vrrp_script check_service { script "/usr/local/bin/check_service.sh" # 检测脚本路径（必填） interval 3 # 检测间隔，单位：秒 timeout 2 # 脚本超时时间，单位：秒 weight -20 # 权重变化值，负数表示失败时降低优先级 fall 2 # 连续失败次数，达到此值转为DOWN状态 rise 1 # 连续成功次数，达到此值转为UP状态 } 参数说明：'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-17T14:57:01+08:00"><meta property="article:modified_time" content="2026-03-17T14:57:01+08:00"><meta property="article:tag" content="Default"><title>Keepalived配置方法 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2eae0e8603b0cf2741103bcf1525e9a72040cb3f18618855b9f879ebae6e14cd.js integrity="sha256-Lq4OhgOwzydBEDvPFSXppyBAyz8YYYhVufh5665uFM0=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+
+vrrp_instance VI_1 {
+    state MASTER                    # 实例状态：MASTER（主）或 BACKUP（备）
+    interface eth0                  # 绑定VIP的网卡接口名称
+    virtual_router_id 51            # 虚拟路由ID，同一组Keepalived必须相同（0-255）
+    priority 100                   # 优先级，MASTER应高于BACKUP（1-255）
+    advert_int 1                    # VRRP广告间隔，单位：秒
+
+    # 引用检测脚本
+    track_script {
+        check_service weight -20   # 执行检测脚本，weight表示权重变化值
+    }
+
+    # 虚拟IP（VIP）配置
+    virtual_ipaddress {
+        192.168.1.100              # VIP地址，可配置多个
+    }
+}
+
+  二、检测脚本示例
+  #
+
+#!/bin/bash
+# 检测服务状态的脚本
+# 返回 0 表示成功，服务正常
+# 返回 非0 表示失败，服务异常
+
+SERVICE_NAME="nginx"
+
+# 方法1：使用systemctl检查服务状态
+if systemctl is-active --quiet "$SERVICE_NAME"; then
+    exit 0
+else
+    exit 1
+fi
+
+# 方法2：检查端口是否监听（以80端口为例）
+# nc -z 127.0.0.1 80 || exit 1
+
+# 方法3：检查进程是否存在（以nginx为例）
+# pgrep -x nginx > /dev/null || exit 1
+
+# 方法4：HTTP健康检查（适用于Web服务）
+# curl -sf http://127.0.0.1/health > /dev/null || exit 1
+脚本权限设置：'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="Keepalived配置方法"><meta property="og:description" content=' Keepalived 配置方法 # 一、VRRP Script 检测脚本配置 # 1. 基础配置 # vrrp_script check_service { script "/usr/local/bin/check_service.sh" # 检测脚本路径（必填） interval 3 # 检测间隔，单位：秒 timeout 2 # 脚本超时时间，单位：秒 weight -20 # 权重变化值，负数表示失败时降低优先级 fall 2 # 连续失败次数，达到此值转为DOWN状态 rise 1 # 连续成功次数，达到此值转为UP状态 } vrrp_instance VI_1 { state MASTER # 实例状态：MASTER（主）或 BACKUP（备） interface eth0 # 绑定VIP的网卡接口名称 virtual_router_id 51 # 虚拟路由ID，同一组Keepalived必须相同（0-255） priority 100 # 优先级，MASTER应高于BACKUP（1-255） advert_int 1 # VRRP广告间隔，单位：秒 # 引用检测脚本 track_script { check_service weight -20 # 执行检测脚本，weight表示权重变化值 } # 虚拟IP（VIP）配置 virtual_ipaddress { 192.168.1.100 # VIP地址，可配置多个 } } 二、检测脚本示例 # #!/bin/bash # 检测服务状态的脚本 # 返回 0 表示成功，服务正常 # 返回 非0 表示失败，服务异常 SERVICE_NAME="nginx" # 方法1：使用systemctl检查服务状态 if systemctl is-active --quiet "$SERVICE_NAME"; then exit 0 else exit 1 fi # 方法2：检查端口是否监听（以80端口为例） # nc -z 127.0.0.1 80 || exit 1 # 方法3：检查进程是否存在（以nginx为例） # pgrep -x nginx > /dev/null || exit 1 # 方法4：HTTP健康检查（适用于Web服务） # curl -sf http://127.0.0.1/health > /dev/null || exit 1 脚本权限设置：'><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-17T14:57:01+08:00"><meta property="article:modified_time" content="2026-03-17T14:57:01+08:00"><meta property="article:tag" content="Default"><title>Keepalived配置方法 | 张文兵的笔记</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9f7bb3d3f3423d42e1e6a89f3aa03b2d9eae637c05b3325d879471c64eeb2cdc.js integrity="sha256-n3uz0/NCPULh5qifOqA7LZ6uY3wFszJdh5Rxxk7rLNw=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-8ec8d24621de2d29aa3aa48e5e4147bf class=toggle>
 <label for=section-8ec8d24621de2d29aa3aa48e5e4147bf class="flex justify-between"><a role=button>📔 C/C++</a></label><ul><li><input type=checkbox id=section-3436919d500fd2bb71607f1799c530e9 class=toggle>
@@ -33,14 +77,14 @@ vrrp_script check_service {
 <label for=section-4a72fedb3d7dfc18dbbcab83511bf75a class="flex justify-between"><a role=button>📔 Rust</a></label><ul><li><input type=checkbox id=section-8aa26b33a0315c1be70924160dd1a92c class=toggle>
 <label for=section-8aa26b33a0315c1be70924160dd1a92c class="flex justify-between"><a role=button>🔖 学习笔记</a></label><ul><li><a href=/notes/2024/03/06/e3ksq3zkmps14gcxuirwzx/>📝 所有权</a></li><li><a href=/notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/>📝 借用与引用</a></li></ul></li></ul></li></ul></li><li><a href=/links/>🤝 友情链接</a></li></ul><ul><li><a href=/articles/>📚 我的文章</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
 </label><strong>Keepalived配置方法</strong>
-<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置</a><ul><li><a href=#1-vrrp_script-块说明>1. vrrp_script 块说明</a></li><li><a href=#2-vrrp_instance-块说明>2. vrrp_instance 块说明</a></li></ul></li><li><a href=#二检测脚本示例>二、检测脚本示例</a></li><li><a href=#三多脚本检测配置>三、多脚本检测配置</a></li><li><a href=#四完整配置示例>四、完整配置示例</a></li><li><a href=#五注意事项>五、注意事项</a></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/>Keepalived配置方法</a></h1><div class=book-post-meta><span class=book-post-meta-date>2026-03-17</span>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置</a><ul><li><a href=#1-基础配置>1. 基础配置</a></li></ul></li><li><a href=#二检测脚本示例>二、检测脚本示例</a></li><li><a href=#三多脚本检测配置>三、多脚本检测配置</a></li><li><a href=#四完整配置示例>四、完整配置示例</a></li><li><a href=#五注意事项>五、注意事项</a></li></ul></nav></aside></header><article class="markdown book-post"><h1 class=book-post-title><a href=/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/>Keepalived配置方法</a></h1><div class=book-post-meta><span class=book-post-meta-date>2026-03-17</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/default/>Default</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/default/>Default</a></span></div><h1 id=keepalived-配置方法>Keepalived 配置方法
 <a class=anchor href=#keepalived-%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95>#</a></h1><h2 id=一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置
-<a class=anchor href=#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1-vrrp_script-块说明>1. vrrp_script 块说明
-<a class=anchor href=#1-vrrp_script-%e5%9d%97%e8%af%b4%e6%98%8e>#</a></h3><pre tabindex=0><code class=language-conf data-lang=conf>vrrp_script check_service {
+<a class=anchor href=#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1-基础配置>1. 基础配置
+<a class=anchor href=#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>vrrp_script check_service {
     script       &#34;/usr/local/bin/check_service.sh&#34;  # 检测脚本路径（必填）
     interval      3                                  # 检测间隔，单位：秒
     timeout       2                                  # 脚本超时时间，单位：秒
@@ -48,8 +92,8 @@ vrrp_script check_service {
     fall          2                                  # 连续失败次数，达到此值转为DOWN状态
     rise          1                                  # 连续成功次数，达到此值转为UP状态
 }
-</code></pre><p><strong>参数说明：</strong></p><table><thead><tr><th style=text-align:left>参数</th><th style=text-align:left>说明</th><th style=text-align:left>必填</th><th style=text-align:left>默认值</th></tr></thead><tbody><tr><td style=text-align:left><code>script</code></td><td style=text-align:left>检测脚本路径</td><td style=text-align:left>是</td><td style=text-align:left>无</td></tr><tr><td style=text-align:left><code>interval</code></td><td style=text-align:left>检测间隔（秒）</td><td style=text-align:left>否</td><td style=text-align:left>1</td></tr><tr><td style=text-align:left><code>timeout</code></td><td style=text-align:left>脚本超时时间（秒）</td><td style=text-align:left>否</td><td style=text-align:left>5</td></tr><tr><td style=text-align:left><code>weight</code></td><td style=text-align:left>权重变化值</td><td style=text-align:left>否</td><td style=text-align:left>0</td></tr><tr><td style=text-align:left><code>fall</code></td><td style=text-align:left>连续失败次数转DOWN</td><td style=text-align:left>否</td><td style=text-align:left>2</td></tr><tr><td style=text-align:left><code>rise</code></td><td style=text-align:left>连续成功次数转UP</td><td style=text-align:left>否</td><td style=text-align:left>2</td></tr></tbody></table><h3 id=2-vrrp_instance-块说明>2. vrrp_instance 块说明
-<a class=anchor href=#2-vrrp_instance-%e5%9d%97%e8%af%b4%e6%98%8e>#</a></h3><pre tabindex=0><code class=language-conf data-lang=conf>vrrp_instance VI_1 {
+
+vrrp_instance VI_1 {
     state MASTER                    # 实例状态：MASTER（主）或 BACKUP（备）
     interface eth0                  # 绑定VIP的网卡接口名称
     virtual_router_id 51            # 虚拟路由ID，同一组Keepalived必须相同（0-255）
@@ -91,7 +135,7 @@ vrrp_script check_service {
 </span></span><span style=display:flex><span><span style=color:#75715e># curl -sf http://127.0.0.1/health &gt; /dev/null || exit 1</span>
 </span></span></code></pre></div><p><strong>脚本权限设置：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>chmod +x /usr/local/bin/check_service.sh
 </span></span></code></pre></div><h2 id=三多脚本检测配置>三、多脚本检测配置
-<a class=anchor href=#%e4%b8%89%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%a3%80%e6%b5%8b%e9%85%8d%e7%bd%ae>#</a></h2><pre tabindex=0><code class=language-conf data-lang=conf># 检测多个不同的服务
+<a class=anchor href=#%e4%b8%89%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%a3%80%e6%b5%8b%e9%85%8d%e7%bd%ae>#</a></h2><pre tabindex=0><code># 检测多个不同的服务
 
 vrrp_script check_nginx {
     script       &#34;/usr/local/bin/check_nginx.sh&#34;
@@ -122,7 +166,7 @@ vrrp_instance VI_1 {
     }
 }
 </code></pre><h2 id=四完整配置示例>四、完整配置示例
-<a class=anchor href=#%e5%9b%9b%e5%ae%8c%e6%95%b4%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b>#</a></h2><pre tabindex=0><code class=language-conf data-lang=conf># 全局配置
+<a class=anchor href=#%e5%9b%9b%e5%ae%8c%e6%95%b4%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b>#</a></h2><pre tabindex=0><code># 全局配置
 global_defs {
     router_id LVS_01                 # 路由器标识，名称唯一
 }
@@ -168,5 +212,5 @@ vrrp_instance VI_1 {
     notify_fault  &#34;/usr/local/bin/notify_fault.sh&#34;    # 故障时执行
 }
 </code></pre><h2 id=五注意事项>五、注意事项
-<a class=anchor href=#%e4%ba%94%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9>#</a></h2><ol><li><strong>脚本权限</strong>：检测脚本必须具有执行权限</li><li><strong>返回值</strong>：脚本返回 <code>0</code> 表示成功，非 <code>0</code> 表示失败</li><li><strong>权重机制</strong>：<code>weight</code> 为负值时，检测失败会降低优先级；为正值时相反</li><li><strong>网络隔离</strong>：确保VRRP通信端口（UDP 112）不被防火墙阻止</li><li><strong>虚拟路由ID</strong>：同一组Keepalived集群必须使用相同的 <code>virtual_router_id</code></li><li><strong>优先级</strong>：MASTER的优先级必须高于BACKUP，才能正常切换</li></ol></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置</a><ul><li><a href=#1-vrrp_script-块说明>1. vrrp_script 块说明</a></li><li><a href=#2-vrrp_instance-块说明>2. vrrp_instance 块说明</a></li></ul></li><li><a href=#二检测脚本示例>二、检测脚本示例</a></li><li><a href=#三多脚本检测配置>三、多脚本检测配置</a></li><li><a href=#四完整配置示例>四、完整配置示例</a></li><li><a href=#五注意事项>五、注意事项</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
+<a class=anchor href=#%e4%ba%94%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9>#</a></h2><ol><li><strong>脚本权限</strong>：检测脚本必须具有执行权限</li><li><strong>返回值</strong>：脚本返回 <code>0</code> 表示成功，非 <code>0</code> 表示失败</li><li><strong>权重机制</strong>：<code>weight</code> 为负值时，检测失败会降低优先级；为正值时相反</li><li><strong>网络隔离</strong>：确保VRRP通信端口（UDP 112）不被防火墙阻止</li><li><strong>虚拟路由ID</strong>：同一组Keepalived集群必须使用相同的 <code>virtual_router_id</code></li><li><strong>优先级</strong>：MASTER的优先级必须高于BACKUP，才能正常切换</li></ol></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置</a><ul><li><a href=#1-基础配置>1. 基础配置</a></li></ul></li><li><a href=#二检测脚本示例>二、检测脚本示例</a></li><li><a href=#三多脚本检测配置>三、多脚本检测配置</a></li><li><a href=#四完整配置示例>四、完整配置示例</a></li><li><a href=#五注意事项>五、注意事项</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
 <script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p></footer></body></html>

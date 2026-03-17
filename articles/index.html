@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://notes.zhangwenbing.com/articles/"><meta property="og:site_name" content="张文兵的笔记"><meta property="og:title" content="📚 我的文章"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><title>📚 我的文章 | 张文兵的笔记</title>
-<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.2eae0e8603b0cf2741103bcf1525e9a72040cb3f18618855b9f879ebae6e14cd.js integrity="sha256-Lq4OhgOwzydBEDvPFSXppyBAyz8YYYhVufh5665uFM0=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://notes.zhangwenbing.com/articles/><link rel=stylesheet href=/book.min.7bc0bb908f28131671779537cc0c91a39075ed4cba93497f05888d37375171ce.css integrity="sha256-e8C7kI8oExZxd5U3zAyRo5B17Uy6k0l/BYiNNzdRcc4=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/zh.search.min.9f7bb3d3f3423d42e1e6a89f3aa03b2d9eae637c05b3325d879471c64eeb2cdc.js integrity="sha256-n3uz0/NCPULh5qifOqA7LZ6uY3wFszJdh5Rxxk7rLNw=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://notes.zhangwenbing.com/articles/index.xml title=张文兵的笔记></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>张文兵的笔记</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-6d1804e163fb7f5fbc576b94719a59cb class=toggle>
 <label for=section-6d1804e163fb7f5fbc576b94719a59cb class="flex justify-between"><a role=button>👨🏼‍💻 编程相关</a></label><ul><li><input type=checkbox id=section-8ec8d24621de2d29aa3aa48e5e4147bf class=toggle>
 <label for=section-8ec8d24621de2d29aa3aa48e5e4147bf class="flex justify-between"><a role=button>📔 C/C++</a></label><ul><li><input type=checkbox id=section-3436919d500fd2bb71607f1799c530e9 class=toggle>
@@ -31,8 +31,8 @@
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-tags><a href=/tags/default/>Default</a></span></div><p><h1 id=keepalived-配置方法>Keepalived 配置方法
 <a class=anchor href=#keepalived-%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95>#</a></h1><h2 id=一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置
-<a class=anchor href=#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1-vrrp_script-块说明>1. vrrp_script 块说明
-<a class=anchor href=#1-vrrp_script-%e5%9d%97%e8%af%b4%e6%98%8e>#</a></h3><pre tabindex=0><code class=language-conf data-lang=conf>vrrp_script check_service {
+<a class=anchor href=#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1-基础配置>1. 基础配置
+<a class=anchor href=#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>vrrp_script check_service {
     script       &#34;/usr/local/bin/check_service.sh&#34;  # 检测脚本路径（必填）
     interval      3                                  # 检测间隔，单位：秒
     timeout       2                                  # 脚本超时时间，单位：秒
@@ -40,7 +40,48 @@
     fall          2                                  # 连续失败次数，达到此值转为DOWN状态
     rise          1                                  # 连续成功次数，达到此值转为UP状态
 }
-</code></pre><p><strong>参数说明：</strong></p><a href=/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/>FFmpeg自动检测裁剪黑边</a></h2><div class=book-post-meta><span class=book-post-meta-date>2025-05-13</span>
+
+vrrp_instance VI_1 {
+    state MASTER                    # 实例状态：MASTER（主）或 BACKUP（备）
+    interface eth0                  # 绑定VIP的网卡接口名称
+    virtual_router_id 51            # 虚拟路由ID，同一组Keepalived必须相同（0-255）
+    priority 100                   # 优先级，MASTER应高于BACKUP（1-255）
+    advert_int 1                    # VRRP广告间隔，单位：秒
+
+    # 引用检测脚本
+    track_script {
+        check_service weight -20   # 执行检测脚本，weight表示权重变化值
+    }
+
+    # 虚拟IP（VIP）配置
+    virtual_ipaddress {
+        192.168.1.100              # VIP地址，可配置多个
+    }
+}
+</code></pre><h2 id=二检测脚本示例>二、检测脚本示例
+<a class=anchor href=#%e4%ba%8c%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e7%a4%ba%e4%be%8b>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e># 检测服务状态的脚本</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 返回 0 表示成功，服务正常</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 返回 非0 表示失败，服务异常</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>SERVICE_NAME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nginx&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 方法1：使用systemctl检查服务状态</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> systemctl is-active --quiet <span style=color:#e6db74>&#34;</span>$SERVICE_NAME<span style=color:#e6db74>&#34;</span>; <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>    exit <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>    exit <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 方法2：检查端口是否监听（以80端口为例）</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nc -z 127.0.0.1 80 || exit 1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 方法3：检查进程是否存在（以nginx为例）</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># pgrep -x nginx &gt; /dev/null || exit 1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 方法4：HTTP健康检查（适用于Web服务）</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># curl -sf http://127.0.0.1/health &gt; /dev/null || exit 1</span>
+</span></span></code></pre></div><p><strong>脚本权限设置：</strong></p><a href=/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/>...</a></p></article><article class="markdown book-post"><h2 class=book-post-title><a href=/articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/>FFmpeg自动检测裁剪黑边</a></h2><div class=book-post-meta><span class=book-post-meta-date>2025-05-13</span>
 <span class=book-post-meta-separator-categories>&nbsp; | &nbsp;</span>
 <span class=book-post-meta-categories><a href=/categories/ffmpeg/>FFmpeg</a>
 </span><span class=book-post-meta-separator-tags>&nbsp; | &nbsp;</span>
