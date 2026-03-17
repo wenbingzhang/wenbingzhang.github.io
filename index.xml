@@ -643,33 +643,33 @@ git reset --hard commit_id #回滚到指定commit的sha版本
  1. 基础配置
  &lt;a class="anchor" href="#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae">#&lt;/a>
 &lt;/h3>
-&lt;pre tabindex="0">&lt;code>vrrp_script check_service {
- script &amp;#34;/usr/local/bin/check_service.sh&amp;#34; # 检测脚本路径（必填）
- interval 3 # 检测间隔，单位：秒
- timeout 2 # 脚本超时时间，单位：秒
- weight -20 # 权重变化值，负数表示失败时降低优先级
- fall 2 # 连续失败次数，达到此值转为DOWN状态
- rise 1 # 连续成功次数，达到此值转为UP状态
-}
-
-vrrp_instance VI_1 {
- state MASTER # 实例状态：MASTER（主）或 BACKUP（备）
- interface eth0 # 绑定VIP的网卡接口名称
- virtual_router_id 51 # 虚拟路由ID，同一组Keepalived必须相同（0-255）
- priority 100 # 优先级，MASTER应高于BACKUP（1-255）
- advert_int 1 # VRRP广告间隔，单位：秒
-
- # 引用检测脚本
- track_script {
- check_service weight -20 # 执行检测脚本，weight表示权重变化值
- }
-
- # 虚拟IP（VIP）配置
- virtual_ipaddress {
- 192.168.1.100 # VIP地址，可配置多个
- }
-}
-&lt;/code>&lt;/pre>&lt;h2 id="二检测脚本示例">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>vrrp_script check_service &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> script &lt;span style="color:#e6db74">&amp;#34;/usr/local/bin/check_service.sh&amp;#34;&lt;/span> &lt;span style="color:#75715e"># 检测脚本路径（必填）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> interval &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#75715e"># 检测间隔，单位：秒&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timeout &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#75715e"># 脚本超时时间，单位：秒&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> weight -20 &lt;span style="color:#75715e"># 权重变化值，负数表示失败时降低优先级&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fall &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#75715e"># 连续失败次数，达到此值转为DOWN状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rise &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#75715e"># 连续成功次数，达到此值转为UP状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vrrp_instance VI_1 &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> state MASTER &lt;span style="color:#75715e"># 实例状态：MASTER（主）或 BACKUP（备）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> interface eth0 &lt;span style="color:#75715e"># 绑定VIP的网卡接口名称&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> virtual_router_id &lt;span style="color:#ae81ff">51&lt;/span> &lt;span style="color:#75715e"># 虚拟路由ID，同一组Keepalived必须相同（0-255）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> priority &lt;span style="color:#ae81ff">100&lt;/span> &lt;span style="color:#75715e"># 优先级，MASTER应高于BACKUP（1-255）&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> advert_int &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#75715e"># VRRP广告间隔，单位：秒&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># 引用检测脚本&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> track_script &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> check_service weight -20 &lt;span style="color:#75715e"># 执行检测脚本，weight表示权重变化值&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># 虚拟IP（VIP）配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> virtual_ipaddress &lt;span style="color:#f92672">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 192.168.1.100 &lt;span style="color:#75715e"># VIP地址，可配置多个&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="二检测脚本示例">
  二、检测脚本示例
  &lt;a class="anchor" href="#%e4%ba%8c%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e7%a4%ba%e4%be%8b">#&lt;/a>
 &lt;/h2>

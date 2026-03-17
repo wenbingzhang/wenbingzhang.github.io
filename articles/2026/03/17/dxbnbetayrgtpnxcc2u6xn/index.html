@@ -84,33 +84,33 @@ fi
 <span class=book-post-meta-tags><a href=/tags/default/>Default</a></span></div><h1 id=keepalived-配置方法>Keepalived 配置方法
 <a class=anchor href=#keepalived-%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95>#</a></h1><h2 id=一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置
 <a class=anchor href=#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae>#</a></h2><h3 id=1-基础配置>1. 基础配置
-<a class=anchor href=#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae>#</a></h3><pre tabindex=0><code>vrrp_script check_service {
-    script       &#34;/usr/local/bin/check_service.sh&#34;  # 检测脚本路径（必填）
-    interval      3                                  # 检测间隔，单位：秒
-    timeout       2                                  # 脚本超时时间，单位：秒
-    weight        -20                                # 权重变化值，负数表示失败时降低优先级
-    fall          2                                  # 连续失败次数，达到此值转为DOWN状态
-    rise          1                                  # 连续成功次数，达到此值转为UP状态
-}
-
-vrrp_instance VI_1 {
-    state MASTER                    # 实例状态：MASTER（主）或 BACKUP（备）
-    interface eth0                  # 绑定VIP的网卡接口名称
-    virtual_router_id 51            # 虚拟路由ID，同一组Keepalived必须相同（0-255）
-    priority 100                   # 优先级，MASTER应高于BACKUP（1-255）
-    advert_int 1                    # VRRP广告间隔，单位：秒
-
-    # 引用检测脚本
-    track_script {
-        check_service weight -20   # 执行检测脚本，weight表示权重变化值
-    }
-
-    # 虚拟IP（VIP）配置
-    virtual_ipaddress {
-        192.168.1.100              # VIP地址，可配置多个
-    }
-}
-</code></pre><h2 id=二检测脚本示例>二、检测脚本示例
+<a class=anchor href=#1-%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>vrrp_script check_service <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    script       <span style=color:#e6db74>&#34;/usr/local/bin/check_service.sh&#34;</span>  <span style=color:#75715e># 检测脚本路径（必填）</span>
+</span></span><span style=display:flex><span>    interval      <span style=color:#ae81ff>3</span>                                  <span style=color:#75715e># 检测间隔，单位：秒</span>
+</span></span><span style=display:flex><span>    timeout       <span style=color:#ae81ff>2</span>                                  <span style=color:#75715e># 脚本超时时间，单位：秒</span>
+</span></span><span style=display:flex><span>    weight        -20                                <span style=color:#75715e># 权重变化值，负数表示失败时降低优先级</span>
+</span></span><span style=display:flex><span>    fall          <span style=color:#ae81ff>2</span>                                  <span style=color:#75715e># 连续失败次数，达到此值转为DOWN状态</span>
+</span></span><span style=display:flex><span>    rise          <span style=color:#ae81ff>1</span>                                  <span style=color:#75715e># 连续成功次数，达到此值转为UP状态</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vrrp_instance VI_1 <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    state MASTER                    <span style=color:#75715e># 实例状态：MASTER（主）或 BACKUP（备）</span>
+</span></span><span style=display:flex><span>    interface eth0                  <span style=color:#75715e># 绑定VIP的网卡接口名称</span>
+</span></span><span style=display:flex><span>    virtual_router_id <span style=color:#ae81ff>51</span>            <span style=color:#75715e># 虚拟路由ID，同一组Keepalived必须相同（0-255）</span>
+</span></span><span style=display:flex><span>    priority <span style=color:#ae81ff>100</span>                   <span style=color:#75715e># 优先级，MASTER应高于BACKUP（1-255）</span>
+</span></span><span style=display:flex><span>    advert_int <span style=color:#ae81ff>1</span>                    <span style=color:#75715e># VRRP广告间隔，单位：秒</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 引用检测脚本</span>
+</span></span><span style=display:flex><span>    track_script <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        check_service weight -20   <span style=color:#75715e># 执行检测脚本，weight表示权重变化值</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 虚拟IP（VIP）配置</span>
+</span></span><span style=display:flex><span>    virtual_ipaddress <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        192.168.1.100              <span style=color:#75715e># VIP地址，可配置多个</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=二检测脚本示例>二、检测脚本示例
 <a class=anchor href=#%e4%ba%8c%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e7%a4%ba%e4%be%8b>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e># 检测服务状态的脚本</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 返回 0 表示成功，服务正常</span>
@@ -135,82 +135,82 @@ vrrp_instance VI_1 {
 </span></span><span style=display:flex><span><span style=color:#75715e># curl -sf http://127.0.0.1/health &gt; /dev/null || exit 1</span>
 </span></span></code></pre></div><p><strong>脚本权限设置：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>chmod +x /usr/local/bin/check_service.sh
 </span></span></code></pre></div><h2 id=三多脚本检测配置>三、多脚本检测配置
-<a class=anchor href=#%e4%b8%89%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%a3%80%e6%b5%8b%e9%85%8d%e7%bd%ae>#</a></h2><pre tabindex=0><code># 检测多个不同的服务
-
-vrrp_script check_nginx {
-    script       &#34;/usr/local/bin/check_nginx.sh&#34;
-    interval     3
-    weight       -10
-}
-
-vrrp_script check_mysql {
-    script       &#34;/usr/local/bin/check_mysql.sh&#34;
-    interval     5
-    weight       -10
-}
-
-vrrp_instance VI_1 {
-    state MASTER
-    interface eth0
-    virtual_router_id 51
-    priority 100
-    advert_int 1
-
-    track_script {
-        check_nginx                  # 引用nginx检测脚本
-        check_mysql                  # 引用mysql检测脚本
-    }
-
-    virtual_ipaddress {
-        192.168.1.100
-    }
-}
-</code></pre><h2 id=四完整配置示例>四、完整配置示例
-<a class=anchor href=#%e5%9b%9b%e5%ae%8c%e6%95%b4%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b>#</a></h2><pre tabindex=0><code># 全局配置
-global_defs {
-    router_id LVS_01                 # 路由器标识，名称唯一
-}
-
-# 检测脚本定义
-vrrp_script check_nginx {
-    script       &#34;/usr/local/bin/check_nginx.sh&#34;
-    interval      3
-    timeout       2
-    weight        -20
-    fall          2
-    rise          1
-}
-
-# VRRP实例配置（MASTER节点）
-vrrp_instance VI_1 {
-    state MASTER
-    interface eth0
-    virtual_router_id 51
-    priority 100
-    advert_int 1
-
-    # 认证配置（推荐设置）
-    authentication {
-        auth_type PASS              # 认证方式：PASS（简单密码）或 AH
-        auth_pass 1234              # 认证密码（仅前8位有效）
-    }
-
-    # 引用检测脚本
-    track_script {
-        check_nginx weight -20
-    }
-
-    # 虚拟IP配置
-    virtual_ipaddress {
-        192.168.1.100
-        # 192.168.1.101  # 可配置多个VIP
-    }
-
-    # 通知脚本（可选）
-    notify_master &#34;/usr/local/bin/notify_master.sh&#34;   # 转为MASTER时执行
-    notify_backup &#34;/usr/local/bin/notify_backup.sh&#34;   # 转为BACKUP时执行
-    notify_fault  &#34;/usr/local/bin/notify_fault.sh&#34;    # 故障时执行
-}
-</code></pre><h2 id=五注意事项>五、注意事项
+<a class=anchor href=#%e4%b8%89%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%a3%80%e6%b5%8b%e9%85%8d%e7%bd%ae>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 检测多个不同的服务</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vrrp_script check_nginx <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    script       <span style=color:#e6db74>&#34;/usr/local/bin/check_nginx.sh&#34;</span>
+</span></span><span style=display:flex><span>    interval     <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>    weight       -10
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vrrp_script check_mysql <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    script       <span style=color:#e6db74>&#34;/usr/local/bin/check_mysql.sh&#34;</span>
+</span></span><span style=display:flex><span>    interval     <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>    weight       -10
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>vrrp_instance VI_1 <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    state MASTER
+</span></span><span style=display:flex><span>    interface eth0
+</span></span><span style=display:flex><span>    virtual_router_id <span style=color:#ae81ff>51</span>
+</span></span><span style=display:flex><span>    priority <span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>    advert_int <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    track_script <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        check_nginx                  <span style=color:#75715e># 引用nginx检测脚本</span>
+</span></span><span style=display:flex><span>        check_mysql                  <span style=color:#75715e># 引用mysql检测脚本</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    virtual_ipaddress <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        192.168.1.100
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=四完整配置示例>四、完整配置示例
+<a class=anchor href=#%e5%9b%9b%e5%ae%8c%e6%95%b4%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 全局配置</span>
+</span></span><span style=display:flex><span>global_defs <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    router_id LVS_01                 <span style=color:#75715e># 路由器标识，名称唯一</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 检测脚本定义</span>
+</span></span><span style=display:flex><span>vrrp_script check_nginx <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    script       <span style=color:#e6db74>&#34;/usr/local/bin/check_nginx.sh&#34;</span>
+</span></span><span style=display:flex><span>    interval      <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>    timeout       <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>    weight        -20
+</span></span><span style=display:flex><span>    fall          <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>    rise          <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># VRRP实例配置（MASTER节点）</span>
+</span></span><span style=display:flex><span>vrrp_instance VI_1 <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    state MASTER
+</span></span><span style=display:flex><span>    interface eth0
+</span></span><span style=display:flex><span>    virtual_router_id <span style=color:#ae81ff>51</span>
+</span></span><span style=display:flex><span>    priority <span style=color:#ae81ff>100</span>
+</span></span><span style=display:flex><span>    advert_int <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 认证配置（推荐设置）</span>
+</span></span><span style=display:flex><span>    authentication <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        auth_type PASS              <span style=color:#75715e># 认证方式：PASS（简单密码）或 AH</span>
+</span></span><span style=display:flex><span>        auth_pass <span style=color:#ae81ff>1234</span>              <span style=color:#75715e># 认证密码（仅前8位有效）</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 引用检测脚本</span>
+</span></span><span style=display:flex><span>    track_script <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        check_nginx weight -20
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 虚拟IP配置</span>
+</span></span><span style=display:flex><span>    virtual_ipaddress <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>        192.168.1.100
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 192.168.1.101  # 可配置多个VIP</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 通知脚本（可选）</span>
+</span></span><span style=display:flex><span>    notify_master <span style=color:#e6db74>&#34;/usr/local/bin/notify_master.sh&#34;</span>   <span style=color:#75715e># 转为MASTER时执行</span>
+</span></span><span style=display:flex><span>    notify_backup <span style=color:#e6db74>&#34;/usr/local/bin/notify_backup.sh&#34;</span>   <span style=color:#75715e># 转为BACKUP时执行</span>
+</span></span><span style=display:flex><span>    notify_fault  <span style=color:#e6db74>&#34;/usr/local/bin/notify_fault.sh&#34;</span>    <span style=color:#75715e># 故障时执行</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span></code></pre></div><h2 id=五注意事项>五、注意事项
 <a class=anchor href=#%e4%ba%94%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9>#</a></h2><ol><li><strong>脚本权限</strong>：检测脚本必须具有执行权限</li><li><strong>返回值</strong>：脚本返回 <code>0</code> 表示成功，非 <code>0</code> 表示失败</li><li><strong>权重机制</strong>：<code>weight</code> 为负值时，检测失败会降低优先级；为正值时相反</li><li><strong>网络隔离</strong>：确保VRRP通信端口（UDP 112）不被防火墙阻止</li><li><strong>虚拟路由ID</strong>：同一组Keepalived集群必须使用相同的 <code>virtual_router_id</code></li><li><strong>优先级</strong>：MASTER的优先级必须高于BACKUP，才能正常切换</li></ol></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#一vrrp-script-检测脚本配置>一、VRRP Script 检测脚本配置</a><ul><li><a href=#1-基础配置>1. 基础配置</a></li></ul></li><li><a href=#二检测脚本示例>二、检测脚本示例</a></li><li><a href=#三多脚本检测配置>三、多脚本检测配置</a></li><li><a href=#四完整配置示例>四、完整配置示例</a></li><li><a href=#五注意事项>五、注意事项</a></li></ul></nav></div></aside></main><footer class=page-footer><p><span id=page-footer-time>载入中...</span>
 <script>function secondToDate(e){if(!e)return 0;var t=new Array(0,0,0,0,0);return e>=365*24*3600&&(t[0]=parseInt(e/(365*24*3600)),e%=365*24*3600),e>=24*3600&&(t[1]=parseInt(e/(24*3600)),e%=24*3600),e>=3600&&(t[2]=parseInt(e/3600),e%=3600),e>=60&&(t[3]=parseInt(e/60),e%=60),e>0&&(t[4]=e),t}</script><script type=text/javascript language=javascript>function setTime(){var e=Math.round(new Date(Date.UTC(2016,11,1,0,0,0)).getTime()/1e3),t=Math.round(((new Date).getTime()+8*60*60*1e3)/1e3);currentTime=secondToDate(t-e),currentTimeHtml=currentTime[0]+"年"+currentTime[1]+"天"+currentTime[2]+"时"+currentTime[3]+"分"+currentTime[4]+"秒",document.getElementById("page-footer-time").innerHTML="网站运行:"+currentTimeHtml}setInterval(setTime,1e3)</script></p></footer></body></html>
