@@ -68,15 +68,21 @@ Allow: /articles/
 
 Allow: /categories/
 
+Allow: /tags/default/
+
+Allow: /categories/default/
+
+Allow: /articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/
+
+Allow: /tags/
+
+Allow: /
+
 Allow: /tags/ffmpeg/
 
 Allow: /categories/ffmpeg/
 
 Allow: /articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/
-
-Allow: /tags/
-
-Allow: /
 
 Allow: /notes/
 

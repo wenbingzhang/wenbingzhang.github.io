@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Default on 张文兵的笔记</title><link>https://notes.zhangwenbing.com/categories/default/</link><description>Recent content in Default on 张文兵的笔记</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 17 Mar 2026 14:57:01 +0800</lastBuildDate><atom:link href="https://notes.zhangwenbing.com/categories/default/index.xml" rel="self" type="application/rss+xml"/><item><title>Keepalived配置方法</title><link>https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/</link><pubDate>Tue, 17 Mar 2026 14:57:01 +0800</pubDate><guid>https://notes.zhangwenbing.com/articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/</guid><description>&lt;h1 id="keepalived-配置方法">
+ Keepalived 配置方法
+ &lt;a class="anchor" href="#keepalived-%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="一vrrp-script-检测脚本配置">
+ 一、VRRP Script 检测脚本配置
+ &lt;a class="anchor" href="#%e4%b8%80vrrp-script-%e6%a3%80%e6%b5%8b%e8%84%9a%e6%9c%ac%e9%85%8d%e7%bd%ae">#&lt;/a>
+&lt;/h2>
+&lt;h3 id="1-vrrp_script-块说明">
+ 1. vrrp_script 块说明
+ &lt;a class="anchor" href="#1-vrrp_script-%e5%9d%97%e8%af%b4%e6%98%8e">#&lt;/a>
+&lt;/h3>
+&lt;pre tabindex="0">&lt;code class="language-conf" data-lang="conf">vrrp_script check_service {
+ script &amp;#34;/usr/local/bin/check_service.sh&amp;#34; # 检测脚本路径（必填）
+ interval 3 # 检测间隔，单位：秒
+ timeout 2 # 脚本超时时间，单位：秒
+ weight -20 # 权重变化值，负数表示失败时降低优先级
+ fall 2 # 连续失败次数，达到此值转为DOWN状态
+ rise 1 # 连续成功次数，达到此值转为UP状态
+}
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>参数说明：&lt;/strong>&lt;/p></description></item></channel></rss>
