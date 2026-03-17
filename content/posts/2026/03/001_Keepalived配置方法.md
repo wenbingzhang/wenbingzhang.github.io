@@ -14,9 +14,9 @@ menu: main
 
 ## 一、VRRP Script 检测脚本配置
 
-### 1. vrrp_script 块说明
+### 1. 基础配置
 
-```conf
+```
 vrrp_script check_service {
     script       "/usr/local/bin/check_service.sh"  # 检测脚本路径（必填）
     interval      3                                  # 检测间隔，单位：秒
@@ -25,22 +25,7 @@ vrrp_script check_service {
     fall          2                                  # 连续失败次数，达到此值转为DOWN状态
     rise          1                                  # 连续成功次数，达到此值转为UP状态
 }
-```
 
-**参数说明：**
-
-| 参数 | 说明 | 必填 | 默认值 |
-|------|------|------|--------|
-| `script` | 检测脚本路径 | 是 | 无 |
-| `interval` | 检测间隔（秒） | 否 | 1 |
-| `timeout` | 脚本超时时间（秒） | 否 | 5 |
-| `weight` | 权重变化值 | 否 | 0 |
-| `fall` | 连续失败次数转DOWN | 否 | 2 |
-| `rise` | 连续成功次数转UP | 否 | 2 |
-
-### 2. vrrp_instance 块说明
-
-```conf
 vrrp_instance VI_1 {
     state MASTER                    # 实例状态：MASTER（主）或 BACKUP（备）
     interface eth0                  # 绑定VIP的网卡接口名称
@@ -94,7 +79,7 @@ chmod +x /usr/local/bin/check_service.sh
 
 ## 三、多脚本检测配置
 
-```conf
+```
 # 检测多个不同的服务
 
 vrrp_script check_nginx {
@@ -129,7 +114,7 @@ vrrp_instance VI_1 {
 
 ## 四、完整配置示例
 
-```conf
+```
 # 全局配置
 global_defs {
     router_id LVS_01                 # 路由器标识，名称唯一
