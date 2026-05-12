@@ -40,6 +40,8 @@ Allow: /notes/2024/03/06/o4arkqgfnqygr5ckif2gkk/
 
 Allow: /notes/
 
+Allow: /notes/2026/05/12/skddczycraaeilgwkxoxux/
+
 Allow: /notes/
 
 Allow: /notes/2025/02/10/pkdrvn9md3ggfmbxahx4ef/
@@ -64,6 +66,10 @@ Allow: /notes/
 
 Allow: /links/
 
+Allow: /notes/
+
+Allow: /
+
 Allow: /articles/
 
 Allow: /categories/
@@ -76,15 +82,11 @@ Allow: /articles/2026/03/17/dxbnbetayrgtpnxcc2u6xn/
 
 Allow: /tags/
 
-Allow: /
-
 Allow: /tags/ffmpeg/
 
 Allow: /categories/ffmpeg/
 
 Allow: /articles/2025/05/13/zjrbjxuzwztru8utgsmvbf/
-
-Allow: /notes/
 
 Allow: /tags/linux/
 
